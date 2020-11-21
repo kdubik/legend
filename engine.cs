@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace legend
 {
-    public enum ErrorCode { OK, ROOM_NOT_FOUND, EMPTY_PATH };
+    public enum ErrorCode { OK, ROOM_NOT_FOUND, EMPTY_PATH, NOT_ENABLED };
 
     public class Engine
     {
@@ -13,24 +13,43 @@ namespace legend
         public Engine()
         {
             lib.LoadData();
-            party.actualRoomID = "1";
+            lib.LoadDataFiles();
+            party.actualRoomID = "entrance";
         }
 
-        public ErrorCode Go(EPath path)
+        public ErrorCode Go(Path path)
         {
             ErrorCode ec = ErrorCode.OK;
+            Road lRoad = lib.GetRoad(party.actualRoomID, path);
 
-                Room lroom = lib.GetRoom(party.actualRoomID);
-                if (lroom!=null)
+            if (lRoad!=null)
+            {
+                Console.Write(lRoad.enabled.ToString());
+                if (lRoad.enabled)
                 {
-                    string tmp = lroom.GetRoadTarget(path);
-                    if (tmp!="np")
+                    if (lRoad.sourceRoom==party.actualRoomID)
                     {
-                         party.actualRoomID = tmp;
-                    } else ec=ErrorCode.EMPTY_PATH;
-
-                } else ec=ErrorCode.ROOM_NOT_FOUND;
-
+                        if ((lRoad.bothWay == Direction.BOTH) ||  (lRoad.bothWay == Direction.TO_TARGET))
+                        {
+                            party.actualRoomID = lRoad.targetRoom;
+                        } else ec=ErrorCode.EMPTY_PATH;
+                    }
+                    else
+                    {
+                        if ((lRoad.bothWay == Direction.BOTH) || (lRoad.bothWay == Direction.TO_SOURCE))
+                        {
+                            party.actualRoomID = lRoad.sourceRoom;
+                        } else ec=ErrorCode.EMPTY_PATH;
+                    }
+                }
+                else
+                { 
+                    ec=ErrorCode.EMPTY_PATH;
+                    //Console.WriteLine("DISABLED");
+                }
+            } 
+            else ec=ErrorCode.EMPTY_PATH;
+           
             return ec;
         }
     }

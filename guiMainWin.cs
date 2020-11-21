@@ -15,11 +15,37 @@ namespace legend
             Room lRoom = eng.lib.GetRoom(roomId);
             if (lRoom!=null)
             {
+                // Hlavny opis miestnosti
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(lRoom.name);
+                Console.ResetColor();
                 Console.WriteLine(lRoom.desc);
-                if (lRoom.container!=null)
+
+                // Opisat moznosti cestovania:
+                Console.Write("Mozes ist: ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                foreach (Road rd in eng.lib.roads)
                 {
-                    Console.WriteLine("Vidis tu {0}", lRoom.container.name);
+                    if (rd.enabled)
+                    {
+                        if (rd.sourceRoom==eng.party.actualRoomID)
+                        {
+                            if ((rd.bothWay == Direction.BOTH) ||  (rd.bothWay == Direction.TO_TARGET))
+                            {                           
+                                Console.Write("{0} ", Road.GetPathName(rd.direction1));
+                            }
+                        }
+                        if (rd.targetRoom==eng.party.actualRoomID)
+                        {
+                            if ((rd.bothWay == Direction.BOTH) || (rd.bothWay == Direction.TO_SOURCE))
+                            {
+                                Console.Write("{0} ", Road.GetPathName(rd.direction2));
+                            }
+                        }
+                    }
                 }
+                Console.ResetColor();
+                Console.WriteLine("");
             }
             else Console.WriteLine("Engine error: Unable to find room '{0}'", roomId);
         }
@@ -30,78 +56,74 @@ namespace legend
             // Show Container
         }
 
-        
-
         public void Show()
         {
+            Console.Clear();
             ShowRoom();
 
             string line = "";
             do
             {
+                Console.Write("> ");
                 line = Console.ReadLine();
 
-                if (line=="n") 
+                if (line=="s")
                 {
-                    var ec = eng.Go(EPath.NORTH);
+                    var ec = eng.Go(Path.NORTH);
                     if (ec==ErrorCode.EMPTY_PATH)
                     {
                         Console.WriteLine("Unable to go that way.");
                     }
                     else 
                     {
-                        Console.WriteLine("Siel si na sever.");
+                        Console.WriteLine("Siel si na sever.\n");
                         ShowRoom();
                     }
                 }
 
-                if (line=="s") 
+                if (line=="j") 
                 {
-                    var ec = eng.Go(EPath.SOUTH);
+                    var ec = eng.Go(Path.SOUTH);
                     if (ec==ErrorCode.EMPTY_PATH)
                     {
                         Console.WriteLine("Unable to go that way.");
                     }
                     else
                     {
-                        Console.WriteLine("Siel si na juh.");
+                        Console.WriteLine("Siel si na juh.\n");
                         ShowRoom();
                     }
                 }
 
-                if (line=="w") 
+                if (line=="z") 
                 {
-                    var ec = eng.Go(EPath.WEST);
+                    var ec = eng.Go(Path.WEST);
                     if (ec==ErrorCode.EMPTY_PATH)
                     {
                         Console.WriteLine("Unable to go that way.");
                     }
                     else
                     {
-                        Console.WriteLine("Siel si na zapad.");
+                        Console.WriteLine("Siel si na zapad.\n");
                         ShowRoom();
                     }
+                    //if (ec==ErrorCode.NOT_ENABLED) Console.WriteLine("DISABLED.\n");
                 }
 
-                if (line=="e") 
+                if (line=="v") 
                 {
-                    var ec = eng.Go(EPath.EAST);
+                    var ec = eng.Go(Path.EAST);
                     if (ec==ErrorCode.EMPTY_PATH)
                     {
                         Console.WriteLine("Unable to go that way.");
                     }
                     else
                     {
-                        Console.WriteLine("Siel si na vychod.");
+                        Console.WriteLine("Siel si na vychod.\n");
                         ShowRoom();
                     }
+                    //if (ec==ErrorCode.NOT_ENABLED) Console.WriteLine("DISABLED.\n");
                 }
-                if (line=="otvor") 
-                {
-                    GuiContainer gc = new GuiContainer(eng);
-                    gc.OpenContainer();
-                }
-
 
             } while (line!="ko");
         }

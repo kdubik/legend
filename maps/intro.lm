@@ -1,0 +1,76 @@
+room entrance
+desc Toto je vchod do jaskyne. Cez úzky otvor sem svieti tenký lúč svetla, ktorý prezrádza, že táto jaskyňa určite slúži ako úkryt pre niektoré divé zvieratá.
+end
+
+room komora1
+desc Si uprostred akejsi vstupnej komory do jaskyne. Vidieť tu nejaké kosti, takže tu asi obcas prebyva aj nejaká zver.
+end
+
+room chodba
+desc V ovzduší tejto komory cítiť zdochlinu. Na zemi je kostra človeka, ktorá tomuto miestu dodáva zlovestný nádych. Skupinke netopierov čo visia na akomsi výklenku to však vôbec neprekáža.
+end
+
+room vaza
+desc Zvláštna komora, v ktorej sa zrejme kedysi ukrývali aj ľudia. Sú tu stopy uriva a rôznych stavebných prvkov, napríklad zvyšky antických váz.
+end
+
+room tajna
+desc Táto miestnosť tu bola zjavne zamurovaná. Nech už tu býval ktokoľvek, sem sa pokúšal uskladniť svoje tajomstvá, hoci teraz je to už len niekoľko zhnitých debien a prázdnych vakov.
+end
+
+room tunel
+desc Si uprostred dlhého tmavého tunela, ktorý vedie bohvie kam. Tunel je plný drevenných výstuží, takže niekto ho účelne vybudoval. Už dávno nie si v jaskyni, ide o výtvor ľudských rúk.
+end
+
+room voda
+desc Veľká centrálna miestnosť, ktorá je však do značnej miery zatopená. Nedá sa tu hýbať, pokiaľ nevieš plávať.
+end
+
+room poklad
+desc V tomto starobylom kúte, v tejto tajomnej miestnosti s množstvom malieb, vidíš truhlicu.
+end
+
+room npc
+desc Si v zvláštnej miestnosti, ktorá voľakedy slúžila ako ubytovňa. Niekoľko dolámaných postelí je tým jediným, čo sa zachovalo.
+end
+
+# Cesty --- PATHS ---
+
+path entrance komora1 east
+end
+
+path komora1 chodba south
+end
+
+path chodba vaza south
+end
+
+path vaza tajna west
+enabled false
+end
+
+path komora1 tunel east
+end
+
+path tunel voda south
+end
+
+path voda npc east
+end
+
+path voda poklad south
+end
+
+path poklad vaza west
+direction to_target
+end
+
+# Cesty --- TEXTY ---
+
+text entrance_desc
+Toto je vstupna chodba. Na dva riadky, dufam :-)
+end
+
+text izba_desc
+Toto je IZBICKA.
+end

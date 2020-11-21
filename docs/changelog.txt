@@ -1,0 +1,5 @@
+v0.0.1 (21.11.2020)
+- kostra hry funguje (behanie po miestnostiach + ich opis)
+- hlavne data sa nacitavaju zo suboru
+- zaklad generovania postavy funguje
+- cesty funguju: jednosmerne, obojsmerne a tajne chodby
