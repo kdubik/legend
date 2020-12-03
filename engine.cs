@@ -24,7 +24,7 @@ namespace legend
 
             if (lRoad!=null)
             {
-                Console.Write(lRoad.enabled.ToString());
+                //Console.Write(lRoad.enabled.ToString());
                 if (lRoad.enabled)
                 {
                     if (lRoad.sourceRoom==party.actualRoomID)

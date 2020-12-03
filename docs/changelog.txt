@@ -1,4 +1,10 @@
-v0.0.2
+v0.0.3
+- New GameItem object type
+- Load game items from map file (add_item)
+- Show static items (level design) in the rooms
+- Removed some debug info
+
+v0.0.2 (3.12.2020)
 - load predmetov z DAT suboru
     - loaded: armor, wheapon, misc (nema vlastnosti, vzatelny), asset (nema vlastnosti, nehybatelny)
     (container je vlastne asset, ktory po preskumani da predmet - truhla, vyklenok...)

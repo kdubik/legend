@@ -10,6 +10,7 @@ namespace legend
         public List<Room> rooms = new List<Room>();
         public List<Road> roads = new List<Road>();
         public List<Item> items = new List<Item>();
+        public List<GameItem> gameItems = new List<GameItem>();
 
         public Dictionary<string,string> texts = new Dictionary<string,string>();
 
@@ -123,6 +124,23 @@ namespace legend
                                     roomsCount++;
                                     blok=Block.NONE;
                                 }
+                                if (words[0]=="add_item")
+                                {
+                                    // Add item into this room
+                                    GameItem tmpGameItem = new GameItem(words[1],tmpRoom.id);
+                                    Item tmpItem = GetItem(words[1]);
+                                    if (tmpItem==null)
+                                    {
+                                        Console.WriteLine(" - Error: Unable to find object '{0}'!", words[1]);
+                                    }
+                                    else
+                                    {
+                                        tmpGameItem.itemType = tmpItem.type;
+                                        tmpGameItem.itemName = tmpItem.name;
+                                    }
+                                    gameItems.Add(tmpGameItem);
+                                    
+                                }
                             }
 
                             if (blok==Block.ROAD)
@@ -220,13 +238,15 @@ namespace legend
             // Search for *lm files (legend map)
             string[] files = Directory.GetFiles("maps","*.lm");
 
+            // Load items first
+            LoadItemFile(@"data/items.dat");
+
+            // Load map file(s)
             foreach( string fname in files)
             {
                 Console.WriteLine(fname);
                 LoadLMFile(fname);
             }
-
-            LoadItemFile(@"data/items.dat");
         }
     }
 }

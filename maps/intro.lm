@@ -4,6 +4,7 @@ end
 
 room komora1
 desc Si uprostred akejsi vstupnej komory do jaskyne. Vidieť tu nejaké kosti, takže tu asi obcas prebyva aj nejaká zver.
+add_item stlp
 end
 
 room chodba

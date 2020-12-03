@@ -21,6 +21,19 @@ namespace legend
                 Console.ResetColor();
                 Console.WriteLine(lRoom.desc);
 
+                // Opisat, ci su tu nejake static predmety
+                foreach (GameItem git in eng.lib.gameItems)
+                {
+                    if (git.position==eng.party.actualRoomID)
+                    {
+                        Console.Write("Vidis tu ");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write(git.itemName);
+                        Console.ResetColor();
+                        Console.WriteLine(".");
+                    }
+                }
+
                 // Opisat moznosti cestovania:
                 Console.Write("Mozes ist: ");
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -45,7 +58,7 @@ namespace legend
                     }
                 }
                 Console.ResetColor();
-                Console.WriteLine("");
+                Console.WriteLine("\n");
             }
             else Console.WriteLine("Engine error: Unable to find room '{0}'", roomId);
         }
