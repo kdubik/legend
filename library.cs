@@ -10,7 +10,7 @@ namespace legend
         public List<Room> rooms = new List<Room>();
         public List<Road> roads = new List<Road>();
         public List<Item> items = new List<Item>();
-        public List<Asset> assets = new List<Asset>();
+
         public Dictionary<string,string> texts = new Dictionary<string,string>();
 
         public int LoadData()
@@ -181,6 +181,40 @@ namespace legend
             Console.WriteLine("Text blocks loaded: {0}", textCount.ToString());
         }
 
+        public void LoadItemFile(string fname)
+        {
+            int wheaponCount = 0;
+            int armorCount = 0;
+            int assetCount = 0;
+            int miscCount = 0;
+
+            // Open the stream and read it back.
+            using (StreamReader sr = File.OpenText(fname))
+            {
+                string s = "";
+                while ((s = sr.ReadLine()) != null)
+                {
+                    if (s!="")  // No empty string
+                    {
+                        if (s[0]!='#')  // No comments
+                        {
+                            Item tmpItem = new Item(s);
+                            items.Add(tmpItem);
+
+                            if (tmpItem.type == ItemType.WHEAPON) wheaponCount++;
+                            if (tmpItem.type == ItemType.ARMOR) armorCount++;
+                            if (tmpItem.type == ItemType.ASSET) assetCount++;
+                            if (tmpItem.type == ItemType.MISC) miscCount++;
+                        }
+                    }
+                }
+            }
+
+            Console.WriteLine("Wheapons loaded: {0}", wheaponCount.ToString());
+            Console.WriteLine("Armor loaded: {0}", armorCount.ToString());
+            Console.WriteLine("Assets loaded: {0}", armorCount.ToString()); 
+            Console.WriteLine("Misc loaded: {0}", miscCount.ToString());  
+        }
         public void LoadDataFiles()
         {
             // Search for *lm files (legend map)
@@ -191,6 +225,8 @@ namespace legend
                 Console.WriteLine(fname);
                 LoadLMFile(fname);
             }
+
+            LoadItemFile(@"data/items.dat");
         }
     }
 }

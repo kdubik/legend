@@ -11,6 +11,7 @@ namespace legend
         public int lockNo;      // Lock no
         public bool locked;     // Locked?
         public bool mechanic;   // You have to open with mechanism, not key
+        public int lockLevel;   // TN for lockpicking
     }
 
     public class Road

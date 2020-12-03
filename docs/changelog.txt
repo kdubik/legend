@@ -1,3 +1,10 @@
+v0.0.2
+- load predmetov z DAT suboru
+    - loaded: armor, wheapon, misc (nema vlastnosti, vzatelny), asset (nema vlastnosti, nehybatelny)
+    (container je vlastne asset, ktory po preskumani da predmet - truhla, vyklenok...)
+    (misc predmet nema ucel, ale moze byt nanom specialna akcia)
+- dvere (v ramci "road") uz maju aj "lock picking" schopnost
+
 v0.0.1 (21.11.2020)
 - kostra hry funguje (behanie po miestnostiach + ich opis)
 - hlavne data sa nacitavaju zo suboru
