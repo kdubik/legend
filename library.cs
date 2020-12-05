@@ -137,9 +137,29 @@ namespace legend
                                     {
                                         tmpGameItem.itemType = tmpItem.type;
                                         tmpGameItem.itemName = tmpItem.name;
+
+                                        int paramsCount = words.Length - 2;
+                                        if (paramsCount>0)
+                                        {
+                                            for (int a=0;a<paramsCount;a++)
+                                            {
+                                                string[] data = words[2+a].Split(":");
+                                                if (data.Length!=1)
+                                                {
+                                                    if (data[0]=="trapped")
+                                                    {
+                                                        tmpGameItem.AddTrap(data[1]);
+                                                    }
+                                                    if (data[0]=="hidden")
+                                                    {
+                                                        tmpGameItem.AddHide(data[1]);
+                                                    }
+                                                } else Console.WriteLine("Error: syntax error during processing item {0}!",tmpItem.name);
+                                            }
+                                        }
+
+                                        gameItems.Add(tmpGameItem);
                                     }
-                                    gameItems.Add(tmpGameItem);
-                                    
                                 }
                             }
 

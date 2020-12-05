@@ -1,5 +1,5 @@
-v0.0.3
-- New GameItem object type
+v0.0.3 (5.12.2020)
+- New GameItem object type (also may be hidden/trapped)
 - Load game items from map file (add_item)
 - Show static items (level design) in the rooms
 - Removed some debug info

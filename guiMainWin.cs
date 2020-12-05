@@ -26,11 +26,15 @@ namespace legend
                 {
                     if (git.position==eng.party.actualRoomID)
                     {
-                        Console.Write("Vidis tu ");
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.Write(git.itemName);
-                        Console.ResetColor();
-                        Console.WriteLine(".");
+                        Console.WriteLine("{0}", git.hidden.ToString());
+                        if (!git.hidden)
+                        {
+                            Console.Write("Vidis tu ");
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write(git.itemName);
+                            Console.ResetColor();
+                            Console.WriteLine(".");
+                        }
                     }
                 }
 
