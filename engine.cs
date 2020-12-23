@@ -12,7 +12,8 @@ namespace legend
         public List<InvertoryItem> gameItems = new List<InvertoryItem>();
         public Engine()
         {
-            lib.LoadData();
+            Console.Write("Initializing engine:");
+            //lib.LoadData();
             lib.LoadDataFiles();
             party.actualRoomID = "entrance";
         }

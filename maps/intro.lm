@@ -75,3 +75,15 @@ end
 text izba_desc
 Toto je IZBICKA.
 end
+
+# ACTIONS ----
+action destroyWallPush test stlp
+enabled true
+text Pokusit sa vyvalit stenu silou
+attribute strength
+level 9
+focus might
+success show_msg podarilo_sa
+success add_item magic_knife
+fail show_msg zlyhanie_ako_hrom
+end

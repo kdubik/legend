@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace legend
 {
@@ -73,6 +74,37 @@ namespace legend
             // Show Container
         }
 
+        public void ShowPotencialActions()
+        {
+            //Dictionary<string, string> dict = new Dictionary<string, string>();
+            List<string> actList = new List<string>();
+            foreach(GameItem tmpGItem in eng.lib.gameItems)
+            {
+                if (tmpGItem.position==eng.party.actualRoomID)
+                {
+                    if (!tmpGItem.hidden)
+                    {
+                        foreach(Action tmpAct in eng.lib.actions)
+                        {
+                            if (tmpAct.id==tmpGItem.id)
+                            {
+                                //Console.WriteLine("Act "+tmpAct.desc);
+                                //dict.Add(tmpAct.id, );
+                                actList.Add(tmpAct.id);
+                            }
+                        }
+                    }
+                }
+            }
+       
+            for(int a=0;a<actList.Count;a++)
+            {
+                Action tmpAct = eng.lib.GetAction(actList[a]);
+                Console.WriteLine("{0} {1}", (a+1).ToString(), tmpAct.desc);
+            }
+            Console.WriteLine("{0} Konec", (actList.Count+1).ToString());
+        }
+
         public void Show()
         {
             Console.Clear();
@@ -140,6 +172,11 @@ namespace legend
                         ShowRoom();
                     }
                     //if (ec==ErrorCode.NOT_ENABLED) Console.WriteLine("DISABLED.\n");
+                }
+
+                if (line=="a") 
+                {
+                    ShowPotencialActions();
                 }
 
             } while (line!="ko");

@@ -1,4 +1,11 @@
-v0.0.3 (5.12.2020)
+v0.0.5 (23.12.2020)
+- Action class
+- Character class updated - added basic attributes
+- Load actions from file
+- Attach actions on items (in action definition)
+- Print actions on static items
+
+v0.0.3 + 0.0.4 (5.12.2020)
 - New GameItem object type (also may be hidden/trapped)
 - Load game items from map file (add_item)
 - Show static items (level design) in the rooms
