@@ -13,7 +13,6 @@ namespace legend
         public Engine()
         {
             Console.Write("Initializing engine:");
-            //lib.LoadData();
             lib.LoadDataFiles();
             party.actualRoomID = "entrance";
         }

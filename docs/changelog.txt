@@ -1,3 +1,14 @@
+v0.0.7
+* complete running action menu
+* run actions
+* show character status
+
+v0.0.6 (1.1.2021)
+- clean obsolete load_data function
+- clean unused action file
+- implement character.cs
+- enhance main menu: add quickstart option
+
 v0.0.5 (23.12.2020)
 - Action class
 - Character class updated - added basic attributes

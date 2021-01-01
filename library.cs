@@ -15,35 +15,6 @@ namespace legend
 
         public Dictionary<string,string> texts = new Dictionary<string,string>();
 
-        public int LoadData()
-        {
-            /*
-            // Rooms, map 1
-            Room lRoom = new Room();
-            lRoom.id = "1";
-            lRoom.name = "Brana k domu";
-            lRoom.desc = "Stojis pri hlavnej brane.\nJe to brana";
-            rooms.Add(lRoom);
-
-            lRoom = new Room();
-            lRoom.id = "2";
-            lRoom.name = "Vstupna hala";
-            lRoom.desc = "Si uprostred vstupnej haly. Chodba je dlha\na plna roznych gotickych soch.";
-            rooms.Add(lRoom);
-
-            Road lRoad = new Road("1","2",Path.NORTH);  // Spojime obe miestnosti
-            roads.Add(lRoad);
-            */
-
-            Item lItem = new Item("dyka",ItemType.WHEAPON);
-            items.Add(lItem);
-
-            lItem = new Item("mec",ItemType.WHEAPON);
-            items.Add(lItem);
-
-            return 0;
-        }
-
         public Room GetRoom(string roomId)
         {
             Room ret = null;
@@ -212,7 +183,7 @@ namespace legend
 
                                 if (words[0]=="atribute")
                                 {
-                                    tmpAct.attribute = Character.GetAttribute(words[1]);
+                                    tmpAct.attribute = Character.GetAttributeFromString(words[1]);
                                 }
                                 if (words[0]=="level")
                                 {

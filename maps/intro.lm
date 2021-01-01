@@ -77,6 +77,13 @@ Toto je IZBICKA.
 end
 
 # ACTIONS ----
+
+# id: destroyWallPush
+# na ktory objekt?: stlp
+# typ: test
+# success: prida akciu do listu akcii, ktore sa vzkonaju v pripade uspechu
+# fail: prida akciu do listu akcii, ktore sa vykonaju v pripade neuspechu
+
 action destroyWallPush test stlp
 enabled true
 text Pokusit sa vyvalit stenu silou

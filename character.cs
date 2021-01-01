@@ -19,7 +19,52 @@ namespace legend
 
         public int[] attr = new int[9];
 
-        public static Attribute GetAttribute(string attrString)
+        public void SetAttribute(Attribute inAttr, int value) => attr[(int)Attribute.ACCURACY] = value;
+
+        public int GetAttribute(Attribute inAttr) => attr[(int)Attribute.ACCURACY];
+
+        /// <summary>
+        /// Constructor - prepare default character
+        /// </summary>
+        /// <param name="female">Is character female? (Man by default)</param>
+        public Character(bool female)
+        {
+            // Defaults
+            // Race = HUMAN
+            // Class = WARRIOR
+            // Level = 1
+
+            if (female)
+            {
+                name = "Sienna";
+                female = true; // Default male
+                SetAttribute(Attribute.ACCURACY,1);
+                SetAttribute(Attribute.COMMUNICATION,1);
+                SetAttribute(Attribute.CONSTITUTION,1);
+                SetAttribute(Attribute.DEXTERITY,1);
+                SetAttribute(Attribute.FIGHTING,1);
+                SetAttribute(Attribute.IQ,1);
+                SetAttribute(Attribute.PERCEPTION,1);
+                SetAttribute(Attribute.STRENGTH,1);
+                SetAttribute(Attribute.WILL,1);
+            }
+            else
+            {
+                name = "Scamm";
+                female = false; // Default male
+                SetAttribute(Attribute.ACCURACY,1);
+                SetAttribute(Attribute.COMMUNICATION,1);
+                SetAttribute(Attribute.CONSTITUTION,1);
+                SetAttribute(Attribute.DEXTERITY,1);
+                SetAttribute(Attribute.FIGHTING,1);
+                SetAttribute(Attribute.IQ,1);
+                SetAttribute(Attribute.PERCEPTION,1);
+                SetAttribute(Attribute.STRENGTH,1);
+                SetAttribute(Attribute.WILL,1);
+            }
+        }
+
+        public static Attribute GetAttributeFromString(string attrString)
         {
             Attribute res = Attribute.ACCURACY;
             string li = attrString.ToLower();

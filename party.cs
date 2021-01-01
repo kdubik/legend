@@ -16,5 +16,11 @@ namespace legend
         public string actualRoomID;
         // Party's invertory
         
+        public List<Character> members = new List<Character>();
+
+        public void Clean()
+        {
+            members.Clear();
+        }
     }
 }

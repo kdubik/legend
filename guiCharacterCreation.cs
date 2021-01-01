@@ -14,7 +14,7 @@ namespace legend
         {
             bool res = true;
             string line = "";
-            Character hero = new Character();
+            Character hero = new Character(true);
 
             Console.Clear();
             Console.WriteLine("Vytvorenie postavy: Vyber si rasu\n\n");
@@ -69,6 +69,9 @@ namespace legend
             Console.Write("Meno postavy: ");
             line = Console.ReadLine();
             hero.name = line;
+
+            // Ulozime postavu
+            eng.party.members.Add(hero);    // Pridame hrdinu do partie
 
             Console.Clear();
             Console.WriteLine("Vitaj {0}, vitaj v krajine zvanej Aldea!", hero.name);
