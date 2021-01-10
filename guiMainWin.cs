@@ -20,6 +20,7 @@ namespace legend
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine(lRoom.name);
                 Console.ResetColor();
+                Console.Write("  ");
                 Console.WriteLine(lRoom.desc);
 
                 // Opisat, ci su tu nejake static predmety
@@ -74,6 +75,34 @@ namespace legend
             // Show Container
         }
 
+        public ErrorCode RunSpecialAction(string actId)
+        {
+            ErrorCode ret = ErrorCode.OK;
+
+            Action tmpAct = eng.lib.GetAction(actId);
+            if (tmpAct!=null)
+            {
+                if (tmpAct.action == ActionType.TEST)
+                {
+                    bool sucess = eng.DoTest(tmpAct.attribute, tmpAct.level);
+             
+                    if (sucess)
+                    {
+                        // Run actions
+                        // Console.WriteLine("Test uspesny!");
+                        eng.ExecuteActionList(tmpAct.successActions);
+                    }
+                    else
+                    {
+                        // Run fail actions
+                        // Console.WriteLine("Test neuspesny!");
+                    }
+                }
+            } else ret = ErrorCode.ACTION_NOT_FOUND;
+
+            return ret;
+        }
+
         public void ShowPotencialActions()
         {
             //Dictionary<string, string> dict = new Dictionary<string, string>();
@@ -103,7 +132,64 @@ namespace legend
                 Console.WriteLine("{0} {1}", (a+1).ToString(), tmpAct.desc);
             }
             Console.WriteLine("{0} Konec", (actList.Count+1).ToString());
+
+            int no;
+            do
+            {
+                string line = Console.ReadLine();
+                no = int.Parse(line) - 1;
+
+                if ((no>=0) && (no<actList.Count))
+                {
+                    RunSpecialAction(actList[no]);
+                    no = actList.Count; // Koli ukonceniu tohto menu
+                }
+            } while (no!=actList.Count);
         }
+
+        public void ShowCharacterStatus()
+         {
+            // Dennik hraca
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Dennik postavy: {0}", eng.party.members[0].name);
+            Console.ResetColor();
+
+            Console.WriteLine("Presnost: {0}", eng.party.members[0].GetAttribute(Attribute.ACCURACY).ToString());
+            Console.WriteLine("Komunikativnost: {0}", eng.party.members[0].GetAttribute(Attribute.COMMUNICATION).ToString());
+            Console.WriteLine("Zdravie: {0}", eng.party.members[0].GetAttribute(Attribute.CONSTITUTION).ToString());
+            Console.WriteLine("Obratnost: {0}", eng.party.members[0].GetAttribute(Attribute.DEXTERITY).ToString());
+            Console.WriteLine("Bojovanie: {0}", eng.party.members[0].GetAttribute(Attribute.FIGHTING).ToString());
+            Console.WriteLine("Intelekt: {0}", eng.party.members[0].GetAttribute(Attribute.IQ).ToString());
+            Console.WriteLine("Vnimanie: {0}", eng.party.members[0].GetAttribute(Attribute.PERCEPTION).ToString());
+            Console.WriteLine("Sila: {0}", eng.party.members[0].GetAttribute(Attribute.STRENGTH).ToString());
+            Console.WriteLine("Sila vole: {0}", eng.party.members[0].GetAttribute(Attribute.WILL).ToString());
+
+            Console.ReadLine();
+            Console.Clear();
+         }
+
+        
+        public void ShowCharacterInvertory()
+         {
+            // Batoh hraca
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Batoh postavy: {0}", eng.party.members[0].name);
+            Console.ResetColor();
+
+            int no = 0;
+            foreach (GameItem gi in eng.lib.gameItems)
+            {
+                if (gi.position=="player")
+                {
+                    no++;
+                    string name = eng.lib.GetItem(gi.id).name;
+                    Console.WriteLine("{0}. {1}", no.ToString(), name);
+                }
+            }
+            Console.ReadLine();
+         }
 
         public void Show()
         {
@@ -177,6 +263,19 @@ namespace legend
                 if (line=="a") 
                 {
                     ShowPotencialActions();
+                    //ShowRoom();
+                }
+
+                if (line=="st") 
+                {
+                    ShowCharacterStatus();
+                    ShowRoom();
+                }
+
+                if (line=="b") 
+                {
+                    ShowCharacterInvertory();
+                    ShowRoom();
                 }
 
             } while (line!="ko");

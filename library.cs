@@ -193,7 +193,7 @@ namespace legend
                                 {
                                     tmpAct.focus = words[1].ToUpper();
                                 }
-                                if (words[0]=="sucess")
+                                if (words[0]=="success")
                                 {
                                     tmpAct.successActions.Add(Tools.MergeString(words,1));
                                 }

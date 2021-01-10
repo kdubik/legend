@@ -1,7 +1,13 @@
-v0.0.7
-* complete running action menu
-* run actions
-* show character status
+v0.0.8
+* jednoduchy suboj
+* nepriatelia v databaze
+* dalsie action types: ATRIBUTE a DEFAULT (momentalne mame len 'test')
+
+v0.0.7 (10.1.2021)
+- complete running action menu
+- run actions (first 2 actions: show_msg, add_item)
+- show character status (hlavne atributy)
+- show character invertory
 
 v0.0.6 (1.1.2021)
 - clean obsolete load_data function

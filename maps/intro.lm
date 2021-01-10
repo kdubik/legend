@@ -76,6 +76,10 @@ text izba_desc
 Toto je IZBICKA.
 end
 
+text podarilo_sa
+Super, funguje to, dufam :-)
+end
+
 # ACTIONS ----
 
 # id: destroyWallPush
@@ -91,6 +95,6 @@ attribute strength
 level 9
 focus might
 success show_msg podarilo_sa
-success add_item magic_knife
+success add_item komec
 fail show_msg zlyhanie_ako_hrom
 end

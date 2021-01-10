@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace legend
 {
-    public enum ErrorCode { OK, ROOM_NOT_FOUND, EMPTY_PATH, NOT_ENABLED };
+    public enum ErrorCode { OK, ROOM_NOT_FOUND, EMPTY_PATH, NOT_ENABLED, ACTION_NOT_FOUND, ERROR };
 
     public class Engine
     {
@@ -15,6 +15,64 @@ namespace legend
             Console.Write("Initializing engine:");
             lib.LoadDataFiles();
             party.actualRoomID = "entrance";
+        }
+
+        public bool DoTest(Attribute inAttribute, int testLevel)
+        {
+            bool res = false;
+
+            Dices dice = new Dices();
+            int rollValue = dice.ThrowDiceString("3k6");
+            int attValue = party.members[0].GetAttribute(inAttribute);
+            int totalNo = rollValue + attValue;
+
+            Console.WriteLine("Testovany atribut ({0}): {1}", inAttribute.ToString(), attValue.ToString());
+            Console.WriteLine("Hod kockami: {0}", rollValue.ToString());
+            Console.WriteLine("Postava: {0} vs Test level: {1}", totalNo.ToString(), testLevel.ToString());
+
+            if (totalNo>testLevel) 
+            {
+                res = true;
+                Console.WriteLine("Test bol uspesny!");
+            } else Console.WriteLine("Test bol neuspesny!");
+            Console.WriteLine("");
+
+            return res;
+        }
+
+        public bool ExecuteCommand(string cmd)
+        {
+            bool res = true;
+
+            string[] words = cmd.Split(" ");
+            if (words[0]=="show_msg")
+            {
+                Console.WriteLine(lib.texts[words[1]]);
+            }
+
+            if (words[0]=="add_item")
+            {
+                // Komec
+                Item tmpItem = lib.GetItem(words[1]);
+                Console.WriteLine("Ziskavas '{0}'!", tmpItem.name);
+
+                GameItem gmi = new GameItem(words[1],"player");
+                lib.gameItems.Add(gmi);
+            }
+
+            return res;
+        }
+
+        public ErrorCode ExecuteActionList(List<string> commands)
+        {
+            ErrorCode ret = ErrorCode.OK;
+
+            foreach(string cmdLine in commands)
+            {
+                if (!ExecuteCommand(cmdLine)) ret = ErrorCode.ERROR;
+            }
+
+            return ret;
         }
 
         public ErrorCode Go(Path path)

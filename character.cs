@@ -19,9 +19,9 @@ namespace legend
 
         public int[] attr = new int[9];
 
-        public void SetAttribute(Attribute inAttr, int value) => attr[(int)Attribute.ACCURACY] = value;
+        public void SetAttribute(Attribute inAttr, int value) => attr[(int)inAttr] = value;
 
-        public int GetAttribute(Attribute inAttr) => attr[(int)Attribute.ACCURACY];
+        public int GetAttribute(Attribute inAttr) => attr[(int)inAttr];
 
         /// <summary>
         /// Constructor - prepare default character
@@ -43,7 +43,7 @@ namespace legend
                 SetAttribute(Attribute.CONSTITUTION,1);
                 SetAttribute(Attribute.DEXTERITY,1);
                 SetAttribute(Attribute.FIGHTING,1);
-                SetAttribute(Attribute.IQ,1);
+                SetAttribute(Attribute.IQ,2);
                 SetAttribute(Attribute.PERCEPTION,1);
                 SetAttribute(Attribute.STRENGTH,1);
                 SetAttribute(Attribute.WILL,1);
@@ -52,7 +52,7 @@ namespace legend
             {
                 name = "Scamm";
                 female = false; // Default male
-                SetAttribute(Attribute.ACCURACY,1);
+                SetAttribute(Attribute.ACCURACY,2);
                 SetAttribute(Attribute.COMMUNICATION,1);
                 SetAttribute(Attribute.CONSTITUTION,1);
                 SetAttribute(Attribute.DEXTERITY,1);
