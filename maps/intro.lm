@@ -80,6 +80,10 @@ text podarilo_sa
 Super, funguje to, dufam :-)
 end
 
+text oplute
+Fuj, sliny...
+end
+
 # ACTIONS ----
 
 # id: destroyWallPush
@@ -97,4 +101,10 @@ focus might
 success show_msg podarilo_sa
 success add_item komec
 fail show_msg zlyhanie_ako_hrom
+end
+
+action oplujWall default stlp
+enabled true
+text Oplut stenu
+success show_msg oplute
 end

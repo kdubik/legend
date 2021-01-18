@@ -8,6 +8,9 @@ namespace legend
     { 
         ACCURACY, COMMUNICATION, CONSTITUTION, DEXTERITY, FIGHTING, IQ, PERCEPTION, STRENGTH, WILL 
     }
+
+    public enum BodySlot { WHEAPON, SHIELD, ARMOR };
+
     public class Character
     {
         public string name = "Hero";
@@ -17,7 +20,12 @@ namespace legend
         public int level = 1;
         public Specialization specialization = Specialization.NONE;
 
+        // Character attributes
         public int[] attr = new int[9];
+
+        // Character body equipment
+        // Obsahuje ID equipnuteho predmetu, alebo nic
+        public string[] bodySlots = new string[3];
 
         public void SetAttribute(Attribute inAttr, int value) => attr[(int)inAttr] = value;
 
@@ -70,14 +78,14 @@ namespace legend
             string li = attrString.ToLower();
 
             if (li=="accuracy") res = Attribute.ACCURACY;
-            if (li=="communication") res = Attribute.ACCURACY;
-            if (li=="constitution") res = Attribute.ACCURACY;
-            if (li=="dexterity") res = Attribute.ACCURACY;
-            if (li=="fighting") res = Attribute.ACCURACY;
-            if (li=="iq") res = Attribute.ACCURACY;
-            if (li=="perception") res = Attribute.ACCURACY;
-            if (li=="stregth") res = Attribute.ACCURACY;
-            if (li=="will") res = Attribute.ACCURACY;
+            if (li=="communication") res = Attribute.COMMUNICATION;
+            if (li=="constitution") res = Attribute.CONSTITUTION;
+            if (li=="dexterity") res = Attribute.DEXTERITY;
+            if (li=="fighting") res = Attribute.FIGHTING;
+            if (li=="iq") res = Attribute.IQ;
+            if (li=="perception") res = Attribute.PERCEPTION;
+            if (li=="strength") res = Attribute.STRENGTH;
+            if (li=="will") res = Attribute.WILL;
 
             return res;
         } 

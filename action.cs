@@ -9,7 +9,9 @@ namespace legend
     // ATTRIBUTE - testneme zvoleny atribut, ci je jeho hodnota > ako cilso zadave v LEVEL
     public class Action
     {
-        public string id;
+        public string id;       // ID samotnej akcie
+
+        public string itemId; // ID objektu, na ktorom je to zavesene
         public ActionType action = ActionType.DEFAULT;
         public string desc;
         
@@ -23,7 +25,7 @@ namespace legend
         // successActions - akcie, ktore sa vykonaju po uspesnom teste
         // failedActions - akcie, ktore sa vykonaju, ak test neprejde
         public List<string> successActions = new List<string>();
-        public List<string> faliedActions = new List<string>();
+        public List<string> failedActions = new List<string>();
 
         public Action(string id, string actionType)
         {

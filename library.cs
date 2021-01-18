@@ -181,7 +181,7 @@ namespace legend
                                 }
                                 if (words[0]=="text") tmpAct.desc = Tools.MergeString(words,1);
 
-                                if (words[0]=="atribute")
+                                if (words[0]=="attribute")
                                 {
                                     tmpAct.attribute = Character.GetAttributeFromString(words[1]);
                                 }
@@ -199,7 +199,7 @@ namespace legend
                                 }
                                 if (words[0]=="fail")
                                 {
-                                    tmpAct.faliedActions.Add(Tools.MergeString(words,1));
+                                    tmpAct.failedActions.Add(Tools.MergeString(words,1));
                                 }
                                 if (words[0]=="end")
                                 {
@@ -237,7 +237,7 @@ namespace legend
                                 {
                                     blok = Block.ACTION;
                                     tmpAct = new Action(words[1],words[2]);
-                                    tmpAct.id = words[3];                             
+                                    tmpAct.itemId = words[3];                             
                                 }
                             }
                         }

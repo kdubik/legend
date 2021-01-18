@@ -82,22 +82,22 @@ namespace legend
             Action tmpAct = eng.lib.GetAction(actId);
             if (tmpAct!=null)
             {
+
+                // ACTION - TEST
                 if (tmpAct.action == ActionType.TEST)
                 {
                     bool sucess = eng.DoTest(tmpAct.attribute, tmpAct.level);
              
                     if (sucess)
-                    {
-                        // Run actions
-                        // Console.WriteLine("Test uspesny!");
                         eng.ExecuteActionList(tmpAct.successActions);
-                    }
                     else
-                    {
-                        // Run fail actions
-                        // Console.WriteLine("Test neuspesny!");
-                    }
+                        eng.ExecuteActionList(tmpAct.failedActions);
                 }
+
+                // ACTION - DEFAULT
+                if (tmpAct.action == ActionType.DEFAULT)
+                    eng.ExecuteActionList(tmpAct.successActions);
+
             } else ret = ErrorCode.ACTION_NOT_FOUND;
 
             return ret;
@@ -115,9 +115,10 @@ namespace legend
                     {
                         foreach(Action tmpAct in eng.lib.actions)
                         {
-                            if (tmpAct.id==tmpGItem.id)
+                            if (tmpAct.itemId==tmpGItem.id)
                             {
-                                //Console.WriteLine("Act "+tmpAct.desc);
+                                Console.WriteLine("Act "+tmpAct.desc);
+                                Console.WriteLine("ActID "+tmpAct.id);
                                 //dict.Add(tmpAct.id, );
                                 actList.Add(tmpAct.id);
                             }
@@ -169,7 +170,46 @@ namespace legend
             Console.Clear();
          }
 
-        
+        public string SelectWheapon()
+        {
+            string res = "";
+            Console.Clear();
+            List<string> table = new List<string>();
+
+            // List all wheapons on invertory
+            int no = 0;
+            foreach (GameItem gi in eng.lib.gameItems)
+            {
+                if ((gi.position=="player") && (gi.itemType==ItemType.WHEAPON))
+                {
+                    no++;
+                    string name = eng.lib.GetItem(gi.id).name;
+                    Console.WriteLine("{0}. {1}", no.ToString(), name);
+                    table.Add(gi.id);
+                }
+            }
+
+            if (no>0)
+            {
+                int m = 0;
+                do
+                {
+                    Console.Write("Vyber si aktivnu zbran (1-{0}), alebo {1} pre koniec: ",
+                        no.ToString(), (no+1).ToString());
+                    string equip = Console.ReadLine();
+                    m = int.Parse(equip);
+
+                    if ((m>0) && (m<no+1))
+                    {
+                        res = table[m-1];
+                        m=(no+1);
+                    }
+
+                } while (m!=(no+1));
+            } else Console.WriteLine("Ziadna zbran nie je k dispozicii.");
+            return res;
+        }
+
         public void ShowCharacterInvertory()
          {
             // Batoh hraca
@@ -185,10 +225,41 @@ namespace legend
                 {
                     no++;
                     string name = eng.lib.GetItem(gi.id).name;
-                    Console.WriteLine("{0}. {1}", no.ToString(), name);
+                    string outLine = String.Format("{0}. {1}", no.ToString(), name);
+
+                    if (eng.party.members[0].bodySlots[(int)BodySlot.WHEAPON]==gi.id)
+                        outLine = outLine + " [Aktivna zbran]";
+
+                    Console.WriteLine(outLine);
                 }
             }
-            Console.ReadLine();
+
+            do
+            {
+                Console.WriteLine("1. Zmen vybavenie, 2. Pouzi predmet, 3. Preskumaj, 4. Zahod, 5. Odist ");
+                string line = Console.ReadLine();
+                no = int.Parse(line);
+
+                if (no==1)
+                {
+                    int m=0;
+                    do
+                    {
+                        Console.WriteLine("Chces zmenit: 1. Zbran, 2. Zbroj/oblecenie, 3. Stit, 4. Odist");
+                        string equip = Console.ReadLine();
+                        m = int.Parse(equip);
+
+                        if (m==1)
+                        {
+                            eng.party.members[0].bodySlots[(int)BodySlot.WHEAPON] = SelectWheapon();
+                            m=4;
+                        }
+
+                    } while (m!=4);
+
+                }
+            } while (no!=5);
+
          }
 
         public void Show()

@@ -40,6 +40,13 @@ namespace legend
             return res;
         }
 
+        public void UpdateGameItemInfo(ref GameItem gi)
+        {
+            Item itm = lib.GetItem(gi.id);
+            gi.itemName = itm.name;
+            gi.itemType = itm.type;
+        }
+        
         public bool ExecuteCommand(string cmd)
         {
             bool res = true;
@@ -57,6 +64,7 @@ namespace legend
                 Console.WriteLine("Ziskavas '{0}'!", tmpItem.name);
 
                 GameItem gmi = new GameItem(words[1],"player");
+                UpdateGameItemInfo(ref gmi);   // Ziska zaujimave informacie z objektu a napise od game itemu
                 lib.gameItems.Add(gmi);
             }
 
