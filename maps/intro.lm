@@ -108,3 +108,25 @@ enabled true
 text Oplut stenu
 success show_msg oplute
 end
+
+enemy ratSwarm
+name Skupinka potkanov
+desc rat_swarm_desc
+speed 12
+health 25
+defence 12
+armor 0
+weapon 5 1d6 Swarm
+end
+
+npc kamil
+name sir Kamil
+desc sir_kamil_desc
+class adept
+friend 1
+speed 15
+health 30
+defence 20
+armor 5
+weapon 2 3d6 Sek mecom
+end

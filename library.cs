@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace legend
 {
-    public enum Block { NONE, ROOM, ROAD, TEXT, ACTION };
+    public enum Block { NONE, ROOM, ROAD, TEXT, ACTION, ENEMY, NPC };
     public class Library
     {
         public List<Room> rooms = new List<Room>();
@@ -12,6 +12,8 @@ namespace legend
         public List<Item> items = new List<Item>();
         public List<GameItem> gameItems = new List<GameItem>();
         public List<Action> actions = new List<Action>();
+        public List<Enemy> enemies = new List<Enemy>();
+        public List<NPC> NPCs = new List<NPC>();
 
         public Dictionary<string,string> texts = new Dictionary<string,string>();
 
@@ -79,11 +81,15 @@ namespace legend
             Room tmpRoom = null;
             Road tmpRoad = null;
             Action tmpAct = null;
+            Enemy tmpEnemy = null;
+            NPC tmpNPC = null;
             
             int roomsCount = 0;
             int roadsCount = 0;
             int textCount = 0;
             int actionCount = 0;
+            int enemiesCount = 0;
+            int NPC_count = 0;
 
             string tmpID = "";
 
@@ -150,6 +156,59 @@ namespace legend
                                     }
                                 }
                             }
+
+                            if (blok==Block.ENEMY)
+                            {
+                                if (words[0]=="desc") tmpEnemy.desc = words[1];
+                                if (words[0]=="name") tmpEnemy.name = Tools.MergeString(words,1);
+                                if (words[0]=="speed") tmpEnemy.speed = int.Parse(words[1]);
+                                if (words[0]=="health") tmpEnemy.health = int.Parse(words[1]);
+                                if (words[0]=="defense") tmpEnemy.defense = int.Parse(words[1]);
+                                if (words[0]=="armor") tmpEnemy.armor = int.Parse(words[1]);
+
+                                if (words[0]=="desc") tmpEnemy.desc = Tools.MergeString(words,1);
+                                if (words[0]=="wheapon")
+                                {
+                                    int an = int.Parse(words[1]);
+                                    string nm = Tools.MergeString(words,3);
+                                    tmpEnemy.AddWheapon(nm, an, words[2]);
+                                }
+
+                                if (words[0]=="end")
+                                {
+                                    enemies.Add(tmpEnemy);
+                                    enemiesCount++;
+                                    blok=Block.NONE;
+                                }
+
+                            }
+
+                            if (blok==Block.NPC)
+                            {
+                                if (words[0]=="desc") tmpNPC.desc = words[1];
+                                if (words[0]=="name") tmpNPC.name = Tools.MergeString(words,1);
+                                if (words[0]=="speed") tmpNPC.speed = int.Parse(words[1]);
+                                if (words[0]=="health") tmpNPC.health = int.Parse(words[1]);
+                                if (words[0]=="defense") tmpNPC.defense = int.Parse(words[1]);
+                                if (words[0]=="armor") tmpNPC.armor = int.Parse(words[1]);
+
+                                if (words[0]=="desc") tmpNPC.desc = Tools.MergeString(words,1);
+                                if (words[0]=="wheapon")
+                                {
+                                    int an = int.Parse(words[1]);
+                                    string nm = Tools.MergeString(words,3);
+                                    tmpNPC.AddWheapon(nm, an, words[2]);
+                                }
+
+                                if (words[0]=="end")
+                                {
+                                    NPCs.Add(tmpNPC);
+                                    NPC_count++;
+                                    blok=Block.NONE;
+                                }
+
+                            }
+
 
                             if (blok==Block.ROAD)
                             {
@@ -239,6 +298,16 @@ namespace legend
                                     tmpAct = new Action(words[1],words[2]);
                                     tmpAct.itemId = words[3];                             
                                 }
+                                if (words[0].ToLower()=="enemy")
+                                {
+                                    blok = Block.ENEMY;
+                                    tmpEnemy = new Enemy(words[1]);                              
+                                }
+                                if (words[0].ToLower()=="npc")
+                                {
+                                    blok = Block.NPC;
+                                    tmpNPC = new NPC(words[1]);                              
+                                }
                             }
                         }
                     }
@@ -249,6 +318,13 @@ namespace legend
             Console.WriteLine(" - Roads loaded: {0}", roadsCount.ToString());
             Console.WriteLine(" - Text blocks loaded: {0}", textCount.ToString());
             Console.WriteLine(" - Actions loaded: {0}", actionCount.ToString());
+            Console.WriteLine(" - Enemies loaded: {0}", enemiesCount.ToString());
+            Console.WriteLine(" - NPCs loaded: {0}", NPC_count.ToString());
+
+            foreach (NPC en in NPCs)
+            {
+                Console.WriteLine(en.name);
+            }
         }
 
         public void LoadItemFile(string fname)
