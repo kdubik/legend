@@ -1,13 +1,9 @@
-v0.0.10
-* jednoduchy suboj
-* nepriatelia v databaze
-* equip/unequip of armo/shield
-* dalsie action types: ATRIBUTE (momentalne mame len 'test' a 'default')
-
-v0.0.10
-* Add NPC class (should contain "enemy" part - for fighting fith NPC?)
-* Add enemy class
-* Are enemies in groups, or individual?
+v0.0.11
+* additional action types: ATRIBUTE (momentalne mame len 'test' a 'default')
+* basic combat
+* add possibility of action also for NPCs
+* implement enemy group class/structure
+- Info: Are enemies in groups, or act as individuals?
     - 1:1 (old wizardry, old games in general)
         - easy to implement, and BlueRose is not focused on combat (but very retro/limited aproach)
     - 1 vs a lot of individuals (enemies, that are in one room, will attack together, group created dynamically?)
@@ -17,12 +13,19 @@ v0.0.10
         - enemies can fight between themselves!
         - individals can individualy move, creating other groups in different places...
         - issues: ilogic groups, like warriors + rats + undead in the same team!
-    - 1 vs group (group should be defined, Legend of grimrock etc., logic aproach)
+    winner -> 1 vs group (group should be defined, Legend of grimrock etc., logic aproach)
         - enemies still have options like runaway, if they are scared
         - bribe, negotiations can be achieved with group boss (if present)
         - more logic, e.g.: "2 guards + dog" make a sense. They still can move as a group
     - 1 vs group (complete egroup is 1 UC/OC, not individuals)
         - bad idea, group will be very powerfull and  enemies" behave as all of them attack at once
+
+v0.0.10 (22.1.2021)
+- equip/unequip of armor, shield
+- fixed issue: loading items (wrong obects counting)
+- show NPC in location where present
+    - added ability to add NPC into the map (add_NPC in LM file)
+    - updated NPC class structure
 
 v0.0.9 (21.1.2021)
 - add enemy class
@@ -30,6 +33,7 @@ v0.0.9 (21.1.2021)
 - enemies are loaded from LM file
 - NPCs are loaded from LM file
 - check, that enemies are successfully loaded
+- new backup tool
 
 v0.0.8 (18.1.2021)
 - equip/unequip of wheapon

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace legend
 {
-    public enum ItemType { MISC, ASSET, WHEAPON, ARMOR, BOOK, TOOL };
+    public enum ItemType { MISC, ASSET, WHEAPON, ARMOR, SHIELD, BOOK, TOOL };
     //public enum BodyPart { HEAD, ARMOR, BOOTS, CLOTHES_UP, CLOTHES_BOTTOM };
     public enum Rarity { COMMON, UNCOMMON, RARE }
 
@@ -29,6 +29,7 @@ namespace legend
             // 0 - Obect type
             if (words[0]=="wheapon") type = ItemType.WHEAPON;
             if (words[0]=="armor") type = ItemType.ARMOR;
+            if (words[0]=="shield") type = ItemType.SHIELD;
             if (words[0]=="misc") type = ItemType.MISC;
             if (words[0]=="tool") type = ItemType.TOOL;
             if (words[0]=="asset") type = ItemType.ASSET;

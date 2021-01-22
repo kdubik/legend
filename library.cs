@@ -30,7 +30,7 @@ namespace legend
             }
             return ret;
         }
-    
+
         public Item GetItem(string itemId)
         {
             Item ret = null;
@@ -45,6 +45,20 @@ namespace legend
             return ret;
         }
        
+        public GameItem GetGameItem(string gameItemId)
+        {
+            GameItem ret = null;
+            foreach (GameItem gm in gameItems)
+            {
+                if (gm.id==gameItemId)
+                {
+                    ret = gm;
+                    break;
+                }
+            }
+            return ret;
+        }
+
         public Action GetAction(string actionId)
         {
             Action ret = null;
@@ -72,6 +86,20 @@ namespace legend
                 }
             }
 
+            return ret;
+        }
+
+        public NPC GetNPC(string id)
+        {
+            NPC ret = null;
+            foreach (NPC ac in NPCs)
+            {
+                if (ac.id==id)
+                {
+                    ret = ac;
+                    break;
+                }
+            }
             return ret;
         }
 
@@ -118,6 +146,14 @@ namespace legend
                                     roomsCount++;
                                     blok=Block.NONE;
                                 }
+                                
+                                if (words[0]=="add_NPC")
+                                {
+                                    // Add NPC into this room
+                                    NPC tn = GetNPC(words[1]);
+                                    tn.position = tmpID;
+                                }
+
                                 if (words[0]=="add_item")
                                 {
                                     // Add item into this room
@@ -209,7 +245,6 @@ namespace legend
 
                             }
 
-
                             if (blok==Block.ROAD)
                             {
                                 if (words[0]=="enabled")
@@ -280,7 +315,8 @@ namespace legend
                                 if (words[0].ToLower()=="room")
                                 {
                                     blok = Block.ROOM;
-                                    tmpRoom = new Room(words[1]);                              
+                                    tmpRoom = new Room(words[1]); 
+                                    tmpID = words[1];                             
                                 }
                                 if (words[0].ToLower()=="path")
                                 {
@@ -331,6 +367,7 @@ namespace legend
         {
             int wheaponCount = 0;
             int armorCount = 0;
+            int shieldCount = 0;
             int assetCount = 0;
             int miscCount = 0;
 
@@ -349,6 +386,7 @@ namespace legend
 
                             if (tmpItem.type == ItemType.WHEAPON) wheaponCount++;
                             if (tmpItem.type == ItemType.ARMOR) armorCount++;
+                            if (tmpItem.type == ItemType.SHIELD) shieldCount++;
                             if (tmpItem.type == ItemType.ASSET) assetCount++;
                             if (tmpItem.type == ItemType.MISC) miscCount++;
                         }
@@ -357,9 +395,10 @@ namespace legend
             }
 
             Console.WriteLine(" - Wheapons loaded: {0}", wheaponCount.ToString());
-            Console.WriteLine(" - Armor loaded: {0}", armorCount.ToString());
-            Console.WriteLine(" - Assets loaded: {0}", armorCount.ToString()); 
-            Console.WriteLine(" - Misc loaded: {0}", miscCount.ToString());  
+            Console.WriteLine(" - Armors loaded: {0}", armorCount.ToString());
+            Console.WriteLine(" - Shields loaded: {0}", shieldCount.ToString());
+            Console.WriteLine(" - Assets loaded: {0}", assetCount.ToString()); 
+            Console.WriteLine(" - Miscs loaded: {0}", miscCount.ToString());  
         }
         public void LoadDataFiles()
         {

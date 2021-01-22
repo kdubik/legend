@@ -10,6 +10,8 @@ namespace legend
 
     public class NPC:Enemy
     {
+        public bool alive = true;
+        public string position = "";
         public BRClass brClass = BRClass.EXPERT;
         public int friendliness = 1;    //Standard NPC
 

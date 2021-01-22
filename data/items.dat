@@ -22,7 +22,7 @@ asset;stlp;Velky kamenny stlp
 misc;pohar;Poharik;common;10;25
 
 # meno stitu, typ, defence bonus (penalty, vaha, raritnost), cena
-#armor;Maly dreveny stit;light_shield;1;0;15;common;10
+shield;maly_stit;Maly dreveny stit;light_shield;1;0;15;common;10
 
 # meno naradia, typ, obycajne, alebo masterwork?, vaha, cena
-#tools;Umelecké náradie;artisan;standard;7;7
+#tools;naradie_artist;Umelecké náradie;artisan;standard;7;7

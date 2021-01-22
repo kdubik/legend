@@ -35,7 +35,24 @@ namespace legend
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.Write(git.itemName);
                             Console.ResetColor();
-                            Console.WriteLine(".");
+                            //Console.WriteLine(".");
+                        }
+                    }
+                }
+
+                // Opisat, ci su tu nejake NPC postavy
+                foreach (NPC tmpNPC in eng.lib.NPCs)
+                {
+                    if (tmpNPC.position==eng.party.actualRoomID)
+                    {
+                        // Console.WriteLine("{0}", git.hidden.ToString());
+                        if (tmpNPC.alive)
+                        {
+                            Console.Write("Stoji tu ");
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write(tmpNPC.name);
+                            Console.ResetColor();
+                            //Console.WriteLine(".");
                         }
                     }
                 }
@@ -170,17 +187,20 @@ namespace legend
             Console.Clear();
          }
 
-        public string SelectWheapon()
+        public string SelectItemForEquip(ItemType equipType)
         {
             string res = "";
             Console.Clear();
             List<string> table = new List<string>();
 
+            string desc = "zban";
+            if (equipType==ItemType.ARMOR) desc = "zboj/odev/stit";
+
             // List all wheapons on invertory
             int no = 0;
             foreach (GameItem gi in eng.lib.gameItems)
             {
-                if ((gi.position=="player") && (gi.itemType==ItemType.WHEAPON))
+                if ((gi.position=="player") && (gi.itemType==equipType))
                 {
                     no++;
                     string name = eng.lib.GetItem(gi.id).name;
@@ -194,8 +214,8 @@ namespace legend
                 int m = 0;
                 do
                 {
-                    Console.Write("Vyber si aktivnu zbran (1-{0}), alebo {1} pre koniec: ",
-                        no.ToString(), (no+1).ToString());
+                    Console.Write("Vyber si aktivnu {0} (1-{1}), alebo {2} pre koniec: ",
+                        desc, no.ToString(), (no+1).ToString());
                     string equip = Console.ReadLine();
                     m = int.Parse(equip);
 
@@ -206,10 +226,9 @@ namespace legend
                     }
 
                 } while (m!=(no+1));
-            } else Console.WriteLine("Ziadna zbran nie je k dispozicii.");
+            } else Console.WriteLine("Ziadna {0} nie je k dispozicii.", desc);
             return res;
         }
-
         public void ShowCharacterInvertory()
          {
             // Batoh hraca
@@ -229,6 +248,12 @@ namespace legend
 
                     if (eng.party.members[0].bodySlots[(int)BodySlot.WHEAPON]==gi.id)
                         outLine = outLine + " [Aktivna zbran]";
+
+                    if (eng.party.members[0].bodySlots[(int)BodySlot.ARMOR]==gi.id)
+                        outLine = outLine + " [Aktivna zbroj/odev]";
+
+                    if (eng.party.members[0].bodySlots[(int)BodySlot.SHIELD]==gi.id)
+                        outLine = outLine + " [Aktivny stit]";
 
                     Console.WriteLine(outLine);
                 }
@@ -251,7 +276,19 @@ namespace legend
 
                         if (m==1)
                         {
-                            eng.party.members[0].bodySlots[(int)BodySlot.WHEAPON] = SelectWheapon();
+                            eng.party.members[0].bodySlots[(int)BodySlot.WHEAPON] = SelectItemForEquip(ItemType.WHEAPON);
+                            m=4;
+                        }
+
+                        if (m==2)
+                        { 
+                            eng.party.members[0].bodySlots[(int)BodySlot.ARMOR] = SelectItemForEquip(ItemType.ARMOR);
+                            m=4;
+                        }
+
+                        if (m==3)
+                        { 
+                            eng.party.members[0].bodySlots[(int)BodySlot.SHIELD] = SelectItemForEquip(ItemType.SHIELD);
                             m=4;
                         }
 

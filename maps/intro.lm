@@ -1,3 +1,15 @@
+npc kamil
+name sir Kamil
+desc sir_kamil_desc
+class adept
+friend 1
+speed 15
+health 30
+defence 20
+armor 5
+weapon 2 3d6 Sek mecom
+end
+
 room entrance
 desc Toto je vchod do jaskyne. Cez úzky otvor sem svieti tenký lúč svetla, ktorý prezrádza, že táto jaskyňa určite slúži ako úkryt pre niektoré divé zvieratá.
 end
@@ -5,6 +17,7 @@ end
 room komora1
 desc Si uprostred akejsi vstupnej komory do jaskyne. Vidieť tu nejaké kosti, takže tu asi obcas prebyva aj nejaká zver.
 add_item stlp
+add_NPC kamil
 end
 
 room chodba
@@ -107,6 +120,8 @@ action oplujWall default stlp
 enabled true
 text Oplut stenu
 success show_msg oplute
+success add_item maly_stit
+success add_item lahke_kozene
 end
 
 enemy ratSwarm
@@ -117,16 +132,4 @@ health 25
 defence 12
 armor 0
 weapon 5 1d6 Swarm
-end
-
-npc kamil
-name sir Kamil
-desc sir_kamil_desc
-class adept
-friend 1
-speed 15
-health 30
-defence 20
-armor 5
-weapon 2 3d6 Sek mecom
 end
