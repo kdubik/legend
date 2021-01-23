@@ -6,6 +6,7 @@ namespace legend
     public class GuiMainWin
     {
         public Engine eng;
+
         public GuiMainWin(Engine inEngine)
         {
             eng = inEngine;
@@ -28,14 +29,14 @@ namespace legend
                 {
                     if (git.position==eng.party.actualRoomID)
                     {
-                        Console.WriteLine("{0}", git.hidden.ToString());
+                        //Console.WriteLine("{0}", git.hidden.ToString());
                         if (!git.hidden)
                         {
                             Console.Write("Vidis tu ");
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.Write(git.itemName);
                             Console.ResetColor();
-                            //Console.WriteLine(".");
+                            Console.WriteLine(".");
                         }
                     }
                 }
@@ -52,10 +53,24 @@ namespace legend
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.Write(tmpNPC.name);
                             Console.ResetColor();
-                            //Console.WriteLine(".");
+                            Console.WriteLine(".");
                         }
                     }
                 }
+
+                
+                // Opisat, ci su tu nejake ENEMIES GRUPY
+                if (lRoom.enemyGroup!="")
+                {
+                    EnemyGroup leg = eng.lib.GetEnemyGroup(lRoom.enemyGroup);
+                    Console.Write("Neriatel: ");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(leg.name);
+                    Console.ResetColor();
+                    Console.WriteLine(".");
+                }
+               
+
 
                 // Opisat moznosti cestovania:
                 Console.Write("Mozes ist: ");
@@ -85,13 +100,13 @@ namespace legend
             }
             else Console.WriteLine("Engine error: Unable to find room '{0}'", roomId);
         }
-
+        
         public void ShowRoom()
         {
             DescribeRoom(eng.party.actualRoomID);
             // Show Container
         }
-
+        
         public ErrorCode RunSpecialAction(string actId)
         {
             ErrorCode ret = ErrorCode.OK;
@@ -124,6 +139,8 @@ namespace legend
         {
             //Dictionary<string, string> dict = new Dictionary<string, string>();
             List<string> actList = new List<string>();
+
+            // ITEM list
             foreach(GameItem tmpGItem in eng.lib.gameItems)
             {
                 if (tmpGItem.position==eng.party.actualRoomID)
@@ -134,9 +151,28 @@ namespace legend
                         {
                             if (tmpAct.itemId==tmpGItem.id)
                             {
-                                Console.WriteLine("Act "+tmpAct.desc);
-                                Console.WriteLine("ActID "+tmpAct.id);
-                                //dict.Add(tmpAct.id, );
+                                //Console.WriteLine("Act "+tmpAct.desc);
+                                //Console.WriteLine("ActID "+tmpAct.id);
+                                actList.Add(tmpAct.id);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // NPC list
+            foreach(NPC lNPC in eng.lib.NPCs)
+            {
+                if (lNPC.position==eng.party.actualRoomID)
+                {
+                    if (lNPC.alive)
+                    {
+                        foreach(Action tmpAct in eng.lib.actions)
+                        {
+                            if (tmpAct.itemId==lNPC.id)
+                            {
+                                //Console.WriteLine("Act "+tmpAct.desc);
+                                //Console.WriteLine("ActID "+tmpAct.id);
                                 actList.Add(tmpAct.id);
                             }
                         }
@@ -229,6 +265,7 @@ namespace legend
             } else Console.WriteLine("Ziadna {0} nie je k dispozicii.", desc);
             return res;
         }
+        
         public void ShowCharacterInvertory()
          {
             // Batoh hraca

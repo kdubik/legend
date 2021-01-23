@@ -1,8 +1,12 @@
-v0.0.11
+v0.0.12
 * additional action types: ATRIBUTE (momentalne mame len 'test' a 'default')
 * basic combat
-* add possibility of action also for NPCs
-* implement enemy group class/structure
+
+v0.0.11 (23.1.2021)
+- add possibility of action also for NPCs
+- implement "enemy group" class/structure
+    - load enemy group from LM file
+    - show enemy group, when in current room
 - Info: Are enemies in groups, or act as individuals?
     - 1:1 (old wizardry, old games in general)
         - easy to implement, and BlueRose is not focused on combat (but very retro/limited aproach)

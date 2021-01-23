@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace legend
 {
 
+    public enum ActionTarget { ITEM, NPC };
     public enum ActionType { DEFAULT, TEST, ATTRIBUTE };
     // DEFAULT - ziaden test, ak hrac klikne sem, proste sa vykonaju patricne akcie
     // TEST - skill test, ak hrac klikne, udeje sa skill check a ak uspeje, vykonaju sa patricne akcie
@@ -12,6 +13,7 @@ namespace legend
         public string id;       // ID samotnej akcie
 
         public string itemId; // ID objektu, na ktorom je to zavesene
+        public ActionTarget actioTarget = ActionTarget.ITEM;
         public ActionType action = ActionType.DEFAULT;
         public string desc;
         
@@ -27,11 +29,12 @@ namespace legend
         public List<string> successActions = new List<string>();
         public List<string> failedActions = new List<string>();
 
-        public Action(string id, string actionType)
+        public Action(string id, string actionType, ActionTarget actionTarget)
         {
             if (actionType=="test") action = ActionType.TEST;
             if (actionType=="attribute") action = ActionType.ATTRIBUTE;
 
+            this.actioTarget = actionTarget;
             this.id = id;
         }        
     }

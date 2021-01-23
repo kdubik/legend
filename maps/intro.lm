@@ -22,6 +22,7 @@ end
 
 room chodba
 desc V ovzduší tejto komory cítiť zdochlinu. Na zemi je kostra človeka, ktorá tomuto miestu dodáva zlovestný nádych. Skupinke netopierov čo visia na akomsi výklenku to však vôbec neprekáža.
+add_group potkan1
 end
 
 room vaza
@@ -97,6 +98,11 @@ text oplute
 Fuj, sliny...
 end
 
+
+text hello_kamil
+Zdrastvuj, geroj!
+end
+
 # ACTIONS ----
 
 # id: destroyWallPush
@@ -124,6 +130,13 @@ success add_item maly_stit
 success add_item lahke_kozene
 end
 
+# akcia pre "Kamila"
+action oslovKamil default kamil
+enabled true
+text Oslovit Kamila
+success show_msg hello_kamil
+end
+
 enemy ratSwarm
 name Skupinka potkanov
 desc rat_swarm_desc
@@ -132,4 +145,11 @@ health 25
 defence 12
 armor 0
 weapon 5 1d6 Swarm
+end
+
+# Pridame dvoch potkanov ako skupinu nepriatelov
+group potkan1
+name Utok prerastenych krys!
+enemy ratSwarm 2
+treasure pohar
 end

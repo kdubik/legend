@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace legend
 {
-    public enum Block { NONE, ROOM, ROAD, TEXT, ACTION, ENEMY, NPC };
+    public enum Block { NONE, ROOM, ROAD, TEXT, ACTION, ENEMY, NPC, ENEMYGROUP };
     public class Library
     {
         public List<Room> rooms = new List<Room>();
@@ -14,6 +14,8 @@ namespace legend
         public List<Action> actions = new List<Action>();
         public List<Enemy> enemies = new List<Enemy>();
         public List<NPC> NPCs = new List<NPC>();
+        public List<EnemyGroup> enemyGroups = new List<EnemyGroup>();
+
 
         public Dictionary<string,string> texts = new Dictionary<string,string>();
 
@@ -44,7 +46,21 @@ namespace legend
             }
             return ret;
         }
-       
+     
+        public EnemyGroup GetEnemyGroup(string id)
+        {
+            EnemyGroup ret = null;
+            foreach (EnemyGroup eg in enemyGroups)
+            {
+                if (eg.id==id)
+                {
+                    ret = eg;
+                    break;
+                }
+            }
+            return ret;
+        }
+     
         public GameItem GetGameItem(string gameItemId)
         {
             GameItem ret = null;
@@ -103,6 +119,29 @@ namespace legend
             return ret;
         }
 
+        /// <summary>
+        /// After analyze of input id, returns, whether this id belongs to item, or NPC
+        /// </summary>
+        /// <param name="id">id of targer</param>
+        /// <returns></returns>
+        public ActionTarget DecideActionTarget(string id)
+        {
+            // By default we expect, that target is ITEM. Then, we search in
+            // NPC database (there is lesser number of NPCs than items, so it
+            // would be faster), whether this belongs rather to NPC
+            ActionTarget ret = ActionTarget.ITEM;
+
+            foreach (NPC ac in NPCs)
+            {
+                if (ac.id==id)
+                {
+                    ret = ActionTarget.NPC;
+                    break;
+                }
+            }
+
+            return ret;
+        }
         public void LoadLMFile(string fname)
         {
             Block blok = Block.NONE;
@@ -111,6 +150,7 @@ namespace legend
             Action tmpAct = null;
             Enemy tmpEnemy = null;
             NPC tmpNPC = null;
+            EnemyGroup tmpGroup = null;
             
             int roomsCount = 0;
             int roadsCount = 0;
@@ -118,6 +158,7 @@ namespace legend
             int actionCount = 0;
             int enemiesCount = 0;
             int NPC_count = 0;
+            int group_count = 0;
 
             string tmpID = "";
 
@@ -152,6 +193,12 @@ namespace legend
                                     // Add NPC into this room
                                     NPC tn = GetNPC(words[1]);
                                     tn.position = tmpID;
+                                }
+
+                                if (words[0]=="add_group")
+                                {
+                                    // Add group of enemies into this room
+                                    tmpRoom.enemyGroup = words[1];
                                 }
 
                                 if (words[0]=="add_item")
@@ -245,6 +292,19 @@ namespace legend
 
                             }
 
+                            if (blok==Block.ENEMYGROUP)
+                            {
+                                if (words[0]=="name") tmpGroup.name = Tools.MergeString(words,1);
+                                if (words[0]=="enemy") tmpGroup.AddEnemy(words[1], int.Parse(words[2]));
+                                if (words[0]=="treasure") tmpGroup.AddTreasure(words[1]);
+                                if (words[0]=="end")
+                                {
+                                    enemyGroups.Add(tmpGroup);
+                                    group_count++;
+                                    blok=Block.NONE;
+                                }
+                            }
+
                             if (blok==Block.ROAD)
                             {
                                 if (words[0]=="enabled")
@@ -331,7 +391,8 @@ namespace legend
                                 if (words[0].ToLower()=="action")
                                 {
                                     blok = Block.ACTION;
-                                    tmpAct = new Action(words[1],words[2]);
+                                    ActionTarget at = DecideActionTarget(words[1]);
+                                    tmpAct = new Action(words[1],words[2], at);
                                     tmpAct.itemId = words[3];                             
                                 }
                                 if (words[0].ToLower()=="enemy")
@@ -343,6 +404,11 @@ namespace legend
                                 {
                                     blok = Block.NPC;
                                     tmpNPC = new NPC(words[1]);                              
+                                }
+                                if (words[0].ToLower()=="group")
+                                {
+                                    blok = Block.ENEMYGROUP;
+                                    tmpGroup = new EnemyGroup(words[1]);                               
                                 }
                             }
                         }
@@ -356,6 +422,7 @@ namespace legend
             Console.WriteLine(" - Actions loaded: {0}", actionCount.ToString());
             Console.WriteLine(" - Enemies loaded: {0}", enemiesCount.ToString());
             Console.WriteLine(" - NPCs loaded: {0}", NPC_count.ToString());
+            Console.WriteLine(" - EnemyGroups loaded: {0}", group_count.ToString());
 
             foreach (NPC en in NPCs)
             {
