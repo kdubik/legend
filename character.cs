@@ -20,6 +20,11 @@ namespace legend
         public int level = 1;
         public Specialization specialization = Specialization.NONE;
 
+        // Mensie info
+        public int max_health, health;
+        public int speed, defense, armor;
+
+
         // Character attributes
         public int[] attr = new int[9];
 
@@ -30,6 +35,21 @@ namespace legend
         public void SetAttribute(Attribute inAttr, int value) => attr[(int)inAttr] = value;
 
         public int GetAttribute(Attribute inAttr) => attr[(int)inAttr];
+
+        /// <summary>
+        /// Returns ID of item (wheapon), that character has equipped.false
+        /// If there is no wheapon, "empty_hands" is returned.
+        /// </summary>
+        /// <returns>ID of item (wheapon), that character has equipped</returns>
+        public string GetActualWheaponId()
+        {
+            string res = "";
+
+            res = bodySlots[(int)BodySlot.WHEAPON];
+            if (res!="") res = "empty_hands";
+
+            return res;
+        }
 
         /// <summary>
         /// Constructor - prepare default character

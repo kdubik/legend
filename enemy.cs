@@ -14,7 +14,7 @@ namespace legend
         public int speed, health, defense, armor;
         public int[] attr = new int[9];
 
-        EnemyWheapon wheapon;
+        public EnemyWheapon wheapon;
 
         public Enemy(string id)
         {

@@ -83,6 +83,25 @@ namespace legend
             return ret;
         }
 
+        /// <summary>
+        /// Checks, whether there is a combat situation,
+        /// after party enters some location.
+        /// </summary>
+        public void Check_combat()
+        {
+            // Check for "planned" encounter
+            Room lRoom = lib.GetRoom(party.actualRoomID);
+            if (lRoom.enemyGroup!="")
+            {
+                Combat combat = new Combat(lib, party, lRoom);
+                combat.DoBattle();
+            }
+
+            // Check for random encounter
+
+            
+        }
+
         public ErrorCode Go(Path path)
         {
             ErrorCode ec = ErrorCode.OK;
@@ -98,6 +117,7 @@ namespace legend
                         if ((lRoad.bothWay == Direction.BOTH) ||  (lRoad.bothWay == Direction.TO_TARGET))
                         {
                             party.actualRoomID = lRoad.targetRoom;
+                            Check_combat();
                         } else ec=ErrorCode.EMPTY_PATH;
                     }
                     else
@@ -105,6 +125,7 @@ namespace legend
                         if ((lRoad.bothWay == Direction.BOTH) || (lRoad.bothWay == Direction.TO_SOURCE))
                         {
                             party.actualRoomID = lRoad.sourceRoom;
+                            Check_combat();
                         } else ec=ErrorCode.EMPTY_PATH;
                     }
                 }

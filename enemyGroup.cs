@@ -21,6 +21,7 @@ namespace legend
 
         public List<EnemyRecord> enemies = new List<EnemyRecord>();
         public List<string> treasures = new List<string>();
+        public string leader = "";   // Id of character, who is in charge
 
         public EnemyGroup(string id)
         {

@@ -1,0 +1,20 @@
+[
+    {
+    "id":"mec",
+    "name":"obojrucny mec",
+    "type":"wheapon",
+    "value":25,
+    "weight":10,
+    "rarity":"common",
+    "attributes":"damage:2d6;wheapon_type:axe;two_handed:false;thrown:false"
+    },
+    {
+    "id":"mec",
+    "name":"obojrucny mec",
+    "type":"wheapon",
+    "value":25,
+    "weight":10,
+    "rarity":"common",
+    "attributes":"damage:2d6;wheapon_type:axe;two_handed:false;thrown:false"
+    }
+]

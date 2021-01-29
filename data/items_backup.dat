@@ -1,0 +1,28 @@
+# typ predmetu, id, meno predmetu, raritnost, vaha, cena // damage, skupina zbrani, 1 or 2 handed, thrown/not-thrown
+wheapon;sekera;Sekera;common;10;25;2d6;axe;1h;nt
+wheapon;osekera;Obojručná sekera; common;10;30;3d6;axe;2h;nt
+wheapon;vsekere;Vrhacia sekera;common;10;25;2d6;axe;1h;t
+wheapon;remdih;Remdih;common;10;15;1d6+3;bludgeon;1h;nt
+wheapon;mmec;Maly mec;common;10;15;1d6+1;light_blade;1h;nt
+wheapon;vdyka;Vrhacia dyka;common;10;25;1d6;light_blade;1h;t
+wheapon;smec;Siroky mec;common;10;25;2d6;light_blade;1h;nt;15
+wheapon;omec;Obojrucny mec;common;10;25;3d6;light_blade;2h;nt;15
+wheapon;cmec;Cierny mec;common;10;25;2d6+1;light_blade;1h;nt;15
+wheapon;mec_noci;Mec noci;common;10;25;2d6+1;light_blade;1h;nt;15
+wheapon;hrable;Bojove hrable;common;10;25;2d6+1;light_blade;1h;nt;15
+wheapon;komec;Kralovsky obojrucny mec;common;10;25;3d6+1;light_blade;2h;nt
+
+# typ predmetu, id, meno brnenia, raritnost, vaha, cena, typ, armor rating, penalty, reaction (krasa))
+armor;lahke_kozene;Lahke kozene brnenie;common;10;25;light;3;0;0
+
+# typ predmetu (asset), id, meno assetu
+asset;stlp;Velky kamenny stlp
+
+# typ predmetu (misc), id, meno, raritnost, vaha, cena)
+misc;pohar;Poharik;common;10;25
+
+# meno stitu, typ, defence bonus (penalty, vaha, raritnost), cena
+shield;maly_stit;Maly dreveny stit;light_shield;1;0;15;common;10
+
+# meno naradia, typ, obycajne, alebo masterwork?, vaha, cena
+#tools;naradie_artist;Umelecké náradie;artisan;standard;7;7

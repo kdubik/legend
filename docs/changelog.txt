@@ -1,6 +1,11 @@
-v0.0.12
+v0.0.13
 * additional action types: ATRIBUTE (momentalne mame len 'test' a 'default')
-* basic combat
+* cleaned functions for load items (load items reworked)
+* basic combat(completed)
+
+v0.0.12 (29.1.2021)
+- new way, how to load items (from LM file) (load items reworked)
+- basic combat(not completed)
 
 v0.0.11 (23.1.2021)
 - add possibility of action also for NPCs

@@ -13,15 +13,78 @@ namespace legend
         public Rarity rarity = Rarity.COMMON;
         public ItemType type = ItemType.MISC;
 
-        public string param;    // parametre predmetu / ak je to mec, tak je tu sila atd...
+        public string param="";    // parametre predmetu / ak je to mec, tak je tu sila atd...
+        public Dictionary<string,string> attributes = new Dictionary<string,string>();
 
+        /*
         public Item(string id, ItemType type)
         {
             this.id = id;
             name = id;
             this.type = type;
         }
+        */
 
+        public Item(string id)
+        {
+            this.id=id;
+        }
+
+        public void AppendAttributes(string attributes)
+        {
+            string tmp = param;
+            if (tmp!="") tmp = tmp + ";";
+            tmp = tmp + attributes;
+            param = tmp;
+        }
+
+        /// <summary>
+        /// Converts information stored in attributes string
+        /// into the dictionary
+        /// </summary>
+        public void ConverParamToDict()
+        {
+            string[] words = param.Split(";");
+
+            if (words.Length>0)
+            {
+                foreach (string ln in words)
+                {
+                    if (ln!="")
+                    {
+                        string[] data = ln.Split(":");
+                        attributes.Add(data[0],data[1]);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Try to get requested parameter from dictionary.
+        /// </summary>
+        /// <param name="attrName">Name of requested attribute (parameter)</param>
+        /// <returns>Value of requested parameter as string.</returns>
+        public string GetAttribute(string attrName)
+        { 
+            string ret = "";
+            attributes.TryGetValue(attrName, out ret);
+            return ret;
+        }
+
+        public ItemType GetItemTypeFromString(string itemTypeString)
+        {
+            ItemType type = ItemType.WHEAPON;   // Default
+
+            // if (words[0]=="wheapon") type = ItemType.WHEAPON;
+            if (itemTypeString=="armor") type = ItemType.ARMOR;
+            if (itemTypeString=="shield") type = ItemType.SHIELD;
+            if (itemTypeString=="misc") type = ItemType.MISC;
+            if (itemTypeString=="tool") type = ItemType.TOOL;
+            if (itemTypeString=="asset") type = ItemType.ASSET;
+
+            return type;
+        }
+        /*
         public Item(string dataString)
         {
             string[] words = dataString.Split(";");
@@ -57,5 +120,6 @@ namespace legend
             // Rest
             param = dataString;
         }
+        */
     }
 }

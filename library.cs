@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace legend
 {
-    public enum Block { NONE, ROOM, ROAD, TEXT, ACTION, ENEMY, NPC, ENEMYGROUP };
+    public enum Block { NONE, ROOM, ROAD, TEXT, ACTION, ENEMY, NPC, ENEMYGROUP, ITEM };
     public class Library
     {
         public List<Room> rooms = new List<Room>();
@@ -47,6 +47,21 @@ namespace legend
             return ret;
         }
      
+        public Enemy GetEnemy(string id)
+        {
+            Enemy ret = null;
+            foreach (Enemy eg in enemies)
+            {
+                if (eg.id==id)
+                {
+                    ret = eg;
+                    break;
+                }
+            }
+            return ret;
+        }
+     
+
         public EnemyGroup GetEnemyGroup(string id)
         {
             EnemyGroup ret = null;
@@ -151,6 +166,7 @@ namespace legend
             Enemy tmpEnemy = null;
             NPC tmpNPC = null;
             EnemyGroup tmpGroup = null;
+            Item tmpItem = null;
             
             int roomsCount = 0;
             int roadsCount = 0;
@@ -159,6 +175,7 @@ namespace legend
             int enemiesCount = 0;
             int NPC_count = 0;
             int group_count = 0;
+            int item_count = 0;
 
             string tmpID = "";
 
@@ -205,7 +222,7 @@ namespace legend
                                 {
                                     // Add item into this room
                                     GameItem tmpGameItem = new GameItem(words[1],tmpRoom.id);
-                                    Item tmpItem = GetItem(words[1]);
+                                    tmpItem = GetItem(words[1]);
                                     if (tmpItem==null)
                                     {
                                         Console.WriteLine(" - Error: Unable to find object '{0}'!", words[1]);
@@ -325,6 +342,25 @@ namespace legend
                                     blok=Block.NONE;
                                 }
                             }
+                    
+                            if (blok==Block.ITEM)
+                            {
+                                if (words[0]=="name") tmpItem.name = Tools.MergeString(words,1);
+                                if (words[0]=="type") tmpItem.type = tmpItem.GetItemTypeFromString(words[1]);
+                                if (words[0]=="value") tmpItem.value = int.Parse(words[1]);
+                                if (words[0]=="weight") tmpItem.weight = int.Parse(words[1]);
+                                if (words[0]=="attributes") tmpItem.AppendAttributes(words[1]);
+
+                                if (words[0]=="end")
+                                {
+                                    // Create dictionary with item attributes
+                                    tmpItem.ConverParamToDict();
+
+                                    items.Add(tmpItem);
+                                    item_count++;
+                                    blok=Block.NONE;
+                                }
+                            }
 
                             if (blok==Block.ACTION)
                             {
@@ -388,6 +424,11 @@ namespace legend
                                     blok = Block.TEXT;
                                     tmpID = words[1];                              
                                 }
+                                if (words[0].ToLower()=="item")
+                                {
+                                    blok = Block.ITEM;
+                                    tmpItem = new Item(words[1]);                              
+                                }
                                 if (words[0].ToLower()=="action")
                                 {
                                     blok = Block.ACTION;
@@ -423,6 +464,7 @@ namespace legend
             Console.WriteLine(" - Enemies loaded: {0}", enemiesCount.ToString());
             Console.WriteLine(" - NPCs loaded: {0}", NPC_count.ToString());
             Console.WriteLine(" - EnemyGroups loaded: {0}", group_count.ToString());
+            Console.WriteLine(" - Items loaded: {0}", item_count.ToString());
 
             foreach (NPC en in NPCs)
             {
@@ -474,7 +516,7 @@ namespace legend
 
             // Load items first
             Console.WriteLine("Loading items:");
-            LoadItemFile(@"data/items.dat");
+            //LoadItemFile(@"data/items.dat");
 
             // Load map file(s)
             foreach( string fname in files)

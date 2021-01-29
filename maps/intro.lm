@@ -10,6 +10,11 @@ armor 5
 weapon 2 3d6 Sek mecom
 end
 
+item stlp
+name Velky kamenny stlp
+type asset
+end
+
 room entrance
 desc Toto je vchod do jaskyne. Cez úzky otvor sem svieti tenký lúč svetla, ktorý prezrádza, že táto jaskyňa určite slúži ako úkryt pre niektoré divé zvieratá.
 end
@@ -152,4 +157,14 @@ group potkan1
 name Utok prerastenych krys!
 enemy ratSwarm 2
 treasure pohar
+end
+
+# Support for load items
+item mec
+name obojrucny mec
+type wheapon
+value 25
+weight 10
+rarity common
+attributes damage:2d6;wheapon_type:axe;two_handed:false;thrown:false
 end
