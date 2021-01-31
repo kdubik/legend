@@ -12,18 +12,8 @@ namespace legend
         public int value, weight;
         public Rarity rarity = Rarity.COMMON;
         public ItemType type = ItemType.MISC;
-
         public string param="";    // parametre predmetu / ak je to mec, tak je tu sila atd...
         public Dictionary<string,string> attributes = new Dictionary<string,string>();
-
-        /*
-        public Item(string id, ItemType type)
-        {
-            this.id = id;
-            name = id;
-            this.type = type;
-        }
-        */
 
         public Item(string id)
         {

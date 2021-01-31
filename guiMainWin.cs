@@ -114,6 +114,38 @@ namespace legend
             Action tmpAct = eng.lib.GetAction(actId);
             if (tmpAct!=null)
             {
+                // ACTION - ITEM (do we have some Item?)
+                if (tmpAct.action == ActionType.ATTRIBUTE)
+                {
+                    bool sucess = false;
+                    foreach (GameItem gi in eng.lib.gameItems)
+                    {
+                        // Need to implement
+                        // if (gi.id==tmpAct.param) sucess=true;
+                    }
+                    int attrValue = eng.party.members[0].GetAttribute(tmpAct.attribute);
+
+                    if (attrValue >= tmpAct.level) sucess = true;
+             
+                    if (sucess)
+                        eng.ExecuteActionList(tmpAct.successActions);
+                    else
+                        eng.ExecuteActionList(tmpAct.failedActions);
+                }
+
+                // ACTION - ATRIBUTE (do we have some atribut with specific minimal value?)
+                if (tmpAct.action == ActionType.ATTRIBUTE)
+                {
+                    int attrValue = eng.party.members[0].GetAttribute(tmpAct.attribute);
+
+                    bool sucess = false;
+                    if (attrValue >= tmpAct.level) sucess = true;
+             
+                    if (sucess)
+                        eng.ExecuteActionList(tmpAct.successActions);
+                    else
+                        eng.ExecuteActionList(tmpAct.failedActions);
+                }
 
                 // ACTION - TEST
                 if (tmpAct.action == ActionType.TEST)

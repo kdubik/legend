@@ -149,7 +149,7 @@ speed 12
 health 25
 defence 12
 armor 0
-weapon 5 1d6 Swarm
+wheapon 5 1d6 Swarm
 end
 
 # Pridame dvoch potkanov ako skupinu nepriatelov

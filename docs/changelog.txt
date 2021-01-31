@@ -1,7 +1,12 @@
-v0.0.13
-* additional action types: ATRIBUTE (momentalne mame len 'test' a 'default')
-* cleaned functions for load items (load items reworked)
-* basic combat(completed)
+v0.0.14
+* process combat result (if player was killed)
+* enhance GUI relevant for combat
+    + fix: enemy encounter is announced after combat!
+
+v0.0.13 (31.1.2021)
+- additional action types: ATRIBUTE (momentalne mame len 'test' a 'default')
+- cleaned functions for load items (load items reworked)
+- basic combat(completed)
 
 v0.0.12 (29.1.2021)
 - new way, how to load items (from LM file) (load items reworked)

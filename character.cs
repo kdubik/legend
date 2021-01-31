@@ -46,7 +46,7 @@ namespace legend
             string res = "";
 
             res = bodySlots[(int)BodySlot.WHEAPON];
-            if (res!="") res = "empty_hands";
+            if (res!="") res = "";
 
             return res;
         }
@@ -66,6 +66,11 @@ namespace legend
             {
                 name = "Sienna";
                 female = true; // Default male
+                max_health = 25;
+                health = max_health;
+                defense = 12;
+                speed = 11;
+                armor = 0;
                 SetAttribute(Attribute.ACCURACY,1);
                 SetAttribute(Attribute.COMMUNICATION,1);
                 SetAttribute(Attribute.CONSTITUTION,1);
@@ -80,6 +85,11 @@ namespace legend
             {
                 name = "Scamm";
                 female = false; // Default male
+                max_health = 25;
+                health = max_health;
+                defense = 12;
+                speed = 11;
+                armor = 0;
                 SetAttribute(Attribute.ACCURACY,2);
                 SetAttribute(Attribute.COMMUNICATION,1);
                 SetAttribute(Attribute.CONSTITUTION,1);

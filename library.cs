@@ -157,6 +157,7 @@ namespace legend
 
             return ret;
         }
+        
         public void LoadLMFile(string fname)
         {
             Block blok = Block.NONE;
@@ -176,6 +177,12 @@ namespace legend
             int NPC_count = 0;
             int group_count = 0;
             int item_count = 0;
+
+            int wheaponCount = 0;
+            int armorCount = 0;
+            int shieldCount = 0;
+            int assetCount = 0;
+            int miscCount = 0;
 
             string tmpID = "";
 
@@ -356,6 +363,12 @@ namespace legend
                                     // Create dictionary with item attributes
                                     tmpItem.ConverParamToDict();
 
+                                    if (tmpItem.type == ItemType.WHEAPON) wheaponCount++;
+                                    if (tmpItem.type == ItemType.ARMOR) armorCount++;
+                                    if (tmpItem.type == ItemType.SHIELD) shieldCount++;
+                                    if (tmpItem.type == ItemType.ASSET) assetCount++;
+                                    if (tmpItem.type == ItemType.MISC) miscCount++;
+
                                     items.Add(tmpItem);
                                     item_count++;
                                     blok=Block.NONE;
@@ -457,6 +470,7 @@ namespace legend
                 }
             }
         
+            Console.WriteLine("Objects loaded: ");
             Console.WriteLine(" - Rooms loaded: {0}", roomsCount.ToString());
             Console.WriteLine(" - Roads loaded: {0}", roadsCount.ToString());
             Console.WriteLine(" - Text blocks loaded: {0}", textCount.ToString());
@@ -466,49 +480,20 @@ namespace legend
             Console.WriteLine(" - EnemyGroups loaded: {0}", group_count.ToString());
             Console.WriteLine(" - Items loaded: {0}", item_count.ToString());
 
-            foreach (NPC en in NPCs)
-            {
-                Console.WriteLine(en.name);
-            }
-        }
-
-        public void LoadItemFile(string fname)
-        {
-            int wheaponCount = 0;
-            int armorCount = 0;
-            int shieldCount = 0;
-            int assetCount = 0;
-            int miscCount = 0;
-
-            // Open the stream and read it back.
-            using (StreamReader sr = File.OpenText(fname))
-            {
-                string s = "";
-                while ((s = sr.ReadLine()) != null)
-                {
-                    if (s!="")  // No empty string
-                    {
-                        if (s[0]!='#')  // No comments
-                        {
-                            Item tmpItem = new Item(s);
-                            items.Add(tmpItem);
-
-                            if (tmpItem.type == ItemType.WHEAPON) wheaponCount++;
-                            if (tmpItem.type == ItemType.ARMOR) armorCount++;
-                            if (tmpItem.type == ItemType.SHIELD) shieldCount++;
-                            if (tmpItem.type == ItemType.ASSET) assetCount++;
-                            if (tmpItem.type == ItemType.MISC) miscCount++;
-                        }
-                    }
-                }
-            }
-
+            Console.WriteLine("\nItems loaded: ");
             Console.WriteLine(" - Wheapons loaded: {0}", wheaponCount.ToString());
             Console.WriteLine(" - Armors loaded: {0}", armorCount.ToString());
             Console.WriteLine(" - Shields loaded: {0}", shieldCount.ToString());
             Console.WriteLine(" - Assets loaded: {0}", assetCount.ToString()); 
-            Console.WriteLine(" - Miscs loaded: {0}", miscCount.ToString());  
+            Console.WriteLine(" - Miscs loaded: {0}", miscCount.ToString());
+
+            /*
+            foreach (NPC en in NPCs)
+            {
+                Console.WriteLine(en.name);
+            }*/
         }
+
         public void LoadDataFiles()
         {
             // Search for *lm files (legend map)
@@ -516,7 +501,6 @@ namespace legend
 
             // Load items first
             Console.WriteLine("Loading items:");
-            //LoadItemFile(@"data/items.dat");
 
             // Load map file(s)
             foreach( string fname in files)

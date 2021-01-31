@@ -4,7 +4,7 @@ namespace legend
 {
 
     public enum ActionTarget { ITEM, NPC };
-    public enum ActionType { DEFAULT, TEST, ATTRIBUTE };
+    public enum ActionType { DEFAULT, TEST, ATTRIBUTE, ITEM };
     // DEFAULT - ziaden test, ak hrac klikne sem, proste sa vykonaju patricne akcie
     // TEST - skill test, ak hrac klikne, udeje sa skill check a ak uspeje, vykonaju sa patricne akcie
     // ATTRIBUTE - testneme zvoleny atribut, ci je jeho hodnota > ako cilso zadave v LEVEL
