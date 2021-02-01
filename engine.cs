@@ -87,19 +87,22 @@ namespace legend
         /// Checks, whether there is a combat situation,
         /// after party enters some location.
         /// </summary>
-        public void Check_combat()
+        public BattleStatus Check_combat()
         {
+            BattleStatus bs = BattleStatus.NOBATTLE;
             // Check for "planned" encounter
             Room lRoom = lib.GetRoom(party.actualRoomID);
             if (lRoom.enemyGroup!="")
             {
                 Combat combat = new Combat(lib, party, lRoom);
-                combat.DoBattle();
+                Console.WriteLine("Stlac ENTER pre zaciatok suboja");
+                Console.ReadLine();
+                bs = combat.DoBattle();
             }
 
             // Check for random encounter
 
-            
+            return bs;
         }
 
         public ErrorCode Go(Path path)
@@ -117,7 +120,6 @@ namespace legend
                         if ((lRoad.bothWay == Direction.BOTH) ||  (lRoad.bothWay == Direction.TO_TARGET))
                         {
                             party.actualRoomID = lRoad.targetRoom;
-                            Check_combat();
                         } else ec=ErrorCode.EMPTY_PATH;
                     }
                     else
@@ -125,7 +127,6 @@ namespace legend
                         if ((lRoad.bothWay == Direction.BOTH) || (lRoad.bothWay == Direction.TO_SOURCE))
                         {
                             party.actualRoomID = lRoad.sourceRoom;
-                            Check_combat();
                         } else ec=ErrorCode.EMPTY_PATH;
                     }
                 }

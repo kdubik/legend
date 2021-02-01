@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace legend
 {
-    public enum BattleStatus { BATTLING, WIN, LOOSE, ENEMIES_FLIED, PLAYER_FLIED, CANCELLED };
+    public enum BattleStatus { BATTLING, WIN, LOOSE, ENEMIES_FLIED, PLAYER_FLIED, CANCELLED, NOBATTLE };
 
     class participant
     {
@@ -123,7 +123,11 @@ namespace legend
                     {
                         counter++;
                         pt.Add(lp);
-                        Console.WriteLine("{0}. {1}", counter.ToString(), lp.enemy.name);
+                        Console.Write("{0}. {1} (zdravie:", counter.ToString(), lp.enemy.name);
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(lp.health.ToString());
+                        Console.ResetColor();
+                        Console.WriteLine(")");
                     }
                 }
             }
@@ -138,18 +142,28 @@ namespace legend
             BattleStatus status = BattleStatus.BATTLING;
 
             Console.Clear();
-            Console.WriteLine("Combat!");
+            //Console.WriteLine("Combat!");
             PrepareBattlefield();
 
             // Hlavny battle cyklus
+            int round = 0;
             do
             {
+                round++;
+                Console.WriteLine("Suboj, kolo {0} ----\n", round.ToString());
+
                 foreach (participant p in battlefield)
                 {
                     if (p.isEnemy)
                     {
                         if (p.health>0)
                         {
+                            // Kto je na tahu
+                            Console.Write("Na tahu je: ");
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine(p.enemy.name);
+                            Console.ResetColor();
+
                             //Utoci nepriatel
                             Console.WriteLine("{0} ({1} ziv.) utoci na {2} ({3} ziv.)!",
                             p.enemy.name, p.health.ToString(), party.members[0].name, party.members[0].health.ToString());
@@ -177,6 +191,13 @@ namespace legend
                     }
                     else
                     {
+                        // Kto je na tahu
+                        Console.Write("Na tahu je: ");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(party.members[0].name);
+                        Console.ResetColor();
+                        Console.WriteLine("(zdravie:{0})",party.members[0].health);
+
                         //Utoci hrac
                         if (party.members[0].health>0)
                         { 

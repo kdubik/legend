@@ -5,7 +5,9 @@ namespace legend
 {
     public class GuiMainWin
     {
+        public enum GameStatus { PLAYING, LOOSE, WIN, QUIT, QUIT_SAVE };
         public Engine eng;
+        GameStatus status = GameStatus.PLAYING;
 
         public GuiMainWin(Engine inEngine)
         {
@@ -101,10 +103,22 @@ namespace legend
             else Console.WriteLine("Engine error: Unable to find room '{0}'", roomId);
         }
         
+        /// <summary>
+        /// Describe actual room and check for battle.
+        /// </summary>
         public void ShowRoom()
         {
             DescribeRoom(eng.party.actualRoomID);
-            // Show Container
+            BattleStatus bstatus = eng.Check_combat();
+
+            // Suboj prebehol a prehrali sme !!!
+            if (bstatus==BattleStatus.LOOSE)
+            {
+                Console.WriteLine("Prebehol suboj a tvoja partia prehrala!");
+                Console.WriteLine("Stlac ENTER pre ukoncenie a vyhodnotenie");
+                Console.ReadLine();
+                status = GameStatus.LOOSE;
+            }
         }
         
         public ErrorCode RunSpecialAction(string actId)
@@ -455,7 +469,29 @@ namespace legend
                     ShowRoom();
                 }
 
-            } while (line!="ko");
+                // Quit game correctly
+                if (line=="ko") status = GameStatus.QUIT;
+                if (line=="ks") status = GameStatus.QUIT_SAVE;
+
+            } while (status == GameStatus.PLAYING);
+
+            if (status == GameStatus.WIN)
+            {
+                // Show win message + statistics              
+            }
+
+            if (status == GameStatus.LOOSE)
+            {
+                // Show loose message + statistics 
+                Console.Clear();
+                Console.WriteLine("Prehral si...");
+                Console.ReadLine();              
+            }
+
+            if (status == GameStatus.QUIT)
+            {
+                // Save game + message           
+            }
         }
     }
 }

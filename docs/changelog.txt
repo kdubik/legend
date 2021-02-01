@@ -1,7 +1,16 @@
-v0.0.14
-* process combat result (if player was killed)
-* enhance GUI relevant for combat
-    + fix: enemy encounter is announced after combat!
+v0.0.15 --- ENTERING ALPHA !!! ---
+* add more items
+* give player some starting items
+
+v0.0.14 (1.2.2021)
+- process combat result (if player was killed)
+    - some basic processing
+    - more options to correctly quit game (implemented game status)
+- enhance GUI relevant for combat
+    - choose enemy now shows health status
+    - enhanced combat output
+    - fix: enemy encounter is announced after combat! 
+    (triggering "combat" was moved from "go" method to "showRoom")
 
 v0.0.13 (31.1.2021)
 - additional action types: ATRIBUTE (momentalne mame len 'test' a 'default')
@@ -89,7 +98,7 @@ v0.0.2 (3.12.2020)
     (misc predmet nema ucel, ale moze byt nanom specialna akcia)
 - dvere (v ramci "road") uz maju aj "lock picking" schopnost
 
-v0.0.1 (21.11.2020)
+v0.0.1 (21.11.2020) --- ENTERING PRE-ALPHA !!! ---
 - kostra hry funguje (behanie po miestnostiach + ich opis)
 - hlavne data sa nacitavaju zo suboru
 - zaklad generovania postavy funguje
