@@ -201,6 +201,8 @@ namespace legend
                             //Console.WriteLine(words.Length.ToString());
                             if (blok==Block.ROOM)
                             {
+                                if (words[0]=="name") tmpRoom.name = words[1];
+                                if (words[0]=="map") tmpRoom.map = words[1];
                                 if (words[0]=="desc") tmpRoom.desc = Tools.MergeString(words,1);
                                 // if (words[0]=="desc") tmpRoom.desc = words[1];
                                 if (words[0]=="water") tmpRoom.water = false;

@@ -4,6 +4,7 @@ namespace legend
     {
         public string id, name;
         public string desc;
+        public string map;  // This room belongs to which map?
         public bool teleport = false;
         public bool water = false;  // Zatopena miestnost
 

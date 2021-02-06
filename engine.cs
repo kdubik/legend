@@ -17,6 +17,45 @@ namespace legend
             party.actualRoomID = "entrance";
         }
 
+
+        public void EquipItem(Item itm)
+        {
+            if (itm.type==ItemType.WHEAPON)
+                party.members[0].bodySlots[(int)BodySlot.WHEAPON] = itm.id;
+            if (itm.type==ItemType.ARMOR)
+                party.members[0].bodySlots[(int)BodySlot.ARMOR] = itm.id;
+            if (itm.type==ItemType.SHIELD)
+                party.members[0].bodySlots[(int)BodySlot.SHIELD] = itm.id;          
+        }
+
+        public void EquipItem(string itemId)
+        {
+            Item itm = lib.GetItem(itemId);
+            if (itm!=null) EquipItem(itm);
+        }
+
+        public GameItem GiveItemToPlayer(string itemId, bool eqip)
+        {
+            GameItem gmi = null;
+            Item tmpItem = lib.GetItem(itemId);
+            
+            if (tmpItem!=null)
+            {
+                gmi = new GameItem(itemId,"player");
+                if (gmi!=null)
+                {
+                    UpdateGameItemInfo(ref gmi);   // Ziska zaujimave informacie z objektu a napise od game itemu
+                    lib.gameItems.Add(gmi);
+
+                    // We want also to equip item imediatelly
+                    if (eqip) EquipItem(tmpItem);
+                }
+            }
+
+            
+
+            return gmi;
+        }
         public bool DoTest(Attribute inAttribute, int testLevel)
         {
             bool res = false;
@@ -59,13 +98,8 @@ namespace legend
 
             if (words[0]=="add_item")
             {
-                // Komec
-                Item tmpItem = lib.GetItem(words[1]);
-                Console.WriteLine("Ziskavas '{0}'!", tmpItem.name);
-
-                GameItem gmi = new GameItem(words[1],"player");
-                UpdateGameItemInfo(ref gmi);   // Ziska zaujimave informacie z objektu a napise od game itemu
-                lib.gameItems.Add(gmi);
+                GameItem gmi = GiveItemToPlayer(words[1],false);
+                Console.WriteLine("Ziskavas '{0}'!", gmi.itemName);
             }
 
             return res;

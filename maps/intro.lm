@@ -161,10 +161,28 @@ end
 
 # Support for load items
 item mec
-name obojrucny mec
+name Obojručný meč
 type wheapon
 value 25
 weight 10
 rarity common
 attributes damage:2d6;wheapon_type:axe;two_handed:false;thrown:false
+end
+
+item cestovatelske_oblecenie
+name Bežné cestovateľské oblečenie
+type armor
+value 25
+weight 10
+rarity common
+attributes armor:1;bodypart:armor
+end
+
+item kozena_zbroj
+name Ľahká kožená zbroj
+type armor
+value 25
+weight 50
+rarity common
+attributes armor:1;bodypart:armor
 end
