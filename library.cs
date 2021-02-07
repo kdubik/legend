@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 namespace legend
 {
-    public enum Block { NONE, ROOM, ROAD, TEXT, ACTION, ENEMY, NPC, ENEMYGROUP, ITEM };
+    public enum Block { NONE, ROOM, ROAD, TEXT, ACTION, ENEMY, NPC, ENEMYGROUP, ITEM, GAMEINFO };
     public class Library
     {
+        public GameInfo gameInfo = new GameInfo();
         public List<Room> rooms = new List<Room>();
         public List<Road> roads = new List<Road>();
         public List<Item> items = new List<Item>();
@@ -169,6 +170,7 @@ namespace legend
             EnemyGroup tmpGroup = null;
             Item tmpItem = null;
             
+            bool gameInfoLoaded = false;
             int roomsCount = 0;
             int roadsCount = 0;
             int textCount = 0;
@@ -201,7 +203,7 @@ namespace legend
                             //Console.WriteLine(words.Length.ToString());
                             if (blok==Block.ROOM)
                             {
-                                if (words[0]=="name") tmpRoom.name = words[1];
+                                if (words[0]=="name") tmpRoom.name = Tools.MergeString(words,1);
                                 if (words[0]=="map") tmpRoom.map = words[1];
                                 if (words[0]=="desc") tmpRoom.desc = Tools.MergeString(words,1);
                                 // if (words[0]=="desc") tmpRoom.desc = words[1];
@@ -331,6 +333,19 @@ namespace legend
                                 }
                             }
 
+                            if (blok==Block.GAMEINFO)
+                            {
+                                if (words[0]=="name") gameInfo.name = Tools.MergeString(words,1);
+                                if (words[0]=="author") gameInfo.author = Tools.MergeString(words,1);
+                                if (words[0]=="start_map") gameInfo.startMap = words[1];
+                                if (words[0]=="start_room") gameInfo.startRoom = words[1];
+                                if (words[0]=="end")
+                                {
+                                    gameInfoLoaded = true;
+                                    blok=Block.NONE;
+                                }
+                            }
+
                             if (blok==Block.ROAD)
                             {
                                 if (words[0]=="enabled")
@@ -423,6 +438,11 @@ namespace legend
 
                             if (blok==Block.NONE)
                             {
+                                if (words[0].ToLower()=="game")
+                                {
+                                    blok = Block.GAMEINFO;
+                                }
+
                                 if (words[0].ToLower()=="room")
                                 {
                                     blok = Block.ROOM;
@@ -472,6 +492,8 @@ namespace legend
                 }
             }
         
+            Console.WriteLine("General: ");
+            Console.WriteLine(" - main game information loaded: {0}", gameInfoLoaded.ToString());
             Console.WriteLine("Objects loaded: ");
             Console.WriteLine(" - Rooms loaded: {0}", roomsCount.ToString());
             Console.WriteLine(" - Roads loaded: {0}", roadsCount.ToString());

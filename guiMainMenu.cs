@@ -28,6 +28,7 @@ namespace legend
 
                     eng.GiveItemToPlayer("cestovatelske_oblecenie", true);
                     eng.GiveItemToPlayer("mec", true);
+                    eng.GiveItemToPlayer("trojzubec", false);
 
                     GuiMainWin gameWin = new GuiMainWin(eng);                    
                     gameWin.Show();

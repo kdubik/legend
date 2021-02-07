@@ -119,6 +119,15 @@ namespace legend
                 Console.ReadLine();
                 status = GameStatus.LOOSE;
             }
+            if (bstatus==BattleStatus.WIN)
+            {
+                eng.EraseEnemiesInActualRoom(); // Erase enemies in this room
+                Console.WriteLine("Prebehol suboj a tvoja partia vyhrala!");
+                Console.WriteLine("Stlac ENTER pre pokracovanie");
+                Console.ReadLine();
+                Console.Clear();
+                DescribeRoom(eng.party.actualRoomID);
+            }
         }
         
         public ErrorCode RunSpecialAction(string actId)
@@ -466,6 +475,11 @@ namespace legend
                 if (line=="b") 
                 {
                     ShowCharacterInvertory();
+                    ShowRoom();
+                }
+
+                if (line=="k") 
+                {
                     ShowRoom();
                 }
 

@@ -237,6 +237,7 @@ namespace legend
                             Console.WriteLine("UC:{0} vs OC:{1}", uc.ToString(), oc.ToString());
                             if (uc>oc)
                             {
+                                Console.WriteLine("Dmg dice - {0}", wheaponDmg);
                                 dmg = dices.ThrowDiceString(wheaponDmg);
                                 defender.health -= dmg;
                                 if (defender.health<1) status = BattleStatus.WIN;

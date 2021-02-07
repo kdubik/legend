@@ -6,15 +6,24 @@ v0.1.x (backlog)
 * rework loading LM files. When item is not declared first,
   that it is not possible to add it into the room etc.
 * EQUIP at the beginning of the game: should be somewhere defined more correctly
-
-v0.1.0 --- ENTERING ALPHA !!! ---
-* prepare level 1 of game (at least partially)
 * add more items
 * change item (equip) in invertory should be reworked
 * add un-equip option
+* give treasure to player after successful combat
 
 
-v0.0.15
+v0.1.0 --- ENTERING ALPHA !!! --- (7.2.2021)
+- prepare level 1 of game (at least partially)
+- GameInfo class added (with main information about game)
+    - main information loaded from LM file
+- Combat updates
+    - fixed: enemies don't disapera after combat
+    - fixed: player is still attacking with empty hands
+    - room is described again, after combat
+- added new command: "k", for "where I am?"
+- player default character is more playable (updated character attributes)
+
+v0.0.15 (6.2.2021)
 - GiveItemToPlayer method implemented (part of engine)
 - each location (room) now contains also information about map region, that it belongs to.
     - fixed: room now load from file also "name" and "map" string

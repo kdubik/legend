@@ -46,7 +46,7 @@ namespace legend
             string res = "";
 
             res = bodySlots[(int)BodySlot.WHEAPON];
-            if (res!="") res = "";
+            //if (res!="") res = "";
 
             return res;
         }
@@ -65,20 +65,20 @@ namespace legend
             if (female)
             {
                 name = "Sienna";
-                female = true; // Default male
+                female = true; // Default female
                 max_health = 25;
                 health = max_health;
                 defense = 12;
                 speed = 11;
                 armor = 0;
-                SetAttribute(Attribute.ACCURACY,1);
-                SetAttribute(Attribute.COMMUNICATION,1);
-                SetAttribute(Attribute.CONSTITUTION,1);
-                SetAttribute(Attribute.DEXTERITY,1);
-                SetAttribute(Attribute.FIGHTING,1);
-                SetAttribute(Attribute.IQ,2);
-                SetAttribute(Attribute.PERCEPTION,1);
-                SetAttribute(Attribute.STRENGTH,1);
+                SetAttribute(Attribute.ACCURACY,2);
+                SetAttribute(Attribute.COMMUNICATION,2);
+                SetAttribute(Attribute.CONSTITUTION,2);
+                SetAttribute(Attribute.DEXTERITY,3);
+                SetAttribute(Attribute.FIGHTING,4);
+                SetAttribute(Attribute.IQ,0);
+                SetAttribute(Attribute.PERCEPTION,3);
+                SetAttribute(Attribute.STRENGTH,3);
                 SetAttribute(Attribute.WILL,1);
             }
             else

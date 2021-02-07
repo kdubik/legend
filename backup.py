@@ -35,10 +35,26 @@ def backup_files():
      
     zf.close()
 
+def upload_files_to_git():
+    print("Uploading files to GIT...")
+
+    cmd = "git add ."
+    #print (cmd)
+    os.system(cmd)
+
+    cmd = f'git commit -m "v{sys.argv[1]}"'
+    #print (cmd)
+    os.system(cmd)
+
+    cmd = "git push"
+    #print (cmd)
+    os.system(cmd)
+
 if __name__ == '__main__':
     show_header()
 
     if len(sys.argv) > 0:
         backup_files()
+        upload_files_to_git()
     else:
         print("Error: not enough input parameters")

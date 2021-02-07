@@ -1,0 +1,102 @@
+# global game info
+game
+author Kamil Dubík
+name Tajomný dom
+start_map level1
+start_room 1_krizovatka
+end
+
+# definition of circumstances in defined map
+# Is it safe? Interior or exterior? etc.
+map level1
+name Pred domom
+type exterior
+end
+
+item cestovatelske_oblecenie
+name Bežné cestovateľské oblečenie
+type armor
+value 25
+weight 10
+rarity common
+attributes armor:1;bodypart:armor
+end
+
+item kozena_zbroj
+name Ľahká kožená zbroj
+type armor
+value 25
+weight 50
+rarity common
+attributes armor:1;bodypart:armor
+end
+
+item mec
+name Meč
+type wheapon
+value 25
+weight 10
+rarity common
+attributes damage:3d6;wheapon_type:sword;two_handed:false;thrown:false
+end
+
+item trojzubec
+name Trojzubec poseidona
+type wheapon
+value 215
+weight 30
+rarity rare
+attributes damage:3d8+6;wheapon_type:polearm;two_handed:true;thrown:false
+end
+
+room 1_krizovatka
+name Stará križovatka
+map level1
+desc Stojíš na križovatke na okraji lesa. Podarilo sa ti dostať takmer až k tajomnému domu - len kúsoček ďalej na severe vidíč obrovský plot z kameňa a ocele, strážený dvoma sochami gargoylov strážiacimi vchod. Na východe vidno akúsi starú studňu uprostred malej lúčky obkolesenej kríkmi a na západnej strane sa tiež črtá zátišie s húštinou.
+end
+
+room 2_hustina
+name Húština
+map level1
+add_group potkan1
+desc Na tomto mieste je skvelý úkryt pred čímkoľvek, nakoľko je tu kopa húštiny a niekoľko silných stromov. Nie je tu však inkan nič zaujímavé. Len tajne dúfaš, že toto zátišie si ako miesto na oddych nevyberajú aj nejaké divé šelmy.
+end
+
+room 3_studna
+name Stará studňa
+map level1
+add_item trojzubec
+desc Obzeráš si starú kamennú studňu, nad ktorou je mierne prehnitá strieška zo smrekového dreva. Nezdá sa, že by v nej bola voda a aj tak si nevieš predstaviť nikoho, kto by na toto miesto chodil po vodu. Zrejme ide o pozostatok z čias, keď ešte tajomný dom slúžil ako zvieracia farma.
+end
+
+room 4_brana
+name Brána do starého domu
+map level1
+desc Hľadíš na vysokú kovovú bránu, ktorú strážia dve veľké a hlavne škaredé sochy gargoylov. Vzbudzujú rešpekt aj strach, ale sú to len sochy. Nemáš dobrá pocit z tohto mieste, aj keď na oko sa tu nič nedeje. Pomedzi mreže vidíš v diaľke starý dom obrastený z každej strany a niekoľko menších kamenných stavieb.
+end
+
+path 1_krizovatka 2_hustina west
+end
+
+path 1_krizovatka 3_studna east
+end
+
+path 1_krizovatka 4_brana north
+end
+
+enemy ratSwarm
+name Skupinka potkanov
+desc rat_swarm_desc
+speed 12
+health 15
+defence 12
+armor 0
+wheapon 5 1d6 Swarm
+end
+
+# Pridame dvoch potkanov ako skupinu nepriatelov
+group potkan1
+name Utok prerastenych krys!
+enemy ratSwarm 1
+treasure pohar
+end

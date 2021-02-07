@@ -14,10 +14,14 @@ namespace legend
         {
             Console.Write("Initializing engine:");
             lib.LoadDataFiles();
-            party.actualRoomID = "entrance";
+            party.actualRoomID = lib.gameInfo.startRoom ;
         }
 
-
+        public void EraseEnemiesInActualRoom()
+        {
+            Room actRoom = lib.GetRoom(party.actualRoomID);
+            actRoom.enemyGroup = "";
+        }
         public void EquipItem(Item itm)
         {
             if (itm.type==ItemType.WHEAPON)
