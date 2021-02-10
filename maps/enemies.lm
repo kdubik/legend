@@ -1,0 +1,16 @@
+enemy ratSwarm
+name Skupinka potkanov
+desc rat_swarm_desc
+speed 12
+health 15
+defence 12
+armor 0
+wheapon 5 1d6 Swarm
+end
+
+# Pridame dvoch potkanov ako skupinu nepriatelov
+group potkan1
+name Utok prerastenych krys!
+enemy ratSwarm 1
+treasure pohar
+end

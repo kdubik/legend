@@ -27,8 +27,8 @@ namespace legend
                     eng.party.members.Add(hero);
 
                     eng.GiveItemToPlayer("cestovatelske_oblecenie", true);
-                    eng.GiveItemToPlayer("mec", true);
-                    eng.GiveItemToPlayer("trojzubec", false);
+                    eng.GiveItemToPlayer("dyka", true);
+                    //eng.GiveItemToPlayer("trojzubec", false);
 
                     GuiMainWin gameWin = new GuiMainWin(eng);                    
                     gameWin.Show();
@@ -43,7 +43,7 @@ namespace legend
                     charGen.Show();
 
                     eng.GiveItemToPlayer("cestovatelske_oblecenie", true);
-                    eng.GiveItemToPlayer("mec", true);
+                    eng.GiveItemToPlayer("dyka", true);
 
                     GuiMainWin gameWin = new GuiMainWin(eng);                    
                     gameWin.Show();

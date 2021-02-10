@@ -1,0 +1,12 @@
+# definition of circumstances in defined map
+# Is it safe? Interior or exterior? etc.
+map level1
+name Pred domom
+type exterior
+end
+
+room severs_entrance
+name Vstup do starej kanalizácie
+map level2
+desc kanááál
+end

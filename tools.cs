@@ -22,5 +22,21 @@ namespace legend
 
             return ret;
         }
+    
+        public static string RemoveQuotes(string msg)
+        {
+            // Remove quotes (first and last character of the sentence)
+            msg = msg.Substring(1);
+            msg = msg.Remove(msg.Length - 1);
+            return msg;
+        }
+
+        public static bool CheckForQuotes(string msg)
+        {
+            bool res = false;
+            char quota = '"';
+            if ((msg[0]==quota) && (msg[msg.Length - 1]==quota)) res=true;
+            return res; 
+        }
     }
 }

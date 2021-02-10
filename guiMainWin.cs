@@ -204,11 +204,14 @@ namespace legend
                     {
                         foreach(Action tmpAct in eng.lib.actions)
                         {
-                            if (tmpAct.itemId==tmpGItem.id)
+                            if (tmpAct.enabled)
                             {
-                                //Console.WriteLine("Act "+tmpAct.desc);
-                                //Console.WriteLine("ActID "+tmpAct.id);
-                                actList.Add(tmpAct.id);
+                                if (tmpAct.itemId==tmpGItem.id)
+                                {
+                                    //Console.WriteLine("Act "+tmpAct.desc);
+                                    //Console.WriteLine("ActID "+tmpAct.id);
+                                    actList.Add(tmpAct.id);
+                                }
                             }
                         }
                     }
@@ -224,11 +227,14 @@ namespace legend
                     {
                         foreach(Action tmpAct in eng.lib.actions)
                         {
-                            if (tmpAct.itemId==lNPC.id)
+                            if (tmpAct.enabled)
                             {
-                                //Console.WriteLine("Act "+tmpAct.desc);
-                                //Console.WriteLine("ActID "+tmpAct.id);
-                                actList.Add(tmpAct.id);
+                                if (tmpAct.itemId==lNPC.id)
+                                {
+                                    //Console.WriteLine("Act "+tmpAct.desc);
+                                    //Console.WriteLine("ActID "+tmpAct.id);
+                                    actList.Add(tmpAct.id);
+                                }
                             }
                         }
                     }

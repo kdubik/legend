@@ -9,14 +9,45 @@ v0.1.x (backlog)
 * add more items
 * change item (equip) in invertory should be reworked
 * add un-equip option
-* give treasure to player after successful combat
 
+v0.1.2
+* level design updates:
+    * implement level2 map
+    * setup some encounters
+* implement game intro (based on info from GameInfo class)
+* possibility to pick up items?
+
+v0.1.2
+* level design updates:
+    * add gatekeeper event
+* combat updates:
+    * colorize "numbers" and "enemies names" in combat screens
+    * make combat slower, so player can catch, what is going on
+    * give treasure to player after successful combat
+    * solve situation, when player runs away from battle
+* LM loader updates:
+    * add an option to "items", how to show their name in slovak (sklonovanie: pouzil si... studňu, vidis... studňu atď.)
+    * change way, how items and enemies are added into the room during loading
+    * finish rework on: instead of text block definition, we can just write text in qotas, and text block will be created automatically!
+* print() method in engine should be reworked
+
+
+v0.1.1 (10.2.2021)
+- level design updates:
+    - level file split into the multiple smaller LM files (better structure)
+    - add items to first map (well, gate...)
+    - add teleporter to level2 (severs)
+- LM loader update: instead of text block definition, we can just write text in qotas, and text block will be created automatically!
+    - working only partially now
+- new commands: enable_action, disable_action, teleport, show_msg_wait
+- fix: disabled actions are not shown in potecial list
+- fix: when desired text block is not found, error is writen instead of crash
 
 v0.1.0 --- ENTERING ALPHA !!! --- (7.2.2021)
 - prepare level 1 of game (at least partially)
 - GameInfo class added (with main information about game)
     - main information loaded from LM file
-- Combat updates
+- combat updates
     - fixed: enemies don't disapera after combat
     - fixed: player is still attacking with empty hands
     - room is described again, after combat

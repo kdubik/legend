@@ -89,21 +89,96 @@ namespace legend
             gi.itemName = itm.name;
             gi.itemType = itm.type;
         }
-        
+
+        public void Print(string msg)
+        {
+           Console.WriteLine(Tools.RemoveQuotes(msg));
+        } 
+
         public bool ExecuteCommand(string cmd)
         {
             bool res = true;
 
             string[] words = cmd.Split(" ");
+
+            // Show message
             if (words[0]=="show_msg")
-            {
-                Console.WriteLine(lib.texts[words[1]]);
+            {               
+                if ( words[1][0]!='"')
+                {
+                    if (lib.texts.ContainsKey(words[1]))
+                    {
+                        Console.WriteLine(lib.texts[words[1]]);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Unable to find text block: '{0}'", words[1]);
+                    }
+                }
+                else
+                {
+                    string msg = Tools.MergeString(words,1);
+                    Print(msg);
+                }                
             }
 
-            if (words[0]=="add_item")
+            // Show message and wait for ENTER
+            if (words[0]=="show_msg_wait")
+            {
+                if (words[1]!="\"")
+                {
+                    if (lib.texts.ContainsKey(words[1]))
+                    {
+                        Console.WriteLine(lib.texts[words[1]]);
+                        Console.WriteLine("\nStlac ENTER pre pokracovanie...");
+                        Console.ReadLine();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Unable to find text block: '{0}'", words[1]);
+                    }
+                }
+                else
+                {
+                    string msg = Tools.MergeString(words,1);
+                    Console.WriteLine(msg);
+                    Console.WriteLine("\nStlac ENTER pre pokracovanie...");
+                    Console.ReadLine();
+                }  
+                   
+            }
+
+            // Give item to player
+            if (words[0]=="give_item")
             {
                 GameItem gmi = GiveItemToPlayer(words[1],false);
                 Console.WriteLine("Ziskavas '{0}'!", gmi.itemName);
+            }
+
+            // Enable target action
+            if (words[0]=="enable_action")
+            {
+                Action act = lib.GetAction(words[1]);
+                if (act!=null)
+                {
+                    act.enabled = true;
+                }
+            }
+
+            // Disable target action
+            if (words[0]=="disable_action")
+            {
+                Action act = lib.GetAction(words[1]);
+                if (act!=null)
+                {
+                    act.enabled = false;
+                }
+            }
+
+            // Move player to target destination
+            if (words[0]=="teleport")
+            {
+                party.actualRoomID = words[1];
             }
 
             return res;
