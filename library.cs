@@ -17,8 +17,9 @@ namespace legend
         public List<NPC> NPCs = new List<NPC>();
         public List<EnemyGroup> enemyGroups = new List<EnemyGroup>();
 
-
         public Dictionary<string,string> texts = new Dictionary<string,string>();
+
+        int ACTBcount = 0;   // Automatically created text block counter
 
         public Room GetRoom(string roomId)
         {
@@ -61,7 +62,14 @@ namespace legend
             }
             return ret;
         }
-     
+
+        public string GetTextBlock(string id)
+        {
+            string res = "";
+            if (!texts.TryGetValue(id,out res))
+                Console.Write("Could not find text block id: {0}", id);
+            return res;
+        }  
 
         public EnemyGroup GetEnemyGroup(string id)
         {
@@ -159,6 +167,41 @@ namespace legend
             return ret;
         }
         
+        /// <summary>
+        /// Tato funkcia overi, ci je zadany text ID textoveho bloku, alebo
+        /// priamo text v uvodzovkach. Ak je to priamo text, tak ho zbavi
+        /// uvodzovek a vyrobi novy text blok, kam ten text napise.
+        /// V kazdom pripade vrati ID textoveho bloku.
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns>Text blok ID</returns>
+        public string ReviewString(string msg)
+        {
+            if (Tools.CheckForQuotes(msg))
+            {    
+                ACTBcount++;    // Pocet vygenerovanych text blokov stupa
+                string textBlockKey = "ACTB_" + ACTBcount.ToString();    // Meno pre novy textblok
+                msg = Tools.RemoveQuotes(msg);  // Vygenerujeme text pre novy textblok
+                texts.Add(textBlockKey,msg);    // Pridame novy text do zoznamu textov
+                msg = textBlockKey; // vratime ID textoveho bloku
+            }
+            return msg;
+        }
+
+        public string AnalyzeAction(string msg)
+        {
+            string[] lines = msg.Split(' ');
+
+            if ((lines[1]=="show_msg") || (lines[1]=="show_msg_wait"))
+            {
+                string tmp = Tools.MergeString(lines,2);
+                msg = ReviewString(tmp);
+            }
+
+            return msg;
+        }
+
+
         public void LoadLMFile(string fname)
         {
             Block blok = Block.NONE;
@@ -203,10 +246,9 @@ namespace legend
                             //Console.WriteLine(words.Length.ToString());
                             if (blok==Block.ROOM)
                             {
-                                if (words[0]=="name") tmpRoom.name = Tools.MergeString(words,1);
+                                if (words[0]=="name") tmpRoom.name = ReviewString(Tools.MergeString(words,1));
                                 if (words[0]=="map") tmpRoom.map = words[1];
-                                if (words[0]=="desc") tmpRoom.desc = Tools.MergeString(words,1);
-                                // if (words[0]=="desc") tmpRoom.desc = words[1];
+                                if (words[0]=="desc") tmpRoom.desc = ReviewString(Tools.MergeString(words,1));
                                 if (words[0]=="water") tmpRoom.water = false;
                                 if (words[0]=="teleport") tmpRoom.teleport = false;
                                 if (words[0]=="end")
@@ -270,14 +312,12 @@ namespace legend
 
                             if (blok==Block.ENEMY)
                             {
-                                if (words[0]=="desc") tmpEnemy.desc = words[1];
-                                if (words[0]=="name") tmpEnemy.name = Tools.MergeString(words,1);
+                                if (words[0]=="desc") tmpEnemy.desc = ReviewString(Tools.MergeString(words,1));
+                                if (words[0]=="name") tmpEnemy.name = ReviewString(Tools.MergeString(words,1));
                                 if (words[0]=="speed") tmpEnemy.speed = int.Parse(words[1]);
                                 if (words[0]=="health") tmpEnemy.health = int.Parse(words[1]);
                                 if (words[0]=="defense") tmpEnemy.defense = int.Parse(words[1]);
                                 if (words[0]=="armor") tmpEnemy.armor = int.Parse(words[1]);
-
-                                if (words[0]=="desc") tmpEnemy.desc = Tools.MergeString(words,1);
                                 if (words[0]=="wheapon")
                                 {
                                     int an = int.Parse(words[1]);
@@ -297,7 +337,7 @@ namespace legend
                             if (blok==Block.NPC)
                             {
                                 if (words[0]=="desc") tmpNPC.desc = words[1];
-                                if (words[0]=="name") tmpNPC.name = Tools.MergeString(words,1);
+                                if (words[0]=="name") tmpNPC.name = ReviewString(Tools.MergeString(words,1));
                                 if (words[0]=="speed") tmpNPC.speed = int.Parse(words[1]);
                                 if (words[0]=="health") tmpNPC.health = int.Parse(words[1]);
                                 if (words[0]=="defense") tmpNPC.defense = int.Parse(words[1]);
@@ -317,12 +357,11 @@ namespace legend
                                     NPC_count++;
                                     blok=Block.NONE;
                                 }
-
                             }
 
                             if (blok==Block.ENEMYGROUP)
                             {
-                                if (words[0]=="name") tmpGroup.name = Tools.MergeString(words,1);
+                                if (words[0]=="name") tmpGroup.name = ReviewString(Tools.MergeString(words,1));
                                 if (words[0]=="enemy") tmpGroup.AddEnemy(words[1], int.Parse(words[2]));
                                 if (words[0]=="treasure") tmpGroup.AddTreasure(words[1]);
                                 if (words[0]=="end")
@@ -335,8 +374,8 @@ namespace legend
 
                             if (blok==Block.GAMEINFO)
                             {
-                                if (words[0]=="name") gameInfo.name = Tools.MergeString(words,1);
-                                if (words[0]=="author") gameInfo.author = Tools.MergeString(words,1);
+                                if (words[0]=="name") gameInfo.name = ReviewString(Tools.MergeString(words,1));
+                                if (words[0]=="author") gameInfo.author = ReviewString(Tools.MergeString(words,1));
                                 if (words[0]=="start_map") gameInfo.startMap = words[1];
                                 if (words[0]=="start_room") gameInfo.startRoom = words[1];
                                 if (words[0]=="end")
@@ -369,7 +408,7 @@ namespace legend
                     
                             if (blok==Block.ITEM)
                             {
-                                if (words[0]=="name") tmpItem.name = Tools.MergeString(words,1);
+                                if (words[0]=="name") tmpItem.name = ReviewString(Tools.MergeString(words,1));;
                                 if (words[0]=="type") tmpItem.type = tmpItem.GetItemTypeFromString(words[1]);
                                 if (words[0]=="value") tmpItem.value = int.Parse(words[1]);
                                 if (words[0]=="weight") tmpItem.weight = int.Parse(words[1]);
@@ -399,7 +438,7 @@ namespace legend
                                     if (words[1]=="true") tmpAct.enabled = true;
                                     if (words[1]=="false") tmpAct.enabled = false;
                                 }
-                                if (words[0]=="text") tmpAct.desc = Tools.MergeString(words,1);
+                                if (words[0]=="text") tmpAct.desc = ReviewString(Tools.MergeString(words,1));
 
                                 if (words[0]=="attribute")
                                 {
@@ -415,11 +454,13 @@ namespace legend
                                 }
                                 if (words[0]=="success")
                                 {
-                                    tmpAct.successActions.Add(Tools.MergeString(words,1));
+                                    tmpAct.successActions.Add(AnalyzeAction(Tools.MergeString(words,1)));
+                                    //tmpAct.successActions.Add(Tools.MergeString(words,1));
                                 }
                                 if (words[0]=="fail")
                                 {
-                                    tmpAct.failedActions.Add(Tools.MergeString(words,1));
+                                    tmpAct.failedActions.Add(AnalyzeAction(Tools.MergeString(words,1)));
+                                    //tmpAct.failedActions.Add(Tools.MergeString(words,1));
                                 }
                                 if (words[0]=="end")
                                 {

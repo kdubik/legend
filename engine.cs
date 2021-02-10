@@ -56,8 +56,6 @@ namespace legend
                 }
             }
 
-            
-
             return gmi;
         }
         public bool DoTest(Attribute inAttribute, int testLevel)
@@ -152,7 +150,7 @@ namespace legend
             if (words[0]=="give_item")
             {
                 GameItem gmi = GiveItemToPlayer(words[1],false);
-                Console.WriteLine("Ziskavas '{0}'!", gmi.itemName);
+                Console.WriteLine("Ziskavas '{0}'!", lib.GetTextBlock(gmi.itemName));
             }
 
             // Enable target action
@@ -183,7 +181,6 @@ namespace legend
 
             return res;
         }
-
         public ErrorCode ExecuteActionList(List<string> commands)
         {
             ErrorCode ret = ErrorCode.OK;

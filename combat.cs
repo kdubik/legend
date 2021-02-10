@@ -108,11 +108,11 @@ namespace legend
             return res;
         }
 
-
         participant ChooseEnemyForAttack()
         {
             List<participant> pt = new List<participant>();
             int counter = 0;
+            string lname = "";
 
             Console.WriteLine("Vyber, na koho postava zautoci:");
             foreach (participant lp in battlefield)
@@ -123,7 +123,8 @@ namespace legend
                     {
                         counter++;
                         pt.Add(lp);
-                        Console.Write("{0}. {1} (zdravie:", counter.ToString(), lp.enemy.name);
+                        lname = lib.GetTextBlock(lp.enemy.name);
+                        Console.Write("{0}. {1} (zdravie:", counter.ToString(), lname);
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write(lp.health.ToString());
                         Console.ResetColor();
@@ -140,6 +141,9 @@ namespace legend
         public BattleStatus DoBattle()
         {
             BattleStatus status = BattleStatus.BATTLING;
+            string lname = "";  // local attacker name
+            string wname = "";  // local wheapon name
+            string dname = "";  // local defender name
 
             Console.Clear();
             //Console.WriteLine("Combat!");
@@ -159,14 +163,17 @@ namespace legend
                         if (p.health>0)
                         {
                             // Kto je na tahu
+                            lname = lib.GetTextBlock(p.enemy.name);
+                            wname = lib.GetTextBlock(p.enemy.wheapon.name);
+
                             Console.Write("Na tahu je: ");
                             Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.WriteLine(p.enemy.name);
+                            Console.WriteLine(lname);
                             Console.ResetColor();
 
                             //Utoci nepriatel
                             Console.WriteLine("{0} ({1} ziv.) utoci na {2} ({3} ziv.)!",
-                            p.enemy.name, p.health.ToString(), party.members[0].name, party.members[0].health.ToString());
+                            lname, p.health.ToString(), party.members[0].name, party.members[0].health.ToString());
 
                             DicesRoll dc = new DicesRoll();
                             int uc = p.enemy.wheapon.attackRoll + dc.total;
@@ -178,10 +185,10 @@ namespace legend
                                 party.members[0].health -= dmg;
                                 if (party.members[0].health<1) status = BattleStatus.LOOSE;
                             }
-                            Console.WriteLine("{0} pouziva {1}!", p.enemy.name, p.enemy.wheapon.name);
+                            Console.WriteLine("{0} pouziva {1}!", lname, wname);
                             Console.WriteLine("UC:{0} vs OC:{1}", uc.ToString(), oc.ToString());
                             if (dmg>-1) Console.WriteLine("Uspech! {0} sposobuje {1} bod(y) poskodenia!",
-                            p.enemy.name,dmg.ToString());
+                            lname,dmg.ToString());
                             
                             if (status == BattleStatus.LOOSE) 
                                 Console.WriteLine("Postava {0} zahynula!", party.members[0].name);
@@ -192,9 +199,10 @@ namespace legend
                     else
                     {
                         // Kto je na tahu
+                        lname = party.members[0].name;
                         Console.Write("Na tahu je: ");
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.Write(party.members[0].name);
+                        Console.Write(lname);
                         Console.ResetColor();
                         Console.WriteLine("(zdravie:{0})",party.members[0].health);
 
@@ -203,9 +211,10 @@ namespace legend
                         { 
                             // 1. Najprv si vyberieme ciel utoku
                             participant defender = ChooseEnemyForAttack();
-
+                            dname = lib.GetTextBlock(defender.enemy.name);
+                            
                             Console.WriteLine("{0} ({1} ziv.) utoci na {2} ({3} ziv.)!",
-                            party.members[0].name, party.members[0].health.ToString(), defender.enemy.name, defender.health.ToString());
+                            lname, party.members[0].health.ToString(), dname, defender.health.ToString());
 
                             // Actual wheapon
                             string wheaponTestString;
@@ -217,7 +226,7 @@ namespace legend
                                 Item actWheaponItem = lib.GetItem(act_wheapon_id);
                                 wheaponTestString = actWheaponItem.GetAttribute("wheapon_type");
                                 wheaponDmg = actWheaponItem.GetAttribute("damage");
-                                wheaponName = actWheaponItem.name;
+                                wheaponName = lib.GetTextBlock(actWheaponItem.name);
                             }
                             else
                             {
@@ -228,7 +237,7 @@ namespace legend
 
                             Attribute wheaponTest = GetTestAttribute(wheaponTestString);
 
-                            Console.WriteLine("{0} pouziva {1}!", party.members[0].name, wheaponName);
+                            Console.WriteLine("{0} pouziva {1}!", lname, wheaponName);
                             DicesRoll dc = new DicesRoll();
                             int uc = party.members[0].GetAttribute(wheaponTest) + dc.total;
                             int oc = party.members[0].defense;
@@ -244,7 +253,7 @@ namespace legend
                             }
                             
                             if (dmg>-1) Console.WriteLine("Uspech! {0} sposobuje {1} bod(y) poskodenia!",
-                            party.members[0].name,dmg.ToString());
+                            lname,dmg.ToString());
                             Console.WriteLine("");
                         }
                     }

@@ -2,12 +2,12 @@
 # definition of circumstances in defined map
 # Is it safe? Interior or exterior? etc.
 map level1
-name Pred domom
+name "Pred domom"
 type exterior
 end
 
 item krik
-name Krík
+name "Krík"
 type asset
 end
 
@@ -17,7 +17,7 @@ end
 
 action odlom_haluz default krik
 enabled true
-text Odlomiť pevnejší konár
+text "Odlomiť pevnejší konár"
 success show_msg odlomeny_konar
 success give_item provizorny_ostep
 end
@@ -27,33 +27,33 @@ Z porušenej časti brány sa ti podarilo vytrhnúť železnú tyč, ktorú mô�
 end
 
 item brana
-name Brána
+name "Brána"
 type asset
 end
 
 action vezmi_tyc default brana
 enabled true
-text Pokúsiť sa vytrhnúť kovovú tyč
+text "Pokúsiť sa vytrhnúť kovovú tyč"
 success show_msg odobrata_tyc
 success give_item provizorny_mec
 success disable_action vezmi_tyc
 end
 
 item studna
-name Stará studňa
+name "Stará studňa"
 type asset
 end
 
 action preskumaj_studnu default studna
 enabled true
-text Preskúmať studňu
+text "Preskúmať studňu"
 success show_msg skumaj_studnu
 success enable_action vlez_do_studne
 end
 
 action vlez_do_studne test studna
 enabled false
-text Vliesť do studne
+text "Vliesť do studne"
 attribute dexterity
 level 9
 focus climbing
@@ -63,7 +63,7 @@ fail show_msg "Steny studne sú priliš hladké, nedarí sa ti zliezť dole!"
 end
 
 item cestovatelske_oblecenie
-name Bežné cestovateľské oblečenie
+name "Bežné cestovateľské oblečenie"
 type armor
 value 25
 weight 10
@@ -72,7 +72,7 @@ attributes armor:1;bodypart:armor
 end
 
 item kozena_zbroj
-name Ľahká kožená zbroj
+name "Ľahká kožená zbroj"
 type armor
 value 25
 weight 50
@@ -81,7 +81,7 @@ attributes armor:1;bodypart:armor
 end
 
 item provizorny_ostep
-name Provizorný oštep
+name "Provizorný oštep"
 type wheapon
 value 25
 weight 10
@@ -90,7 +90,7 @@ attributes damage:1d6+2;wheapon_type:stave;two_handed:true;thrown:false
 end
 
 item provizorny_mec
-name Provizorny meč
+name "Provizorny meč"
 type wheapon
 value 25
 weight 10
@@ -99,7 +99,7 @@ attributes damage:3d6;wheapon_type:sword;two_handed:false;thrown:false
 end
 
 item dyka
-name Dýka z Aldisu
+name "Dýka z Aldisu"
 type wheapon
 value 25
 weight 10
@@ -108,7 +108,7 @@ attributes damage:1d6+1;wheapon_type:light_blade;two_handed:false;thrown:false
 end
 
 item trojzubec
-name Trojzubec poseidona
+name "Trojzubec poseidona"
 type wheapon
 value 215
 weight 30
@@ -117,32 +117,32 @@ attributes damage:3d8+6;wheapon_type:polearm;two_handed:true;thrown:false
 end
 
 room 1_krizovatka
-name Stará križovatka
+name "Stará križovatka"
 map level1
 add_item krik
-desc Stojíš na križovatke na okraji lesa. Podarilo sa ti dostať takmer až k tajomnému domu - len kúsoček ďalej na severe vidíč obrovský plot z kameňa a ocele, strážený dvoma sochami gargoylov strážiacimi vchod. Na východe vidno akúsi starú studňu uprostred malej lúčky obkolesenej kríkmi a na západnej strane sa tiež črtá zátišie s húštinou.
+desc "Stojíš na križovatke na okraji lesa. Podarilo sa ti dostať takmer až k tajomnému domu - len kúsoček ďalej na severe vidíč obrovský plot z kameňa a ocele, strážený dvoma sochami gargoylov strážiacimi vchod. Na východe vidno akúsi starú studňu uprostred malej lúčky obkolesenej kríkmi a na západnej strane sa tiež črtá zátišie s húštinou."
 end
 
 room 2_hustina
-name Húština
+name "Húština"
 map level1
 add_item krik
 add_group potkan1
-desc Na tomto mieste je skvelý úkryt pred čímkoľvek, nakoľko je tu kopa húštiny a niekoľko silných stromov. Nie je tu však inkan nič zaujímavé. Len tajne dúfaš, že toto zátišie si ako miesto na oddych nevyberajú aj nejaké divé šelmy.
+desc "Na tomto mieste je skvelý úkryt pred čímkoľvek, nakoľko je tu kopa húštiny a niekoľko silných stromov. Nie je tu však inkan nič zaujímavé. Len tajne dúfaš, že toto zátišie si ako miesto na oddych nevyberajú aj nejaké divé šelmy."
 end
 
 room 3_studna
-name Stará studňa
+name "Stará studňa"
 map level1
 add_item studna
-desc Obzeráš si starú kamennú studňu, nad ktorou je mierne prehnitá strieška zo smrekového dreva. Nezdá sa, že by v nej bola voda a aj tak si nevieš predstaviť nikoho, kto by na toto miesto chodil po vodu. Zrejme ide o pozostatok z čias, keď ešte tajomný dom slúžil ako zvieracia farma.
+desc "Obzeráš si starú kamennú studňu, nad ktorou je mierne prehnitá strieška zo smrekového dreva. Nezdá sa, že by v nej bola voda a aj tak si nevieš predstaviť nikoho, kto by na toto miesto chodil po vodu. Zrejme ide o pozostatok z čias, keď ešte tajomný dom slúžil ako zvieracia farma."
 end
 
 room 4_brana
-name Brána do starého domu
+name "Brána do starého domu"
 map level1
 add_item brana
-desc Hľadíš na vysokú kovovú bránu, ktorú strážia dve veľké a hlavne škaredé sochy gargoylov. Vzbudzujú rešpekt aj strach, ale sú to len sochy. Nemáš dobrá pocit z tohto mieste, aj keď na oko sa tu nič nedeje. Pomedzi mreže vidíš v diaľke starý dom obrastený z každej strany a niekoľko menších kamenných stavieb.
+desc "Hľadíš na vysokú kovovú bránu, ktorú strážia dve veľké a hlavne škaredé sochy gargoylov. Vzbudzujú rešpekt aj strach, ale sú to len sochy. Nemáš dobrá pocit z tohto mieste, aj keď na oko sa tu nič nedeje. Pomedzi mreže vidíš v diaľke starý dom obrastený z každej strany a niekoľko menších kamenných stavieb."
 end
 
 path 1_krizovatka 2_hustina west

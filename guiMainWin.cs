@@ -21,10 +21,10 @@ namespace legend
             {
                 // Hlavny opis miestnosti
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine(lRoom.name);
+                Console.WriteLine(eng.lib.GetTextBlock(lRoom.name));
                 Console.ResetColor();
                 Console.Write("  ");
-                Console.WriteLine(lRoom.desc);
+                Console.WriteLine(eng.lib.GetTextBlock(lRoom.desc));
 
                 // Opisat, ci su tu nejake static predmety
                 foreach (GameItem git in eng.lib.gameItems)
@@ -36,7 +36,7 @@ namespace legend
                         {
                             Console.Write("Vidis tu ");
                             Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write(git.itemName);
+                            Console.Write(eng.lib.GetTextBlock(git.itemName));
                             Console.ResetColor();
                             Console.WriteLine(".");
                         }
@@ -53,26 +53,23 @@ namespace legend
                         {
                             Console.Write("Stoji tu ");
                             Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write(tmpNPC.name);
+                            Console.Write(eng.lib.GetTextBlock(tmpNPC.name));
                             Console.ResetColor();
                             Console.WriteLine(".");
                         }
                     }
                 }
-
-                
+             
                 // Opisat, ci su tu nejake ENEMIES GRUPY
                 if (lRoom.enemyGroup!="")
                 {
                     EnemyGroup leg = eng.lib.GetEnemyGroup(lRoom.enemyGroup);
                     Console.Write("Neriatel: ");
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write(leg.name);
+                    Console.Write(eng.lib.GetTextBlock(leg.name));
                     Console.ResetColor();
                     Console.WriteLine(".");
                 }
-               
-
 
                 // Opisat moznosti cestovania:
                 Console.Write("Mozes ist: ");
@@ -244,7 +241,8 @@ namespace legend
             for(int a=0;a<actList.Count;a++)
             {
                 Action tmpAct = eng.lib.GetAction(actList[a]);
-                Console.WriteLine("{0} {1}", (a+1).ToString(), tmpAct.desc);
+                string desc = eng.lib.GetTextBlock(tmpAct.desc);
+                Console.WriteLine("{0} {1}", (a+1).ToString(), desc);
             }
             Console.WriteLine("{0} Konec", (actList.Count+1).ToString());
 
@@ -301,6 +299,7 @@ namespace legend
                 {
                     no++;
                     string name = eng.lib.GetItem(gi.id).name;
+                    name = eng.lib.GetTextBlock(name);
                     Console.WriteLine("{0}. {1}", no.ToString(), name);
                     table.Add(gi.id);
                 }
@@ -341,7 +340,7 @@ namespace legend
                 if (gi.position=="player")
                 {
                     no++;
-                    string name = eng.lib.GetItem(gi.id).name;
+                    string name = eng.lib.GetTextBlock(eng.lib.GetItem(gi.id).name);
                     string outLine = String.Format("{0}. {1}", no.ToString(), name);
 
                     if (eng.party.members[0].bodySlots[(int)BodySlot.WHEAPON]==gi.id)
@@ -389,12 +388,9 @@ namespace legend
                             eng.party.members[0].bodySlots[(int)BodySlot.SHIELD] = SelectItemForEquip(ItemType.SHIELD);
                             m=4;
                         }
-
                     } while (m!=4);
-
                 }
             } while (no!=5);
-
          }
 
         public void Show()

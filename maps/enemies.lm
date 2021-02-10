@@ -1,5 +1,5 @@
 enemy ratSwarm
-name Skupinka potkanov
+name "Skupinka potkanov"
 desc rat_swarm_desc
 speed 12
 health 15
@@ -10,7 +10,7 @@ end
 
 # Pridame dvoch potkanov ako skupinu nepriatelov
 group potkan1
-name Utok prerastenych krys!
+name "Utok prerastenych krys!"
 enemy ratSwarm 1
 treasure pohar
 end
