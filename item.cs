@@ -9,6 +9,7 @@ namespace legend
     public class Item
     {
         public string id, name;
+        public string say ="";
         public int value, weight;
         public Rarity rarity = Rarity.COMMON;
         public ItemType type = ItemType.MISC;

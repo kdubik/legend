@@ -85,6 +85,7 @@ namespace legend
         {
             Item itm = lib.GetItem(gi.id);
             gi.itemName = itm.name;
+            gi.itemSay = itm.say;
             gi.itemType = itm.type;
         }
 

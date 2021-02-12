@@ -9,7 +9,7 @@ namespace legend
         public string id;  // Referenced Item ID
 
         public ItemType itemType;
-        public string itemName;
+        public string itemName, itemSay;
         public string position; // RoomID, player, none (invisible)
 
         public bool trapped;        // Is it trapped?

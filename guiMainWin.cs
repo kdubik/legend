@@ -36,7 +36,7 @@ namespace legend
                         {
                             Console.Write("Vidis tu ");
                             Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write(eng.lib.GetTextBlock(git.itemName));
+                            Console.Write(eng.lib.GetTextBlock(git.itemSay));
                             Console.ResetColor();
                             Console.WriteLine(".");
                         }

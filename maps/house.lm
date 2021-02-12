@@ -11,36 +11,30 @@ name "Krík"
 type asset
 end
 
-text odlomeny_konar
-Podarilo sa ti odlomiť pevnejší konár, ktorý môžeš použiť ako provizorný oštep!
-end
-
 action odlom_haluz default krik
 enabled true
 text "Odlomiť pevnejší konár"
-success show_msg odlomeny_konar
+success show_msg "Podarilo sa ti odlomiť pevnejší konár, ktorý môžeš použiť ako provizorný oštep!"
 success give_item provizorny_ostep
-end
-
-text odobrata_tyc
-Z porušenej časti brány sa ti podarilo vytrhnúť železnú tyč, ktorú môžeš použiť ako provizorný meč!
 end
 
 item brana
 name "Brána"
+say "bránu"
 type asset
 end
 
 action vezmi_tyc default brana
 enabled true
 text "Pokúsiť sa vytrhnúť kovovú tyč"
-success show_msg odobrata_tyc
+success show_msg "Z porušenej časti brány sa ti podarilo vytrhnúť železnú tyč, ktorú môžeš použiť ako provizorný meč!"
 success give_item provizorny_mec
 success disable_action vezmi_tyc
 end
 
 item studna
 name "Stará studňa"
+say "starú studňu"
 type asset
 end
 
@@ -60,60 +54,6 @@ focus climbing
 success show_msg "Podarilo sa ti zliezť dole do studne! Je tu akási chodba..."
 success teleport severs_entrance
 fail show_msg "Steny studne sú priliš hladké, nedarí sa ti zliezť dole!"
-end
-
-item cestovatelske_oblecenie
-name "Bežné cestovateľské oblečenie"
-type armor
-value 25
-weight 10
-rarity common
-attributes armor:1;bodypart:armor
-end
-
-item kozena_zbroj
-name "Ľahká kožená zbroj"
-type armor
-value 25
-weight 50
-rarity common
-attributes armor:1;bodypart:armor
-end
-
-item provizorny_ostep
-name "Provizorný oštep"
-type wheapon
-value 25
-weight 10
-rarity common
-attributes damage:1d6+2;wheapon_type:stave;two_handed:true;thrown:false
-end
-
-item provizorny_mec
-name "Provizorny meč"
-type wheapon
-value 25
-weight 10
-rarity common
-attributes damage:3d6;wheapon_type:sword;two_handed:false;thrown:false
-end
-
-item dyka
-name "Dýka z Aldisu"
-type wheapon
-value 25
-weight 10
-rarity common
-attributes damage:1d6+1;wheapon_type:light_blade;two_handed:false;thrown:false
-end
-
-item trojzubec
-name "Trojzubec poseidona"
-type wheapon
-value 215
-weight 30
-rarity rare
-attributes damage:3d8+6;wheapon_type:polearm;two_handed:true;thrown:false
 end
 
 room 1_krizovatka

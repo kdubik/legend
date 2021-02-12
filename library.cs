@@ -175,7 +175,7 @@ namespace legend
         /// </summary>
         /// <param name="msg"></param>
         /// <returns>Text blok ID</returns>
-        public string ReviewString(string msg)
+        string ReviewString(string msg)
         {
             if (Tools.CheckForQuotes(msg))
             {    
@@ -188,7 +188,7 @@ namespace legend
             return msg;
         }
 
-        public string AnalyzeAction(string msg)
+        string AnalyzeAction(string msg)
         {
             string[] lines = msg.Split(' ');
 
@@ -201,9 +201,83 @@ namespace legend
             return msg;
         }
 
+        /// <summary>
+        /// After LM file is loaded, we need to add NPCs and items into
+        /// desired locations. This have to be done after items/NPC etc.
+        /// are loaded, so after LM file is loaded.
+        /// </summary>
+        /// <param name="postLoadJobs">List of taks (addItem, addNPC...)</param>
+        /// <returns>NUmber of processed items from the list</returns>
+        int DoPostLoadJobs(List<string> postLoadJobs)
+        {
+            int res = 0;
+
+            foreach (string job in postLoadJobs)
+            {
+                Console.WriteLine(job);
+                string[] words = job.Split(" ");
+
+                string id = words[2];
+                string targetRoom = words[1];
+                Console.WriteLine("target, 1 - {0} ",targetRoom);
+                Console.WriteLine("id, 2 - {0} ",id);
+                
+                if (words[0]=="addNPC")
+                {
+                    // Add NPC into target room
+                    NPC tn = GetNPC(id);
+                    tn.position = targetRoom;
+                    res++;
+                }
+
+                if (words[0]=="addItem")
+                {
+                    // Add item into target room
+                    GameItem tmpGameItem = new GameItem(id,targetRoom);
+                    Item tmpItem = GetItem(id);
+                    if (tmpItem==null)
+                    {
+                        Console.WriteLine(" - Error: Unable to find object '{0}'!", words[1]);
+                    }
+                    else
+                    {
+                        tmpGameItem.itemType = tmpItem.type;
+                        tmpGameItem.itemName = tmpItem.name;
+                        tmpGameItem.itemSay = tmpItem.say;
+
+                        int paramsCount = words.Length - 3;
+                        if (paramsCount>0)
+                        {
+                            for (int a=0;a<paramsCount;a++)
+                            {
+                                string[] data = words[2+a].Split(":");
+                                if (data.Length!=1)
+                                {
+                                    if (data[0]=="trapped")
+                                    {
+                                        tmpGameItem.AddTrap(data[1]);
+                                    }
+                                    if (data[0]=="hidden")
+                                    {
+                                        tmpGameItem.AddHide(data[1]);
+                                    }
+                                } else Console.WriteLine("Error: syntax error during processing item {0}!",tmpItem.name);
+                            }
+                        }
+
+                        gameItems.Add(tmpGameItem);
+                        res++;
+                    }
+                }
+            }
+
+            return res;
+        }
 
         public void LoadLMFile(string fname)
         {
+            List<string> postLoadJobs = new List<string>();
+
             Block blok = Block.NONE;
             Room tmpRoom = null;
             Road tmpRoad = null;
@@ -242,11 +316,11 @@ namespace legend
                         if (s[0]!='#')  // No comments
                         {
                             string[] words = s.Split(" ");
-                            //Console.WriteLine(s);
-                            //Console.WriteLine(words.Length.ToString());
+
                             if (blok==Block.ROOM)
                             {
                                 if (words[0]=="name") tmpRoom.name = ReviewString(Tools.MergeString(words,1));
+
                                 if (words[0]=="map") tmpRoom.map = words[1];
                                 if (words[0]=="desc") tmpRoom.desc = ReviewString(Tools.MergeString(words,1));
                                 if (words[0]=="water") tmpRoom.water = false;
@@ -260,9 +334,8 @@ namespace legend
                                 
                                 if (words[0]=="add_NPC")
                                 {
-                                    // Add NPC into this room
-                                    NPC tn = GetNPC(words[1]);
-                                    tn.position = tmpID;
+                                    string tmpStr = "addNPC" + " " + tmpID + " " + words[1];
+                                    postLoadJobs.Add(tmpStr);
                                 }
 
                                 if (words[0]=="add_group")
@@ -273,40 +346,8 @@ namespace legend
 
                                 if (words[0]=="add_item")
                                 {
-                                    // Add item into this room
-                                    GameItem tmpGameItem = new GameItem(words[1],tmpRoom.id);
-                                    tmpItem = GetItem(words[1]);
-                                    if (tmpItem==null)
-                                    {
-                                        Console.WriteLine(" - Error: Unable to find object '{0}'!", words[1]);
-                                    }
-                                    else
-                                    {
-                                        tmpGameItem.itemType = tmpItem.type;
-                                        tmpGameItem.itemName = tmpItem.name;
-
-                                        int paramsCount = words.Length - 2;
-                                        if (paramsCount>0)
-                                        {
-                                            for (int a=0;a<paramsCount;a++)
-                                            {
-                                                string[] data = words[2+a].Split(":");
-                                                if (data.Length!=1)
-                                                {
-                                                    if (data[0]=="trapped")
-                                                    {
-                                                        tmpGameItem.AddTrap(data[1]);
-                                                    }
-                                                    if (data[0]=="hidden")
-                                                    {
-                                                        tmpGameItem.AddHide(data[1]);
-                                                    }
-                                                } else Console.WriteLine("Error: syntax error during processing item {0}!",tmpItem.name);
-                                            }
-                                        }
-
-                                        gameItems.Add(tmpGameItem);
-                                    }
+                                    string tmpStr = "addItem" + " " + tmpID + " " + Tools.MergeString(words,1);
+                                    postLoadJobs.Add(tmpStr);
                                 }
                             }
 
@@ -408,7 +449,12 @@ namespace legend
                     
                             if (blok==Block.ITEM)
                             {
-                                if (words[0]=="name") tmpItem.name = ReviewString(Tools.MergeString(words,1));;
+                                if (words[0]=="name") 
+                                {
+                                    tmpItem.name = ReviewString(Tools.MergeString(words,1));
+                                    if (tmpItem.say=="") tmpItem.say = tmpItem.name;
+                                }
+                                if (words[0]=="say") tmpItem.say = ReviewString(Tools.MergeString(words,1));
                                 if (words[0]=="type") tmpItem.type = tmpItem.GetItemTypeFromString(words[1]);
                                 if (words[0]=="value") tmpItem.value = int.Parse(words[1]);
                                 if (words[0]=="weight") tmpItem.weight = int.Parse(words[1]);
@@ -533,30 +579,39 @@ namespace legend
                 }
             }
         
-            Console.WriteLine("General: ");
-            Console.WriteLine(" - main game information loaded: {0}", gameInfoLoaded.ToString());
-            Console.WriteLine("Objects loaded: ");
-            Console.WriteLine(" - Rooms loaded: {0}", roomsCount.ToString());
-            Console.WriteLine(" - Roads loaded: {0}", roadsCount.ToString());
-            Console.WriteLine(" - Text blocks loaded: {0}", textCount.ToString());
-            Console.WriteLine(" - Actions loaded: {0}", actionCount.ToString());
-            Console.WriteLine(" - Enemies loaded: {0}", enemiesCount.ToString());
-            Console.WriteLine(" - NPCs loaded: {0}", NPC_count.ToString());
-            Console.WriteLine(" - EnemyGroups loaded: {0}", group_count.ToString());
-            Console.WriteLine(" - Items loaded: {0}", item_count.ToString());
+            int jobsDone = DoPostLoadJobs(postLoadJobs);
 
-            Console.WriteLine("\nItems loaded: ");
-            Console.WriteLine(" - Wheapons loaded: {0}", wheaponCount.ToString());
-            Console.WriteLine(" - Armors loaded: {0}", armorCount.ToString());
-            Console.WriteLine(" - Shields loaded: {0}", shieldCount.ToString());
-            Console.WriteLine(" - Assets loaded: {0}", assetCount.ToString()); 
-            Console.WriteLine(" - Miscs loaded: {0}", miscCount.ToString());
-
-            /*
-            foreach (NPC en in NPCs)
+            using (StreamWriter log = new StreamWriter("lmloader.log",true))
             {
-                Console.WriteLine(en.name);
-            }*/
+                log.WriteLine("Loaded file: {0}",fname);
+                log.WriteLine("------------------\n");
+                log.WriteLine("General: ");
+                log.WriteLine(" - main game information loaded: {0}", gameInfoLoaded.ToString());
+                log.WriteLine(" - post load jobs done: {0}", jobsDone.ToString());
+
+                log.WriteLine("Objects loaded: ");
+                log.WriteLine(" - Rooms loaded: {0}", roomsCount.ToString());
+                log.WriteLine(" - Roads loaded: {0}", roadsCount.ToString());
+                log.WriteLine(" - Text blocks loaded: {0}", textCount.ToString());
+                log.WriteLine(" - Actions loaded: {0}", actionCount.ToString());
+                log.WriteLine(" - Enemies loaded: {0}", enemiesCount.ToString());
+                log.WriteLine(" - NPCs loaded: {0}", NPC_count.ToString());
+                log.WriteLine(" - EnemyGroups loaded: {0}", group_count.ToString());
+                log.WriteLine(" - Items loaded: {0}", item_count.ToString());
+
+                log.WriteLine("\nItems loaded: ");
+                log.WriteLine(" - Wheapons loaded: {0}", wheaponCount.ToString());
+                log.WriteLine(" - Armors loaded: {0}", armorCount.ToString());
+                log.WriteLine(" - Shields loaded: {0}", shieldCount.ToString());
+                log.WriteLine(" - Assets loaded: {0}", assetCount.ToString()); 
+                log.WriteLine(" - Miscs loaded: {0}", miscCount.ToString());
+
+                /*
+                foreach (NPC en in NPCs)
+                {
+                    Console.WriteLine(en.name);
+                }*/
+            }
         }
 
         public void LoadDataFiles()
