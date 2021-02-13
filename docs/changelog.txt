@@ -10,25 +10,34 @@ v0.1.x (backlog)
 * change item (equip) in invertory should be reworked
 * add un-equip option
 
-v0.1.5
+v0.1.6
 * level design updates:
     * implement level2 map
     * setup some encounters
 * implement game intro (based on info from GameInfo class)
 * possibility to pick up items?
 
-v0.1.4
-* level design updates:
-    * add gatekeeper event
+
+v0.1.5
 * combat updates:
     * colorize "numbers" and "enemies names" in combat screens
     * make combat slower, so player can catch, what is going on
     * give treasure to player after successful combat
     * solve situation, when player runs away from battle  
- * print() method in engine should be reworked 
+* print() method in engine should be reworked 
 * GiveItemToPlayer() a DoPostLoadJobs() treba zjednotit
-* add an option to actions/npcs/enemies/enemygroups, how to show their name in slovak (sklonovanie: pouzil si... studňu, vidis... studňu atď.)
+* add an option to actions/npcs/enemies/enemygroups/actions, how to show their name in slovak (sklonovanie: pouzil si... studňu, vidis... studňu atď.)
    
+
+v0.1.4 (13.2.2021)
+- log file is deleted each time game starts
+- fix: when player gain item, correct exression should be used "získavaš"
+- fix: loading actions ("success" and "fail" part) is now correct
+- level design updates:
+    - add gatekeeper event
+- game version information is now loaded (gameInfo)
+    - command 'ver' shows current versions
+
 v0.1.3 (11.2.2021)
 - LM loader updates:
     - add an option to "items", how to show their name in slovak (sklonovanie: pouzil si... studňu, vidis... studňu atď.)

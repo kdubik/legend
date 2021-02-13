@@ -36,7 +36,7 @@ namespace legend
                         {
                             Console.Write("Vidis tu ");
                             Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write(eng.lib.GetTextBlock(git.itemSay));
+                            Console.Write(eng.lib.GetTextBlock(git.itemSay).ToLower());
                             Console.ResetColor();
                             Console.WriteLine(".");
                         }
@@ -483,6 +483,12 @@ namespace legend
                 if (line=="k") 
                 {
                     ShowRoom();
+                }
+
+                if (line=="ver") 
+                {
+                    Console.WriteLine("Current game version: {0}",eng.lib.gameInfo.gameVersion);
+                    Console.WriteLine("Current engine version: {0}",eng.lib.gameInfo.engineVersion);
                 }
 
                 // Quit game correctly

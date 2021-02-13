@@ -192,10 +192,14 @@ namespace legend
         {
             string[] lines = msg.Split(' ');
 
-            if ((lines[1]=="show_msg") || (lines[1]=="show_msg_wait"))
+            Console.WriteLine("MSG: {0}",msg);
+            Console.WriteLine("first WORD {0}",lines[0]);
+            if ((lines[0]=="show_msg") || (lines[0]=="show_msg_wait"))
             {
-                string tmp = Tools.MergeString(lines,2);
-                msg = ReviewString(tmp);
+                string tmp = Tools.MergeString(lines,1);
+                Console.WriteLine("TMP created: {0}",tmp);
+                msg = lines[0] + " " + ReviewString(tmp);
+                Console.WriteLine("New MSG: {0}",msg);
             }
 
             return msg;
@@ -419,6 +423,8 @@ namespace legend
                                 if (words[0]=="author") gameInfo.author = ReviewString(Tools.MergeString(words,1));
                                 if (words[0]=="start_map") gameInfo.startMap = words[1];
                                 if (words[0]=="start_room") gameInfo.startRoom = words[1];
+                                if (words[0]=="game_version") gameInfo.gameVersion = words[1];
+                                if (words[0]=="engine_version") gameInfo.engineVersion = words[1];
                                 if (words[0]=="end")
                                 {
                                     gameInfoLoaded = true;
@@ -619,8 +625,8 @@ namespace legend
             // Search for *lm files (legend map)
             string[] files = Directory.GetFiles("maps","*.lm");
 
-            // Load items first
-            Console.WriteLine("Loading items:");
+            // Erase log file
+            File.Delete("lmloader.log");
 
             // Load map file(s)
             foreach( string fname in files)

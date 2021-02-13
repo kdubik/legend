@@ -6,5 +6,8 @@ namespace legend
         public string name;
         public string startMap;
         public string startRoom;
+        public string gameVersion;
+        public string engineVersion;
+
     }
 }

@@ -32,6 +32,13 @@ success give_item provizorny_mec
 success disable_action vezmi_tyc
 end
 
+action prejdi_branou default brana
+enabled true
+text "Pokúsiť sa prejsť bránou"
+success show_msg_wait "Podarilo sa ti poodsunúť mreže na bráne natoľko, že vieš preliesť za plot. Akonáhle však tvoja noha stupi na uzemie tajomneho panstva, začuješ podivný škrek! Gargoylom strážiacim bránu žiaria oči a ty máš nepríjemný pocit, že hrozia problémy. Zrazu sa pred tebou objaví tajomná vznášajúca sa postava s krídlami. Tiež je to kamenný gargoyl, ale je väčší a jeho telo je ukryté pod plášťom. Kamenná papuľa prehovorí: 'Nemôžeš vojsť!'. Vzäpatí cítiš, akoby ťa čosi popálilo a radšej rýchlo skáčeš nazad pred bránu."
+success damage_player 5
+end
+
 item studna
 name "Stará studňa"
 say "starú studňu"

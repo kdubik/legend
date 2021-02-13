@@ -151,7 +151,7 @@ namespace legend
             if (words[0]=="give_item")
             {
                 GameItem gmi = GiveItemToPlayer(words[1],false);
-                Console.WriteLine("Ziskavas '{0}'!", lib.GetTextBlock(gmi.itemName));
+                Console.WriteLine("Ziskavas '{0}'!", lib.GetTextBlock(gmi.itemSay).ToLower());
             }
 
             // Enable target action
