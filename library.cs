@@ -363,11 +363,17 @@ namespace legend
                                 if (words[0]=="health") tmpEnemy.health = int.Parse(words[1]);
                                 if (words[0]=="defense") tmpEnemy.defense = int.Parse(words[1]);
                                 if (words[0]=="armor") tmpEnemy.armor = int.Parse(words[1]);
+                                if (words[0]=="attribute")
+                                {
+                                    Attribute ta = Character.GetAttributeFromString(words[1]);
+                                    tmpEnemy.SetAttribute(ta,int.Parse(words[2]));
+                                }
                                 if (words[0]=="wheapon")
                                 {
-                                    int an = int.Parse(words[1]);
-                                    string nm = Tools.MergeString(words,3);
-                                    tmpEnemy.AddWheapon(nm, an, words[2]);
+                                    int an = int.Parse(words[1]);   // Attack bonus
+                                    Attribute ta = Character.GetAttributeFromString(words[3]);  // Tested attribute
+                                    string nm = ReviewString(Tools.MergeString(words,4)); // Name
+                                    tmpEnemy.AddWheapon(nm, an, words[2],ta);  // All data + DMG
                                 }
 
                                 if (words[0]=="end")
@@ -389,11 +395,17 @@ namespace legend
                                 if (words[0]=="armor") tmpNPC.armor = int.Parse(words[1]);
 
                                 if (words[0]=="desc") tmpNPC.desc = Tools.MergeString(words,1);
+                                if (words[0]=="attribute")
+                                {
+                                    Attribute ta = Character.GetAttributeFromString(words[1]);
+                                    tmpNPC.SetAttribute(ta,int.Parse(words[2]));
+                                }
                                 if (words[0]=="wheapon")
                                 {
-                                    int an = int.Parse(words[1]);
-                                    string nm = Tools.MergeString(words,3);
-                                    tmpNPC.AddWheapon(nm, an, words[2]);
+                                    int an = int.Parse(words[1]);   // Attack bonus
+                                    Attribute ta = Character.GetAttributeFromString(words[3]);  // Tested attribute
+                                    string nm = ReviewString(Tools.MergeString(words,4)); // Name
+                                    tmpNPC.AddWheapon(nm, an, words[2],ta);  // All data + DMG
                                 }
 
                                 if (words[0]=="end")

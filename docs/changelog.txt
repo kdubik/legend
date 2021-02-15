@@ -16,18 +16,23 @@ v0.1.6
     * setup some encounters
 * implement game intro (based on info from GameInfo class)
 * possibility to pick up items?
-
-
-v0.1.5
-* combat updates:
-    * colorize "numbers" and "enemies names" in combat screens
-    * make combat slower, so player can catch, what is going on
-    * give treasure to player after successful combat
-    * solve situation, when player runs away from battle  
-* print() method in engine should be reworked 
 * GiveItemToPlayer() a DoPostLoadJobs() treba zjednotit
 * add an option to actions/npcs/enemies/enemygroups/actions, how to show their name in slovak (sklonovanie: pouzil si... studňu, vidis... studňu atď.)
-   
+* combat updates:
+    * make combat slower, so player can catch, what is going on
+    * give treasure to player after successful combat
+    * solve situation, when player runs away from battle 
+* structure rework/enhancements
+    * load main_info.lm separated (first)
+    * show main info about game in main menu
+    * show intro before game starts
+
+v0.1.5 (15.2.2021)
+- print() method in engine should be reworked (new class created!)
+- enemies + NPC now loads also attributes from LM file
+- combat updates:
+    - colorize "numbers" and "enemies names" in combat screens
+    - polish output during combat   
 
 v0.1.4 (13.2.2021)
 - log file is deleted each time game starts

@@ -29,6 +29,6 @@ namespace legend
         /// </summary>
         /// <param name="attr">Attribute code</param>
         /// <returns>Value (int)</returns>
-        public int GetAttr(Attribute attr) => this.attr[(int)attr];
+        //public int GetAttr(Attribute attr) => this.attr[(int)attr];
     }
 }

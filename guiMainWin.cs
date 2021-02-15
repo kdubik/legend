@@ -23,8 +23,11 @@ namespace legend
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine(eng.lib.GetTextBlock(lRoom.name));
                 Console.ResetColor();
-                Console.Write("  ");
-                Console.WriteLine(eng.lib.GetTextBlock(lRoom.desc));
+                //Console.Write("  ");
+                //Console.WriteLine(eng.lib.GetTextBlock(lRoom.desc));
+                Print pr = new Print(eng.lib.GetTextBlock(lRoom.desc));
+                pr.Render();
+                Console.WriteLine("");
 
                 // Opisat, ci su tu nejake static predmety
                 foreach (GameItem git in eng.lib.gameItems)
@@ -60,6 +63,7 @@ namespace legend
                     }
                 }
              
+                /*
                 // Opisat, ci su tu nejake ENEMIES GRUPY
                 if (lRoom.enemyGroup!="")
                 {
@@ -70,6 +74,7 @@ namespace legend
                     Console.ResetColor();
                     Console.WriteLine(".");
                 }
+                */
 
                 // Opisat moznosti cestovania:
                 Console.Write("Mozes ist: ");

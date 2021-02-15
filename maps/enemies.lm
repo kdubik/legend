@@ -1,11 +1,30 @@
 enemy ratSwarm
 name "Skupinka potkanov"
 desc rat_swarm_desc
+attribute accuracy 3
 speed 12
 health 15
 defence 12
 armor 0
-wheapon 5 1d6 Swarm
+wheapon 5 1d6 accuracy "skupinový útok hryzením"
+end
+
+# Pridame dvoch potkanov ako skupinu nepriatelov
+group potkan1
+name "Utok prerastenych krys!"
+enemy ratSwarm 1
+treasure pohar
+end
+
+enemy batSwarm
+name "Skupinka netopierov"
+desc bat_swarm_desc
+attribute accuracy 3
+speed 17
+health 20
+defence 13
+armor 0
+wheapon 5 1d6 accuracy "skupinový útok hryzením"
 end
 
 # Pridame dvoch potkanov ako skupinu nepriatelov

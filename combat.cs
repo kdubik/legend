@@ -146,15 +146,21 @@ namespace legend
             string dname = "";  // local defender name
 
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(lib.GetTextBlock(enemies.name));
+            Console.ResetColor();
             //Console.WriteLine("Combat!");
             PrepareBattlefield();
+
 
             // Hlavny battle cyklus
             int round = 0;
             do
             {
                 round++;
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("Suboj, kolo {0} ----\n", round.ToString());
+                Console.ResetColor();
 
                 foreach (participant p in battlefield)
                 {
@@ -168,12 +174,16 @@ namespace legend
 
                             Console.Write("Na tahu je: ");
                             Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.WriteLine(lname);
+                            Console.Write(lname);
                             Console.ResetColor();
+                            Console.WriteLine(" (zdravie:{0})",p.health.ToString());
 
                             //Utoci nepriatel
-                            Console.WriteLine("{0} ({1} ziv.) utoci na {2} ({3} ziv.)!",
-                            lname, p.health.ToString(), party.members[0].name, party.members[0].health.ToString());
+                            //Console.WriteLine("{0} ({1} ziv.) utoci na {2} ({3} ziv.)!",
+                            //lname, p.health.ToString(), party.members[0].name, party.members[0].health.ToString());
+                            Console.WriteLine("{0} utoci na {1}!",
+                            lname, party.members[0].name);
+
 
                             DicesRoll dc = new DicesRoll();
                             int uc = p.enemy.wheapon.attackRoll + dc.total;
@@ -185,11 +195,21 @@ namespace legend
                                 party.members[0].health -= dmg;
                                 if (party.members[0].health<1) status = BattleStatus.LOOSE;
                             }
-                            Console.WriteLine("{0} pouziva {1}!", lname, wname);
-                            Console.WriteLine("UC:{0} vs OC:{1}", uc.ToString(), oc.ToString());
-                            if (dmg>-1) Console.WriteLine("Uspech! {0} sposobuje {1} bod(y) poskodenia!",
-                            lname,dmg.ToString());
+                            Console.WriteLine("{0} pouziva {1}! (uc:{2} vs oc:{3})", lname, wname,
+                            uc.ToString(), oc.ToString());
                             
+                            if (dmg>-1) 
+                            {
+                                //Console.WriteLine("Uspech! {0} sposobuje {1} bod(y) poskodenia!",
+                                //lname,dmg.ToString());
+                                Console.Write("Uspech! {0} sposobuje ",lname);
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write(dmg.ToString());
+                                Console.ResetColor();
+                                Console.WriteLine(" bod(y) poskodenia!");
+                            }
+                            Console.WriteLine("");
+
                             if (status == BattleStatus.LOOSE) 
                                 Console.WriteLine("Postava {0} zahynula!", party.members[0].name);
 
@@ -198,13 +218,17 @@ namespace legend
                     }
                     else
                     {
-                        // Kto je na tahu
+                        // Kto je na tahu - HRAC
                         lname = party.members[0].name;
                         Console.Write("Na tahu je: ");
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write(lname);
                         Console.ResetColor();
-                        Console.WriteLine("(zdravie:{0})",party.members[0].health);
+                        Console.Write(" (zdravie:");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("{0}",party.members[0].health);
+                        Console.ResetColor();
+                        Console.WriteLine(")");
 
                         //Utoci hrac
                         if (party.members[0].health>0)
@@ -213,8 +237,10 @@ namespace legend
                             participant defender = ChooseEnemyForAttack();
                             dname = lib.GetTextBlock(defender.enemy.name);
                             
-                            Console.WriteLine("{0} ({1} ziv.) utoci na {2} ({3} ziv.)!",
-                            lname, party.members[0].health.ToString(), dname, defender.health.ToString());
+                            //Console.WriteLine("{0} ({1} ziv.) utoci na {2} ({3} ziv.)!",
+                            //lname, party.members[0].health.ToString(), dname, defender.health.ToString());
+                            Console.WriteLine("{0} utoci na {1}!",
+                            lname, dname);
 
                             // Actual wheapon
                             string wheaponTestString;
@@ -226,7 +252,7 @@ namespace legend
                                 Item actWheaponItem = lib.GetItem(act_wheapon_id);
                                 wheaponTestString = actWheaponItem.GetAttribute("wheapon_type");
                                 wheaponDmg = actWheaponItem.GetAttribute("damage");
-                                wheaponName = lib.GetTextBlock(actWheaponItem.name);
+                                wheaponName = lib.GetTextBlock(actWheaponItem.say);
                             }
                             else
                             {
@@ -237,23 +263,30 @@ namespace legend
 
                             Attribute wheaponTest = GetTestAttribute(wheaponTestString);
 
-                            Console.WriteLine("{0} pouziva {1}!", lname, wheaponName);
                             DicesRoll dc = new DicesRoll();
                             int uc = party.members[0].GetAttribute(wheaponTest) + dc.total;
                             int oc = party.members[0].defense;
                             int dmg = -1;
                             
-                            Console.WriteLine("UC:{0} vs OC:{1}", uc.ToString(), oc.ToString());
+                            Console.WriteLine("{0} pouziva {1}! (UC:{2} vs OC:{3})", lname, wheaponName,
+                             uc.ToString(), oc.ToString());
+                             
                             if (uc>oc)
                             {
-                                Console.WriteLine("Dmg dice - {0}", wheaponDmg);
+                                //Console.WriteLine("Dmg dice - {0}", wheaponDmg);
                                 dmg = dices.ThrowDiceString(wheaponDmg);
                                 defender.health -= dmg;
                                 if (defender.health<1) status = BattleStatus.WIN;
                             }
                             
-                            if (dmg>-1) Console.WriteLine("Uspech! {0} sposobuje {1} bod(y) poskodenia!",
-                            lname,dmg.ToString());
+                            if (dmg>-1) 
+                            {
+                                Console.Write("Uspech! {0} sposobuje ",lname);
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write(dmg.ToString());
+                                Console.ResetColor();
+                                Console.WriteLine(" bod(y) poskodenia!");
+                            }
                             Console.WriteLine("");
                         }
                     }

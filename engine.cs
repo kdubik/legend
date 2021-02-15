@@ -89,11 +89,32 @@ namespace legend
             gi.itemType = itm.type;
         }
 
+/*
         public void Print(string msg)
         {
-           Console.WriteLine(Tools.RemoveQuotes(msg));
-        } 
+            if (msg.Length>0)
+            {
+                string[] words = msg.Split(" ");
+                int actualWord = 0;
+                string s = "";
+                string finalLine = "";
 
+                bool mameVetu = false;
+                // 1. ak sa da, vezmi slovo
+                if (actualWord<=words.Length)
+                {
+                    if (s!="") s = s + " ";
+                    s = s + words[actualWord];
+                }
+
+                // 2. mame uz vetu?
+                if (s>80) mameVetu = true;
+
+
+            }
+            Console.WriteLine(Tools.RemoveQuotes(msg));
+        } 
+*/
         public bool ExecuteCommand(string cmd)
         {
             bool res = true;
@@ -117,7 +138,7 @@ namespace legend
                 else
                 {
                     string msg = Tools.MergeString(words,1);
-                    Print(msg);
+                    //Print(msg);
                 }                
             }
 
@@ -205,9 +226,16 @@ namespace legend
             Room lRoom = lib.GetRoom(party.actualRoomID);
             if (lRoom.enemyGroup!="")
             {
-                Combat combat = new Combat(lib, party, lRoom);
+                EnemyGroup leg = lib.GetEnemyGroup(lRoom.enemyGroup);
+                //Console.Write("Neriatel: ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write(lib.GetTextBlock(leg.name));
+                Console.ResetColor();
+                Console.WriteLine("!");
+
                 Console.WriteLine("Stlac ENTER pre zaciatok suboja");
                 Console.ReadLine();
+                Combat combat = new Combat(lib, party, lRoom);
                 bs = combat.DoBattle();
             }
 

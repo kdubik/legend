@@ -5,6 +5,7 @@ namespace legend
         public string name;
         public int attackRoll;
         public string damage;
+        public Attribute attribute;
     }
 
     public class Enemy
@@ -32,11 +33,15 @@ namespace legend
         /// <param name="name">Wheapon name</param>
         /// <param name="attackRoll">Modification to attack roll, to be used when attacking</param>
         /// <param name="damage">Damage on success test</param>
-        public void AddWheapon(string name, int attackRoll, string damage)
+        public void AddWheapon(string name, int attackRoll, string damage, Attribute attr)
         {
             wheapon.name = name;
             wheapon.attackRoll = attackRoll;
             wheapon.damage = damage;
+            wheapon.attribute = attr;
         }
+
+        public void SetAttribute(Attribute attr, int value) => this.attr[(int)attr] = value;
+        public int GetAttribute(Attribute attr) => this.attr[(int)attr];
     }
 }
