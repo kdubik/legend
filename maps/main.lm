@@ -1,9 +1,0 @@
-# global game info
-game
-author Kamil Dubík
-name Tajomný dom
-game_version 0.1.4
-engine_version 0.1.4
-start_map level1
-start_room 1_krizovatka
-end

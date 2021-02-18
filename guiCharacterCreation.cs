@@ -73,12 +73,6 @@ namespace legend
             // Ulozime postavu
             eng.party.members.Add(hero);    // Pridame hrdinu do partie
 
-            Console.Clear();
-            Console.WriteLine("Vitaj {0}, vitaj v krajine zvanej Aldea!", hero.name);
-            Console.WriteLine("Tvoja kralovna ta potrebuje, dobrodruzstvo caka!");
-            Console.WriteLine("\nAk sa citis pripraveny, stlac klaves...");
-            Console.ReadLine();
-
             return res;
         }
     }

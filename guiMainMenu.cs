@@ -6,12 +6,22 @@ namespace legend
     {
         public void Show()
         {
+            // Prepare game
+            Engine eng = new Engine();
+            eng.lib.LoadConfigFiles();  // Most important game data files
+
             //int ch = 0;
             string ch = "";
             do
             {
                 Console.Clear();
-                Console.WriteLine("1. Quick start");
+                Console.WriteLine(eng.lib.gameInfo.name);
+                Console.WriteLine("");
+
+                Print pr = new Print(eng.lib.gameInfo.gameDesc);
+                pr.Render();
+
+                Console.WriteLine("\n1. Quick start");
                 Console.WriteLine("2. Start");
                 Console.WriteLine("3. Quit");
 
@@ -19,12 +29,8 @@ namespace legend
 
                 if (ch=="1") 
                 {
-                    Engine eng = new Engine();
-
-                    // Prepare default character
-                    eng.party.Clean();
-                    Character hero = new Character(true);
-                    eng.party.members.Add(hero);
+                    //Prepare new game
+                    eng.PrepareNewGame(true);
 
                     eng.GiveItemToPlayer("cestovatelske_oblecenie", true);
                     eng.GiveItemToPlayer("dyka", true);
@@ -36,9 +42,9 @@ namespace legend
 
                 if (ch=="2") 
                 {
-                    Engine eng = new Engine();
+                    //Prepare new game
+                    eng.PrepareNewGame(false);
 
-                    eng.party.Clean();
                     GuiCharacterCreation charGen = new GuiCharacterCreation(eng);
                     charGen.Show();
 

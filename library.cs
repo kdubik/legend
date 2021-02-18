@@ -21,6 +21,19 @@ namespace legend
 
         int ACTBcount = 0;   // Automatically created text block counter
 
+        public void CleanAll()
+        {
+            rooms.Clear();
+            roads.Clear();
+            items.Clear();
+            gameItems.Clear();
+            actions.Clear();
+            enemies.Clear();
+            NPCs.Clear();
+            enemyGroups.Clear();
+            texts.Clear();
+        }
+
         public Room GetRoom(string roomId)
         {
             Room ret = null;
@@ -431,12 +444,14 @@ namespace legend
 
                             if (blok==Block.GAMEINFO)
                             {
-                                if (words[0]=="name") gameInfo.name = ReviewString(Tools.MergeString(words,1));
-                                if (words[0]=="author") gameInfo.author = ReviewString(Tools.MergeString(words,1));
+                                if (words[0]=="name") gameInfo.name = Tools.RemoveQuotes(Tools.MergeString(words,1));
+                                if (words[0]=="author") gameInfo.author = Tools.RemoveQuotes(Tools.MergeString(words,1));
                                 if (words[0]=="start_map") gameInfo.startMap = words[1];
                                 if (words[0]=="start_room") gameInfo.startRoom = words[1];
                                 if (words[0]=="game_version") gameInfo.gameVersion = words[1];
                                 if (words[0]=="engine_version") gameInfo.engineVersion = words[1];
+                                if (words[0]=="game_desc") gameInfo.gameDesc = Tools.RemoveQuotes(Tools.MergeString(words,1));
+                                if (words[0]=="game_intro") gameInfo.gameIntro = Tools.RemoveQuotes(Tools.MergeString(words,1));
                                 if (words[0]=="end")
                                 {
                                     gameInfoLoaded = true;
@@ -646,6 +661,19 @@ namespace legend
                 Console.WriteLine("Loading LM file: " + fname);
                 LoadLMFile(fname);
             }
+        }
+    
+        public void LoadConfigFiles()
+        {
+            // Search for *lm files (legend map)
+            string[] files = Directory.GetFiles("maps","*.lm");
+
+            // Erase log file
+            File.Delete("lmloader.log");
+
+            // Load config file(s)
+            Console.WriteLine("Loading config file: ");
+            LoadLMFile("config/main.lm");
         }
     }
 }

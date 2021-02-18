@@ -23,17 +23,25 @@ def check_unnecessary_folders(folder_path):
     return res
 
 def backup_files():
+    success = False
     print("Creating backup...")
 
-    zf = zipfile.ZipFile(Path(f"../legend_history/legend_v{sys.argv[1]}.zip"), "w")
-    for dirname, _, files in os.walk("."):
+    file_name = Path(f"../legend_history/legend_v{sys.argv[1]}.zip")
+    if not (os.path.exists(file_name)):
+        zf = zipfile.ZipFile(file_name, "w")
+        for dirname, _, files in os.walk("."):
 
-        if check_unnecessary_folders(dirname):
-            if dirname!='.': zf.write(dirname)
-            for filename in files:
-                zf.write(os.path.join(dirname, filename))
-     
-    zf.close()
+            if check_unnecessary_folders(dirname):
+                if dirname!='.': zf.write(dirname)
+                for filename in files:
+                    zf.write(os.path.join(dirname, filename))
+        
+        zf.close()
+        success = True
+    else:
+        print("Error: File already exist! Probably bad version number is used as parameter!")
+
+    return success
 
 def upload_files_to_git():
     print("Uploading files to GIT...")
@@ -54,7 +62,7 @@ if __name__ == '__main__':
     show_header()
 
     if len(sys.argv) > 0:
-        backup_files()
-        upload_files_to_git()
+        backup_completed = backup_files()
+        if backup_completed==True: upload_files_to_git()
     else:
         print("Error: not enough input parameters")

@@ -8,6 +8,9 @@ namespace legend
         public string startRoom;
         public string gameVersion;
         public string engineVersion;
+        public string gameDesc;
+        public string gameIntro;
+
 
     }
 }

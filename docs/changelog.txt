@@ -1,4 +1,4 @@
-v0.1.x (backlog)
+v0.x.x (backlog)
 * implement random combat encounters
 * implement dialogues
 * implement experience, character progress
@@ -9,23 +9,32 @@ v0.1.x (backlog)
 * add more items
 * change item (equip) in invertory should be reworked
 * add un-equip option
-
-v0.1.6
-* level design updates:
-    * implement level2 map
-    * setup some encounters
-* implement game intro (based on info from GameInfo class)
 * possibility to pick up items?
+* implement standard "game strings" to be loaded from lM file
+* implement showing some help (string from LM file)
+
+v0.2.1
 * GiveItemToPlayer() a DoPostLoadJobs() treba zjednotit
 * add an option to actions/npcs/enemies/enemygroups/actions, how to show their name in slovak (sklonovanie: pouzil si... studňu, vidis... studňu atď.)
 * combat updates:
     * make combat slower, so player can catch, what is going on
     * give treasure to player after successful combat
-    * solve situation, when player runs away from battle 
-* structure rework/enhancements
-    * load main_info.lm separated (first)
-    * show main info about game in main menu
-    * show intro before game starts
+    * solve situation, when player runs away from battle
+
+v0.2.0
+* level design updates:
+    * implement level2 map
+    * setup some encounters
+    * append "secret map" to rest of the game
+
+v0.1.6 (18.2.2021)
+- level design updates:
+    - implement "secret map"
+- structure rework/enhancements
+    - load main_info.lm separated (first) (part of new method: LoadConfigFiles())
+    - show main info about game in main menu
+    - implement game intro (based on info from GameInfo class)
+    - show intro before game starts
 
 v0.1.5 (15.2.2021)
 - print() method in engine should be reworked (new class created!)

@@ -13,8 +13,23 @@ namespace legend
         public Engine()
         {
             Console.Write("Initializing engine:");
-            lib.LoadDataFiles();
-            party.actualRoomID = lib.gameInfo.startRoom ;
+            //lib.LoadDataFiles();
+            //party.actualRoomID = lib.gameInfo.startRoom;
+        }
+
+        public void PrepareNewGame(bool prepareCharacter)
+        {
+            lib.CleanAll();         // Erase all data in the memory
+            lib.LoadDataFiles();    // Load game data
+
+            // Prepare default character (party)
+            party.Clean();
+            if (prepareCharacter)
+            {
+                Character hero = new Character(true);
+                party.members.Add(hero);
+            }
+            party.actualRoomID = lib.gameInfo.startRoom;
         }
 
         public void EraseEnemiesInActualRoom()

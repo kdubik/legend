@@ -398,8 +398,25 @@ namespace legend
             } while (no!=5);
          }
 
+        public void ShowIntro()
+        {
+            Console.Clear();
+            Console.WriteLine("Vitaj {0}, vitaj v krajine zvanej Aldea!", eng.party.members[0].name);
+            //Console.WriteLine("Tvoja kralovna ta potrebuje, dobrodruzstvo caka!");
+
+            Console.WriteLine("");
+
+            Print pr = new Print(eng.lib.gameInfo.gameIntro);
+            pr.Render();
+
+            Console.WriteLine("\nAk sa na to citis, stlac ENTER...");
+            Console.ReadLine();
+        }
+
         public void Show()
         {
+            ShowIntro();
+
             Console.Clear();
             ShowRoom();
 

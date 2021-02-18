@@ -64,28 +64,6 @@ Items loaded:
  - Shields loaded: 0
  - Assets loaded: 0
  - Miscs loaded: 0
-Loaded file: maps/main.lm
-------------------
-
-General: 
- - main game information loaded: True
- - post load jobs done: 0
-Objects loaded: 
- - Rooms loaded: 0
- - Roads loaded: 0
- - Text blocks loaded: 0
- - Actions loaded: 0
- - Enemies loaded: 0
- - NPCs loaded: 0
- - EnemyGroups loaded: 0
- - Items loaded: 0
-
-Items loaded: 
- - Wheapons loaded: 0
- - Armors loaded: 0
- - Shields loaded: 0
- - Assets loaded: 0
- - Miscs loaded: 0
 Loaded file: maps/items.lm
 ------------------
 
@@ -105,6 +83,28 @@ Objects loaded:
 Items loaded: 
  - Wheapons loaded: 4
  - Armors loaded: 2
+ - Shields loaded: 0
+ - Assets loaded: 0
+ - Miscs loaded: 0
+Loaded file: maps/secret.lm
+------------------
+
+General: 
+ - main game information loaded: False
+ - post load jobs done: 0
+Objects loaded: 
+ - Rooms loaded: 34
+ - Roads loaded: 34
+ - Text blocks loaded: 0
+ - Actions loaded: 0
+ - Enemies loaded: 0
+ - NPCs loaded: 0
+ - EnemyGroups loaded: 0
+ - Items loaded: 0
+
+Items loaded: 
+ - Wheapons loaded: 0
+ - Armors loaded: 0
  - Shields loaded: 0
  - Assets loaded: 0
  - Miscs loaded: 0
