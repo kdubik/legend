@@ -16,11 +16,13 @@ namespace legend
         public List<Enemy> enemies = new List<Enemy>();
         public List<NPC> NPCs = new List<NPC>();
         public List<EnemyGroup> enemyGroups = new List<EnemyGroup>();
-
         public Dictionary<string,string> texts = new Dictionary<string,string>();
 
         int ACTBcount = 0;   // Automatically created text block counter
 
+        /// <summary>
+        /// Clean all gane databases.
+        /// </summary>
         public void CleanAll()
         {
             rooms.Clear();
@@ -34,6 +36,11 @@ namespace legend
             texts.Clear();
         }
 
+        /// <summary>
+        /// Find Room in database and returns object, that coresponds to searched id.
+        /// </summary>
+        /// <param name="roomId">id of object, that we want to find</param>
+        /// <returns>searched object</returns>
         public Room GetRoom(string roomId)
         {
             Room ret = null;
@@ -48,6 +55,11 @@ namespace legend
             return ret;
         }
 
+        /// <summary>
+        /// Find Item in database and returns object, that coresponds to searched id.
+        /// </summary>
+        /// <param name="id">id of object, that we want to find</param>
+        /// <returns>searched object</returns>
         public Item GetItem(string itemId)
         {
             Item ret = null;
@@ -62,6 +74,11 @@ namespace legend
             return ret;
         }
      
+        /// <summary>
+        /// Find Enemy in database and returns object, that coresponds to searched id.
+        /// </summary>
+        /// <param name="id">id of object, that we want to find</param>
+        /// <returns>searched object</returns>
         public Enemy GetEnemy(string id)
         {
             Enemy ret = null;
@@ -76,6 +93,11 @@ namespace legend
             return ret;
         }
 
+        /// <summary>
+        /// Find Text block in database and returns object, that coresponds to searched id.
+        /// </summary>
+        /// <param name="id">id of object, that we want to find</param>
+        /// <returns>searched object</returns>
         public string GetTextBlock(string id)
         {
             string res = "";
@@ -84,6 +106,11 @@ namespace legend
             return res;
         }  
 
+        /// <summary>
+        /// Find Enemy group in database and returns object, that coresponds to searched id.
+        /// </summary>
+        /// <param name="id">id of object, that we want to find</param>
+        /// <returns>searched object</returns>
         public EnemyGroup GetEnemyGroup(string id)
         {
             EnemyGroup ret = null;
@@ -98,6 +125,11 @@ namespace legend
             return ret;
         }
      
+        /// <summary>
+        /// Find Game item in database and returns object, that coresponds to searched id.
+        /// </summary>
+        /// <param name="gameItemId">id of object, that we want to find</param>
+        /// <returns>searched object</returns>
         public GameItem GetGameItem(string gameItemId)
         {
             GameItem ret = null;
@@ -125,6 +157,13 @@ namespace legend
             }
             return ret;
         }
+
+        /// <summary>
+        /// Find Road in database and returns object.
+        /// </summary>
+        /// <param name="sourceRoom">actual room id</param>
+        /// <param name="pathway">direction we want to look at</param>
+        /// <returns>searched object</returns>
         public Road GetRoad(string sourceRoom, Path pathway)
         {
             Road ret = null;
@@ -142,6 +181,11 @@ namespace legend
             return ret;
         }
 
+        /// <summary>
+        /// Find NPC in database and returns object, that coresponds to searched id.
+        /// </summary>
+        /// <param name="id">id of object, that we want to find</param>
+        /// <returns>searched object</returns>
         public NPC GetNPC(string id)
         {
             NPC ret = null;
@@ -160,7 +204,7 @@ namespace legend
         /// After analyze of input id, returns, whether this id belongs to item, or NPC
         /// </summary>
         /// <param name="id">id of targer</param>
-        /// <returns></returns>
+        /// <returns>searched object</returns>
         public ActionTarget DecideActionTarget(string id)
         {
             // By default we expect, that target is ITEM. Then, we search in
@@ -201,6 +245,13 @@ namespace legend
             return msg;
         }
 
+        /// <summary>
+        /// Get string used for "action". During "Load LM" file, when "action" chunk is beging
+        /// loaded, string can be present after "succes" and "fail" keywords.
+        /// This method correctly creates "text block" if neccessary.
+        /// </summary>
+        /// <param name="msg">input string, which should be analysed/param>
+        /// <returns>id of text block, where "text" is now stored</returns>
         string AnalyzeAction(string msg)
         {
             string[] lines = msg.Split(' ');
@@ -291,6 +342,10 @@ namespace legend
             return res;
         }
 
+        /// <summary>
+        /// Load data from standard LM data file.
+        /// </summary>
+        /// <param name="fname">(Path and) name of file, which would be loaded</param>
         public void LoadLMFile(string fname)
         {
             List<string> postLoadJobs = new List<string>();
@@ -639,14 +694,18 @@ namespace legend
                 log.WriteLine(" - Assets loaded: {0}", assetCount.ToString()); 
                 log.WriteLine(" - Miscs loaded: {0}", miscCount.ToString());
 
-                /*
+                // List of NPCs
+                log.WriteLine("\nNPCs loaded: ");
                 foreach (NPC en in NPCs)
                 {
-                    Console.WriteLine(en.name);
-                }*/
+                    log.WriteLine("-> {0}",en.name);
+                }
             }
         }
 
+        /// <summary>
+        /// Load data from "maps" folder, where LM data files are stored.
+        /// </summary>
         public void LoadDataFiles()
         {
             // Search for *lm files (legend map)
@@ -663,6 +722,10 @@ namespace legend
             }
         }
     
+        /// <summary>
+        /// Load data from standard LM data file, that are stored in "config" folder.
+        /// These are LM/config files, which are loaded only once, during application starts
+        /// </summary>
         public void LoadConfigFiles()
         {
             // Search for *lm files (legend map)

@@ -11,11 +11,31 @@ name "Krík"
 type asset
 end
 
+item krik2
+name "Krík"
+type asset
+end
+
 action odlom_haluz default krik
 enabled true
 text "Odlomiť pevnejší konár"
 success show_msg "Podarilo sa ti odlomiť pevnejší konár, ktorý môžeš použiť ako provizorný oštep!"
 success give_item provizorny_ostep
+end
+
+action odlom_haluz2 default krik2
+enabled true
+text "Odlomiť pevnejší konár"
+success show_msg "Podarilo sa ti odlomiť pevnejší konár, ktorý môžeš použiť ako provizorný oštep!"
+success give_item provizorny_ostep
+end
+
+action objav_tajnu_cestu default krik2
+enabled true
+text "Preskúmať vydupanú trávu za kríkmi"
+success show_msg_wait "Po tom, čo sa ti podarilo predrať cez kríky sa ukázalo, že je tu vyšliapaná cestička, ktorá vedie k akýmsi skalám a odtiaľ do podzemia... Cestou as ti ale ušlo zopár škrabancov!"
+success damage_player 5
+success teleport tp1
 end
 
 item brana
@@ -73,7 +93,7 @@ end
 room 2_hustina
 name "Húština"
 map level1
-add_item krik
+add_item krik2
 add_group potkan1
 desc "Na tomto mieste je skvelý úkryt pred čímkoľvek, nakoľko je tu kopa húštiny a niekoľko silných stromov. Nie je tu však inkan nič zaujímavé. Len tajne dúfaš, že toto zátišie si ako miesto na oddych nevyberajú aj nejaké divé šelmy."
 end

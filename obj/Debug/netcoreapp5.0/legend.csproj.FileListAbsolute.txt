@@ -1,0 +1,16 @@
+/home/kim/Projekty/legend/bin/Debug/netcoreapp5.0/legend
+/home/kim/Projekty/legend/bin/Debug/netcoreapp5.0/legend.deps.json
+/home/kim/Projekty/legend/bin/Debug/netcoreapp5.0/legend.runtimeconfig.json
+/home/kim/Projekty/legend/bin/Debug/netcoreapp5.0/legend.runtimeconfig.dev.json
+/home/kim/Projekty/legend/bin/Debug/netcoreapp5.0/legend.dll
+/home/kim/Projekty/legend/bin/Debug/netcoreapp5.0/ref/legend.dll
+/home/kim/Projekty/legend/bin/Debug/netcoreapp5.0/legend.pdb
+/home/kim/Projekty/legend/obj/Debug/netcoreapp5.0/legend.csprojAssemblyReference.cache
+/home/kim/Projekty/legend/obj/Debug/netcoreapp5.0/legend.GeneratedMSBuildEditorConfig.editorconfig
+/home/kim/Projekty/legend/obj/Debug/netcoreapp5.0/legend.AssemblyInfoInputs.cache
+/home/kim/Projekty/legend/obj/Debug/netcoreapp5.0/legend.AssemblyInfo.cs
+/home/kim/Projekty/legend/obj/Debug/netcoreapp5.0/legend.csproj.CoreCompileInputs.cache
+/home/kim/Projekty/legend/obj/Debug/netcoreapp5.0/legend.dll
+/home/kim/Projekty/legend/obj/Debug/netcoreapp5.0/ref/legend.dll
+/home/kim/Projekty/legend/obj/Debug/netcoreapp5.0/legend.pdb
+/home/kim/Projekty/legend/obj/Debug/netcoreapp5.0/legend.genruntimeconfig.cache

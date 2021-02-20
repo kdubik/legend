@@ -413,6 +413,15 @@ namespace legend
             Console.ReadLine();
         }
 
+        public void ShowHelp()
+        {
+            Console.Clear();
+            Print pr = new Print( eng.lib.GetTextBlock("BThelp") );
+            pr.Render();
+            Console.WriteLine("\nStlac ENTER pre pokracovanie...");
+            Console.ReadLine();
+        }
+
         public void Show()
         {
             ShowIntro();
@@ -511,6 +520,12 @@ namespace legend
                 {
                     Console.WriteLine("Current game version: {0}",eng.lib.gameInfo.gameVersion);
                     Console.WriteLine("Current engine version: {0}",eng.lib.gameInfo.engineVersion);
+                }
+
+                if (line=="h") 
+                {
+                    ShowHelp();
+                    ShowRoom();
                 }
 
                 // Quit game correctly

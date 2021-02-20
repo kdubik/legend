@@ -25,7 +25,19 @@ v0.2.0
 * level design updates:
     * implement level2 map
     * setup some encounters
-    * append "secret map" to rest of the game
+* možnosť načítať "multiline" textblok z LM súboru
+
+v0.1.8
+* level design updates:
+    * finish updating texts in "secret map" and merge
+
+v0.1.7 (20.2.2021)
+- engine classs was completelly documented
+    - append "secret map" to rest of the game (through object "krik")
+    - update texts in "secret map" (partially done 24 of 34 locations, in "branch")
+- "h" command prints help
+- print class enhanced: <br> tag in text means break
+- new LM file (with string, used by game engine for communication): base.lm
 
 v0.1.6 (18.2.2021)
 - level design updates:

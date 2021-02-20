@@ -37,6 +37,15 @@ namespace legend
                     isEnd = true;
                     tmp = oldTmp;
                 }
+
+                // 3b. Je posledne slovo <br> ?
+                // Ak ano, tak je koniec a vrat vetu este spred pridanim slova.
+                if (words[actualWord-1]=="<br>")
+                {
+                    isEnd = true;
+                    tmp = oldTmp;
+                    usedWordCounter++;
+                }
                 
                 // 4. Opakuj, ak este mame slova a nie je koniec
                 if (actualWord==words.Length) isEnd=true;

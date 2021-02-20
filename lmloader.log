@@ -1,69 +1,3 @@
-Loaded file: maps/severs.lm
-------------------
-
-General: 
- - main game information loaded: False
- - post load jobs done: 0
-Objects loaded: 
- - Rooms loaded: 1
- - Roads loaded: 0
- - Text blocks loaded: 0
- - Actions loaded: 0
- - Enemies loaded: 0
- - NPCs loaded: 0
- - EnemyGroups loaded: 0
- - Items loaded: 0
-
-Items loaded: 
- - Wheapons loaded: 0
- - Armors loaded: 0
- - Shields loaded: 0
- - Assets loaded: 0
- - Miscs loaded: 0
-Loaded file: maps/house.lm
-------------------
-
-General: 
- - main game information loaded: False
- - post load jobs done: 4
-Objects loaded: 
- - Rooms loaded: 4
- - Roads loaded: 3
- - Text blocks loaded: 0
- - Actions loaded: 5
- - Enemies loaded: 0
- - NPCs loaded: 0
- - EnemyGroups loaded: 0
- - Items loaded: 3
-
-Items loaded: 
- - Wheapons loaded: 0
- - Armors loaded: 0
- - Shields loaded: 0
- - Assets loaded: 3
- - Miscs loaded: 0
-Loaded file: maps/enemies.lm
-------------------
-
-General: 
- - main game information loaded: False
- - post load jobs done: 0
-Objects loaded: 
- - Rooms loaded: 0
- - Roads loaded: 0
- - Text blocks loaded: 0
- - Actions loaded: 0
- - Enemies loaded: 2
- - NPCs loaded: 0
- - EnemyGroups loaded: 2
- - Items loaded: 0
-
-Items loaded: 
- - Wheapons loaded: 0
- - Armors loaded: 0
- - Shields loaded: 0
- - Assets loaded: 0
- - Miscs loaded: 0
 Loaded file: maps/items.lm
 ------------------
 
@@ -86,6 +20,32 @@ Items loaded:
  - Shields loaded: 0
  - Assets loaded: 0
  - Miscs loaded: 0
+
+NPCs loaded: 
+Loaded file: maps/base.lm
+------------------
+
+General: 
+ - main game information loaded: False
+ - post load jobs done: 0
+Objects loaded: 
+ - Rooms loaded: 0
+ - Roads loaded: 0
+ - Text blocks loaded: 1
+ - Actions loaded: 0
+ - Enemies loaded: 0
+ - NPCs loaded: 0
+ - EnemyGroups loaded: 0
+ - Items loaded: 0
+
+Items loaded: 
+ - Wheapons loaded: 0
+ - Armors loaded: 0
+ - Shields loaded: 0
+ - Assets loaded: 0
+ - Miscs loaded: 0
+
+NPCs loaded: 
 Loaded file: maps/secret.lm
 ------------------
 
@@ -108,3 +68,77 @@ Items loaded:
  - Shields loaded: 0
  - Assets loaded: 0
  - Miscs loaded: 0
+
+NPCs loaded: 
+Loaded file: maps/severs.lm
+------------------
+
+General: 
+ - main game information loaded: False
+ - post load jobs done: 0
+Objects loaded: 
+ - Rooms loaded: 1
+ - Roads loaded: 0
+ - Text blocks loaded: 0
+ - Actions loaded: 0
+ - Enemies loaded: 0
+ - NPCs loaded: 0
+ - EnemyGroups loaded: 0
+ - Items loaded: 0
+
+Items loaded: 
+ - Wheapons loaded: 0
+ - Armors loaded: 0
+ - Shields loaded: 0
+ - Assets loaded: 0
+ - Miscs loaded: 0
+
+NPCs loaded: 
+Loaded file: maps/enemies.lm
+------------------
+
+General: 
+ - main game information loaded: False
+ - post load jobs done: 0
+Objects loaded: 
+ - Rooms loaded: 0
+ - Roads loaded: 0
+ - Text blocks loaded: 0
+ - Actions loaded: 0
+ - Enemies loaded: 2
+ - NPCs loaded: 0
+ - EnemyGroups loaded: 2
+ - Items loaded: 0
+
+Items loaded: 
+ - Wheapons loaded: 0
+ - Armors loaded: 0
+ - Shields loaded: 0
+ - Assets loaded: 0
+ - Miscs loaded: 0
+
+NPCs loaded: 
+Loaded file: maps/house.lm
+------------------
+
+General: 
+ - main game information loaded: False
+ - post load jobs done: 4
+Objects loaded: 
+ - Rooms loaded: 4
+ - Roads loaded: 3
+ - Text blocks loaded: 0
+ - Actions loaded: 7
+ - Enemies loaded: 0
+ - NPCs loaded: 0
+ - EnemyGroups loaded: 0
+ - Items loaded: 4
+
+Items loaded: 
+ - Wheapons loaded: 0
+ - Armors loaded: 0
+ - Shields loaded: 0
+ - Assets loaded: 4
+ - Miscs loaded: 0
+
+NPCs loaded: 
