@@ -528,6 +528,16 @@ namespace legend
                     ShowRoom();
                 }
 
+                if (line=="map") 
+                {
+                    //Console.WriteLine("dddd");
+                    GuiMap map = new GuiMap(eng);
+                    map.Show();
+                    Console.ReadLine();
+                    ShowRoom();
+                    
+                }
+
                 // Quit game correctly
                 if (line=="ko") status = GameStatus.QUIT;
                 if (line=="ks") status = GameStatus.QUIT_SAVE;

@@ -1,5 +1,17 @@
 # this file contains base game definitions, like help and communication strings
 
-text BThelp
+text BThelp_old
 Hra rozumie nasledovným príkazom: <br> s, j, v, z - pohyb smerom na sever, juh, východ, západ <br> h, d - pohyb smerom hore a nadol <br> k - (kde som?) opíše aktuálnu miesnosť <br> a - ukáž potenciálne akcie v tejto lokalite <br> st - ukáž kartu postavy <br> b - batoh <h> ukáž ovládanie hry <br> ko - ukončenie
+end
+
+text BThelp
+Hra rozumie nasledovným príkazom: <br>
+s, j, v, z - pohyb smerom na sever, juh, východ, západ <br>
+h, d - pohyb smerom hore a nadol <br>
+k - (kde som?) opíše aktuálnu miesnosť <br>
+a - ukáž potenciálne akcie v tejto lokalite <br>
+st - ukáž kartu postavy <br>
+b - batoh <br>
+h - ukáž ovládanie hry <br>
+ko - ukončenie
 end

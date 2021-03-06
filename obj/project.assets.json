@@ -8,29 +8,29 @@
     "net5.0": []
   },
   "packageFolders": {
-    "/home/kim/.nuget/packages/": {}
+    "/Users/kim/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/kim/Projekty/legend/legend.csproj",
+      "projectUniqueName": "/Users/kim/Projekty/legend/legend.csproj",
       "projectName": "legend",
-      "projectPath": "/home/kim/Projekty/legend/legend.csproj",
-      "packagesPath": "/home/kim/.nuget/packages/",
-      "outputPath": "/home/kim/Projekty/legend/obj/",
+      "projectPath": "/Users/kim/Projekty/legend/legend.csproj",
+      "packagesPath": "/Users/kim/.nuget/packages/",
+      "outputPath": "/Users/kim/Projekty/legend/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/kim/.nuget/NuGet/NuGet.Config"
+        "/Users/kim/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "netcoreapp5.0"
+        "net5.0"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
-          "targetAlias": "netcoreapp5.0",
+          "targetAlias": "net5.0",
           "projectReferences": {}
         }
       },
@@ -42,7 +42,7 @@
     },
     "frameworks": {
       "net5.0": {
-        "targetAlias": "netcoreapp5.0",
+        "targetAlias": "net5.0",
         "imports": [
           "net461",
           "net462",
@@ -58,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.103/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.103/RuntimeIdentifierGraph.json"
       }
     }
   }

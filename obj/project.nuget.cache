@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VhkWXHpFeqYXx7uG/j4MldpE3USFlZRGFWIDpVoDyonbfhsUN7inrj43Iw4xYuYWHMXA9lKnB1dgNCH3fYYouw==",
+  "dgSpecHash": "KLUvMf1x83pZmShY5dKTYQMHksKSxHAOziWccpYoCZh5l3CYqvAIDjr/P5ttqwzG/Tbkb4hwIIfaFXPgMb8YJg==",
   "success": true,
-  "projectFilePath": "/home/kim/Projekty/legend/legend.csproj",
+  "projectFilePath": "/Users/kim/Projekty/legend/legend.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

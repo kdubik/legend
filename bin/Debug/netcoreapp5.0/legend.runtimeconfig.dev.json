@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "/home/kim/.dotnet/store/|arch|/|tfm|",
-      "/home/kim/.nuget/packages"
+      "/Users/kim/.dotnet/store/|arch|/|tfm|",
+      "/Users/kim/.nuget/packages"
     ]
   }
 }

@@ -11,7 +11,6 @@ v0.x.x (backlog)
 * add un-equip option
 * possibility to pick up items?
 * implement standard "game strings" to be loaded from lM file
-* implement showing some help (string from LM file)
 
 v0.2.1
 * GiveItemToPlayer() a DoPostLoadJobs() treba zjednotit
@@ -25,11 +24,11 @@ v0.2.0
 * level design updates:
     * implement level2 map
     * setup some encounters
-* možnosť načítať "multiline" textblok z LM súboru
 
-v0.1.8
-* level design updates:
-    * finish updating texts in "secret map" and merge
+v0.1.8 (6.3.2021)
+- level design updates:
+    - finish updating texts in "secret map" and merge
+- možnosť načítať "multiline" textblok z LM súboru
 
 v0.1.7 (20.2.2021)
 - engine classs was completelly documented

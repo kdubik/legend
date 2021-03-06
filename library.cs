@@ -376,6 +376,7 @@ namespace legend
             int miscCount = 0;
 
             string tmpID = "";
+            string tmpString = "";
 
             // Open the stream and read it back.
             using (StreamReader sr = File.OpenText(fname))
@@ -606,9 +607,18 @@ namespace legend
 
                             if (blok==Block.TEXT)
                             {
-                                texts.Add(tmpID,s);
-                                textCount++;
-                                blok=Block.NONE;
+                                if (words[0]!="end")
+                                {
+                                    if (tmpString!="") tmpString = tmpString + " ";
+                                    tmpString += s;
+                                }
+                                else
+                                {
+                                    texts.Add(tmpID,tmpString);
+                                    textCount++;
+                                    blok=Block.NONE;
+                                    tmpString = "";
+                                }
                             }
 
                             if (blok==Block.NONE)
