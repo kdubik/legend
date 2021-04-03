@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Tutils;
 
 namespace legend
 {
@@ -363,9 +364,10 @@ namespace legend
 
             do
             {
-                Console.WriteLine("1. Zmen vybavenie, 2. Pouzi predmet, 3. Preskumaj, 4. Zahod, 5. Odist ");
-                string line = Console.ReadLine();
-                no = int.Parse(line);
+                Console.WriteLine("\n1. Zmen vybavenie, 2. Pouzi predmet, 3. Preskumaj, 4. Zahod, 5. Odist ");
+                //string line = Console.ReadLine();
+                //no = int.Parse(line);
+                no = Textutils.GetNumberRange(1,5);
 
                 if (no==1)
                 {
@@ -410,7 +412,8 @@ namespace legend
             pr.Render();
 
             Console.WriteLine("\nAk sa na to citis, stlac ENTER...");
-            Console.ReadLine();
+            //Console.ReadLine();
+            Textutils.WaitKey();
         }
 
         public void ShowHelp()

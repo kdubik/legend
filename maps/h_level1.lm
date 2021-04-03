@@ -1,0 +1,98 @@
+# definition of circumstances in defined map
+# Is it safe? Interior or exterior? etc.
+map level4
+name "Prízemie domu"
+type interior
+end
+
+room dp1
+name "Komora"
+map level4
+desc "Táto miestnosť slúži ako komora. Je to hromada dobrôt ako klobásky a sušené mäso, ale aj zemiaky, múka a bežné suroviny."
+end
+
+room dp2
+name "Hlavná chodba"
+map level4
+desc "Toto je centrálna chodba, ktorá spojuje hlavné miestnosti v dome. Je tmavá, nakoľko sa miestnosti nachádzajú po každej strane, a je tu kopa výzdoby, hlavne rôznych vyrezávaných ozdôb."
+end
+
+room dp3
+name "Schodište"
+map level4
+desc "V tejto časti domu je veľké staré schodisko. Niektoré priečky na drevenej podlahe sú veľmi staré, hnilé a poničené, takže si treba dávať pozor na každý krok."
+end
+
+room dp4
+name "Veľká izba"
+map level4
+desc "Stojíš v rozmernej miestnosti, ktorej dominuje veľký stôl, kachle a pekná farebná výzdoba. Toto miesto je určené na oddych, dlhé debaty a veľké porady."
+end
+
+room dp5
+name "Čajový salón"
+map level4
+desc "Sen každej dámy - kachle sú zdielané s druhou izbou a zaručujú, že tu bude príjemne za každého počasia. Zelené obrusy a gobelíny na stenách navodzujú relaxačný pocit. Na stole je čajový riad a na to všetko akoby sa pozerala podivná dáma v konskom sedle, postava z veľkého portétu, čo visí na stene."
+end
+
+room dp6
+name "Hlavná hala"
+map level4
+desc "V tejto miestnosti sa vítajú návštevy a dá sa odtiaľto dostať do všetkých kútov domu. Je to niečo ako hlavná križovatka."
+end
+
+room dp7
+name "Jedáleň"
+map level4
+desc "Presvetlená miestnosť s úžasným výhľadom do záhrady, ktorá ovšem momentálne vyzerá zanedbane. Porozhadzovaná je tu kopa riadu a na stole sú aj zvyšky rôzneho jedla. Naposledy tu určite nejedli žiadni slušný ľudia."
+end
+
+room dp8
+name "Pracovňa, alebo červená miestnosť"
+map level4
+desc "Tento kút domu bol zameraný na to, aby mal človek trocha súkromia, keď vybavoval dôležité pracovné záležitosti, alebo sa venoval štúdiu. Pracovný stôl je ovšem zlomený a vylámané sú aj skrinky, v ktorých boli kedysi rôzne papiere a knihy."
+end
+
+room dp9
+name "Vstup do domu"
+map level4
+desc "Stojíš pred dverami domu. Na tomto mieste je vhodné sa vyzuť, ale momentálne je tu toľko blata, že to nemá zmysel."
+end
+
+room d10
+name "Kuchyňa"
+map level4
+desc "Krásna veľká miestnosť s nádhernou vyobkladanou pecou. Je tu ovšem tiež kopa neporiadku, blato, množstvo porozhadzovanej zeleniny."
+
+path dp1 dp2 south
+end
+
+path dp2 dp3 east
+end
+
+path dp2 dp4 south
+end
+
+path dp2 dp6 west
+end
+
+path dp5 dp6 north
+end
+
+path dp5 dp4 east
+end
+
+path dp5 dp8 west
+end
+
+path dp6 dp7 north
+end
+
+path dp6 dp9 south
+end
+
+path dp9 dp10 north
+end
+
+path dp7 dp10 west
+end

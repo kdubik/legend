@@ -716,13 +716,13 @@ namespace legend
         /// <summary>
         /// Load data from "maps" folder, where LM data files are stored.
         /// </summary>
-        public void LoadDataFiles()
+        public void LoadDataFilesFromFolder(string folderName)
         {
             // Search for *lm files (legend map)
-            string[] files = Directory.GetFiles("maps","*.lm");
+            string[] files = Directory.GetFiles(folderName,"*.lm");
 
             // Erase log file
-            File.Delete("lmloader.log");
+            //File.Delete("lmloader.log");
 
             // Load map file(s)
             foreach( string fname in files)

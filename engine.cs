@@ -20,7 +20,8 @@ namespace legend
         public void PrepareNewGame(bool prepareCharacter)
         {
             lib.CleanAll();         // Erase all data in the memory
-            lib.LoadDataFiles();    // Load game data
+            lib.LoadDataFilesFromFolder("data");    // Load game data
+            lib.LoadDataFilesFromFolder("maps");    // Load game maps
 
             // Prepare default character (party)
             party.Clean();

@@ -1,4 +1,5 @@
 using System;
+using Tutils;
 
 namespace legend
 {
@@ -11,7 +12,8 @@ namespace legend
             eng.lib.LoadConfigFiles();  // Most important game data files
 
             //int ch = 0;
-            string ch = "";
+            //string ch = "";
+            ConsoleKeyInfo ch;
             do
             {
                 Console.Clear();
@@ -25,9 +27,11 @@ namespace legend
                 Console.WriteLine("2. Start");
                 Console.WriteLine("3. Quit");
 
-                ch = Console.ReadLine();
+                //ch = Console.ReadLine();
+                //ch = Textutils.GetNumberRange(1,3);
+                ch = Textutils.GetPressedKey();
 
-                if (ch=="1") 
+                if (ch.KeyChar=='1') 
                 {
                     //Prepare new game
                     eng.PrepareNewGame(true);
@@ -40,7 +44,7 @@ namespace legend
                     gameWin.Show();
                 }
 
-                if (ch=="2") 
+                if (ch.KeyChar=='2') 
                 {
                     //Prepare new game
                     eng.PrepareNewGame(false);
@@ -54,7 +58,7 @@ namespace legend
                     GuiMainWin gameWin = new GuiMainWin(eng);                    
                     gameWin.Show();
                 }
-            } while (ch!="3");
+            } while (ch.KeyChar!='3');
         }
     }
 }

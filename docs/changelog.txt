@@ -19,11 +19,24 @@ v0.2.1
     * make combat slower, so player can catch, what is going on
     * give treasure to player after successful combat
     * solve situation, when player runs away from battle
+* prepare plan for all game maps    
+
 
 v0.2.0
-* level design updates:
-    * implement level2 map
-    * setup some encounters
+* experiments: 
+    - use better way to scan user keyboard (use "textutils" lib)
+* setup some encounters for "secret map"
+* implement level5 map (house, level 1, upstairs)
+* implement level6 map (house, level 2, roof)
+
+v0.1.9 (3.4.2021)
+- level design updates:
+    - implement level2 map (secret map)
+    - implement level4 map (house, ground level)
+- keep only maps in "maps" folder and rest LM files move to "data" folder
+    - clean data folder from trash
+- experiments: 
+    - use better way to scan user keyboard (use "textutils" lib) (main menu now)
 
 v0.1.8 (6.3.2021)
 - level design updates:
