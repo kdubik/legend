@@ -1,0 +1,86 @@
+# definition of circumstances in defined map
+# Is it safe? Interior or exterior? etc.
+map level5
+name "Poschodie domu"
+type interior
+end
+
+room dpp1
+name "Schodište"
+map level5
+desc "V tomto kúte domu je schodište na prízemie."
+end
+
+room dpp2
+name "Prvá spálňa"
+map level5
+desc "Malá spálňa, určená zrejme pre služobníctvo. Je tu ledna jednoduchá posteľ."
+end
+
+room dpp3
+name "Spoločenská miestnosť"
+map level5
+desc "Nádherná veľká sále, kde sa dajú poriadať aj bankety a oslavy. Je tu kút pre muzikantov, viacero stolov a zo stropu visí niekoľko nádherných lustrov."
+end
+
+room dpp4
+name "Kút s rebríkom na strechu"
+map level5
+desc "Toto miesto slúži ako priechod na strechu alebo povalu."
+end
+
+room dpp5
+name "Hosťovská izba"
+map level5
+desc "Izbietka pre návštevy. Ako inak, nie je v ideálnom stave a ani výhľad z okna nie je nič moc."
+end
+
+room dpp6
+name "Druhá spálňa"
+map level5
+desc "Väčšia izba s dvoma posteľami, jednoznačne najväčšia spálňa v dome. Na západe je východ na terasu."
+end
+
+room dpp7
+name "Tretia spálňa"
+map level5
+desc "Pekná izbička s vchodom na terasu na východe."
+end
+
+room dpp8
+name "Terasa"
+map level5
+desc "Rozľahlý balkón s krásnym výhľadom na celé nádvorie. Je tu množstvo opotrebovaných častí a sú tu aj dve drevené sochy gargoylov."
+end
+
+path dpp1 dpp3 west
+end
+
+path dpp2 dpp4 west
+end
+
+path dpp4 dpp3 south
+end
+
+path dpp3 dpp5 south
+end
+
+path dpp5 dpp7 west
+end
+
+path dpp7 dpp8 west
+direction to_target
+end
+
+path dpp6 dpp8 west
+direction to_target
+end
+
+path dpp3 dpp8 west
+end
+
+path dpp8 dpp7 south
+end
+
+path dpp8 dpp6 north
+end

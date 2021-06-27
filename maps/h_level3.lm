@@ -1,0 +1,57 @@
+# definition of circumstances in defined map
+# Is it safe? Interior or exterior? etc.
+map level6
+name "Strecha domu"
+type exterior
+end
+
+room rp1
+name "Vchod na strechu"
+map level6
+desc "Na tomto mieste je vchod na strechu. Točité schody vedú do zadnej časti poschodia domu. Je odtiaľto pekný výhlľad na les na severe."
+end
+
+room rp2
+name "Centrálna časť"
+map level6
+desc "Najväčšie voľné miesto na streche, odkiaľ dobre vidno na všetky svetové strany."
+end
+
+room rp3
+name "Západná časť strechy"
+map level6
+desc "Z tohto miesta sa dá skvele pozorovať les na západe od domu."
+end
+
+room rp4
+name "Komín"
+map level6
+desc "Stojíš pri hlavnom komíne domu. Je to široký kamenný komín, ktorý by určite vydržal aj veľmi nepríjemné počasie. "
+end
+
+room rp5
+name "Východná časť strechy"
+map level6
+desc "Výborné miesto na pozorovanie pasienkov na východ od domu."
+end
+
+room rp6
+name "Južná strana strechy"
+map level6
+desc "Odtiaľto je dobre vidno vstupnú bránu a nádvorie domu."
+end
+
+path rp1 rp4 west
+end
+
+path rp1 rp2 south
+end
+
+path rp3 rp4 north
+end
+
+path rp3 rp5 east
+end
+
+path rp2 rp6 south
+end

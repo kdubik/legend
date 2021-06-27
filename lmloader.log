@@ -142,6 +142,78 @@ Items loaded:
  - Miscs loaded: 0
 
 NPCs loaded: 
+Loaded file: maps/h_level3.lm
+------------------
+
+General: 
+ - main game information loaded: False
+ - post load jobs done: 0
+Objects loaded: 
+ - Rooms loaded: 6
+ - Roads loaded: 5
+ - Text blocks loaded: 0
+ - Actions loaded: 0
+ - Enemies loaded: 0
+ - NPCs loaded: 0
+ - EnemyGroups loaded: 0
+ - Items loaded: 0
+
+Items loaded: 
+ - Wheapons loaded: 0
+ - Armors loaded: 0
+ - Shields loaded: 0
+ - Assets loaded: 0
+ - Miscs loaded: 0
+
+NPCs loaded: 
+Loaded file: maps/h_level2.lm
+------------------
+
+General: 
+ - main game information loaded: False
+ - post load jobs done: 0
+Objects loaded: 
+ - Rooms loaded: 8
+ - Roads loaded: 10
+ - Text blocks loaded: 0
+ - Actions loaded: 0
+ - Enemies loaded: 0
+ - NPCs loaded: 0
+ - EnemyGroups loaded: 0
+ - Items loaded: 0
+
+Items loaded: 
+ - Wheapons loaded: 0
+ - Armors loaded: 0
+ - Shields loaded: 0
+ - Assets loaded: 0
+ - Miscs loaded: 0
+
+NPCs loaded: 
+Loaded file: maps/h_level1.lm
+------------------
+
+General: 
+ - main game information loaded: False
+ - post load jobs done: 0
+Objects loaded: 
+ - Rooms loaded: 10
+ - Roads loaded: 10
+ - Text blocks loaded: 0
+ - Actions loaded: 0
+ - Enemies loaded: 0
+ - NPCs loaded: 0
+ - EnemyGroups loaded: 0
+ - Items loaded: 0
+
+Items loaded: 
+ - Wheapons loaded: 0
+ - Armors loaded: 0
+ - Shields loaded: 0
+ - Assets loaded: 0
+ - Miscs loaded: 0
+
+NPCs loaded: 
 Loaded file: maps/secret.lm
 ------------------
 

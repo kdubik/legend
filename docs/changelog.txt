@@ -26,8 +26,11 @@ v0.2.0
 * experiments: 
     - use better way to scan user keyboard (use "textutils" lib)
 * setup some encounters for "secret map"
-* implement level5 map (house, level 1, upstairs)
-* implement level6 map (house, level 2, roof)
+* implement "severs" level
+
+v0.1.10 (3.5.2021)
+- implement level5 map (house, level 1, upstairs)
+- implement level6 map (house, level 2, roof)
 
 v0.1.9 (3.4.2021)
 - level design updates:
