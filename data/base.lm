@@ -9,9 +9,10 @@ Hra rozumie nasledovným príkazom: <br>
 s, j, v, z - pohyb smerom na sever, juh, východ, západ <br>
 h, d - pohyb smerom hore a nadol <br>
 k - (kde som?) opíše aktuálnu miesnosť <br>
-a - ukáž potenciálne akcie v tejto lokalite <br>
-st - ukáž kartu postavy <br>
-b - batoh <br>
-h - ukáž ovládanie hry <br>
-ko - ukončenie
+a - (akcia) ukáže potenciálne akcie, ktoré je možno vykonať v tejto lokalite <br>
+st - (status) ukáž kartu postavy <br>
+b - (batoh) ukáže predmety, ktoré má postava so sebou <br>
+p - (pomoc) ukáž ovládanie hry <br>
+ko - (koniec) ukončenie <br>
+ks - (koniec a save) ukončí hru a uloží pozíciu <br>
 end

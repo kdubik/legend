@@ -22,6 +22,31 @@ Items loaded:
  - Miscs loaded: 0
 
 NPCs loaded: 
+Loaded file: data/character_rat_queen.lm
+------------------
+
+General: 
+ - main game information loaded: False
+ - post load jobs done: 0
+Objects loaded: 
+ - Rooms loaded: 0
+ - Roads loaded: 0
+ - Text blocks loaded: 1
+ - Actions loaded: 1
+ - Enemies loaded: 0
+ - NPCs loaded: 1
+ - EnemyGroups loaded: 0
+ - Items loaded: 0
+
+Items loaded: 
+ - Wheapons loaded: 0
+ - Armors loaded: 0
+ - Shields loaded: 0
+ - Assets loaded: 0
+ - Miscs loaded: 0
+
+NPCs loaded: 
+-> ACTB_1
 Loaded file: data/enemies.lm
 ------------------
 
@@ -46,6 +71,7 @@ Items loaded:
  - Miscs loaded: 0
 
 NPCs loaded: 
+-> ACTB_1
 Loaded file: data/base.lm
 ------------------
 
@@ -70,6 +96,7 @@ Items loaded:
  - Miscs loaded: 0
 
 NPCs loaded: 
+-> ACTB_1
 Loaded file: data/items.lm
 ------------------
 
@@ -94,6 +121,7 @@ Items loaded:
  - Miscs loaded: 0
 
 NPCs loaded: 
+-> ACTB_1
 Loaded file: maps/severs.lm
 ------------------
 
@@ -101,8 +129,8 @@ General:
  - main game information loaded: False
  - post load jobs done: 0
 Objects loaded: 
- - Rooms loaded: 1
- - Roads loaded: 0
+ - Rooms loaded: 10
+ - Roads loaded: 9
  - Text blocks loaded: 0
  - Actions loaded: 0
  - Enemies loaded: 0
@@ -118,12 +146,13 @@ Items loaded:
  - Miscs loaded: 0
 
 NPCs loaded: 
+-> ACTB_1
 Loaded file: maps/house.lm
 ------------------
 
 General: 
  - main game information loaded: False
- - post load jobs done: 4
+ - post load jobs done: 5
 Objects loaded: 
  - Rooms loaded: 4
  - Roads loaded: 3
@@ -142,6 +171,7 @@ Items loaded:
  - Miscs loaded: 0
 
 NPCs loaded: 
+-> ACTB_1
 Loaded file: maps/h_level3.lm
 ------------------
 
@@ -166,6 +196,7 @@ Items loaded:
  - Miscs loaded: 0
 
 NPCs loaded: 
+-> ACTB_1
 Loaded file: maps/h_level2.lm
 ------------------
 
@@ -190,6 +221,7 @@ Items loaded:
  - Miscs loaded: 0
 
 NPCs loaded: 
+-> ACTB_1
 Loaded file: maps/h_level1.lm
 ------------------
 
@@ -214,6 +246,7 @@ Items loaded:
  - Miscs loaded: 0
 
 NPCs loaded: 
+-> ACTB_1
 Loaded file: maps/secret.lm
 ------------------
 
@@ -238,3 +271,4 @@ Items loaded:
  - Miscs loaded: 0
 
 NPCs loaded: 
+-> ACTB_1

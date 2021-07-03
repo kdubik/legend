@@ -14,104 +14,13 @@ namespace legend
         {
             eng = inEngine;
         }
-        
-        public void DescribeRoom(string roomId)
-        {
-            Room lRoom = eng.lib.GetRoom(roomId);
-            if (lRoom!=null)
-            {
-                // Hlavny opis miestnosti
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine(eng.lib.GetTextBlock(lRoom.name));
-                Console.ResetColor();
-                //Console.Write("  ");
-                //Console.WriteLine(eng.lib.GetTextBlock(lRoom.desc));
-                Print pr = new Print(eng.lib.GetTextBlock(lRoom.desc));
-                pr.Render();
-                Console.WriteLine("");
-
-                // Opisat, ci su tu nejake static predmety
-                foreach (GameItem git in eng.lib.gameItems)
-                {
-                    if (git.position==eng.party.actualRoomID)
-                    {
-                        //Console.WriteLine("{0}", git.hidden.ToString());
-                        if (!git.hidden)
-                        {
-                            Console.Write("Vidis tu ");
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write(eng.lib.GetTextBlock(git.itemSay).ToLower());
-                            Console.ResetColor();
-                            Console.WriteLine(".");
-                        }
-                    }
-                }
-
-                // Opisat, ci su tu nejake NPC postavy
-                foreach (NPC tmpNPC in eng.lib.NPCs)
-                {
-                    if (tmpNPC.position==eng.party.actualRoomID)
-                    {
-                        // Console.WriteLine("{0}", git.hidden.ToString());
-                        if (tmpNPC.alive)
-                        {
-                            Console.Write("Stoji tu ");
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write(eng.lib.GetTextBlock(tmpNPC.name));
-                            Console.ResetColor();
-                            Console.WriteLine(".");
-                        }
-                    }
-                }
-             
-                /*
-                // Opisat, ci su tu nejake ENEMIES GRUPY
-                if (lRoom.enemyGroup!="")
-                {
-                    EnemyGroup leg = eng.lib.GetEnemyGroup(lRoom.enemyGroup);
-                    Console.Write("Neriatel: ");
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write(eng.lib.GetTextBlock(leg.name));
-                    Console.ResetColor();
-                    Console.WriteLine(".");
-                }
-                */
-
-                // Opisat moznosti cestovania:
-                Console.Write("Mozes ist: ");
-                Console.ForegroundColor = ConsoleColor.Green;
-                foreach (Road rd in eng.lib.roads)
-                {
-                    if (rd.enabled)
-                    {
-                        if (rd.sourceRoom==eng.party.actualRoomID)
-                        {
-                            if ((rd.bothWay == Direction.BOTH) ||  (rd.bothWay == Direction.TO_TARGET))
-                            {                           
-                                Console.Write("{0} ", Road.GetPathName(rd.direction1));
-                            }
-                        }
-                        if (rd.targetRoom==eng.party.actualRoomID)
-                        {
-                            if ((rd.bothWay == Direction.BOTH) || (rd.bothWay == Direction.TO_SOURCE))
-                            {
-                                Console.Write("{0} ", Road.GetPathName(rd.direction2));
-                            }
-                        }
-                    }
-                }
-                Console.ResetColor();
-                Console.WriteLine("\n");
-            }
-            else Console.WriteLine("Engine error: Unable to find room '{0}'", roomId);
-        }
-        
+           
         /// <summary>
         /// Describe actual room and check for battle.
         /// </summary>
         public void ShowRoom()
         {
-            DescribeRoom(eng.party.actualRoomID);
+            eng.DescribeRoom();
             BattleStatus bstatus = eng.Check_combat();
 
             // Suboj prebehol a prehrali sme !!!
@@ -129,7 +38,7 @@ namespace legend
                 Console.WriteLine("Stlac ENTER pre pokracovanie");
                 Console.ReadLine();
                 Console.Clear();
-                DescribeRoom(eng.party.actualRoomID);
+                eng.DescribeRoom();
             }
         }
         
@@ -496,6 +405,34 @@ namespace legend
                     //if (ec==ErrorCode.NOT_ENABLED) Console.WriteLine("DISABLED.\n");
                 }
 
+                if (line=="d")
+                {
+                    var ec = eng.Go(Path.DOWN);
+                    if (ec==ErrorCode.EMPTY_PATH)
+                    {
+                        Console.WriteLine("Unable to go that way.");
+                    }
+                    else 
+                    {
+                        Console.WriteLine("Siel si nadol.\n");
+                        ShowRoom();
+                    }
+                }
+
+                if (line=="h")
+                {
+                    var ec = eng.Go(Path.UP);
+                    if (ec==ErrorCode.EMPTY_PATH)
+                    {
+                        Console.WriteLine("Unable to go that way.");
+                    }
+                    else 
+                    {
+                        Console.WriteLine("Siel si nahor.\n");
+                        ShowRoom();
+                    }
+                }
+
                 if (line=="a") 
                 {
                     ShowPotencialActions();
@@ -525,7 +462,7 @@ namespace legend
                     Console.WriteLine("Current engine version: {0}",eng.lib.gameInfo.engineVersion);
                 }
 
-                if (line=="h") 
+                if (line=="p") 
                 {
                     ShowHelp();
                     ShowRoom();
@@ -537,8 +474,7 @@ namespace legend
                     GuiMap map = new GuiMap(eng);
                     map.Show();
                     Console.ReadLine();
-                    ShowRoom();
-                    
+                    ShowRoom();            
                 }
 
                 // Quit game correctly

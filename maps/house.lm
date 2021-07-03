@@ -68,7 +68,7 @@ end
 action preskumaj_studnu default studna
 enabled true
 text "Preskúmať studňu"
-success show_msg skumaj_studnu
+success show_msg "Po dôkladnom prezretí studne sa ti zdalo, že v tej hĺbke čosi vidíš. Áno, v hĺbe niekoľkých stôp vidíš náznak otvoru. Žeby nejaká chodba? Možno by tu bola šanca pokúsiť sa k tomu otvoru zošplhať..."
 success enable_action vlez_do_studne
 end
 
@@ -78,7 +78,7 @@ text "Vliesť do studne"
 attribute dexterity
 level 9
 focus climbing
-success show_msg "Podarilo sa ti zliezť dole do studne! Je tu akási chodba..."
+success show_msg_wait "Podarilo sa ti zliezť dole do studne! Je tu akási chodba..."
 success teleport severs_entrance
 fail show_msg "Steny studne sú priliš hladké, nedarí sa ti zliezť dole!"
 end
@@ -87,6 +87,7 @@ room 1_krizovatka
 name "Stará križovatka"
 map level1
 add_item krik
+add_NPC rat_queen
 desc "Stojíš na križovatke na okraji lesa. Podarilo sa ti dostať takmer až k tajomnému domu - len kúsoček ďalej na severe vidíč obrovský plot z kameňa a ocele, strážený dvoma sochami gargoylov strážiacimi vchod. Na východe vidno akúsi starú studňu uprostred malej lúčky obkolesenej kríkmi a na západnej strane sa tiež črtá zátišie s húštinou."
 end
 

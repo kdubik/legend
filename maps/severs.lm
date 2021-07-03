@@ -10,3 +10,84 @@ name "Vstup do starej kanalizácie"
 map level2
 desc "kanááál"
 end
+
+room severs7
+name "Zapáchajúca chodba"
+map level2
+desc "kanááál"
+end
+
+room severs8
+name "Križovatka s dierou v podlahe"
+map level2
+desc "kanááál"
+end
+
+room severs9
+name "Chodba spájajúca juh a východ"
+map level2
+desc "kanááál"
+end
+
+room severs10
+name "Murovaná chodba s poškodenou stenou"
+map level2
+desc "kanááál"
+end
+
+room severs11
+name "Chodba smerujúca do domu"
+map level2
+desc "kanááál"
+end
+
+room severs12
+name "Severo východná chodba"
+map level2
+desc "kanááál"
+end
+
+room severs13
+name "Chodba"
+map level2
+desc "kanááál"
+end
+
+room severs14
+name "Polozrútená miestnosť"
+map level2
+desc "kanááál"
+end
+
+room severs15
+name "Tajná miestnosť"
+map level2
+desc "kanááál"
+end
+
+path severs_entrance severs7 east
+end
+
+path severs7 severs8 east
+end
+
+path severs8 severs9 north
+end
+
+path severs9 severs10 east
+end
+
+path severs10 severs11 north
+end
+
+path severs8 severs15 down
+end
+
+path severs8 severs12 south
+end
+
+path severs12 severs13 east
+end
+
+path severs13 severs14 east
+end

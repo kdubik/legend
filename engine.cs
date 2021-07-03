@@ -105,6 +105,96 @@ namespace legend
             gi.itemType = itm.type;
         }
 
+        public void DescribeRoom()
+        {
+            Room lRoom = lib.GetRoom(party.actualRoomID);
+            if (lRoom!=null)
+            {
+                // Hlavny opis miestnosti
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(lib.GetTextBlock(lRoom.name));
+                Console.ResetColor();
+
+                Print pr = new Print(lib.GetTextBlock(lRoom.desc));
+                pr.Render();
+                Console.WriteLine("");
+
+                // Opisat, ci su tu nejake static predmety
+                foreach (GameItem git in lib.gameItems)
+                {
+                    if (git.position==party.actualRoomID)
+                    {
+                        //Console.WriteLine("{0}", git.hidden.ToString());
+                        if (!git.hidden)
+                        {
+                            Console.Write("Vidis tu ");
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write(lib.GetTextBlock(git.itemSay).ToLower());
+                            Console.ResetColor();
+                            Console.WriteLine(".");
+                        }
+                    }
+                }
+
+                // Opisat, ci su tu nejake NPC postavy
+                foreach (NPC tmpNPC in lib.NPCs)
+                {
+                    if (tmpNPC.position==party.actualRoomID)
+                    {
+                        // Console.WriteLine("{0}", git.hidden.ToString());
+                        if (tmpNPC.alive)
+                        {
+                            Console.Write("Stoji tu ");
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write(lib.GetTextBlock(tmpNPC.name));
+                            Console.ResetColor();
+                            Console.WriteLine(".");
+                        }
+                    }
+                }
+             
+                /*
+                // Opisat, ci su tu nejake ENEMIES GRUPY
+                if (lRoom.enemyGroup!="")
+                {
+                    EnemyGroup leg = eng.lib.GetEnemyGroup(lRoom.enemyGroup);
+                    Console.Write("Neriatel: ");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(eng.lib.GetTextBlock(leg.name));
+                    Console.ResetColor();
+                    Console.WriteLine(".");
+                }
+                */
+
+                // Opisat moznosti cestovania:
+                Console.Write("Mozes ist: ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                foreach (Road rd in lib.roads)
+                {
+                    if (rd.enabled)
+                    {
+                        if (rd.sourceRoom==party.actualRoomID)
+                        {
+                            if ((rd.bothWay == Direction.BOTH) ||  (rd.bothWay == Direction.TO_TARGET))
+                            {                           
+                                Console.Write("{0} ", Road.GetPathName(rd.direction1));
+                            }
+                        }
+                        if (rd.targetRoom==party.actualRoomID)
+                        {
+                            if ((rd.bothWay == Direction.BOTH) || (rd.bothWay == Direction.TO_SOURCE))
+                            {
+                                Console.Write("{0} ", Road.GetPathName(rd.direction2));
+                            }
+                        }
+                    }
+                }
+                Console.ResetColor();
+                Console.WriteLine("\n");
+            }
+            else Console.WriteLine("Engine error: Unable to find room '{0}'", party.actualRoomID);
+        }
+
 /*
         public void Print(string msg)
         {
@@ -144,7 +234,9 @@ namespace legend
                 {
                     if (lib.texts.ContainsKey(words[1]))
                     {
-                        Console.WriteLine(lib.texts[words[1]]);
+                        //Console.WriteLine(lib.texts[words[1]]);
+                        Print pr = new Print(lib.texts[words[1]]);
+                        pr.Render();
                     }
                     else
                     {
@@ -215,6 +307,7 @@ namespace legend
             if (words[0]=="teleport")
             {
                 party.actualRoomID = words[1];
+                DescribeRoom();
             }
 
             return res;

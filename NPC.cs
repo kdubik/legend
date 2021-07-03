@@ -15,6 +15,8 @@ namespace legend
         public BRClass brClass = BRClass.EXPERT;
         public int friendliness = 1;    //Standard NPC
 
+        public string greetings;   // When NPC greets player (friendliness should be 1)
+
         /// <summary>
         /// Constructor
         /// </summary>

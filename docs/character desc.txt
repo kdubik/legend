@@ -1,0 +1,17 @@
+Potkania kráľovná:
+------------------
+
+1. Nemá rada zabíjanie krýs. Ak hráč zabil nejakú krysu, tak naňho zaútočí.
+    (affility: rats)
+2. Dá sa s ňou porozprávať
+3. Náhodne sa pohybuje po dungeone?
+
+affiliation: ratSwarm
+
+Obraz upírky:
+------------------
+- zjavuje sa v secret leveli
+- polohu mení náhodne, ale skokovo? (t.j. môže sa objaviť náhodne úplne v hociktorej miestnosti)
+    - vystraší hráča? (descrease some bonuses for a while?)
+    - trying to find something?
+    
