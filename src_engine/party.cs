@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 
-namespace legend
+using LegendLibrary;
+
+namespace LegendEngine
 {
     public struct  InvertoryItem
     {

@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 
-namespace legend
+using LegendLibrary;
+using LegendTools;
+
+namespace LegendEngine
 {
     public enum ErrorCode { OK, ROOM_NOT_FOUND, EMPTY_PATH, NOT_ENABLED, ACTION_NOT_FOUND, ERROR };
 
@@ -74,7 +77,7 @@ namespace legend
 
             return gmi;
         }
-        public bool DoTest(Attribute inAttribute, int testLevel)
+        public bool DoTest(CharAttr inAttribute, int testLevel)
         {
             bool res = false;
 
@@ -286,7 +289,7 @@ namespace legend
             // Enable target action
             if (words[0]=="enable_action")
             {
-                Action act = lib.GetAction(words[1]);
+                SpecialAction act = lib.GetAction(words[1]);
                 if (act!=null)
                 {
                     act.enabled = true;
@@ -296,7 +299,7 @@ namespace legend
             // Disable target action
             if (words[0]=="disable_action")
             {
-                Action act = lib.GetAction(words[1]);
+                SpecialAction act = lib.GetAction(words[1]);
                 if (act!=null)
                 {
                     act.enabled = false;

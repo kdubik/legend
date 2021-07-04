@@ -2,7 +2,9 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-namespace legend
+using LegendTools;
+
+namespace LegendLibrary
 {
     public enum Block { NONE, ROOM, ROAD, TEXT, ACTION, ENEMY, NPC, ENEMYGROUP, ITEM, GAMEINFO };
     public class Library
@@ -12,7 +14,7 @@ namespace legend
         public List<Road> roads = new List<Road>();
         public List<Item> items = new List<Item>();
         public List<GameItem> gameItems = new List<GameItem>();
-        public List<Action> actions = new List<Action>();
+        public List<SpecialAction> actions = new List<SpecialAction>();
         public List<Enemy> enemies = new List<Enemy>();
         public List<NPC> NPCs = new List<NPC>();
         public List<EnemyGroup> enemyGroups = new List<EnemyGroup>();
@@ -144,10 +146,10 @@ namespace legend
             return ret;
         }
 
-        public Action GetAction(string actionId)
+        public SpecialAction GetAction(string actionId)
         {
-            Action ret = null;
-            foreach (Action ac in actions)
+            SpecialAction ret = null;
+            foreach (SpecialAction ac in actions)
             {
                 if (ac.id==actionId)
                 {
@@ -353,7 +355,7 @@ namespace legend
             Block blok = Block.NONE;
             Room tmpRoom = null;
             Road tmpRoad = null;
-            Action tmpAct = null;
+            SpecialAction tmpAct = null;
             Enemy tmpEnemy = null;
             NPC tmpNPC = null;
             EnemyGroup tmpGroup = null;
@@ -434,13 +436,13 @@ namespace legend
                                 if (words[0]=="armor") tmpEnemy.armor = int.Parse(words[1]);
                                 if (words[0]=="attribute")
                                 {
-                                    Attribute ta = Character.GetAttributeFromString(words[1]);
+                                    CharAttr ta = Character.GetAttributeFromString(words[1]);
                                     tmpEnemy.SetAttribute(ta,int.Parse(words[2]));
                                 }
                                 if (words[0]=="wheapon")
                                 {
                                     int an = int.Parse(words[1]);   // Attack bonus
-                                    Attribute ta = Character.GetAttributeFromString(words[3]);  // Tested attribute
+                                    CharAttr ta = Character.GetAttributeFromString(words[3]);  // Tested attribute
                                     string nm = ReviewString(Tools.MergeString(words,4)); // Name
                                     tmpEnemy.AddWheapon(nm, an, words[2],ta);  // All data + DMG
                                 }
@@ -466,13 +468,13 @@ namespace legend
                                 if (words[0]=="desc") tmpNPC.desc = Tools.MergeString(words,1);
                                 if (words[0]=="attribute")
                                 {
-                                    Attribute ta = Character.GetAttributeFromString(words[1]);
+                                    CharAttr ta = Character.GetAttributeFromString(words[1]);
                                     tmpNPC.SetAttribute(ta,int.Parse(words[2]));
                                 }
                                 if (words[0]=="wheapon")
                                 {
                                     int an = int.Parse(words[1]);   // Attack bonus
-                                    Attribute ta = Character.GetAttributeFromString(words[3]);  // Tested attribute
+                                    CharAttr ta = Character.GetAttributeFromString(words[3]);  // Tested attribute
                                     string nm = ReviewString(Tools.MergeString(words,4)); // Name
                                     tmpNPC.AddWheapon(nm, an, words[2],ta);  // All data + DMG
                                 }
@@ -653,7 +655,7 @@ namespace legend
                                 {
                                     blok = Block.ACTION;
                                     ActionTarget at = DecideActionTarget(words[1]);
-                                    tmpAct = new Action(words[1],words[2], at);
+                                    tmpAct = new SpecialAction(words[1],words[2], at);
                                     tmpAct.itemId = words[3];                             
                                 }
                                 if (words[0].ToLower()=="enemy")

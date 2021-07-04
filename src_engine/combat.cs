@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace legend
+using LegendLibrary;
+
+namespace LegendEngine
 {
     public enum BattleStatus { BATTLING, WIN, LOOSE, ENEMIES_FLIED, PLAYER_FLIED, CANCELLED, NOBATTLE };
 
@@ -71,7 +73,7 @@ namespace legend
             hero.health = party.members[0].health;
             // 100 - je tam preto, lebo sort by upradal bojovnikov od najmensieho po najvacsieho a my
             // to chceme invertovat.
-            hero.initRoll = 100 - (dices.ThrowDiceX(3,6) + party.members[0].GetAttribute(Attribute.DEXTERITY));
+            hero.initRoll = 100 - (dices.ThrowDiceX(3,6) + party.members[0].GetAttribute(CharAttr.DEXTERITY));
             battlefield.Add(hero);
             
             // b) Enemies
@@ -83,26 +85,26 @@ namespace legend
                     hero = new participant(er.id,true);
                     hero.enemy = en;
                     hero.health = en.health;
-                    hero.initRoll = 100 - (dices.ThrowDiceX(3,6) + en.attr[(int)Attribute.DEXTERITY]);
+                    hero.initRoll = 100 - (dices.ThrowDiceX(3,6) + en.attr[(int)CharAttr.DEXTERITY]);
                     battlefield.Add(hero);
                 }
             }
             SortBattlefield();  // Upraceme bojisko podla hodu na iniciativu
         }
 
-        Attribute GetTestAttribute(string wheaponType)
+        CharAttr GetTestAttribute(string wheaponType)
         {
-            Attribute res = Attribute.ACCURACY;
+            CharAttr res = CharAttr.ACCURACY;
 
             switch(wheaponType)
             {
-                case "hands": res=Attribute.FIGHTING; break;
-                case "axe": res=Attribute.FIGHTING; break;
-                case "bludgeon": res=Attribute.FIGHTING; break;
-                case "heavy_blade": res=Attribute.FIGHTING; break;
-                case "lance": res=Attribute.FIGHTING; break;
-                case "polearm": res=Attribute.FIGHTING; break;
-                default: res = Attribute.ACCURACY; break;
+                case "hands": res=CharAttr.FIGHTING; break;
+                case "axe": res=CharAttr.FIGHTING; break;
+                case "bludgeon": res=CharAttr.FIGHTING; break;
+                case "heavy_blade": res=CharAttr.FIGHTING; break;
+                case "lance": res=CharAttr.FIGHTING; break;
+                case "polearm": res=CharAttr.FIGHTING; break;
+                default: res = CharAttr.ACCURACY; break;
             }
 
             return res;
@@ -261,7 +263,7 @@ namespace legend
                                 wheaponName = "prazdne ruky";
                             }
 
-                            Attribute wheaponTest = GetTestAttribute(wheaponTestString);
+                            CharAttr wheaponTest = GetTestAttribute(wheaponTestString);
 
                             DicesRoll dc = new DicesRoll();
                             int uc = party.members[0].GetAttribute(wheaponTest) + dc.total;

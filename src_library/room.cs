@@ -1,4 +1,4 @@
-namespace legend
+namespace LegendLibrary
 {
     public class Room
     {

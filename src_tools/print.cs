@@ -1,6 +1,6 @@
 using System;
 
-namespace legend
+namespace LegendTools
 {
     public class Print
     {

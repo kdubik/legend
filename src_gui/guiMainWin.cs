@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Tutils;
 
-namespace legend
+using LegendTools;
+using LegendEngine;
+using LegendLibrary;
+
+namespace Legend
 {
     public class GuiMainWin
     {
@@ -46,7 +49,7 @@ namespace legend
         {
             ErrorCode ret = ErrorCode.OK;
 
-            Action tmpAct = eng.lib.GetAction(actId);
+            SpecialAction tmpAct = eng.lib.GetAction(actId);
             if (tmpAct!=null)
             {
                 // ACTION - ITEM (do we have some Item?)
@@ -114,7 +117,7 @@ namespace legend
                 {
                     if (!tmpGItem.hidden)
                     {
-                        foreach(Action tmpAct in eng.lib.actions)
+                        foreach(SpecialAction tmpAct in eng.lib.actions)
                         {
                             if (tmpAct.enabled)
                             {
@@ -137,7 +140,7 @@ namespace legend
                 {
                     if (lNPC.alive)
                     {
-                        foreach(Action tmpAct in eng.lib.actions)
+                        foreach(SpecialAction tmpAct in eng.lib.actions)
                         {
                             if (tmpAct.enabled)
                             {
@@ -155,7 +158,7 @@ namespace legend
        
             for(int a=0;a<actList.Count;a++)
             {
-                Action tmpAct = eng.lib.GetAction(actList[a]);
+                SpecialAction tmpAct = eng.lib.GetAction(actList[a]);
                 string desc = eng.lib.GetTextBlock(tmpAct.desc);
                 Console.WriteLine("{0} {1}", (a+1).ToString(), desc);
             }
@@ -183,15 +186,15 @@ namespace legend
             Console.WriteLine("Dennik postavy: {0}", eng.party.members[0].name);
             Console.ResetColor();
 
-            Console.WriteLine("Presnost: {0}", eng.party.members[0].GetAttribute(Attribute.ACCURACY).ToString());
-            Console.WriteLine("Komunikativnost: {0}", eng.party.members[0].GetAttribute(Attribute.COMMUNICATION).ToString());
-            Console.WriteLine("Zdravie: {0}", eng.party.members[0].GetAttribute(Attribute.CONSTITUTION).ToString());
-            Console.WriteLine("Obratnost: {0}", eng.party.members[0].GetAttribute(Attribute.DEXTERITY).ToString());
-            Console.WriteLine("Bojovanie: {0}", eng.party.members[0].GetAttribute(Attribute.FIGHTING).ToString());
-            Console.WriteLine("Intelekt: {0}", eng.party.members[0].GetAttribute(Attribute.IQ).ToString());
-            Console.WriteLine("Vnimanie: {0}", eng.party.members[0].GetAttribute(Attribute.PERCEPTION).ToString());
-            Console.WriteLine("Sila: {0}", eng.party.members[0].GetAttribute(Attribute.STRENGTH).ToString());
-            Console.WriteLine("Sila vole: {0}", eng.party.members[0].GetAttribute(Attribute.WILL).ToString());
+            Console.WriteLine("Presnost: {0}", eng.party.members[0].GetAttribute(CharAttr.ACCURACY).ToString());
+            Console.WriteLine("Komunikativnost: {0}", eng.party.members[0].GetAttribute(CharAttr.COMMUNICATION).ToString());
+            Console.WriteLine("Zdravie: {0}", eng.party.members[0].GetAttribute(CharAttr.CONSTITUTION).ToString());
+            Console.WriteLine("Obratnost: {0}", eng.party.members[0].GetAttribute(CharAttr.DEXTERITY).ToString());
+            Console.WriteLine("Bojovanie: {0}", eng.party.members[0].GetAttribute(CharAttr.FIGHTING).ToString());
+            Console.WriteLine("Intelekt: {0}", eng.party.members[0].GetAttribute(CharAttr.IQ).ToString());
+            Console.WriteLine("Vnimanie: {0}", eng.party.members[0].GetAttribute(CharAttr.PERCEPTION).ToString());
+            Console.WriteLine("Sila: {0}", eng.party.members[0].GetAttribute(CharAttr.STRENGTH).ToString());
+            Console.WriteLine("Sila vole: {0}", eng.party.members[0].GetAttribute(CharAttr.WILL).ToString());
 
             Console.ReadLine();
             Console.Clear();

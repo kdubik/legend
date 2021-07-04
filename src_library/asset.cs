@@ -3,7 +3,7 @@
 // and should not be bearable. It is static (decoration) type
 // of object, that is fixed part of some room
 
-namespace legend
+namespace LegendLibrary
 {
     public enum AssetType { DECORATION, TREASURE, FLOOR, TELEPORT, CONTAINER };
     public class Asset

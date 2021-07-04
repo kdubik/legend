@@ -1,6 +1,8 @@
 using System;
 
-namespace legend
+using LegendEngine;
+
+namespace Legend
 {
     public class GuiMap
     {

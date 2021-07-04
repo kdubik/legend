@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace legend
+namespace LegendLibrary
 {
 
     public enum ActionTarget { ITEM, NPC };
@@ -8,7 +8,7 @@ namespace legend
     // DEFAULT - ziaden test, ak hrac klikne sem, proste sa vykonaju patricne akcie
     // TEST - skill test, ak hrac klikne, udeje sa skill check a ak uspeje, vykonaju sa patricne akcie
     // ATTRIBUTE - testneme zvoleny atribut, ci je jeho hodnota > ako cilso zadave v LEVEL
-    public class Action
+    public class SpecialAction
     {
         public string id;       // ID samotnej akcie
 
@@ -21,7 +21,7 @@ namespace legend
         public bool enabled = true; // Is this action enabled?
 
         // TEST DATA ----
-        public Attribute attribute = Attribute.WILL;   // Ktory atribut postavy testujeme?
+        public CharAttr attribute = CharAttr.WILL;   // Ktory atribut postavy testujeme?
         public string focus = "RUNNING";         // Ktory focus je mozne zohladnit?
         public int level = 8;
         // successActions - akcie, ktore sa vykonaju po uspesnom teste
@@ -29,7 +29,7 @@ namespace legend
         public List<string> successActions = new List<string>();
         public List<string> failedActions = new List<string>();
 
-        public Action(string id, string actionType, ActionTarget actionTarget)
+        public SpecialAction(string id, string actionType, ActionTarget actionTarget)
         {
             if (actionType=="test") action = ActionType.TEST;
             if (actionType=="attribute") action = ActionType.ATTRIBUTE;

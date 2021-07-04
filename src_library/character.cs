@@ -1,10 +1,10 @@
-namespace legend
+namespace LegendLibrary
 {
     public enum Background { ALDIN, FOREST_FOLK, JARZONI, KERNISH, LARTYAN, OUTCAST, ROAMER };
     public enum Race { HUMAN, NIGHT, SEA, DARK_VATA, VATA };
     public enum BRClass { ADEPT, WARRIOR, EXPERT };
     public enum Specialization { NONE, BERSERKER, BEAST_FRIEND, BARD, DIPLOMAT, DUELIST, HEALER, HUNTER, MARTIAL_ARTIST, SHAPER, SLAYER, SPIRIT_DANCER, SPY };
-    public enum Attribute
+    public enum CharAttr
     { 
         ACCURACY, COMMUNICATION, CONSTITUTION, DEXTERITY, FIGHTING, IQ, PERCEPTION, STRENGTH, WILL 
     }
@@ -32,9 +32,9 @@ namespace legend
         // Obsahuje ID equipnuteho predmetu, alebo nic
         public string[] bodySlots = new string[3];
 
-        public void SetAttribute(Attribute inAttr, int value) => attr[(int)inAttr] = value;
+        public void SetAttribute(CharAttr inAttr, int value) => attr[(int)inAttr] = value;
 
-        public int GetAttribute(Attribute inAttr) => attr[(int)inAttr];
+        public int GetAttribute(CharAttr inAttr) => attr[(int)inAttr];
 
         /// <summary>
         /// Returns ID of item (wheapon), that character has equipped.false
@@ -71,15 +71,15 @@ namespace legend
                 defense = 12;
                 speed = 11;
                 armor = 0;
-                SetAttribute(Attribute.ACCURACY,2);
-                SetAttribute(Attribute.COMMUNICATION,2);
-                SetAttribute(Attribute.CONSTITUTION,2);
-                SetAttribute(Attribute.DEXTERITY,3);
-                SetAttribute(Attribute.FIGHTING,4);
-                SetAttribute(Attribute.IQ,0);
-                SetAttribute(Attribute.PERCEPTION,3);
-                SetAttribute(Attribute.STRENGTH,3);
-                SetAttribute(Attribute.WILL,1);
+                SetAttribute(CharAttr.ACCURACY,2);
+                SetAttribute(CharAttr.COMMUNICATION,2);
+                SetAttribute(CharAttr.CONSTITUTION,2);
+                SetAttribute(CharAttr.DEXTERITY,3);
+                SetAttribute(CharAttr.FIGHTING,4);
+                SetAttribute(CharAttr.IQ,0);
+                SetAttribute(CharAttr.PERCEPTION,3);
+                SetAttribute(CharAttr.STRENGTH,3);
+                SetAttribute(CharAttr.WILL,1);
             }
             else
             {
@@ -90,32 +90,32 @@ namespace legend
                 defense = 12;
                 speed = 11;
                 armor = 0;
-                SetAttribute(Attribute.ACCURACY,2);
-                SetAttribute(Attribute.COMMUNICATION,1);
-                SetAttribute(Attribute.CONSTITUTION,1);
-                SetAttribute(Attribute.DEXTERITY,1);
-                SetAttribute(Attribute.FIGHTING,1);
-                SetAttribute(Attribute.IQ,1);
-                SetAttribute(Attribute.PERCEPTION,1);
-                SetAttribute(Attribute.STRENGTH,1);
-                SetAttribute(Attribute.WILL,1);
+                SetAttribute(CharAttr.ACCURACY,2);
+                SetAttribute(CharAttr.COMMUNICATION,1);
+                SetAttribute(CharAttr.CONSTITUTION,1);
+                SetAttribute(CharAttr.DEXTERITY,1);
+                SetAttribute(CharAttr.FIGHTING,1);
+                SetAttribute(CharAttr.IQ,1);
+                SetAttribute(CharAttr.PERCEPTION,1);
+                SetAttribute(CharAttr.STRENGTH,1);
+                SetAttribute(CharAttr.WILL,1);
             }
         }
 
-        public static Attribute GetAttributeFromString(string attrString)
+        public static CharAttr GetAttributeFromString(string attrString)
         {
-            Attribute res = Attribute.ACCURACY;
+            CharAttr res = CharAttr.ACCURACY;
             string li = attrString.ToLower();
 
-            if (li=="accuracy") res = Attribute.ACCURACY;
-            if (li=="communication") res = Attribute.COMMUNICATION;
-            if (li=="constitution") res = Attribute.CONSTITUTION;
-            if (li=="dexterity") res = Attribute.DEXTERITY;
-            if (li=="fighting") res = Attribute.FIGHTING;
-            if (li=="iq") res = Attribute.IQ;
-            if (li=="perception") res = Attribute.PERCEPTION;
-            if (li=="strength") res = Attribute.STRENGTH;
-            if (li=="will") res = Attribute.WILL;
+            if (li=="accuracy") res = CharAttr.ACCURACY;
+            if (li=="communication") res = CharAttr.COMMUNICATION;
+            if (li=="constitution") res = CharAttr.CONSTITUTION;
+            if (li=="dexterity") res = CharAttr.DEXTERITY;
+            if (li=="fighting") res = CharAttr.FIGHTING;
+            if (li=="iq") res = CharAttr.IQ;
+            if (li=="perception") res = CharAttr.PERCEPTION;
+            if (li=="strength") res = CharAttr.STRENGTH;
+            if (li=="will") res = CharAttr.WILL;
 
             return res;
         } 

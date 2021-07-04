@@ -12,8 +12,8 @@ v0.x.x (backlog)
 * possibility to pick up items? [probably in game sequel]
 * implement standard "game strings" to be loaded from lM file
 
-v0.2.1
-* GiveItemToPlayer() a DoPostLoadJobs() treba zjednotit
+v0.2.2
+* GiveItemToPlayer() a DoPostLoadJobs() had to be unified
 * add an option to actions/npcs/enemies/enemygroups/actions, how to show their name in slovak (sklonovanie: pouzil si... studňu, vidis... studňu atď.)
 * combat updates:
     * make combat slower, so player can catch, what is going on
@@ -21,24 +21,40 @@ v0.2.1
     * solve situation, when player runs away from battle
         * there is a small chance, that player will be hurt during escape
         * there is a some chance, that runaway is not possible
-* finish rat queen character
 * add more characters
-
-v0.2.0
-* experiments: 
-    - use better way to scan user keyboard (use "textutils" lib)
+* conntinue experiments: 
+    * use better way to scan user keyboard (use "textutils" lib)
 * setup some encounters for "secret map"
+
+
+v0.2.1
+* finish rat queen character
 * tweak and finish "severs" level
     * add creatures
     * add texts, descriptions...
     * add teleporter
+    * add treasures
+
+
+------------------------------------------------------------
+Since 0.2.0 [still alpha state]
+Game maps are complete, now we have to make it more complete
+(and more playable). We had to finish designs.
+------------------------------------------------------------
+
+v0.2.0 (4.7.2021) 
+- separate GUI cs files from the rest
+- separate game fubnctions into the multiple namespaces
+    - fix issues with "Attributes" enum (changed to "CharAttr")
+    - fix issues with "Action" class (changed to "SpecialAction")
 
 v0.1.11 (3.7.2021)
 - implement "severs" level (not fully finished)
 - first (new) character: Rat queen (not fully finished)
 - new system for printing test block is used in "do action" function, for show_msg
 - prepare plan for all game maps (plan is already done, scripting levels alsmost completed)
-- updated help text
+- updated help text block
+- DescribeRoom() method moved to the engine + small optimization
 - bug fixes:
     - updated controls: go up/down is now working
     - "examine well" do not have a text assigned (Unable to find text block: 'skumaj_studnu')
@@ -132,6 +148,13 @@ v0.1.0 --- ENTERING ALPHA !!! --- (7.2.2021)
     - room is described again, after combat
 - added new command: "k", for "where I am?"
 - player default character is more playable (updated character attributes)
+
+------------------------------------------------------------
+Since 0.1.0 [alpha state]
+Game basics are complete, now we have to enhance everything,
+implement game maps and make working at least some of game 
+mechanics.
+------------------------------------------------------------
 
 v0.0.15 (6.2.2021)
 - GiveItemToPlayer method implemented (part of engine)

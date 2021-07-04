@@ -1,6 +1,9 @@
 using System;
 
-namespace legend
+using LegendEngine;
+using LegendLibrary;
+
+namespace Legend
 {
     public class GuiCharacterCreation
     {

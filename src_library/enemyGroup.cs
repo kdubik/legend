@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace legend
+namespace LegendLibrary
 {
     public struct EnemyRecord
     {

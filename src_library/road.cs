@@ -1,4 +1,4 @@
-namespace legend
+namespace LegendLibrary
 {
     public enum Path { NORTH, SOUTH, WEST, EAST, UP, DOWN };
     public enum Direction { BOTH, TO_TARGET, TO_SOURCE };

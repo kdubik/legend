@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace legend
+namespace LegendLibrary
 {
     public enum ItemType { MISC, ASSET, WHEAPON, ARMOR, SHIELD, BOOK, TOOL };
     //public enum BodyPart { HEAD, ARMOR, BOOTS, CLOTHES_UP, CLOTHES_BOTTOM };

@@ -1,7 +1,7 @@
 //  Dices class
 using System;
 
-namespace legend
+namespace LegendEngine
 {
     /// <summary>
     /// Different dices for use.

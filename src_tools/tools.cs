@@ -1,4 +1,4 @@
-namespace legend
+namespace LegendTools
 {
     public static class Tools
     {

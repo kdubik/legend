@@ -1,6 +1,6 @@
 using System;
 
-namespace legend
+namespace LegendLibrary
 {
     public enum ILevel { EASY, STANDARD, HARD, EXTRA_HARD };
 

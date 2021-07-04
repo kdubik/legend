@@ -1,6 +1,7 @@
 using System;
 
-namespace Tutils
+namespace LegendTools
+
 {
     public class Textutils
     {
