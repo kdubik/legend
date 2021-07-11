@@ -5,10 +5,17 @@ namespace LegendTools
     public class Print
     {
         string[] words = null;
+
         public Print(string msg)
         {
             words = msg.Split(" ");
             //Console.WriteLine("Words count: {0}",words.Length.ToString());
+        }
+
+        public void SetMessage(string msg)
+        {
+            //words = null;
+            words = msg.Split(" ");
         }
 
         public string PrepareLine(int startPoint, out int wordCount)

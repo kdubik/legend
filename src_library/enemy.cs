@@ -12,7 +12,9 @@ namespace LegendLibrary
     {
         public string id, name;
         public string desc; // Appearance, description (ID of text block)
+        public string member;   // This enemy is member of which group? (group behavior)
         public int speed, health, defense, armor;
+        public int friendliness = -1;    //Standard enemy (1 friend, 0 none, -1 enemy, -2 angry enemy)
         public int[] attr = new int[9];
 
         public EnemyWheapon wheapon;

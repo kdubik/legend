@@ -12,7 +12,7 @@ v0.x.x (backlog)
 * possibility to pick up items? [probably in game sequel]
 * implement standard "game strings" to be loaded from lM file
 
-v0.2.2
+v0.2.x
 * GiveItemToPlayer() a DoPostLoadJobs() had to be unified
 * add an option to actions/npcs/enemies/enemygroups/actions, how to show their name in slovak (sklonovanie: pouzil si... studňu, vidis... studňu atď.)
 * combat updates:
@@ -25,15 +25,32 @@ v0.2.2
 * conntinue experiments: 
     * use better way to scan user keyboard (use "textutils" lib)
 * setup some encounters for "secret map"
+* implemented movement also for enemies
 
-
-v0.2.1
-* finish rat queen character
+v0.2.3
 * tweak and finish "severs" level
     * add creatures
     * add texts, descriptions...
     * add teleporter
     * add treasures
+
+v0.2.2
+* implement possibility, that enemy with friendliness 0 or 1 won't attack player automatically
+* implement group behavior
+    * when friendliness is 0 or +1, all group members (rats) won't attack player
+    * when any rat is attacked, group friendliness will decrease (automatic every time)
+    * when player is in combat with rats (rats attacked), friendliness do not change
+    
+v0.2.1 (11.7.2021)
+- finish "Rat queen" character
+    - character uses "Greeting" (only once)
+    - character moves randomly on map (new function "MoveNPCsOnActualMap()")
+        - only NPCs have implemented movement now!
+    - fixed missing text (conversation)
+    - update all missing things in loadNPC function
+    - after conversation with rat queen, friendliness increases 
+- implemented "friendliness" parameter for NPCs and enemies
+    - updated also loader, new action types...
 
 
 ------------------------------------------------------------

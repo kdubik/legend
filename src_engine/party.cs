@@ -16,7 +16,8 @@ namespace LegendEngine
     public class Party
     {
         public string actualRoomID;
-        // Party's invertory
+
+        // Party's invertory ???
         
         public List<Character> members = new List<Character>();
 

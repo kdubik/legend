@@ -2,10 +2,15 @@ text rat_queen_greeting
 Hmm, človek... <br> Čo asi tak robí človek v mojom kráľovstve... Hááá? <br> Dobre si uváž, čo urobíš... Ja, sa o svoje deti postarám!
 end
 
+text rat_queen_text
+Ty: Kto si? <br> Potkania kralovna: Ja som vládkyňa všetkých tých myšacín, čo tu pobehujú... <br> Ty: A čo môžem pre teba urobiť? <br> Potkania kralovna: Nechaj moje deti na pokoji, to postačí. Ony zase nechajú na pokoji teba.
+end
+
 # pokus NPC
 npc rat_queen
 name "Potkania kráľovná"
 desc "pokuss"
+member rats
 greeting rat_queen_greeting
 class adept
 friend 1
@@ -13,12 +18,12 @@ speed 15
 health 30
 defence 20
 armor 5
-weapon 3 3d6+3 "Útok pazúrmy a hryzenie'"
+weapon 3 3d6+3 "Útok pazúrmi a hryzenie'"
 end
 
 action rat_queen_salut default rat_queen
 enabled true
 text "Oslov potkaniu kráľovú"
-attribute dexterity
 success show_msg rat_queen_text
+success increase_friendliness rats
 end

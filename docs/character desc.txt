@@ -1,6 +1,5 @@
 Potkania kráľovná:
 ------------------
-
 1. Nemá rada zabíjanie krýs. Ak hráč zabil nejakú krysu, tak naňho zaútočí.
     (affility: rats)
 2. Dá sa s ňou porozprávať
@@ -14,4 +13,27 @@ Obraz upírky:
 - polohu mení náhodne, ale skokovo? (t.j. môže sa objaviť náhodne úplne v hociktorej miestnosti)
     - vystraší hráča? (descrease some bonuses for a while?)
     - trying to find something?
+
+UPírka (vlkodlak?)
+- bude vo finálnom bludisku (secret level)
     
+
+NPC všeobecne
+-------------
+
+--- Parametre charakterov
+1. Greeting: ak nie je prázdne, tak pri prvom stretnutí povie daný text... (čiže "only once")
+
+--- Ako sa môžu NPC postavy pohybovať:
+1. Náhodná teleportácia po mape
+2. Náhodný pohyb po mape
+3. Po odchode hráča z lokality postava zmizne a viac sa nevráti (?)
+4. Nasledovanie presnej trasy (a pripadne nazad)
+5. Hladanie trasy z bodu A do BA (a pripadne nazad)
+
+Co sa udeje, ked klesne friendliness for NPC?
+    1. Just do damage to player on each encounter (?)
+    2. Do a battle [combat nechceme, lebo hrac by bol vzdy v presile. Okrem toho, blue rose nie je o bojovani]
+    3. Automatic battle with character (other type of battle)
+    4. Urcite "akcie" budu disabled, ak klesne "friendliness" [GOOD!]
+        - mozno ja nejake "game eventy" by sa mohli disabletnut a enabletnut

@@ -150,6 +150,7 @@ namespace LegendEngine
                             Console.Write("Stoji tu ");
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.Write(lib.GetTextBlock(tmpNPC.name));
+                            Console.Write(" ({0})",tmpNPC.friendliness.ToString());
                             Console.ResetColor();
                             Console.WriteLine(".");
                         }
@@ -194,6 +195,26 @@ namespace LegendEngine
                 }
                 Console.ResetColor();
                 Console.WriteLine("\n");
+
+                // Ak sú tu NPCcka, tak chcu nas pozdravit?
+                foreach (NPC tmpNPC in lib.NPCs)
+                {
+                    if (tmpNPC.position==party.actualRoomID)
+                    {
+                        // Console.WriteLine("{0}", git.hidden.ToString());
+                        if (tmpNPC.alive)
+                        {
+                            if (!tmpNPC.alreadyGreet)
+                            {
+                                Console.Write("Len čo sa priblížiš k {0}, prehovorí:\n", lib.GetTextBlock(tmpNPC.name));
+                                pr.SetMessage(lib.GetTextBlock(tmpNPC.greeting));
+                                pr.Render();
+                                tmpNPC.alreadyGreet = true;
+                                Console.WriteLine("");
+                            }
+                        }
+                    }
+                }
             }
             else Console.WriteLine("Engine error: Unable to find room '{0}'", party.actualRoomID);
         }
@@ -313,6 +334,43 @@ namespace LegendEngine
                 DescribeRoom();
             }
 
+            // Decrease friendliness of target group
+            if (words[0]=="decrease_friendliness")
+            {
+                string group_name = words[1];
+                // Change all valid enemies
+                foreach (Enemy en in lib.enemies)
+                {
+                    if (en.member==group_name) en.friendliness--;
+                    if (en.friendliness<-2) en.friendliness=-2;
+                }
+                // Change all valid NPCs
+                foreach (NPC lnpc in lib.NPCs)
+                {
+                    if (lnpc.member==group_name) lnpc.friendliness--;
+                    if (lnpc.friendliness<-2) lnpc.friendliness=-2;
+                }
+            }
+
+            // Increase friendliness of target group
+            if (words[0]=="increase_friendliness")
+            {
+                string group_name = words[1];
+                // Change all enemies
+                foreach (Enemy en in lib.enemies)
+                {
+                    if (en.member==group_name) en.friendliness++;
+                    if (en.friendliness>1) en.friendliness=1;
+                }
+                // Change all valid NPCs
+                foreach (NPC lnpc in lib.NPCs)
+                {
+                    if (lnpc.member==group_name) lnpc.friendliness++;
+                    if (lnpc.friendliness>1) lnpc.friendliness=1;
+                }
+                
+            }
+
             return res;
         }
         public ErrorCode ExecuteActionList(List<string> commands)
@@ -356,6 +414,53 @@ namespace LegendEngine
             return bs;
         }
 
+        /// <summary>
+        /// Returns list of rooms, that belongs to selected map
+        /// </summary>
+        /// <param name="mapId">Map, where rooms should be searched for</param>
+        /// <returns>(Strings[]) list of rooms</returns>
+        public string[] GetRoomsOfActualMap(string mapId)
+        {
+            List<string> listOfRooms = new List<string>();
+            foreach (Room tmpRoom in lib.rooms)
+            {
+                if (tmpRoom.map==mapId) listOfRooms.Add(tmpRoom.id);
+            }
+            return listOfRooms.ToArray();
+        }
+
+        public string GetActualMapName(string roomId) => lib.GetRoom(roomId).map;
+
+        /// <summary>
+        /// This method moves with every NPC, when it is set to move.
+        /// </summary>
+        public void MoveNPCsOnActualMap()
+        {
+            string actualMap = GetActualMapName(party.actualRoomID);
+
+            // Ak sú tu NPCcka, tak chcu nas pozdravit?
+            foreach (NPC tmpNPC in lib.NPCs)
+            {
+                if (tmpNPC.alive)
+                {
+                    string NPCmapName=GetActualMapName(tmpNPC.position);
+                    if (NPCmapName==actualMap)
+                    {
+                        Dices dc = new Dices();
+
+                        // So now we know, that NPC is on desired map
+                        // and we can make a move with it.
+                        if (tmpNPC.movement==Movement.RANDOM_MAP)
+                        {
+                            // Easiest movement - random over a map
+                            string[] lrooms = GetRoomsOfActualMap(actualMap);   // get list of avaiable rooms
+                            int target = dc.ThrowDiceX(1,lrooms.Length)-1;        // pick a random number
+                            tmpNPC.position = lrooms[target];                   // change position to random room
+                        }
+                    }
+                }
+            }
+        }
         public ErrorCode Go(Path path)
         {
             ErrorCode ec = ErrorCode.OK;
@@ -389,6 +494,9 @@ namespace LegendEngine
             } 
             else ec=ErrorCode.EMPTY_PATH;
            
+            // If movement was done correctly, we can move NPC characters...
+            if (ec==ErrorCode.OK) MoveNPCsOnActualMap();
+
             return ec;
         }
     }

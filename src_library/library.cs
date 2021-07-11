@@ -434,6 +434,7 @@ namespace LegendLibrary
                                 if (words[0]=="health") tmpEnemy.health = int.Parse(words[1]);
                                 if (words[0]=="defense") tmpEnemy.defense = int.Parse(words[1]);
                                 if (words[0]=="armor") tmpEnemy.armor = int.Parse(words[1]);
+                                if (words[0]=="member") tmpEnemy.member = words[1];
                                 if (words[0]=="attribute")
                                 {
                                     CharAttr ta = Character.GetAttributeFromString(words[1]);
@@ -464,6 +465,7 @@ namespace LegendLibrary
                                 if (words[0]=="health") tmpNPC.health = int.Parse(words[1]);
                                 if (words[0]=="defense") tmpNPC.defense = int.Parse(words[1]);
                                 if (words[0]=="armor") tmpNPC.armor = int.Parse(words[1]);
+                                if (words[0]=="member") tmpNPC.member = words[1];
 
                                 if (words[0]=="desc") tmpNPC.desc = Tools.MergeString(words,1);
                                 if (words[0]=="attribute")
@@ -478,7 +480,7 @@ namespace LegendLibrary
                                     string nm = ReviewString(Tools.MergeString(words,4)); // Name
                                     tmpNPC.AddWheapon(nm, an, words[2],ta);  // All data + DMG
                                 }
-
+                                if (words[0]=="greeting") tmpNPC.greeting = ReviewString(Tools.MergeString(words,1));
                                 if (words[0]=="end")
                                 {
                                     NPCs.Add(tmpNPC);
