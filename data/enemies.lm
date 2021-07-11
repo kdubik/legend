@@ -12,7 +12,8 @@ end
 
 # Pridame dvoch potkanov ako skupinu nepriatelov
 group potkan1
-name "Utok prerastenych krys!"
+name_group "skupinka prerastených krýs"
+name_attack "Utok prerastenych krys!"
 enemy ratSwarm 1
 treasure pohar
 end
@@ -30,8 +31,9 @@ wheapon 5 1d6 accuracy "skupinový útok hryzením"
 end
 
 # Pridame dvoch potkanov ako skupinu nepriatelov
-group potkan1
-name "Utok prerastenych krys!"
-enemy ratSwarm 1
+group bats1
+name_group "skupinka prerastených netopierov"
+name_attack "Utok prerastenych netopierov!"
+enemy batSwarm 1
 treasure pohar
 end

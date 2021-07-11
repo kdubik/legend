@@ -434,7 +434,7 @@ namespace LegendLibrary
                                 if (words[0]=="health") tmpEnemy.health = int.Parse(words[1]);
                                 if (words[0]=="defense") tmpEnemy.defense = int.Parse(words[1]);
                                 if (words[0]=="armor") tmpEnemy.armor = int.Parse(words[1]);
-                                if (words[0]=="member") tmpEnemy.member = words[1];
+                    
                                 if (words[0]=="attribute")
                                 {
                                     CharAttr ta = Character.GetAttributeFromString(words[1]);
@@ -465,7 +465,7 @@ namespace LegendLibrary
                                 if (words[0]=="health") tmpNPC.health = int.Parse(words[1]);
                                 if (words[0]=="defense") tmpNPC.defense = int.Parse(words[1]);
                                 if (words[0]=="armor") tmpNPC.armor = int.Parse(words[1]);
-                                if (words[0]=="member") tmpNPC.member = words[1];
+                                if (words[0]=="friendliness") tmpNPC.friendliness = int.Parse(words[1]);
 
                                 if (words[0]=="desc") tmpNPC.desc = Tools.MergeString(words,1);
                                 if (words[0]=="attribute")
@@ -491,9 +491,11 @@ namespace LegendLibrary
 
                             if (blok==Block.ENEMYGROUP)
                             {
-                                if (words[0]=="name") tmpGroup.name = ReviewString(Tools.MergeString(words,1));
+                                if (words[0]=="name_group") tmpGroup.name_group = ReviewString(Tools.MergeString(words,1));
+                                if (words[0]=="name_attack") tmpGroup.name_attack = ReviewString(Tools.MergeString(words,1));
                                 if (words[0]=="enemy") tmpGroup.AddEnemy(words[1], int.Parse(words[2]));
                                 if (words[0]=="treasure") tmpGroup.AddTreasure(words[1]);
+                                if (words[0]=="friendliness") tmpGroup.friendliness = int.Parse(words[1]);
                                 if (words[0]=="end")
                                 {
                                     enemyGroups.Add(tmpGroup);

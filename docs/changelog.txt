@@ -27,20 +27,29 @@ v0.2.x
 * setup some encounters for "secret map"
 * implemented movement also for enemies
 
-v0.2.3
+v0.2.4
 * tweak and finish "severs" level
     * add creatures
     * add texts, descriptions...
     * add teleporter
     * add treasures
 
-v0.2.2
-* implement possibility, that enemy with friendliness 0 or 1 won't attack player automatically
+v0.2.3
+* implement possibility to attack friendly enemy groups (using action?)
 * implement group behavior
-    * when friendliness is 0 or +1, all group members (rats) won't attack player
-    * when any rat is attacked, group friendliness will decrease (automatic every time)
-    * when player is in combat with rats (rats attacked), friendliness do not change
-    
+    * when any friendly group is attacked, group friendliness will decrease (automatic every time)
+    - standard behavior: when player is in combat with group (rats) and it is attacked, friendliness do not change
+
+v0.2.2 (11.7.2021)
+- some changes to game logic implemented:
+    - friendliness is part of group of nenemies, not particular enemies
+    - NPC and enemies are has no longer membership in "special groups"
+    - two types of actions now: change friendliness of target enemy group, or NPC
+- implement possibility, that enemy groups with friendliness 0 or 1 won't attack player automatically
+- implement new actions: 
+    - "make target enemy group angry" (set_friendliness to -2)
+    - "make target NPC angry" (set_friendliness to -2)
+  
 v0.2.1 (11.7.2021)
 - finish "Rat queen" character
     - character uses "Greeting" (only once)

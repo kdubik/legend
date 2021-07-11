@@ -23,7 +23,7 @@ namespace Legend
         /// </summary>
         public void ShowRoom()
         {
-            eng.DescribeRoom();
+            // eng.DescribeRoom();
             BattleStatus bstatus = eng.Check_combat();
 
             // Suboj prebehol a prehrali sme !!!
@@ -41,8 +41,11 @@ namespace Legend
                 Console.WriteLine("Stlac ENTER pre pokracovanie");
                 Console.ReadLine();
                 Console.Clear();
-                eng.DescribeRoom();
+                //eng.DescribeRoom();
             }
+
+            // If there is not a GAME OVER situation, we can describe a room
+            if (status!=GameStatus.LOOSE) eng.DescribeRoom();
         }
         
         public ErrorCode RunSpecialAction(string actId)

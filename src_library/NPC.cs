@@ -27,6 +27,8 @@ namespace LegendLibrary
         public string greeting = "";   // When NPC greets player (friendliness should be 1)
         public bool alreadyGreet = false;   // Does this NPC already greet a player?
 
+        public int friendliness = 0;    //Standard enemy (1 friend, 0 none, -1 enemy, -2 angry enemy)
+
         public Movement movement = Movement.RANDOM_MAP; // By default, NPC is not moving, just stay
 
         /// <summary>

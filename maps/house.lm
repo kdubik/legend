@@ -101,6 +101,7 @@ end
 room 3_studna
 name "Stará studňa"
 map level1
+add_group potkan1
 add_item studna
 desc "Obzeráš si starú kamennú studňu, nad ktorou je mierne prehnitá strieška zo smrekového dreva. Nezdá sa, že by v nej bola voda a aj tak si nevieš predstaviť nikoho, kto by na toto miesto chodil po vodu. Zrejme ide o pozostatok z čias, keď ešte tajomný dom slúžil ako zvieracia farma."
 end

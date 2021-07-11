@@ -149,7 +149,7 @@ namespace LegendEngine
 
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(lib.GetTextBlock(enemies.name));
+            Console.WriteLine(lib.GetTextBlock(enemies.name_group));
             Console.ResetColor();
             //Console.WriteLine("Combat!");
             PrepareBattlefield();

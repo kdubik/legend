@@ -150,25 +150,23 @@ namespace LegendEngine
                             Console.Write("Stoji tu ");
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.Write(lib.GetTextBlock(tmpNPC.name));
-                            Console.Write(" ({0})",tmpNPC.friendliness.ToString());
+                            //Console.Write(" ({0})",tmpNPC.friendliness.ToString());
                             Console.ResetColor();
                             Console.WriteLine(".");
                         }
                     }
                 }
              
-                /*
                 // Opisat, ci su tu nejake ENEMIES GRUPY
                 if (lRoom.enemyGroup!="")
                 {
-                    EnemyGroup leg = eng.lib.GetEnemyGroup(lRoom.enemyGroup);
-                    Console.Write("Neriatel: ");
+                    EnemyGroup leg = lib.GetEnemyGroup(lRoom.enemyGroup);
+                    Console.Write("Je tu este niekto dalsi: ");
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write(eng.lib.GetTextBlock(leg.name));
+                    Console.Write(lib.GetTextBlock(leg.name_group));
                     Console.ResetColor();
                     Console.WriteLine(".");
                 }
-                */
 
                 // Opisat moznosti cestovania:
                 Console.Write("Mozes ist: ");
@@ -335,41 +333,61 @@ namespace LegendEngine
             }
 
             // Decrease friendliness of target group
-            if (words[0]=="decrease_friendliness")
+            if (words[0]=="decrease_group_friendliness")
             {
-                string group_name = words[1];
-                // Change all valid enemies
-                foreach (Enemy en in lib.enemies)
-                {
-                    if (en.member==group_name) en.friendliness--;
-                    if (en.friendliness<-2) en.friendliness=-2;
-                }
-                // Change all valid NPCs
-                foreach (NPC lnpc in lib.NPCs)
-                {
-                    if (lnpc.member==group_name) lnpc.friendliness--;
-                    if (lnpc.friendliness<-2) lnpc.friendliness=-2;
-                }
+                // group_name = words[1];
+                EnemyGroup leg = lib.GetEnemyGroup(words[1]);
+
+                leg.friendliness--;
+                if (leg.friendliness<-2) leg.friendliness=-2;
+            }
+
+            // Decrease target NPC friendliness
+            if (words[0]=="decrease_npc_friendliness")
+            {
+                // npc_name = words[1];
+                NPC lnpc = lib.GetNPC(words[1]);
+                
+                lnpc.friendliness--;
+                if (lnpc.friendliness<-2) lnpc.friendliness=-2;
             }
 
             // Increase friendliness of target group
-            if (words[0]=="increase_friendliness")
+            if (words[0]=="increase_group_friendliness")
             {
-                string group_name = words[1];
-                // Change all enemies
-                foreach (Enemy en in lib.enemies)
-                {
-                    if (en.member==group_name) en.friendliness++;
-                    if (en.friendliness>1) en.friendliness=1;
-                }
-                // Change all valid NPCs
-                foreach (NPC lnpc in lib.NPCs)
-                {
-                    if (lnpc.member==group_name) lnpc.friendliness++;
-                    if (lnpc.friendliness>1) lnpc.friendliness=1;
-                }
-                
+                // group_name = words[1];
+                EnemyGroup leg = lib.GetEnemyGroup(words[1]);
+
+                leg.friendliness++;
+                if (leg.friendliness>1) leg.friendliness=1;
             }
+
+            // Increase target NPC friendliness
+            if (words[0]=="increase_npc_friendliness")
+            {
+                // npc_name = words[1];
+                NPC lnpc = lib.GetNPC(words[1]);
+                
+                lnpc.friendliness++;
+                if (lnpc.friendliness>1) lnpc.friendliness=1;
+            }
+
+            // Make target NPC angry
+            if (words[0]=="make_npc_angry")
+            {
+                // npc_name = words[1];
+                NPC lnpc = lib.GetNPC(words[1]);              
+                lnpc.friendliness=-2;
+            }
+
+            // Make target enemy group angry
+            if (words[0]=="make_group_angry")
+            {
+                // enemy group_name = words[1];
+                EnemyGroup eg = lib.GetEnemyGroup(words[1]);              
+                eg.friendliness=-2;
+            }
+
 
             return res;
         }
@@ -397,19 +415,26 @@ namespace LegendEngine
             if (lRoom.enemyGroup!="")
             {
                 EnemyGroup leg = lib.GetEnemyGroup(lRoom.enemyGroup);
-                //Console.Write("Neriatel: ");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(lib.GetTextBlock(leg.name));
-                Console.ResetColor();
-                Console.WriteLine("!");
 
-                Console.WriteLine("Stlac ENTER pre zaciatok suboja");
-                Console.ReadLine();
-                Combat combat = new Combat(lib, party, lRoom);
-                bs = combat.DoBattle();
+                if (leg.friendliness<0)
+                {
+                    //Console.Write("Neriatel: ");
+                    Console.Write("Prepad! Útočí na teba ");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(lib.GetTextBlock(leg.name_group));
+                    //Console.Write(" ({0})",leg.friendliness.ToString());
+                    Console.ResetColor();
+                    Console.WriteLine("!");
+
+                    Console.WriteLine("Stlac ENTER pre zaciatok suboja");
+                    Console.ReadLine();
+                    Combat combat = new Combat(lib, party, lRoom);
+                    bs = combat.DoBattle();
+                }
+                //else Console.WriteLine("Friendlines: {0}. Not attacking.", leg.friendliness.ToString());
             }
 
-            // Check for random encounter
+            // Check for random encounter HERE
 
             return bs;
         }

@@ -25,5 +25,5 @@ action rat_queen_salut default rat_queen
 enabled true
 text "Oslov potkaniu kráľovú"
 success show_msg rat_queen_text
-success increase_friendliness rats
+success increase_group_friendliness potkan1
 end
