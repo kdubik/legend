@@ -9,9 +9,9 @@ namespace Legend
 {
     public class GuiMainWin
     {
-        public enum GameStatus { PLAYING, LOOSE, WIN, QUIT, QUIT_SAVE };
+        
         public Engine eng;
-        GameStatus status = GameStatus.PLAYING;
+        //GameStatus status = GameStatus.PLAYING;
 
         public GuiMainWin(Engine inEngine)
         {
@@ -23,29 +23,10 @@ namespace Legend
         /// </summary>
         public void ShowRoom()
         {
-            // eng.DescribeRoom();
-            BattleStatus bstatus = eng.Check_combat();
-
-            // Suboj prebehol a prehrali sme !!!
-            if (bstatus==BattleStatus.LOOSE)
-            {
-                Console.WriteLine("Prebehol suboj a tvoja partia prehrala!");
-                Console.WriteLine("Stlac ENTER pre ukoncenie a vyhodnotenie");
-                Console.ReadLine();
-                status = GameStatus.LOOSE;
-            }
-            if (bstatus==BattleStatus.WIN)
-            {
-                eng.EraseEnemiesInActualRoom(); // Erase enemies in this room
-                Console.WriteLine("Prebehol suboj a tvoja partia vyhrala!");
-                Console.WriteLine("Stlac ENTER pre pokracovanie");
-                Console.ReadLine();
-                Console.Clear();
-                //eng.DescribeRoom();
-            }
+            eng.Check_combat();       
 
             // If there is not a GAME OVER situation, we can describe a room
-            if (status!=GameStatus.LOOSE) eng.DescribeRoom();
+            if (eng.actualGameStatus!=GameStatus.LOOSE) eng.DescribeRoom();
         }
         
         public ErrorCode RunSpecialAction(string actId)
@@ -154,6 +135,25 @@ namespace Legend
                                     actList.Add(tmpAct.id);
                                 }
                             }
+                        }
+                    }
+                }
+            }
+
+            // Enemmy group list
+            Room actRoom = eng.lib.GetRoom(eng.party.actualRoomID);
+            if (actRoom.enemyGroup!="")
+            {
+                foreach(SpecialAction tmpAct in eng.lib.actions)
+                {
+                    if (tmpAct.enabled)
+                    {
+                        if (tmpAct.itemId=="enemy_group")
+                        {
+                            //Console.WriteLine("Act "+tmpAct.desc);
+                            //Console.WriteLine("ActID "+tmpAct.id);
+                            actList.Add(tmpAct.id);
+                            break;
                         }
                     }
                 }
@@ -484,17 +484,17 @@ namespace Legend
                 }
 
                 // Quit game correctly
-                if (line=="ko") status = GameStatus.QUIT;
-                if (line=="ks") status = GameStatus.QUIT_SAVE;
+                if (line=="ko") eng.actualGameStatus = GameStatus.QUIT;
+                if (line=="ks") eng.actualGameStatus = GameStatus.QUIT_SAVE;
 
-            } while (status == GameStatus.PLAYING);
+            } while (eng.actualGameStatus == GameStatus.PLAYING);
 
-            if (status == GameStatus.WIN)
+            if (eng.actualGameStatus == GameStatus.WIN)
             {
                 // Show win message + statistics              
             }
 
-            if (status == GameStatus.LOOSE)
+            if (eng.actualGameStatus == GameStatus.LOOSE)
             {
                 // Show loose message + statistics 
                 Console.Clear();
@@ -502,7 +502,7 @@ namespace Legend
                 Console.ReadLine();              
             }
 
-            if (status == GameStatus.QUIT)
+            if (eng.actualGameStatus == GameStatus.QUIT)
             {
                 // Save game + message           
             }

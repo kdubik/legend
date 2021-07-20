@@ -7,9 +7,11 @@ using LegendTools;
 namespace LegendEngine
 {
     public enum ErrorCode { OK, ROOM_NOT_FOUND, EMPTY_PATH, NOT_ENABLED, ACTION_NOT_FOUND, ERROR };
-
+    public enum GameStatus { PLAYING, LOOSE, WIN, QUIT, QUIT_SAVE };
     public class Engine
     {
+        public GameStatus actualGameStatus = GameStatus.PLAYING;
+
         public Library lib = new Library();
         public Party party = new Party();
         public List<InvertoryItem> gameItems = new List<InvertoryItem>();
@@ -388,6 +390,36 @@ namespace LegendEngine
                 eg.friendliness=-2;
             }
 
+            // Make target enemy group angry
+            if (words[0]=="attack_enemy_group")
+            {
+                Room actualRoom = lib.GetRoom(party.actualRoomID);
+
+                // Decrease enemyGroup friendliness
+                EnemyGroup eg = lib.GetEnemyGroup(actualRoom.enemyGroup);              
+                eg.friendliness--;
+
+                Combat combat = new Combat(lib, party, actualRoom);
+                BattleStatus bs = combat.DoBattle();
+
+                // Suboj prebehol a prehrali sme !!!
+                if (bs==BattleStatus.LOOSE)
+                {
+                    Console.WriteLine("Prebehol suboj a tvoja partia prehrala!");
+                    Console.WriteLine("Stlac ENTER pre ukoncenie a vyhodnotenie");
+                    Console.ReadLine();
+                    actualGameStatus = GameStatus.LOOSE;
+                }
+                if (bs==BattleStatus.WIN)
+                {
+                    EraseEnemiesInActualRoom(); // Erase enemies in this room
+                    Console.WriteLine("Prebehol suboj a tvoja partia vyhrala!");
+                    Console.WriteLine("Stlac ENTER pre pokracovanie");
+                    Console.ReadLine();
+                    Console.Clear();
+                    DescribeRoom();
+                }
+            }
 
             return res;
         }
@@ -430,6 +462,22 @@ namespace LegendEngine
                     Console.ReadLine();
                     Combat combat = new Combat(lib, party, lRoom);
                     bs = combat.DoBattle();
+
+                    if (bs==BattleStatus.LOOSE)
+                    {
+                        Console.WriteLine("Prebehol suboj a tvoja partia prehrala!");
+                        Console.WriteLine("Stlac ENTER pre ukoncenie a vyhodnotenie");
+                        Console.ReadLine();
+                        actualGameStatus = GameStatus.LOOSE;
+                    }
+                    if (bs==BattleStatus.WIN)
+                    {
+                        EraseEnemiesInActualRoom(); // Erase enemies in this room
+                        Console.WriteLine("Prebehol suboj a tvoja partia vyhrala!");
+                        Console.WriteLine("Stlac ENTER pre pokracovanie");
+                        Console.ReadLine();
+                        Console.Clear();
+                    }
                 }
                 //else Console.WriteLine("Friendlines: {0}. Not attacking.", leg.friendliness.ToString());
             }

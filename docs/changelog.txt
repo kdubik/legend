@@ -26,6 +26,7 @@ v0.2.x
     * use better way to scan user keyboard (use "textutils" lib)
 * setup some encounters for "secret map"
 * implemented movement also for enemies
+* refactor: 2x battle check routines are present (not important now, only few lines of code)
 
 v0.2.4
 * tweak and finish "severs" level
@@ -33,16 +34,20 @@ v0.2.4
     * add texts, descriptions...
     * add teleporter
     * add treasures
+    * place Rat queen
 
-v0.2.3
-* implement possibility to attack friendly enemy groups (using action?)
-* implement group behavior
-    * when any friendly group is attacked, group friendliness will decrease (automatic every time)
+v0.2.3 (20.7.2021)
+- implement possibility to attack friendly "enemy groups" (using action?)
+    - new action mechanism created, updated some routines related to actions
+    - check combat updated, partially moved to engine
+    - "status" renamed to "actualGameStatus" and moved to engine
+- implement group behavior
+    - when any friendly group is attacked, group friendliness will decrease (automatic every time)
     - standard behavior: when player is in combat with group (rats) and it is attacked, friendliness do not change
 
 v0.2.2 (11.7.2021)
 - some changes to game logic implemented:
-    - friendliness is part of group of nenemies, not particular enemies
+    - friendliness is part of "group of enemies", not "particular enemies"
     - NPC and enemies are has no longer membership in "special groups"
     - two types of actions now: change friendliness of target enemy group, or NPC
 - implement possibility, that enemy groups with friendliness 0 or 1 won't attack player automatically

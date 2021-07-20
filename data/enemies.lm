@@ -1,3 +1,10 @@
+# default actioin for "enemy_group"
+action enemy_group_attack default enemy_group
+enabled true
+text "Zaútočiť na skupinu"
+success attack_enemy_group
+end
+
 enemy ratSwarm
 name "Skupinka potkanov"
 desc rat_swarm_desc
