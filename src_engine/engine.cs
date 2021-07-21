@@ -219,32 +219,6 @@ namespace LegendEngine
             else Console.WriteLine("Engine error: Unable to find room '{0}'", party.actualRoomID);
         }
 
-/*
-        public void Print(string msg)
-        {
-            if (msg.Length>0)
-            {
-                string[] words = msg.Split(" ");
-                int actualWord = 0;
-                string s = "";
-                string finalLine = "";
-
-                bool mameVetu = false;
-                // 1. ak sa da, vezmi slovo
-                if (actualWord<=words.Length)
-                {
-                    if (s!="") s = s + " ";
-                    s = s + words[actualWord];
-                }
-
-                // 2. mame uz vetu?
-                if (s>80) mameVetu = true;
-
-
-            }
-            Console.WriteLine(Tools.RemoveQuotes(msg));
-        } 
-*/
         public bool ExecuteCommand(string cmd)
         {
             bool res = true;
@@ -534,6 +508,36 @@ namespace LegendEngine
                 }
             }
         }
+
+        public void MoveEnemiesOnActualMap()
+        {
+            string actualMap = GetActualMapName(party.actualRoomID);
+
+            /*
+            // Ak sú tu NPCcka, tak chcu nas pozdravit?
+            foreach (Room tmpRoom in lib.rooms)
+            {
+                if (tmpNPC.alive)
+                {
+                    string NPCmapName=GetActualMapName(tmpNPC.position);
+                    if (NPCmapName==actualMap)
+                    {
+                        Dices dc = new Dices();
+
+                        // So now we know, that NPC is on desired map
+                        // and we can make a move with it.
+                        if (tmpNPC.movement==Movement.RANDOM_MAP)
+                        {
+                            // Easiest movement - random over a map
+                            string[] lrooms = GetRoomsOfActualMap(actualMap);   // get list of avaiable rooms
+                            int target = dc.ThrowDiceX(1,lrooms.Length)-1;        // pick a random number
+                            tmpNPC.position = lrooms[target];                   // change position to random room
+                        }
+                    }
+                }
+            }
+            */
+        }
         public ErrorCode Go(Path path)
         {
             ErrorCode ec = ErrorCode.OK;
@@ -568,7 +572,11 @@ namespace LegendEngine
             else ec=ErrorCode.EMPTY_PATH;
            
             // If movement was done correctly, we can move NPC characters...
-            if (ec==ErrorCode.OK) MoveNPCsOnActualMap();
+            if (ec==ErrorCode.OK) 
+                {
+                    MoveNPCsOnActualMap();      // Move NPCs
+                    MoveEnemiesOnActualMap();   // Move enemies
+                }
 
             return ec;
         }

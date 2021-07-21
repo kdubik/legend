@@ -1,4 +1,4 @@
-# default actioin for "enemy_group"
+# default action for "enemy_group"
 action enemy_group_attack default enemy_group
 enabled true
 text "Zaútočiť na skupinu"

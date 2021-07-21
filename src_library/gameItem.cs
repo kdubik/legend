@@ -23,6 +23,16 @@ namespace LegendLibrary
             this.position = position;
         }
 
+        public GameItem(string gameItemID, string position, Item sourceItem)
+        {
+            this.id = gameItemID;
+            this.position = position;
+            itemType = sourceItem.type;
+            itemName = sourceItem.name;
+            itemSay = sourceItem.say;
+
+        }
+
         public static ILevel GetILevel(string input)
         {
             ILevel rv = ILevel.EASY;

@@ -231,18 +231,24 @@ namespace Legend
                 int m = 0;
                 do
                 {
-                    Console.Write("Vyber si aktivnu {0} (1-{1}), alebo {2} pre koniec: ",
-                        desc, no.ToString(), (no+1).ToString());
+                    Console.Write("Vyber si aktivnu {0} (1-{1}), {2} pre odlozenie vybavenia, alebo {3} pre koniec: ",
+                        desc, no.ToString(), (no+1).ToString(), (no+2).ToString());
                     string equip = Console.ReadLine();
                     m = int.Parse(equip);
 
                     if ((m>0) && (m<no+1))
                     {
                         res = table[m-1];
-                        m=(no+1);
+                        m=no+2;
                     }
 
-                } while (m!=(no+1));
+                    if (m==(no+1))
+                    {
+                        res = "";   // Unequip object
+                        m=no+2;
+                    }
+
+                } while (m!=(no+2));
             } else Console.WriteLine("Ziadna {0} nie je k dispozicii.", desc);
             return res;
         }

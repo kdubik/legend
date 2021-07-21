@@ -276,8 +276,8 @@ namespace LegendLibrary
         /// desired locations. This have to be done after items/NPC etc.
         /// are loaded, so after LM file is loaded.
         /// </summary>
-        /// <param name="postLoadJobs">List of taks (addItem, addNPC...)</param>
-        /// <returns>NUmber of processed items from the list</returns>
+        /// <param name="postLoadJobs">List(string) of taks (addItem, addNPC...)</param>
+        /// <returns>Number of processed items from the list</returns>
         int DoPostLoadJobs(List<string> postLoadJobs)
         {
             int res = 0;
@@ -303,7 +303,6 @@ namespace LegendLibrary
                 if (words[0]=="addItem")
                 {
                     // Add item into target room
-                    GameItem tmpGameItem = new GameItem(id,targetRoom);
                     Item tmpItem = GetItem(id);
                     if (tmpItem==null)
                     {
@@ -311,9 +310,7 @@ namespace LegendLibrary
                     }
                     else
                     {
-                        tmpGameItem.itemType = tmpItem.type;
-                        tmpGameItem.itemName = tmpItem.name;
-                        tmpGameItem.itemSay = tmpItem.say;
+                        GameItem tmpGameItem = new GameItem(id,targetRoom,tmpItem);
 
                         int paramsCount = words.Length - 3;
                         if (paramsCount>0)
