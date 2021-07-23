@@ -1,38 +1,143 @@
 # definition of circumstances in defined map
 # Is it safe? Interior or exterior? etc.
+
+# NAPIS
+item napis1
+name "Starý nápis"
+type static
+desc "Opatrne, stará kanalizácia. Skladisko je v miestnosti za prameňom."
+end
+
+# TREASURE CHEST
+item truhla1
+name "Stará truhlica"
+say "Starú truhlicu"
+type static
+end
+
+action treasure_chect default truhla1
+enabled true
+text "Preskúmť truhlicu"
+success show_msg_wait "V truhlici je niekoľko zaujímavých predmetov!"
+success give_item kozena_zbroj
+success give_item trojzubec
+success give_item stare_vecerne_saty
+end
+
+
+# OLD STARIRWAY -----
+
+item severs_stairs
+name "Staré schodisko"
+type asset
+end
+
+action sewers_use_stairway default severs_stairs
+enabled true
+text "Použi schodište"
+success show_msg_wait "Staré schodisko zapraskalo, až ti to nahnalo husiu kožu! Našťastie, schody vydržali..."
+success teleport dp3
+end
+
+# DAMAGED WALL -----
+
+item damaged_wall
+name "Poskodena stena"
+type asset
+end
+
+action sewers_climb_wall test damaged_wall
+enabled true
+text "Prejst cez puklinu v stene"
+attribute dexterity
+level 8
+focus climbing
+success show_msg_wait "Podarilo sa ti prezliezť za puklinu v poskodenom mure! Je tu akási chodba..."
+success teleport severs14
+fail show_msg "Puklina je priliz uzka, nedarí sa ti prejst! Navyse mas par novych skrabancov..."
+fail damage_player 2
+end
+
+# FLOODED FLOOR -----
+
+item flooded_tunel
+name "Zaplavena sachta"
+type asset
+end
+
+action sewers_swim_sacht test flooded_tunel
+enabled true
+text "Preplavat cez zatopenu chodbu"
+attribute dexterity
+level 9
+focus swim
+success show_msg_wait "Podarilo sa ti preplavat zatopenou chodbou! Je tu akási miestnost..."
+success teleport severs15
+fail show_msg "Nezvladas prejst zatopenou castou chodby, musis sa vratit! Navyse sa ti podarilo nahltat sa spinavej vody..."
+fail damage_player 5
+end
+
+# WELL BOTTOM -----
+
+item well_wall
+name "Stena studne"
+type asset
+end
+
+action sewers_climb_well test well_wall
+enabled true
+text "Vyliest zo studne"
+attribute dexterity
+level 9
+focus climb
+success show_msg_wait "Podarilo sa ti Vyskriabat sa zo studne!"
+success teleport 3_studna
+fail show_msg "Stena je priliz smyklava, nepodarilo sa ti vyliest. Pri pade ti pribudlo niekolko dalsich odrenin..."
+fail damage_player 5
+end
+
+# ROOMS
+
 map level2
 name "Stará kanalizácia"
 type interior
+add_item severs_stairs
 end
 
 room severs_entrance
 name "Vstup do starej kanalizácie"
 map level2
 desc "kanááál"
+add_item well_wall
 end
 
 room severs7
 name "Zapáchajúca chodba"
 map level2
 desc "kanááál"
+add_NPC rat_queen
 end
 
 room severs8
 name "Križovatka s dierou v podlahe"
 map level2
 desc "kanááál"
+add_item flooded_tunel
 end
 
 room severs9
 name "Chodba spájajúca juh a východ"
 map level2
 desc "kanááál"
+add_group potkan1
+add_item napis1
 end
 
 room severs10
 name "Murovaná chodba s poškodenou stenou"
 map level2
 desc "kanááál"
+add_item damaged_wall
 end
 
 room severs11
@@ -51,12 +156,14 @@ room severs13
 name "Chodba"
 map level2
 desc "kanááál"
+add_group potkan1
 end
 
 room severs14
 name "Polozrútená miestnosť"
 map level2
 desc "kanááál"
+add_item truhla1
 end
 
 room severs15
@@ -64,6 +171,8 @@ name "Tajná miestnosť"
 map level2
 desc "kanááál"
 end
+
+# PATHS
 
 path severs_entrance severs7 east
 end
@@ -80,9 +189,6 @@ end
 path severs10 severs11 north
 end
 
-path severs8 severs15 down
-end
-
 path severs8 severs12 south
 end
 
@@ -90,4 +196,8 @@ path severs12 severs13 east
 end
 
 path severs13 severs14 east
+end
+
+path severs15 severs8 west
+direction to_target
 end

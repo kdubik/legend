@@ -30,7 +30,6 @@ namespace LegendLibrary
             itemType = sourceItem.type;
             itemName = sourceItem.name;
             itemSay = sourceItem.say;
-
         }
 
         public static ILevel GetILevel(string input)

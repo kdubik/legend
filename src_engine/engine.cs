@@ -66,19 +66,19 @@ namespace LegendEngine
             
             if (tmpItem!=null)
             {
-                gmi = new GameItem(itemId,"player");
+                gmi = new GameItem(itemId,"player",tmpItem);
                 if (gmi!=null)
                 {
-                    UpdateGameItemInfo(ref gmi);   // Ziska zaujimave informacie z objektu a napise od game itemu
                     lib.gameItems.Add(gmi);
 
-                    // We want also to equip item imediatelly
+                    // Do we want also to equip item imediatelly?
                     if (eqip) EquipItem(tmpItem);
                 }
             }
 
             return gmi;
         }
+        
         public bool DoTest(CharAttr inAttribute, int testLevel)
         {
             bool res = false;
@@ -100,14 +100,6 @@ namespace LegendEngine
             Console.WriteLine("");
 
             return res;
-        }
-
-        public void UpdateGameItemInfo(ref GameItem gi)
-        {
-            Item itm = lib.GetItem(gi.id);
-            gi.itemName = itm.name;
-            gi.itemSay = itm.say;
-            gi.itemType = itm.type;
         }
 
         public void DescribeRoom()
@@ -428,7 +420,7 @@ namespace LegendEngine
                     Console.Write("Prepad! Útočí na teba ");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write(lib.GetTextBlock(leg.name_group));
-                    //Console.Write(" ({0})",leg.friendliness.ToString());
+                    Console.Write(" ({0})",leg.friendliness.ToString());
                     Console.ResetColor();
                     Console.WriteLine("!");
 
@@ -508,7 +500,6 @@ namespace LegendEngine
                 }
             }
         }
-
         public void MoveEnemiesOnActualMap()
         {
             string actualMap = GetActualMapName(party.actualRoomID);

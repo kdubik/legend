@@ -111,11 +111,11 @@ Objects loaded:
  - Enemies loaded: 0
  - NPCs loaded: 0
  - EnemyGroups loaded: 0
- - Items loaded: 6
+ - Items loaded: 7
 
 Items loaded: 
  - Wheapons loaded: 4
- - Armors loaded: 2
+ - Armors loaded: 3
  - Shields loaded: 0
  - Assets loaded: 0
  - Miscs loaded: 0
@@ -127,22 +127,22 @@ Loaded file: maps/severs.lm
 
 General: 
  - main game information loaded: False
- - post load jobs done: 0
+ - post load jobs done: 6
 Objects loaded: 
  - Rooms loaded: 10
  - Roads loaded: 9
  - Text blocks loaded: 0
- - Actions loaded: 0
+ - Actions loaded: 5
  - Enemies loaded: 0
  - NPCs loaded: 0
  - EnemyGroups loaded: 0
- - Items loaded: 0
+ - Items loaded: 6
 
 Items loaded: 
- - Wheapons loaded: 0
+ - Wheapons loaded: 2
  - Armors loaded: 0
  - Shields loaded: 0
- - Assets loaded: 0
+ - Assets loaded: 4
  - Miscs loaded: 0
 
 NPCs loaded: 
@@ -152,7 +152,7 @@ Loaded file: maps/house.lm
 
 General: 
  - main game information loaded: False
- - post load jobs done: 5
+ - post load jobs done: 4
 Objects loaded: 
  - Rooms loaded: 4
  - Roads loaded: 3

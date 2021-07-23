@@ -267,7 +267,9 @@ namespace Legend
                 if (gi.position=="player")
                 {
                     no++;
-                    string name = eng.lib.GetTextBlock(eng.lib.GetItem(gi.id).name);
+                    Item fff =  eng.lib.GetItem(gi.id);
+                    string ttt = fff.name;
+                    string name = eng.lib.GetTextBlock(ttt);
                     string outLine = String.Format("{0}. {1}", no.ToString(), name);
 
                     if (eng.party.members[0].bodySlots[(int)BodySlot.WHEAPON]==gi.id)
@@ -487,6 +489,19 @@ namespace Legend
                     map.Show();
                     Console.ReadLine();
                     ShowRoom();            
+                }
+
+                if (line=="cheat") 
+                {
+                    List<string> cmds = new List<string>();
+                    Console.Write("Cheat > ");
+                    string cht = Console.ReadLine();
+                    string[] w = cht.Split(" ");
+                    if (w[0]=="teleport")
+                    {
+                        cmds.Add("teleport" + " " + w[1]);
+                        eng.ExecuteActionList(cmds);
+                    }
                 }
 
                 // Quit game correctly

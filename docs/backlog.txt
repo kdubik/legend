@@ -1,0 +1,33 @@
+PARTIALLY SOLVED
+- rework loading LM files. When item is not declared first,
+  that it is not possible to add it into the room etc. [partially fixed]
+
+BACKLOG - SEQUEL
+* implement random combat encounters [probably in game sequel]
+* implement dialogues [probably in game sequel]
+* possibility to pick up items? [probably in game sequel]
+* implemented movement also for enemies (enemies group) [probably in game sequel ??]
+
+BACKLOG
+* implement experience, character progress
+* implement focuses
+* EQUIP at the beginning of the game: should be somewhere defined more correctly
+* add more items
+* change item (equip) in invertory should be reworked
+* implement standard "game strings" to be loaded from lM file
+
+CLOSER BACKLOG:
+* add an option to actions/npcs/enemies/enemygroups/actions, how to show their name in slovak (sklonovanie: pouzil si... studňu, vidis... studňu atď.)
+* combat updates:
+    * make combat slower, so player can catch, what is going on
+    * give treasure to player after successful combat
+    * solve situation, when player runs away from battle
+        * there is a small chance, that player will be hurt during escape
+        * there is a some chance, that runaway is not possible
+* continue experiments: 
+    * use better way to scan user keyboard (use "textutils" lib)
+    * bigger GUI redesign
+* refactor: 2x battle check routines are present (not important now, only few lines of code)
+* add more characters (whole game)
+* implement SAVE/LOAD functions
+* implement CHEATS (for easier debuging of game)

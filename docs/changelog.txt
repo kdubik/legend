@@ -1,43 +1,38 @@
-PARTIALLY SOLVED
-- rework loading LM files. When item is not declared first,
-  that it is not possible to add it into the room etc. [partially fixed]
+Legend RPG game, changelog file.
+Kamil Dubik (c) 2020-21
+--------------------------------
 
-BACKLOG - SEQUEL
-* implement random combat encounters [probably in game sequel]
-* implement dialogues [probably in game sequel]
-* possibility to pick up items? [probably in game sequel]
-* implemented movement also for enemies (enemies group) [probably in game sequel ??]
 
-BACKLOG
-* implement experience, character progress
-* implement focuses
-* EQUIP at the beginning of the game: should be somewhere defined more correctly
-* add more items
-* change item (equip) in invertory should be reworked
-* implement standard "game strings" to be loaded from lM file
-
-CLOSER BACKLOG:
-* add an option to actions/npcs/enemies/enemygroups/actions, how to show their name in slovak (sklonovanie: pouzil si... studňu, vidis... studňu atď.)
-* combat updates:
-    * make combat slower, so player can catch, what is going on
-    * give treasure to player after successful combat
-    * solve situation, when player runs away from battle
-        * there is a small chance, that player will be hurt during escape
-        * there is a some chance, that runaway is not possible
-* continue experiments: 
-    * use better way to scan user keyboard (use "textutils" lib)
-    * bigger GUI redesign
-* refactor: 2x battle check routines are present (not important now, only few lines of code)
-
-v0.3.x (TWEAK LEVELS)
+v0.3.2
 * setup some encounters for "secret map"
-* tweak and finish "severs" level
+* finish design of "house" level
     * add creatures
     * add texts, descriptions...
-    * add teleporter
+    * add teleporters and tests
     * add treasures
-    * place Rat queen
-* add more characters (whole game)
+
+v0.3.1
+* finish design of "severs" level
+    * add texts, descriptions...
+    * update: how to read "table" in room 9 ??? ("examine label")
+
+v0.3.0 (23.7.2021)
+- finish design of "severs" level
+    - add creatures
+    - add teleporters and tests
+    - add treasures
+    - place NPCs: Rat queen
+- tweak: "search well" action should be onetime only
+- issue: rats attack, even when they have friendliness 0
+- refactor:
+    [GiveItemToPlayer() uses UpdateGameItemInfo(), which is obsolete]
+    - use new constructor for GameItem instead
+- added basic "cheat" system (for better debuging)
+
+------------------------------------------------------------
+Since 0.3.0 [still alpha state]
+Focusing on finishing map designs.
+------------------------------------------------------------
 
 v0.2.4 (21.7.2021)
 - add un-equip option
@@ -73,7 +68,6 @@ v0.2.1 (11.7.2021)
     - after conversation with rat queen, friendliness increases 
 - implemented "friendliness" parameter for NPCs and enemies
     - updated also loader, new action types...
-
 
 ------------------------------------------------------------
 Since 0.2.0 [still alpha state]

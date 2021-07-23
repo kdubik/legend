@@ -22,6 +22,7 @@ group potkan1
 name_group "skupinka prerastených krýs"
 name_attack "Utok prerastenych krys!"
 enemy ratSwarm 1
+friendliness 0 
 treasure pohar
 end
 

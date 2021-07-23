@@ -70,6 +70,7 @@ enabled true
 text "Preskúmať studňu"
 success show_msg "Po dôkladnom prezretí studne sa ti zdalo, že v tej hĺbke čosi vidíš. Áno, v hĺbe niekoľkých stôp vidíš náznak otvoru. Žeby nejaká chodba? Možno by tu bola šanca pokúsiť sa k tomu otvoru zošplhať..."
 success enable_action vlez_do_studne
+success disable_action preskumaj_studnu
 end
 
 action vlez_do_studne test studna
@@ -101,15 +102,14 @@ end
 room 3_studna
 name "Stará studňa"
 map level1
-add_group potkan1
 add_item studna
+#add_group potkan1
 desc "Obzeráš si starú kamennú studňu, nad ktorou je mierne prehnitá strieška zo smrekového dreva. Nezdá sa, že by v nej bola voda a aj tak si nevieš predstaviť nikoho, kto by na toto miesto chodil po vodu. Zrejme ide o pozostatok z čias, keď ešte tajomný dom slúžil ako zvieracia farma."
 end
 
 room 4_brana
 name "Brána do starého domu"
 map level1
-add_NPC rat_queen
 add_item brana
 desc "Hľadíš na vysokú kovovú bránu, ktorú strážia dve veľké a hlavne škaredé sochy gargoylov. Vzbudzujú rešpekt aj strach, ale sú to len sochy. Nemáš dobrá pocit z tohto mieste, aj keď na oko sa tu nič nedeje. Pomedzi mreže vidíš v diaľke starý dom obrastený z každej strany a niekoľko menších kamenných stavieb."
 end

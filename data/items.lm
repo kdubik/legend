@@ -1,9 +1,19 @@
+
 item cestovatelske_oblecenie
 name "Bežné cestovateľské oblečenie"
 type armor
 value 25
 weight 10
 rarity common
+attributes armor:1;bodypart:armor
+end
+
+item stare_vecerne_saty
+name "Staršie červené večerné šaty"
+type armor
+value 100
+weight 10
+rarity rare
 attributes armor:1;bodypart:armor
 end
 
@@ -53,3 +63,4 @@ weight 30
 rarity rare
 attributes damage:3d8+6;wheapon_type:polearm;two_handed:true;thrown:false
 end
+
