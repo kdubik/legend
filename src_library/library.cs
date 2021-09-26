@@ -57,6 +57,20 @@ namespace LegendLibrary
             return ret;
         }
 
+        public string GetRoomName(string roomId)
+        {
+            string ret = "error";
+            foreach (Room rm in rooms)
+            {
+                if (rm.id==roomId)
+                {
+                    texts.TryGetValue(rm.name,out ret);
+                    break;
+                }
+            }
+            return ret;
+        }
+
         /// <summary>
         /// Find Item in database and returns object, that coresponds to searched id.
         /// </summary>

@@ -17,13 +17,13 @@ armor 0
 wheapon 5 1d6 accuracy "skupinový útok hryzením"
 end
 
-# Pridame dvoch potkanov ako skupinu nepriatelov
+# Pridame potkanov ako skupinu nepriatelov
 group potkan1
 name_group "skupinka prerastených krýs"
 name_attack "Utok prerastenych krys!"
 enemy ratSwarm 1
 friendliness 0 
-treasure pohar
+treasure rat_skin
 end
 
 enemy batSwarm
@@ -32,16 +32,16 @@ desc bat_swarm_desc
 member bats
 attribute accuracy 3
 speed 17
-health 20
+health 10
 defence 13
 armor 0
 wheapon 5 1d6 accuracy "skupinový útok hryzením"
 end
 
-# Pridame dvoch potkanov ako skupinu nepriatelov
+# Pridame netopierov ako skupinu nepriatelov
 group bats1
 name_group "skupinka prerastených netopierov"
-name_attack "Utok prerastenych netopierov!"
+name_attack "Útok prerastených netopierov!"
 enemy batSwarm 1
-treasure pohar
+treasure bat_claw
 end

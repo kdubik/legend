@@ -1,6 +1,7 @@
 using System;
 
 using LegendEngine;
+using LegendLibrary;
 
 namespace Legend
 {
@@ -70,13 +71,34 @@ namespace Legend
             Console.WriteLine("empty x . {0}",empty_x.ToString());
 
             int px = 0; 
-            string msg = eng.party.actualRoomID;
+           
 
             // Main line ( west, current room, east)
             int py = (1 * (empty_y + 3)) + half_empty_y;
-            DrawRectangle( (0 * (empty_x + 20)) + half_empty_x, py, msg);
-            DrawRectangle( (1 * (empty_x + 20)) + half_empty_x, py, msg);
-            DrawRectangle( (2 * (empty_x + 20)) + half_empty_x, py, msg);
+            //Room actRoom = eng.lib.GetRoom(eng.party.actualRoomID);          
+
+            string dir = "";
+            string msg_north = "";
+            string msg_south = "";
+            string msg_west = "";
+            string msg_east = "";
+            string msg_actual = eng.lib.GetRoomName(eng.party.actualRoomID);
+            foreach (Road rd in eng.lib.roads)
+            {
+                string roomId = eng.GetConnectedRoom(rd,out dir);
+                if (roomId!="none") 
+                {
+                    if (dir=="sever") msg_north = eng.lib.GetRoomName(roomId);
+                    if (dir=="juh") msg_south = eng.lib.GetRoomName(roomId);
+                    if (dir=="vychod") msg_east = eng.lib.GetRoomName(roomId);
+                    if (dir=="zapad") msg_west = eng.lib.GetRoomName(roomId);
+                }
+            }
+
+            // string msg = eng.party.actualRoomID;
+            DrawRectangle( (0 * (empty_x + 20)) + half_empty_x, py, msg_west);
+            DrawRectangle( (1 * (empty_x + 20)) + half_empty_x, py, msg_actual);
+            DrawRectangle( (2 * (empty_x + 20)) + half_empty_x, py, msg_east);
 
             /*
             DrawRectangle( (0 * (empty_x + 20)) + half_empty_x,py, eng.party.actualRoomID);

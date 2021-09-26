@@ -64,3 +64,18 @@ rarity rare
 attributes damage:3d8+6;wheapon_type:polearm;two_handed:true;thrown:false
 end
 
+item rat_skin
+name "Potkania koža"
+type misc
+value 15
+weight 10
+rarity common
+end
+
+item bat_claw
+name "Pazúr z netopiera"
+type misc
+value 15
+weight 10
+rarity common
+end

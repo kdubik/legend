@@ -111,14 +111,14 @@ Objects loaded:
  - Enemies loaded: 0
  - NPCs loaded: 0
  - EnemyGroups loaded: 0
- - Items loaded: 7
+ - Items loaded: 9
 
 Items loaded: 
  - Wheapons loaded: 4
  - Armors loaded: 3
  - Shields loaded: 0
  - Assets loaded: 0
- - Miscs loaded: 0
+ - Miscs loaded: 2
 
 NPCs loaded: 
 -> ACTB_1
@@ -127,22 +127,22 @@ Loaded file: maps/severs.lm
 
 General: 
  - main game information loaded: False
- - post load jobs done: 6
+ - post load jobs done: 8
 Objects loaded: 
  - Rooms loaded: 10
  - Roads loaded: 9
  - Text blocks loaded: 0
- - Actions loaded: 5
+ - Actions loaded: 7
  - Enemies loaded: 0
  - NPCs loaded: 0
  - EnemyGroups loaded: 0
- - Items loaded: 6
+ - Items loaded: 7
 
 Items loaded: 
  - Wheapons loaded: 2
  - Armors loaded: 0
  - Shields loaded: 0
- - Assets loaded: 4
+ - Assets loaded: 5
  - Miscs loaded: 0
 
 NPCs loaded: 

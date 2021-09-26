@@ -10,14 +10,23 @@ v0.3.2
     * add texts, descriptions...
     * add teleporters and tests
     * add treasures
+* save/load position function would be nice
+* fix: unable to repplay game after death. Player have to leave game and start it again.
+* fix: issues with entering number for choosing action. (replace with proper GetNumberFromRange() method)
+* fix: treasure is not gained after combat win
 
-v0.3.1
-* finish design of "severs" level
-    * add texts, descriptions...
-    * update: how to read "table" in room 9 ??? ("examine label")
+v0.3.1 (26.9.2021)
+- finish design of "severs" level
+    - add texts
+    - add descriptions
+    - add at least 1 bat swarm encounter
+    - add some treasures after winning bat/rat encounter
+    - fix: how to read "table" in room 9 ??? ("examine label") [action created]
+    - fix: missing "staircase"
+- enhanced "mapGUI" functions (changed also in engine.cs and library.cs)
 
 v0.3.0 (23.7.2021)
-- finish design of "severs" level
+- contineu with design of "severs" level
     - add creatures
     - add teleporters and tests
     - add treasures

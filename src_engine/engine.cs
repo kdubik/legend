@@ -102,6 +102,41 @@ namespace LegendEngine
             return res;
         }
 
+        /// <summary>
+        /// Check, whether this road is connecting other room to actual room.
+        /// if yes, room ID (of other room on the road) is returned, otherwise
+        /// 'none' is returned.
+        /// </summary>
+        /// <param name="rd">Road, that should be checked</param>
+        /// <param name="direction">If room ID is returned, direction to it will be written into this variable</param>
+        /// <returns>Room id</returns>
+        public string GetConnectedRoom(Road rd, out String direction)
+        {
+            string name = "none";
+            string dir = "";
+            if (rd.enabled)
+            {
+                if (rd.sourceRoom==party.actualRoomID)
+                {
+                    if ((rd.bothWay == Direction.BOTH) ||  (rd.bothWay == Direction.TO_TARGET))
+                    {                           
+                        name = rd.targetRoom;
+                        dir = Road.GetPathName(rd.direction1);
+                    }
+                }
+                if (rd.targetRoom==party.actualRoomID)
+                {
+                    if ((rd.bothWay == Direction.BOTH) || (rd.bothWay == Direction.TO_SOURCE))
+                    {
+                        name = rd.sourceRoom;
+                        dir = Road.GetPathName(rd.direction2);
+                    }
+                }
+            }
+            direction = dir;
+            return name;
+        }
+
         public void DescribeRoom()
         {
             Room lRoom = lib.GetRoom(party.actualRoomID);
@@ -165,25 +200,11 @@ namespace LegendEngine
                 // Opisat moznosti cestovania:
                 Console.Write("Mozes ist: ");
                 Console.ForegroundColor = ConsoleColor.Green;
+                string dir = "";
                 foreach (Road rd in lib.roads)
                 {
-                    if (rd.enabled)
-                    {
-                        if (rd.sourceRoom==party.actualRoomID)
-                        {
-                            if ((rd.bothWay == Direction.BOTH) ||  (rd.bothWay == Direction.TO_TARGET))
-                            {                           
-                                Console.Write("{0} ", Road.GetPathName(rd.direction1));
-                            }
-                        }
-                        if (rd.targetRoom==party.actualRoomID)
-                        {
-                            if ((rd.bothWay == Direction.BOTH) || (rd.bothWay == Direction.TO_SOURCE))
-                            {
-                                Console.Write("{0} ", Road.GetPathName(rd.direction2));
-                            }
-                        }
-                    }
+                    string roomId = GetConnectedRoom(rd,out dir);
+                    if (roomId!="none") Console.Write("{0} ", dir);
                 }
                 Console.ResetColor();
                 Console.WriteLine("\n");

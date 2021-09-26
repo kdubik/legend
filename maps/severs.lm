@@ -8,16 +8,23 @@ type static
 desc "Opatrne, stará kanalizácia. Skladisko je v miestnosti za prameňom."
 end
 
+action read_label default napis1
+enabled true
+text "Prečítať nápis"
+success show_msg_wait "Opatrne, stará kanalizácia. Skladisko je v miestnosti za prameňom."
+end
+
 # TREASURE CHEST
 item truhla1
 name "Stará truhlica"
 say "Starú truhlicu"
 type static
+desc "Ide o starú truhlicu v dobrom stave. Má pevné, drevené steny, ale zámok je podľa všetkého hrdzavý a nefunkčný."
 end
 
 action treasure_chect default truhla1
 enabled true
-text "Preskúmť truhlicu"
+text "Preskúmať truhlicu"
 success show_msg_wait "V truhlici je niekoľko zaujímavých predmetov!"
 success give_item kozena_zbroj
 success give_item trojzubec
@@ -25,7 +32,7 @@ success give_item stare_vecerne_saty
 end
 
 
-# OLD STARIRWAY -----
+# OLD STAIRRWAY -----
 
 item severs_stairs
 name "Staré schodisko"
@@ -71,9 +78,9 @@ text "Preplavat cez zatopenu chodbu"
 attribute dexterity
 level 9
 focus swim
-success show_msg_wait "Podarilo sa ti preplavat zatopenou chodbou! Je tu akási miestnost..."
+success show_msg_wait "Podarilo sa ti preplávať zatopenou chodbou! Je tu akási miestnosť..."
 success teleport severs15
-fail show_msg "Nezvladas prejst zatopenou castou chodby, musis sa vratit! Navyse sa ti podarilo nahltat sa spinavej vody..."
+fail show_msg "Nezvládaš prejst zatopenou časťou chodby, musíš sa vrátiť! Navyše sa ti podarilo nahltat sa špinavej vody..."
 fail damage_player 5
 end
 
@@ -86,13 +93,31 @@ end
 
 action sewers_climb_well test well_wall
 enabled true
-text "Vyliest zo studne"
+text "Vyliesť zo studne"
 attribute dexterity
 level 9
 focus climb
-success show_msg_wait "Podarilo sa ti Vyskriabat sa zo studne!"
+success show_msg_wait "Podarilo sa ti vyškriabať sa zo studne!"
 success teleport 3_studna
-fail show_msg "Stena je priliz smyklava, nepodarilo sa ti vyliest. Pri pade ti pribudlo niekolko dalsich odrenin..."
+fail show_msg "Stena je príliž šmykľavá, nepodarilo sa ti vyliesť. Pri páde ti pribudlo niekoľko ďalších odrenín..."
+fail damage_player 5
+end
+
+# HOLE IN THE ROOF (prieduch)
+item prieduch
+name "Prieduch"
+type asset
+end
+
+action cave_climb_to_roof test prieduch
+enabled true
+text "Vyliesť k prieduchu"
+attribute dexterity
+level 10
+focus climb
+success show_msg_wait "Podarilo sa ti vyškriabať sa z jaskyne!"
+success teleport severs10
+fail show_msg "Stena je príliž šmykľavá, nepodarilo sa ti vyliesť. Pri páde ti pribudlo niekoľko ďalších odrenín..."
 fail damage_player 5
 end
 
@@ -107,28 +132,29 @@ end
 room severs_entrance
 name "Vstup do starej kanalizácie"
 map level2
-desc "kanááál"
+desc "Na tomto mnieste je rozhranie mezdi starou chodbou vedúcou do kanalizácie a studňou. Pri pohľade do chodby ti je jasné, že budeš mať k dispozícii čoraz menej svetla."
 add_item well_wall
 end
 
 room severs7
 name "Zapáchajúca chodba"
 map level2
-desc "kanááál"
+desc "Chodba, ktorá spája kanalizáciu so studňou je vlhká a smrdí. Zdá sa, že kde kade vidíš kôpky po krysách."
 add_NPC rat_queen
+add_group bats1
 end
 
 room severs8
 name "Križovatka s dierou v podlahe"
 map level2
-desc "kanááál"
+desc "Na tomto mieste sa zjavne začína skutočná kanalizácia. Na dlážke sú mláky špinavej vody a je tu dokonca niečo, ako zatopená chodba."
 add_item flooded_tunel
 end
 
 room severs9
 name "Chodba spájajúca juh a východ"
 map level2
-desc "kanááál"
+desc "Stojíš na severnom konci tejto podivnej stoky. Smerom na juh vidíš veľa vody a zatopenú chodbu. V diaľke na východe sa črtá murovaná stena"
 add_group potkan1
 add_item napis1
 end
@@ -136,40 +162,42 @@ end
 room severs10
 name "Murovaná chodba s poškodenou stenou"
 map level2
-desc "kanááál"
+desc "Stará murovaná miestnosť zrejme spája dom so stokou. Múr je na viacerých miestach poškodený. Na severe vidíš schodisko, ktoré pravdepodobne vedie do domu."
 add_item damaged_wall
 end
 
 room severs11
 name "Chodba smerujúca do domu"
 map level2
-desc "kanááál"
+add_item severs_stairs
+desc "Stojíš v malej miestnosti, ktorá je vstupom z domu do kanalizácie. Miestnosti dominuje veľké staré schodisko, s niekoľkými zlomenými priečkami a haldami prachu a pavučín."
 end
 
 room severs12
 name "Severo východná chodba"
 map level2
-desc "kanááál"
+desc "Stojíš v južnej časti kanalizácia. Chodba sa tu krúti zo severu na východ. Na severe vidíš codbu zaplavenú vodou a na východe len dlhočizný tunel tmou."
 end
 
 room severs13
 name "Chodba"
 map level2
-desc "kanááál"
+desc "Táto cesta je dlhým úzkym tunelom, ktorý spája hlavnú časť kanalizácie a jej tajomné zákutie."
 add_group potkan1
 end
 
 room severs14
 name "Polozrútená miestnosť"
 map level2
-desc "kanááál"
+desc "Si uprostred menšej jaskyne, s niekoľkými dierami v strope. Z menší otvor sem dokonca dopadá trocha svetla kdesi z povrchu zeme. Je tu dokonca šanca, že by sa dalo do niektorej z dier vyliesť."
 add_item truhla1
+add_item prieduch
 end
 
 room severs15
 name "Tajná miestnosť"
 map level2
-desc "kanááál"
+desc "Stojiš v zachovalej, tehlami obohnanej miestnosti. Nevieš posúdiť, k akému účelu táto miestnosť pôvodne slúžila, no zdá sa, že niekto si z neho urobil skrýšu. Je tu niekoľko rozpadnutých vriec a debien. Zdá sa, že potom, čo bola spojovacia chodba zatopená, nikto sem viac nevkročil (keď pravda nerátame krysy)."
 end
 
 # PATHS
