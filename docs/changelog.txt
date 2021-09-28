@@ -15,6 +15,9 @@ v0.3.2
 * fix: issues with entering number for choosing action. (replace with proper GetNumberFromRange() method)
 * fix: treasure is not gained after combat win
 
+v0.3.2 (27.9.2021)
+- experiments with GUI and ASCI library (ncurses variant)
+
 v0.3.1 (26.9.2021)
 - finish design of "severs" level
     - add texts

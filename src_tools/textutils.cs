@@ -208,7 +208,7 @@ namespace LegendTools
 		public static ConsoleKeyInfo GetPressedKey()
 		{
 			Console.CursorVisible = false;
-			ConsoleKeyInfo key = Console.ReadKey(false);		
+			ConsoleKeyInfo key = Console.ReadKey(true);		
 			Console.CursorVisible = true;
 			return key;
 		}
