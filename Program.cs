@@ -6,7 +6,7 @@ namespace Legend
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Speed RPG");
+            Console.WriteLine("Legends of Aldea RPG, by Kamil Dubik (c) 2021");
             // Console.ReadLine();
             GuiMainMenu mainWin = new GuiMainMenu();
             mainWin.Show();

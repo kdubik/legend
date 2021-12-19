@@ -5,8 +5,8 @@ author "Kamil Dubík"
 name "Tajomný dom"
 game_version 0.1.4
 engine_version 0.1.4
-start_map level1
-start_room 1_krizovatka
+start_map coast_cave
+start_room 7
 game_desc "Rôzne príbehy sa rozprávajú o tajomné panstve, na okraji Pavinského lesa. Potom, čo v okolí začalo pribúdať vlkov, zvláštnych svetiel a ľudí, ktorý sa streli s tajomnými živými sochami bolo rozhodnuté, že je treba panstvo preveriť. Ako začínajúcemu členovi 'kráľovských najlepších' ťa vybrali na prieskumnú misiu..."
 game_intro "Tvoja kralovna ta potrebuje, dobrodruzstvo caka!"
 end

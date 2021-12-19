@@ -15,7 +15,14 @@ namespace LegendEngine
 
     public class Party
     {
+        public bool inLocalMap;  // Is player currently in some local map, or some city?
+ 
+        // Actual room in "local map"    
         public string actualRoomID;
+        public string actualDungeonID;
+
+        // Where is the player on "world map".
+        public string actualWorldLocation = "";
 
         // Party's invertory ???
         

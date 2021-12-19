@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 
+using Ascidraw;
+
 using LegendTools;
 using LegendEngine;
 using LegendLibrary;
@@ -12,6 +14,7 @@ namespace Legend
         
         public Engine eng;
         //GameStatus status = GameStatus.PLAYING;
+        public Adraw ad = new Adraw();
 
         public GuiMainWin(Engine inEngine)
         {
@@ -91,6 +94,12 @@ namespace Legend
 
         public void ShowPotencialActions()
         {
+            // Show GUI
+            ad.SetLineType(LineType.DOUBLE);
+            ad.DrawWindow(0,0,ad.screenWidth, ad.screenHeight," Akcie ",true);
+
+            int aline = 2;
+
             //Dictionary<string, string> dict = new Dictionary<string, string>();
             List<string> actList = new List<string>();
 
@@ -163,15 +172,32 @@ namespace Legend
             {
                 SpecialAction tmpAct = eng.lib.GetAction(actList[a]);
                 string desc = eng.lib.GetTextBlock(tmpAct.desc);
-                Console.WriteLine("{0} {1}", (a+1).ToString(), desc);
+                Console.SetCursorPosition(2,a+2);
+                Console.Write("{0} {1}", (a+1).ToString(), desc);
             }
-            Console.WriteLine("{0} Konec", (actList.Count+1).ToString());
+            Console.SetCursorPosition(2,actList.Count+2);
+            Console.Write("{0} Konec", (actList.Count+1).ToString());
+
 
             int no;
+            ConsoleKeyInfo ch;
+
             do
             {
-                string line = Console.ReadLine();
-                no = int.Parse(line) - 1;
+                //string line = Console.ReadLine();
+                //no = int.Parse(line) - 1;
+                
+                //Console.SetCursorPosition(2,actList.Count+3);
+                //no = Textutils.GetNumberRange(1, actList.Count) - 1;
+
+                bool was = false;
+                do 
+                {
+                    ch = Textutils.GetPressedKey();           
+                    Console.WriteLine(ch.KeyChar.ToString());
+                    was = int.TryParse(ch.KeyChar.ToString(),out no);
+                } while (!was);
+                no--;           
 
                 if ((no>=0) && (no<actList.Count))
                 {
@@ -484,10 +510,10 @@ namespace Legend
 
                 if (line=="map") 
                 {
-                    //Console.WriteLine("dddd");
                     GuiMap map = new GuiMap(eng);
                     map.Show();
-                    Console.ReadLine();
+                    //Console.ReadLine();
+                    var ch = Textutils.GetPressedKey();
                     ShowRoom();            
                 }
 

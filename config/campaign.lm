@@ -1,0 +1,23 @@
+
+name Prekliata dedina
+
+# for levels 1-4
+map1
+start_map_forest
+abandoned_meal
+lost_mountains_miners
+
+# for levels 3-5
+map2
+magic_forest
+
+
+# for levels 5-8
+map3
+
+# for levels 9-12
+map4
+
+# for levels 12-15
+map5
+

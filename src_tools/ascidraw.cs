@@ -3,7 +3,7 @@ using System;
 namespace Ascidraw
 {
     public enum LineType { SINGLE, DOUBLE };
-    class Adraw
+    public class Adraw
     {
         public int screenWidth;
         public int screenHeight;

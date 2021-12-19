@@ -35,8 +35,15 @@ namespace LegendEngine
                 Character hero = new Character(true);
                 party.members.Add(hero);
             }
-            party.actualRoomID = lib.gameInfo.startRoom;
-        }
+            
+            party.actualWorldLocation = "aldis";            // Starting city
+            party.inLocalMap = false;                       // We are in the city, not dungeon
+            
+            party.actualDungeonID = "";
+            party.actualRoomID = lib.gameInfo.startRoom;    // Not important now, but, why not
+
+            actualGameStatus = GameStatus.PLAYING;
+        } 
 
         public void EraseEnemiesInActualRoom()
         {
@@ -232,6 +239,20 @@ namespace LegendEngine
             else Console.WriteLine("Engine error: Unable to find room '{0}'", party.actualRoomID);
         }
 
+        /// <summary>
+        /// Give some treasure to player, after defeating enemies
+        /// </summary>
+        /// <param name="eg">Enemy group, that was defeated</param>
+        public void GiveReward(EnemyGroup eg)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            foreach (var treasure in eg.treasures)
+            {
+                ExecuteCommand("give_item "+treasure);
+            }
+            Console.ResetColor();
+        }
+
         public bool ExecuteCommand(string cmd)
         {
             bool res = true;
@@ -291,7 +312,10 @@ namespace LegendEngine
             if (words[0]=="give_item")
             {
                 GameItem gmi = GiveItemToPlayer(words[1],false);
-                Console.WriteLine("Ziskavas '{0}'!", lib.GetTextBlock(gmi.itemSay).ToLower());
+
+                if (gmi!=null)                
+                    Console.WriteLine("Ziskavas '{0}'!", lib.GetTextBlock(gmi.itemSay).ToLower());
+                else Console.WriteLine("Error! Cannot give an item to the player: '{0}'!",words[1]); 
             }
 
             // Enable target action
@@ -377,7 +401,7 @@ namespace LegendEngine
                 eg.friendliness=-2;
             }
 
-            // Make target enemy group angry
+            // Attack enenmy!
             if (words[0]=="attack_enemy_group")
             {
                 Room actualRoom = lib.GetRoom(party.actualRoomID);
@@ -399,11 +423,14 @@ namespace LegendEngine
                 }
                 if (bs==BattleStatus.WIN)
                 {
+                    // Give potencial reward to player!
+                    GiveReward(eg);
+
                     EraseEnemiesInActualRoom(); // Erase enemies in this room
                     Console.WriteLine("Prebehol suboj a tvoja partia vyhrala!");
                     Console.WriteLine("Stlac ENTER pre pokracovanie");
                     Console.ReadLine();
-                    Console.Clear();
+                    Console.Clear();                    
                     DescribeRoom();
                 }
             }
@@ -459,6 +486,9 @@ namespace LegendEngine
                     }
                     if (bs==BattleStatus.WIN)
                     {
+                        // Give potencial reward to player!
+                        GiveReward(leg);
+
                         EraseEnemiesInActualRoom(); // Erase enemies in this room
                         Console.WriteLine("Prebehol suboj a tvoja partia vyhrala!");
                         Console.WriteLine("Stlac ENTER pre pokracovanie");

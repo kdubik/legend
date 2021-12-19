@@ -2,41 +2,19 @@ using System;
 
 using LegendEngine;
 using LegendLibrary;
+using Ascidraw;
 
 namespace Legend
 {
     public class GuiMap
     {
         public Engine eng;
+        public Adraw ad = new Adraw();
         
         public GuiMap(Engine inEngine)
         {
             eng = inEngine;
-        }
-
-
-        public void DrawLine(int x, int y, int sirka, int vyska)
-        {
-            bool horizontal = true;
-            if (sirka ==0) horizontal = false;
-
-            Console.SetCursorPosition(x,y);
-            if (horizontal)
-            {
-                for (int a=0; a<sirka; a++)
-                {
-                    Console.SetCursorPosition(x+a,y);
-                    Console.Write("-");
-                }
-            }
-            else
-            {
-                for (int a=0; a<vyska; a++)
-                {
-                    Console.SetCursorPosition(x,y+a);
-                    Console.Write("I");
-                }
-            }
+            ad.SetLineType(LineType.SINGLE);
         }
 
         public void DrawRectangle(int x, int y, string msg)
@@ -44,19 +22,17 @@ namespace Legend
             int width = 20;
             int height = 3;
 
-            DrawLine(x,y,width,0);
-            DrawLine(x,y,0,height);
-            DrawLine(x,y+height-1,width,0);
-            DrawLine(x+width-1,y,0,height);
-
+            ad.DrawWindow(x,y,width,height,"",true);
             Console.SetCursorPosition(x+1,y+1);
             Console.Write(msg);
         }
 
         public void Show()
         {
-            Console.Clear();
-            Console.WriteLine("Map");
+            //Console.Clear();
+            //Console.WriteLine("Map");
+            ad.SetLineType(LineType.DOUBLE);
+            ad.DrawWindow(0,0,ad.screenWidth, ad.screenHeight," Map ",true);
 
             int scrx = Console.BufferWidth;
             int scry = Console.BufferHeight;
@@ -68,10 +44,7 @@ namespace Legend
             int half_empty_x = empty_x / 2;
             int half_empty_y = empty_y / 2;
 
-            Console.WriteLine("empty x . {0}",empty_x.ToString());
-
-            int px = 0; 
-           
+            //Console.WriteLine("empty x . {0}",empty_x.ToString());
 
             // Main line ( west, current room, east)
             int py = (1 * (empty_y + 3)) + half_empty_y;
@@ -95,17 +68,18 @@ namespace Legend
                 }
             }
 
-            // string msg = eng.party.actualRoomID;
-            DrawRectangle( (0 * (empty_x + 20)) + half_empty_x, py, msg_west);
-            DrawRectangle( (1 * (empty_x + 20)) + half_empty_x, py, msg_actual);
-            DrawRectangle( (2 * (empty_x + 20)) + half_empty_x, py, msg_east);
 
-            /*
-            DrawRectangle( (0 * (empty_x + 20)) + half_empty_x,py, eng.party.actualRoomID);
-            DrawRectangle( (1 * (empty_x + 20)) + half_empty_x,py, eng.party.actualRoomID);
-            DrawRectangle( (2 * (empty_x + 20)) + half_empty_x,py, eng.party.actualRoomID);
-            */
-            
+            if (msg_west!="") DrawRectangle( (0 * (empty_x + 20)) + half_empty_x, py, msg_west);
+
+            // Actual room (highlighted)
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            if (msg_actual!="")  DrawRectangle( (1 * (empty_x + 20)) + half_empty_x, py, msg_actual);
+            Console.ResetColor();
+            if (msg_east!="")  DrawRectangle( (2 * (empty_x + 20)) + half_empty_x, py, msg_east);
+
+            if (msg_north!="") DrawRectangle( (1 * (empty_x + 20)) + half_empty_x, py - 6, msg_north);
+            if (msg_south!="") DrawRectangle( (1 * (empty_x + 20)) + half_empty_x, py + 6, msg_south);
+           
         }
     }
 }

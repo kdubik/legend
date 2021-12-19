@@ -3,7 +3,7 @@ Kamil Dubik (c) 2020-21
 --------------------------------
 
 
-v0.3.2
+v0.3.4
 * setup some encounters for "secret map"
 * finish design of "house" level
     * add creatures
@@ -11,9 +11,17 @@ v0.3.2
     * add teleporters and tests
     * add treasures
 * save/load position function would be nice
-* fix: unable to repplay game after death. Player have to leave game and start it again.
+* fix: screen is not correctly updated (cleaned), after using ASCI window (actions, main menu...)
 * fix: issues with entering number for choosing action. (replace with proper GetNumberFromRange() method)
-* fix: treasure is not gained after combat win
+
+
+v0.4.0 (19.12.2021)
+- "mapGUI" enhanced with ASCI library (instead of temporary used "graphics")
+- "actions offering" window enhanced with ASCI library 
+- fix: unable to replay game after death. Player have to leave game and start it again.
+- fix: treasure is not gained after combat win
+    - updated checking for errors ,when giving an item to the player
+- started work on campaings and main quest line
 
 v0.3.2 (27.9.2021)
 - experiments with GUI and ASCI library (ncurses variant)
