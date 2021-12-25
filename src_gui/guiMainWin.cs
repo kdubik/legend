@@ -365,6 +365,17 @@ namespace Legend
             Textutils.WaitKey();
         }
 
+        private void DoLevelUp()
+        {
+            Console.WriteLine("Dobrodruzstvo bolo uspesne splnene!");
+            Console.ReadLine();
+
+
+
+            Console.WriteLine("Chces este pokracovat v prieskume lokality? (a/n)");
+            Console.ReadLine();
+        }
+
         public void ShowHelp()
         {
             Console.Clear();
@@ -384,6 +395,7 @@ namespace Legend
             string line = "";
             do
             {
+                bool levelUp = false;
                 Console.Write("> ");
                 line = Console.ReadLine();
 
@@ -399,6 +411,9 @@ namespace Legend
                         Console.WriteLine("Siel si na sever.\n");
                         ShowRoom();
                     }
+
+                    if (ec==ErrorCode.TARGET_LOCATION_REACHED) levelUp = true;
+
                 }
 
                 if (line=="j") 
@@ -413,6 +428,7 @@ namespace Legend
                         Console.WriteLine("Siel si na juh.\n");
                         ShowRoom();
                     }
+                    if (ec==ErrorCode.TARGET_LOCATION_REACHED) levelUp = true;
                 }
 
                 if (line=="z") 
@@ -427,6 +443,7 @@ namespace Legend
                         Console.WriteLine("Siel si na zapad.\n");
                         ShowRoom();
                     }
+                    if (ec==ErrorCode.TARGET_LOCATION_REACHED) levelUp = true;
                     //if (ec==ErrorCode.NOT_ENABLED) Console.WriteLine("DISABLED.\n");
                 }
 
@@ -442,6 +459,7 @@ namespace Legend
                         Console.WriteLine("Siel si na vychod.\n");
                         ShowRoom();
                     }
+                    if (ec==ErrorCode.TARGET_LOCATION_REACHED) levelUp = true;
                     //if (ec==ErrorCode.NOT_ENABLED) Console.WriteLine("DISABLED.\n");
                 }
 
@@ -457,6 +475,7 @@ namespace Legend
                         Console.WriteLine("Siel si nadol.\n");
                         ShowRoom();
                     }
+                    if (ec==ErrorCode.TARGET_LOCATION_REACHED) levelUp = true;
                 }
 
                 if (line=="h")
@@ -471,6 +490,7 @@ namespace Legend
                         Console.WriteLine("Siel si nahor.\n");
                         ShowRoom();
                     }
+                    if (ec==ErrorCode.TARGET_LOCATION_REACHED) levelUp = true;
                 }
 
                 if (line=="a") 
@@ -529,6 +549,9 @@ namespace Legend
                         eng.ExecuteActionList(cmds);
                     }
                 }
+
+                // Other events
+                if (levelUp) DoLevelUp();
 
                 // Quit game correctly
                 if (line=="ko") eng.actualGameStatus = GameStatus.QUIT;

@@ -1,0 +1,32 @@
+/home/kim/Projekty/legend/bin/Debug/net5.0/legend
+/home/kim/Projekty/legend/bin/Debug/net5.0/legend.deps.json
+/home/kim/Projekty/legend/bin/Debug/net5.0/legend.runtimeconfig.json
+/home/kim/Projekty/legend/bin/Debug/net5.0/legend.runtimeconfig.dev.json
+/home/kim/Projekty/legend/bin/Debug/net5.0/legend.dll
+/home/kim/Projekty/legend/bin/Debug/net5.0/ref/legend.dll
+/home/kim/Projekty/legend/bin/Debug/net5.0/legend.pdb
+/home/kim/Projekty/legend/obj/Debug/net5.0/legend.csproj.AssemblyReference.cache
+/home/kim/Projekty/legend/obj/Debug/net5.0/legend.GeneratedMSBuildEditorConfig.editorconfig
+/home/kim/Projekty/legend/obj/Debug/net5.0/legend.AssemblyInfoInputs.cache
+/home/kim/Projekty/legend/obj/Debug/net5.0/legend.AssemblyInfo.cs
+/home/kim/Projekty/legend/obj/Debug/net5.0/legend.csproj.CoreCompileInputs.cache
+/home/kim/Projekty/legend/obj/Debug/net5.0/legend.dll
+/home/kim/Projekty/legend/obj/Debug/net5.0/ref/legend.dll
+/home/kim/Projekty/legend/obj/Debug/net5.0/legend.pdb
+/home/kim/Projekty/legend/obj/Debug/net5.0/legend.genruntimeconfig.cache
+/home/kim/Projekty/Legends of Aldea/legend/bin/Debug/net5.0/legend
+/home/kim/Projekty/Legends of Aldea/legend/bin/Debug/net5.0/legend.deps.json
+/home/kim/Projekty/Legends of Aldea/legend/bin/Debug/net5.0/legend.runtimeconfig.json
+/home/kim/Projekty/Legends of Aldea/legend/bin/Debug/net5.0/legend.runtimeconfig.dev.json
+/home/kim/Projekty/Legends of Aldea/legend/bin/Debug/net5.0/legend.dll
+/home/kim/Projekty/Legends of Aldea/legend/bin/Debug/net5.0/ref/legend.dll
+/home/kim/Projekty/Legends of Aldea/legend/bin/Debug/net5.0/legend.pdb
+/home/kim/Projekty/Legends of Aldea/legend/obj/Debug/net5.0/legend.csproj.AssemblyReference.cache
+/home/kim/Projekty/Legends of Aldea/legend/obj/Debug/net5.0/legend.GeneratedMSBuildEditorConfig.editorconfig
+/home/kim/Projekty/Legends of Aldea/legend/obj/Debug/net5.0/legend.AssemblyInfoInputs.cache
+/home/kim/Projekty/Legends of Aldea/legend/obj/Debug/net5.0/legend.AssemblyInfo.cs
+/home/kim/Projekty/Legends of Aldea/legend/obj/Debug/net5.0/legend.csproj.CoreCompileInputs.cache
+/home/kim/Projekty/Legends of Aldea/legend/obj/Debug/net5.0/legend.dll
+/home/kim/Projekty/Legends of Aldea/legend/obj/Debug/net5.0/ref/legend.dll
+/home/kim/Projekty/Legends of Aldea/legend/obj/Debug/net5.0/legend.pdb
+/home/kim/Projekty/Legends of Aldea/legend/obj/Debug/net5.0/legend.genruntimeconfig.cache

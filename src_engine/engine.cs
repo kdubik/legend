@@ -6,7 +6,7 @@ using LegendTools;
 
 namespace LegendEngine
 {
-    public enum ErrorCode { OK, ROOM_NOT_FOUND, EMPTY_PATH, NOT_ENABLED, ACTION_NOT_FOUND, ERROR };
+    public enum ErrorCode { OK, ROOM_NOT_FOUND, EMPTY_PATH, NOT_ENABLED, ACTION_NOT_FOUND, ERROR, TARGET_LOCATION_REACHED };
     public enum GameStatus { PLAYING, LOOSE, WIN, QUIT, QUIT_SAVE };
     public class Engine
     {
@@ -26,7 +26,8 @@ namespace LegendEngine
         {
             lib.CleanAll();         // Erase all data in the memory
             lib.LoadDataFilesFromFolder("data");    // Load game data
-            lib.LoadDataFilesFromFolder("maps");    // Load game maps
+            //lib.LoadDataFilesFromFolder("maps");    // Load game maps
+            lib.LoadLMFile("maps/coast_cave.lm");
 
             // Prepare default character (party)
             party.Clean();
@@ -37,9 +38,9 @@ namespace LegendEngine
             }
             
             party.actualWorldLocation = "aldis";            // Starting city
-            party.inLocalMap = false;                       // We are in the city, not dungeon
+            party.inLocalMap = true;                        // We are in the first dungeon
             
-            party.actualDungeonID = "";
+            party.actualDungeonID = "coast_cave";
             party.actualRoomID = lib.gameInfo.startRoom;    // Not important now, but, why not
 
             actualGameStatus = GameStatus.PLAYING;
@@ -531,7 +532,7 @@ namespace LegendEngine
             // Ak sú tu NPCcka, tak chcu nas pozdravit?
             foreach (NPC tmpNPC in lib.NPCs)
             {
-                if (tmpNPC.alive)
+                if ((tmpNPC.alive) && (tmpNPC.position!=""))
                 {
                     string NPCmapName=GetActualMapName(tmpNPC.position);
                     if (NPCmapName==actualMap)
@@ -580,6 +581,14 @@ namespace LegendEngine
             }
             */
         }
+        
+        public bool CheckTargetLocation()
+        {
+            bool answer = false;
+            if (party.actualRoomID==lib.adventureInfo.targetLocation) answer=true;
+            return answer;
+        }
+        
         public ErrorCode Go(Path path)
         {
             ErrorCode ec = ErrorCode.OK;
@@ -616,8 +625,12 @@ namespace LegendEngine
             // If movement was done correctly, we can move NPC characters...
             if (ec==ErrorCode.OK) 
                 {
-                    MoveNPCsOnActualMap();      // Move NPCs
-                    MoveEnemiesOnActualMap();   // Move enemies
+                    // Is this target location of this adventure?
+                    if (CheckTargetLocation())
+                        ec=ErrorCode.TARGET_LOCATION_REACHED;     
+
+                    //MoveNPCsOnActualMap();      // Move NPCs
+                    //MoveEnemiesOnActualMap();   // Move enemies
                 }
 
             return ec;

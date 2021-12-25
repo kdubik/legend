@@ -39,6 +39,7 @@ namespace LegendLibrary
         {
             this.id = id;
             this.friendliness = 0;  // No enemy, just stranger
+            this.position = "";
         }
 
         /// <summary>

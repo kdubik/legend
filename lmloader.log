@@ -22,81 +22,6 @@ Items loaded:
  - Miscs loaded: 0
 
 NPCs loaded: 
-Loaded file: data/character_rat_queen.lm
-------------------
-
-General: 
- - main game information loaded: False
- - post load jobs done: 0
-Objects loaded: 
- - Rooms loaded: 0
- - Roads loaded: 0
- - Text blocks loaded: 2
- - Actions loaded: 1
- - Enemies loaded: 0
- - NPCs loaded: 1
- - EnemyGroups loaded: 0
- - Items loaded: 0
-
-Items loaded: 
- - Wheapons loaded: 0
- - Armors loaded: 0
- - Shields loaded: 0
- - Assets loaded: 0
- - Miscs loaded: 0
-
-NPCs loaded: 
--> ACTB_1
-Loaded file: data/enemies.lm
-------------------
-
-General: 
- - main game information loaded: False
- - post load jobs done: 0
-Objects loaded: 
- - Rooms loaded: 0
- - Roads loaded: 0
- - Text blocks loaded: 0
- - Actions loaded: 1
- - Enemies loaded: 2
- - NPCs loaded: 0
- - EnemyGroups loaded: 2
- - Items loaded: 0
-
-Items loaded: 
- - Wheapons loaded: 0
- - Armors loaded: 0
- - Shields loaded: 0
- - Assets loaded: 0
- - Miscs loaded: 0
-
-NPCs loaded: 
--> ACTB_1
-Loaded file: data/base.lm
-------------------
-
-General: 
- - main game information loaded: False
- - post load jobs done: 0
-Objects loaded: 
- - Rooms loaded: 0
- - Roads loaded: 0
- - Text blocks loaded: 2
- - Actions loaded: 0
- - Enemies loaded: 0
- - NPCs loaded: 0
- - EnemyGroups loaded: 0
- - Items loaded: 0
-
-Items loaded: 
- - Wheapons loaded: 0
- - Armors loaded: 0
- - Shields loaded: 0
- - Assets loaded: 0
- - Miscs loaded: 0
-
-NPCs loaded: 
--> ACTB_1
 Loaded file: data/items.lm
 ------------------
 
@@ -121,66 +46,89 @@ Items loaded:
  - Miscs loaded: 2
 
 NPCs loaded: 
--> ACTB_1
-Loaded file: maps/severs.lm
-------------------
-
-General: 
- - main game information loaded: False
- - post load jobs done: 8
-Objects loaded: 
- - Rooms loaded: 10
- - Roads loaded: 9
- - Text blocks loaded: 0
- - Actions loaded: 7
- - Enemies loaded: 0
- - NPCs loaded: 0
- - EnemyGroups loaded: 0
- - Items loaded: 7
-
-Items loaded: 
- - Wheapons loaded: 2
- - Armors loaded: 0
- - Shields loaded: 0
- - Assets loaded: 5
- - Miscs loaded: 0
-
-NPCs loaded: 
--> ACTB_1
-Loaded file: maps/house.lm
-------------------
-
-General: 
- - main game information loaded: False
- - post load jobs done: 4
-Objects loaded: 
- - Rooms loaded: 4
- - Roads loaded: 3
- - Text blocks loaded: 0
- - Actions loaded: 7
- - Enemies loaded: 0
- - NPCs loaded: 0
- - EnemyGroups loaded: 0
- - Items loaded: 4
-
-Items loaded: 
- - Wheapons loaded: 0
- - Armors loaded: 0
- - Shields loaded: 0
- - Assets loaded: 4
- - Miscs loaded: 0
-
-NPCs loaded: 
--> ACTB_1
-Loaded file: maps/h_level3.lm
+Loaded file: data/base.lm
 ------------------
 
 General: 
  - main game information loaded: False
  - post load jobs done: 0
 Objects loaded: 
- - Rooms loaded: 6
- - Roads loaded: 5
+ - Rooms loaded: 0
+ - Roads loaded: 0
+ - Text blocks loaded: 2
+ - Actions loaded: 0
+ - Enemies loaded: 0
+ - NPCs loaded: 0
+ - EnemyGroups loaded: 0
+ - Items loaded: 0
+
+Items loaded: 
+ - Wheapons loaded: 0
+ - Armors loaded: 0
+ - Shields loaded: 0
+ - Assets loaded: 0
+ - Miscs loaded: 0
+
+NPCs loaded: 
+Loaded file: data/character_rat_queen.lm
+------------------
+
+General: 
+ - main game information loaded: False
+ - post load jobs done: 0
+Objects loaded: 
+ - Rooms loaded: 0
+ - Roads loaded: 0
+ - Text blocks loaded: 2
+ - Actions loaded: 1
+ - Enemies loaded: 0
+ - NPCs loaded: 1
+ - EnemyGroups loaded: 0
+ - Items loaded: 0
+
+Items loaded: 
+ - Wheapons loaded: 0
+ - Armors loaded: 0
+ - Shields loaded: 0
+ - Assets loaded: 0
+ - Miscs loaded: 0
+
+NPCs loaded: 
+-> ACTB_12
+Loaded file: data/enemies.lm
+------------------
+
+General: 
+ - main game information loaded: False
+ - post load jobs done: 0
+Objects loaded: 
+ - Rooms loaded: 0
+ - Roads loaded: 0
+ - Text blocks loaded: 0
+ - Actions loaded: 1
+ - Enemies loaded: 2
+ - NPCs loaded: 0
+ - EnemyGroups loaded: 2
+ - Items loaded: 0
+
+Items loaded: 
+ - Wheapons loaded: 0
+ - Armors loaded: 0
+ - Shields loaded: 0
+ - Assets loaded: 0
+ - Miscs loaded: 0
+
+NPCs loaded: 
+-> ACTB_12
+Loaded file: maps/coast_cave.lm
+------------------
+
+General: 
+ - main game information loaded: False
+ - post load jobs done: 0
+Objects loaded: 
+ - Rooms loaded: 15
+ - Roads loaded: 14
  - Text blocks loaded: 0
  - Actions loaded: 0
  - Enemies loaded: 0
@@ -196,79 +144,4 @@ Items loaded:
  - Miscs loaded: 0
 
 NPCs loaded: 
--> ACTB_1
-Loaded file: maps/h_level2.lm
-------------------
-
-General: 
- - main game information loaded: False
- - post load jobs done: 0
-Objects loaded: 
- - Rooms loaded: 8
- - Roads loaded: 10
- - Text blocks loaded: 0
- - Actions loaded: 0
- - Enemies loaded: 0
- - NPCs loaded: 0
- - EnemyGroups loaded: 0
- - Items loaded: 0
-
-Items loaded: 
- - Wheapons loaded: 0
- - Armors loaded: 0
- - Shields loaded: 0
- - Assets loaded: 0
- - Miscs loaded: 0
-
-NPCs loaded: 
--> ACTB_1
-Loaded file: maps/h_level1.lm
-------------------
-
-General: 
- - main game information loaded: False
- - post load jobs done: 0
-Objects loaded: 
- - Rooms loaded: 10
- - Roads loaded: 10
- - Text blocks loaded: 0
- - Actions loaded: 0
- - Enemies loaded: 0
- - NPCs loaded: 0
- - EnemyGroups loaded: 0
- - Items loaded: 0
-
-Items loaded: 
- - Wheapons loaded: 0
- - Armors loaded: 0
- - Shields loaded: 0
- - Assets loaded: 0
- - Miscs loaded: 0
-
-NPCs loaded: 
--> ACTB_1
-Loaded file: maps/secret.lm
-------------------
-
-General: 
- - main game information loaded: False
- - post load jobs done: 0
-Objects loaded: 
- - Rooms loaded: 34
- - Roads loaded: 34
- - Text blocks loaded: 0
- - Actions loaded: 0
- - Enemies loaded: 0
- - NPCs loaded: 0
- - EnemyGroups loaded: 0
- - Items loaded: 0
-
-Items loaded: 
- - Wheapons loaded: 0
- - Armors loaded: 0
- - Shields loaded: 0
- - Assets loaded: 0
- - Miscs loaded: 0
-
-NPCs loaded: 
--> ACTB_1
+-> ACTB_12

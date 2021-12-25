@@ -1,30 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/Users/kim/Projekty/legend/legend.csproj": {}
+    "/home/kim/Projekty/Legends of Aldea/legend/legend.csproj": {}
   },
   "projects": {
-    "/Users/kim/Projekty/legend/legend.csproj": {
+    "/home/kim/Projekty/Legends of Aldea/legend/legend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/kim/Projekty/legend/legend.csproj",
+        "projectUniqueName": "/home/kim/Projekty/Legends of Aldea/legend/legend.csproj",
         "projectName": "legend",
-        "projectPath": "/Users/kim/Projekty/legend/legend.csproj",
-        "packagesPath": "/Users/kim/.nuget/packages/",
-        "outputPath": "/Users/kim/Projekty/legend/obj/",
+        "projectPath": "/home/kim/Projekty/Legends of Aldea/legend/legend.csproj",
+        "packagesPath": "/home/kim/.nuget/packages/",
+        "outputPath": "/home/kim/Projekty/Legends of Aldea/legend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/kim/.nuget/NuGet/NuGet.Config"
+          "/home/kim/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net6.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -35,8 +35,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "imports": [
             "net461",
             "net462",
@@ -52,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.103/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.101/RuntimeIdentifierGraph.json"
         }
       }
     }

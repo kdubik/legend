@@ -1,0 +1,26 @@
+Map size: 5 x 3
+
+Generating locations:
+-> Location (0), path count: 2
+-> Location (1), path count: 1
+-> Location (2), path count: 1
+-> Location (3), path count: 0
+-> Location (4), path count: 0
+-> Location (5), path count: 0
+-> Location (6), path count: 2
+-> Location (7), path count: 3
+-> Location (8), path count: 1
+-> Location (9), path count: 1
+-> Location (10), path count: 1
+-> Location (11), path count: 1
+-> Location (12), path count: 0
+-> Location (13), path count: 0
+-> Location (14), path count: 2
+
+Generating rooms:
+-> Location (2) is now room.
+-> Location (3) is now room.
+-> Location (5) is now room.
+-> Location (10) is now room.
+
+Start room (7): 7 x 5

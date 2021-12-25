@@ -1,0 +1,100 @@
+descriptions total count: 19
+uniqueRooms descriptions count: 4
+standardRooms descriptions count: 5
+uniqueTunels descriptions count: 5
+standardTunels descriptions count: 5
+
+
+---- Generating room: 0 ----
+It is a room?: False
+useUniqueDesc: True (throw 96 vs 85)
+- used unique desc count: 0 / total count 5
+- unique desc no: 2
+
+---- Generating room: 1 ----
+It is a room?: False
+useUniqueDesc: True (throw 99 vs 85)
+- used unique desc count: 1 / total count 5
+- unique desc no: 4
+
+---- Generating room: 2 ----
+It is a room?: True
+useUniqueDesc: False (throw 9 vs 75)
+- used unique desc count: 0 / total count 4
+- standard desc no: 2
+
+---- Generating room: 3 ----
+It is a room?: True
+useUniqueDesc: False (throw 47 vs 75)
+- used unique desc count: 0 / total count 4
+- standard desc no: 2
+
+---- Generating room: 4 ----
+It is a room?: False
+useUniqueDesc: False (throw 71 vs 85)
+- used unique desc count: 2 / total count 5
+- standard desc no: 1
+
+---- Generating room: 5 ----
+It is a room?: True
+useUniqueDesc: True (throw 93 vs 75)
+- used unique desc count: 0 / total count 4
+- unique desc no: 0
+
+---- Generating room: 6 ----
+It is a room?: False
+useUniqueDesc: False (throw 24 vs 85)
+- used unique desc count: 2 / total count 5
+- standard desc no: 3
+
+---- Generating room: 7 ----
+It is a room?: False
+useUniqueDesc: False (throw 4 vs 85)
+- used unique desc count: 2 / total count 5
+- standard desc no: 3
+
+---- Generating room: 8 ----
+It is a room?: False
+useUniqueDesc: False (throw 18 vs 85)
+- used unique desc count: 2 / total count 5
+- standard desc no: 0
+
+---- Generating room: 9 ----
+It is a room?: False
+useUniqueDesc: False (throw 24 vs 85)
+- used unique desc count: 2 / total count 5
+- standard desc no: 1
+
+---- Generating room: 10 ----
+It is a room?: True
+useUniqueDesc: False (throw 73 vs 75)
+- used unique desc count: 1 / total count 4
+- standard desc no: 1
+
+---- Generating room: 11 ----
+It is a room?: False
+useUniqueDesc: False (throw 35 vs 85)
+- used unique desc count: 2 / total count 5
+- standard desc no: 2
+
+---- Generating room: 12 ----
+It is a room?: False
+useUniqueDesc: False (throw 83 vs 85)
+- used unique desc count: 2 / total count 5
+- standard desc no: 0
+
+---- Generating room: 13 ----
+It is a room?: False
+useUniqueDesc: False (throw 73 vs 85)
+- used unique desc count: 2 / total count 5
+- standard desc no: 1
+
+---- Generating room: 14 ----
+It is a room?: False
+useUniqueDesc: False (throw 7 vs 85)
+- used unique desc count: 2 / total count 5
+- standard desc no: 2
+
+Total locations count: 15
+Total rooms count: 4
+Total tunels count: 11

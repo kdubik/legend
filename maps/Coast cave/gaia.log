@@ -1,0 +1,31 @@
+Preparing dwellers spawning:
+Desired dweller type: BEASTS
+Desired amount: NORMAL
+Desired threat: MINOR
+
+Iterating over locations:
+-> This location contains DANGER tag. Increasing chance (20) by +25%
+-> Čistinka: throw 9 vs chance 45 
+   --> Group chosen: eg_beast_dog
+-> This location contains DANGER tag. Increasing chance (20) by +25%
+-> Cestička vlkov: throw 38 vs chance 45 
+   --> Group chosen: eg_beast_dog
+-> Kráľovská spálňa: throw 37 vs chance 20 
+-> Kráľovská spálňa: throw 17 vs chance 20 
+   --> Group chosen: eg_beast_rat_swarm
+-> Veľmi dlhý tunel: throw 80 vs chance 20 
+-> Šatník šeliem: throw 22 vs chance 20 
+-> Chodba netopierov.: throw 96 vs chance 20 
+-> Chodba netopierov.: throw 1 vs chance 20 
+   --> Group chosen: eg_beast_cat
+-> Tunel s tmavými stenami: throw 62 vs chance 20 
+-> Veľmi dlhý tunel: throw 57 vs chance 20 
+-> Zle vetraná miesnosť: throw 44 vs chance 20 
+-> Priestranný tunel: throw 65 vs chance 20 
+-> Tunel s tmavými stenami: throw 57 vs chance 20 
+-> Veľmi dlhý tunel: throw 64 vs chance 20 
+-> Priestranný tunel: throw 82 vs chance 20 
+
+Total group count: 4
+Total room count: 15
+

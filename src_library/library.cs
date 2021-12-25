@@ -6,10 +6,16 @@ using LegendTools;
 
 namespace LegendLibrary
 {
-    public enum Block { NONE, ROOM, ROAD, TEXT, ACTION, ENEMY, NPC, ENEMYGROUP, ITEM, GAMEINFO };
+    public enum Block { NONE, ROOM, ROAD, TEXT, ACTION, ENEMY, NPC, ENEMYGROUP, ITEM, GAMEINFO, ADVENTUREINFO };
     public class Library
     {
+        // Global info about whole game
         public GameInfo gameInfo = new GameInfo();
+
+        // Info about actual map (adventure)
+        public AdventureInfo adventureInfo = new AdventureInfo();
+
+        // Actual map (adventure) content
         public List<Room> rooms = new List<Room>();
         public List<Road> roads = new List<Road>();
         public List<Item> items = new List<Item>();
@@ -532,6 +538,22 @@ namespace LegendLibrary
                                 }
                             }
 
+                            if (blok==Block.ADVENTUREINFO)
+                            {
+                                if (words[0]=="name") adventureInfo.mapName = Tools.RemoveQuotes(Tools.MergeString(words,1));
+                                if (words[0]=="start_room") adventureInfo.startLocation = words[1];
+                                if (words[0]=="target_room") adventureInfo.targetLocation = words[1];
+                                if (words[0]=="type") 
+                                {
+                                    if (words[1]=="interior") adventureInfo.exterior = false; else adventureInfo.exterior = true;
+                                }
+                                if (words[0]=="end")
+                                {
+                                    blok=Block.NONE;
+                                    adventureInfo.id = tmpID;
+                                }
+                            }
+
                             if (blok==Block.ROAD)
                             {
                                 if (words[0]=="enabled")
@@ -643,6 +665,12 @@ namespace LegendLibrary
                                 if (words[0].ToLower()=="game")
                                 {
                                     blok = Block.GAMEINFO;
+                                }
+
+                                if (words[0].ToLower()=="map")
+                                {
+                                    blok = Block.ADVENTUREINFO;
+                                    tmpID = words[1];
                                 }
 
                                 if (words[0].ToLower()=="room")

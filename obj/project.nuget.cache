@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KLUvMf1x83pZmShY5dKTYQMHksKSxHAOziWccpYoCZh5l3CYqvAIDjr/P5ttqwzG/Tbkb4hwIIfaFXPgMb8YJg==",
+  "dgSpecHash": "VtjyO0sp/DlvljQReunQz/+QV/I+5KJO0R03GBUbdWH9lpcMO/sxUQXAbslIi/qnXsaljg6VCswm8OSbgUFBVw==",
   "success": true,
-  "projectFilePath": "/Users/kim/Projekty/legend/legend.csproj",
+  "projectFilePath": "/home/kim/Projekty/Legends of Aldea/legend/legend.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

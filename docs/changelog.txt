@@ -3,7 +3,7 @@ Kamil Dubik (c) 2020-21
 --------------------------------
 
 
-v0.3.4
+v0.x.x
 * setup some encounters for "secret map"
 * finish design of "house" level
     * add creatures
@@ -14,6 +14,28 @@ v0.3.4
 * fix: screen is not correctly updated (cleaned), after using ASCI window (actions, main menu...)
 * fix: issues with entering number for choosing action. (replace with proper GetNumberFromRange() method)
 
+v0.4.2
+* implement GUI for adventure (campaign?) selection
+* code cleaning
+* player enters "target room"
+    * ask player, whether he wants to continue
+    * remember, that this map was successfully win
+    * implement shortcut, for leaving adventure, when map was win
+* implement LevelUp, common (basic) things: 
+        * health increases
+        * ability advancement
+        * class powers update
+        * 1 new ability focus
+
+
+
+v0.4.1 (25.12.2021)
+- adventureInfo class created for information about actual map + updated map
+    - implement target room for "level update" after finishing a level
+- rework loading first dungeon (coast_cave now)
+- check, when player enters "target room"
+- updated launch script to use Dot NET 6.x
+- fix issue with moveNPCs and moveEnemies functions (now work differently, because maps are loaded separatelly, not all at once)
 
 v0.4.0 (19.12.2021)
 - "mapGUI" enhanced with ASCI library (instead of temporary used "graphics")
@@ -21,7 +43,8 @@ v0.4.0 (19.12.2021)
 - fix: unable to replay game after death. Player have to leave game and start it again.
 - fix: treasure is not gained after combat win
     - updated checking for errors ,when giving an item to the player
-- started work on campaings and main quest line
+- started work on campaings and main quest line!!!
+- Dot NET 6.x used
 
 v0.3.2 (27.9.2021)
 - experiments with GUI and ASCI library (ncurses variant)
