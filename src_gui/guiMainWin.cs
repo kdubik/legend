@@ -16,6 +16,8 @@ namespace Legend
         //GameStatus status = GameStatus.PLAYING;
         public Adraw ad = new Adraw();
 
+        public Dices dices = new Dices();
+
         public GuiMainWin(Engine inEngine)
         {
             eng = inEngine;
@@ -365,12 +367,178 @@ namespace Legend
             Textutils.WaitKey();
         }
 
+        private bool isNumberEven(int number)
+        {
+            bool res = false;
+            if(number%2 == 0) res = true;
+            return res;
+        }
+
+        public void UpdatePrimaryAbilities(List<CharAttr> primaryAbilites, int characterLevel)
+        {
+            int x = 0;
+            int optionsCount = 4;
+            int[] optionTable = new int[5];
+            bool evenLevel = isNumberEven(characterLevel);
+
+            int reguriredPoints = 2;
+            if (characterLevel<6) reguriredPoints = 1;
+            if (characterLevel>8) reguriredPoints = 3;
+
+            Console.WriteLine("  (Required points for upgrade: {0})\n", reguriredPoints);
+
+            if (evenLevel)
+            {
+                foreach (var lat in primaryAbilites)
+                {
+                    x++;
+                    if (lat == CharAttr.ACCURACY) Console.WriteLine("{0}. Accuracy (prenost) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[0].ToString());
+                    if (lat == CharAttr.COMMUNICATION) Console.WriteLine("{0}. Communication (komunikacia) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[1].ToString());
+                    if (lat == CharAttr.CONSTITUTION) Console.WriteLine("{0}. Constitution (odolnost) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[2].ToString());
+                    if (lat == CharAttr.DEXTERITY) Console.WriteLine("{0}. Dexterity (obratnost) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[3].ToString());
+                    if (lat == CharAttr.FIGHTING) Console.WriteLine("{0}. Fighting (boj) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[4].ToString());
+                    if (lat == CharAttr.IQ) Console.WriteLine("{0}. Intelect (inteligencia) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[5].ToString());
+                    if (lat == CharAttr.PERCEPTION) Console.WriteLine("{0}. Perception (vnimanie) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[6].ToString());
+                    if (lat == CharAttr.STRENGTH) Console.WriteLine("{0}. Strength (sila) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[7].ToString());
+                    if (lat == CharAttr.WILL) Console.WriteLine("{0}. Will (sila vole) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[8].ToString());
+                }
+            }
+            else
+            {       
+                optionsCount = 5;        
+                x=1;
+                if (!primaryAbilites.Contains(CharAttr.ACCURACY)) 
+                {
+                    Console.WriteLine("{0}. Accuracy (prenost) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[0].ToString());
+                    optionTable[x-1]=0;
+                    x++;                    
+                }
+                if (!primaryAbilites.Contains(CharAttr.COMMUNICATION))
+                {
+                    Console.WriteLine("{0}. Communication (komunikacia) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[1].ToString());
+                    optionTable[x-1]=1;
+                    x++;
+                }
+                if (!primaryAbilites.Contains(CharAttr.CONSTITUTION))
+                {
+                    Console.WriteLine("{0}. Constitution (odolnost) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[2].ToString());
+                    optionTable[x-1]=2;
+                    x++;
+                }
+
+                if (!primaryAbilites.Contains(CharAttr.DEXTERITY)) 
+                {
+                    Console.WriteLine("{0}. Dexterity (obratnost) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[3].ToString());
+                    optionTable[x-1]=3;
+                    x++;
+                }
+                if (!primaryAbilites.Contains(CharAttr.FIGHTING)) 
+                {
+                    Console.WriteLine("{0}. Fighting (boj) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[4].ToString());
+                    optionTable[x-1]=4;
+                    x++;
+                }
+                if (!primaryAbilites.Contains(CharAttr.IQ))
+                {
+                    Console.WriteLine("{0}. Intelect (inteligencia) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[5].ToString());
+                    optionTable[x-1]=5;
+                    x++;
+                }
+                if (!primaryAbilites.Contains(CharAttr.PERCEPTION)) 
+                {
+                    Console.WriteLine("{0}. Perception (vnimanie) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[6].ToString());
+                    optionTable[x-1]=6;
+                    x++;
+                }
+                if (!primaryAbilites.Contains(CharAttr.STRENGTH))
+                {
+                    Console.WriteLine("{0}. Strength (sila) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[7].ToString());
+                    optionTable[x-1]=7;                 
+                    x++;
+                }
+                if (!primaryAbilites.Contains(CharAttr.WILL)) 
+                {
+                    Console.WriteLine("{0}. Will (sila vole) [body: {1}]", x.ToString(), eng.party.members[0].abilityAdvancement[8].ToString());            
+                    optionTable[x-1]=8;
+                    x++;
+                }
+            }
+        
+            int a;
+            a = Textutils.GetNumberRange(1,optionsCount);
+
+            /*
+            if (evenLevel)
+            {
+                int an = (int)primaryAbilites[a-1];
+                eng.party.members[0].abilityAdvancement[an]++;
+                //eng.party.members[0].attr[an]++;
+            }
+            else
+            {
+                int an = optionTable[a-1];
+                eng.party.members[0].abilityAdvancement[an]++;
+            }
+            */
+
+            int an = optionTable[a-1];
+            if (evenLevel) an = (int)primaryAbilites[a-1];
+            eng.party.members[0].abilityAdvancement[an]++;
+
+            // Check abilities
+            for (int b=0; b<9;b++)
+            {
+                if (eng.party.members[0].abilityAdvancement[b]>=reguriredPoints)
+                {
+                    eng.party.members[0].abilityAdvancement[b] = 0;
+                    eng.party.members[0].attr[b]++;
+                    Console.WriteLine("Schopnost postavy {0} sa zvysila (na {1} bodov)!", ((CharAttr)b).ToString(), eng.party.members[0].attr[b].ToString());
+                }
+            }
+            Console.ReadLine();
+        
+        }
+
+        public void ChooseNewFocus(List<CharAttr> primaryAbilites, int characterLevel)
+        {
+            bool evenLevel = isNumberEven(characterLevel);
+
+            // 1. zistit, list focusov (podla evenLevelu) + nesmieme zobrazit tie, ktore uz mame
+            // 2. vypytat si, ktory focus chceme pridat do zoznamu
+            // 3. pridat do zoznamu
+        }
+
         private void DoLevelUp()
         {
+            List<CharAttr> primaryAbilites =  Character.GetPrimaryAbilities(eng.party.members[0].brclass);
+
+            eng.party.members[0].level++;
             Console.WriteLine("Dobrodruzstvo bolo uspesne splnene!");
+            Console.WriteLine("Postava dosiahla dalsiu uroven - {0}!\n", eng.party.members[0].level.ToString());
             Console.ReadLine();
 
+            
+            // 1. Ve increase health for our hero
+            int newLives = eng.party.members[0].GetAttribute(CharAttr.CONSTITUTION);
+            if (eng.party.members[0].level<11) newLives+= dices.ThrowDice();
+            Console.Write("Zdravie {0} bolo zvysene o {1} bodov!", eng.party.members[0].name, newLives.ToString());
+            int oldHealth = eng.party.members[0].max_health;
+            eng.party.members[0].max_health += newLives;
+            Console.WriteLine(" ({0} -> {1})", oldHealth.ToString(),eng.party.members[0].max_health.ToString());
+            Console.Write("Press any key");
+            Console.ReadLine();
 
+            // 2. Ability advancement
+            Console.WriteLine("Zlepsenie schopnosti postavy!");
+            Console.WriteLine("Ziskavas 1 bod (advancement)! Zvol si schopnost, ktora sa vylepsi:");
+            UpdatePrimaryAbilities(primaryAbilites, eng.party.members[0].level);
+
+            // 3. Class powers
+
+            // 4. Ability focus
+            Console.WriteLine("Zlepsenie schopnosti postavy!");
+            Console.WriteLine("Ziskavas 1 dalsi focus! Zvol si novy focus:");
+            ChooseNewFocus(primaryAbilites, eng.party.members[0].level);
 
             Console.WriteLine("Chces este pokracovat v prieskume lokality? (a/n)");
             Console.ReadLine();
@@ -383,6 +551,16 @@ namespace Legend
             pr.Render();
             Console.WriteLine("\nStlac ENTER pre pokracovanie...");
             Console.ReadLine();
+        }
+
+        private void ShowFocuses()
+        {
+            int fc = eng.lib.focuses.Count();
+            for (int a=0;a<fc;a++)
+            {
+                focus_data fd = eng.lib.focuses.GetByIndex(a);
+                Console.WriteLine("Focus: {0} ({1})", fd.name, fd.id);
+            }
         }
 
         public void Show()
@@ -547,6 +725,14 @@ namespace Legend
                     {
                         cmds.Add("teleport" + " " + w[1]);
                         eng.ExecuteActionList(cmds);
+                    }
+                    if (w[0]=="levelup")
+                    {
+                        DoLevelUp();
+                    }
+                    if (w[0]=="focuses")
+                    {
+                        ShowFocuses();
                     }
                 }
 

@@ -1,0 +1,56 @@
+focuses ACCURACY
+id ARCANE "Čarovanie"
+id BOWS "Lukostreľba"
+id BRAWLING "Improvizované zbrane"
+id LIGHT_BLADES "Ľahké čepele"
+id STAVES "Palice"
+end
+
+focuses COMMUNICATION
+id BARGAINING "Zjednávania cien"
+id DECEPTION "Zavádzanie"
+id ETIQUETTE "Etiketa"
+id PERFORMANCE "Umelecký prejav"
+id PERSUASION "Prehováranie"
+end
+
+focuses CONSTITUTION
+id STAMINA "Dobrá výdrž"
+id SWIMMING "Plávanie"
+end
+
+focuses DEXTERITY
+id ACROBATICS "Akrobacia"
+id LOCKPICKING "Otváranie zámkov"
+id STEALTH "Zakrádanie"
+id TRAPS "Znalosť pascí"
+end
+
+focuses FIGHTING
+id AXES "Sekery"
+id BLUDGEONS "Tupé zbrane"
+id HEAVY_BLADES "Ťažké čepele"
+id POLEARMS "Kopije"
+end
+
+focuses INTELLIGENCE
+id CULTURAL_LORE "Znalosť kultúry"
+id HEALING "Liečenie"
+id WRITING "Písmo"
+end
+
+focuses PERCEPTION
+id SEARCHING "Prehľadávanie"
+id TRACKING "Stopovanie"
+end
+
+focuses STRENGTH
+id CLIMBING "Lezenie"
+id INTIMIDATION "Zastrašovanie"
+id MIGHT "Hrubá sila"
+end
+
+focuses WILL
+id PURITY "Vnútorná čistota"
+id COURGAE "Odvaha"
+end

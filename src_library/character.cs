@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace LegendLibrary
 {
     public enum Background { ALDIN, FOREST_FOLK, JARZONI, KERNISH, LARTYAN, OUTCAST, ROAMER };
@@ -27,6 +29,8 @@ namespace LegendLibrary
 
         // Character attributes
         public int[] attr = new int[9];
+
+        public int[] abilityAdvancement = new int[9];   // When leveling UP, how many points are reguired for increase desired ability
 
         // Character body equipment
         // Obsahuje ID equipnuteho predmetu, alebo nic
@@ -100,6 +104,8 @@ namespace LegendLibrary
                 SetAttribute(CharAttr.STRENGTH,1);
                 SetAttribute(CharAttr.WILL,1);
             }
+
+            for (int a=0;a<9;a++) abilityAdvancement[a] = 0;
         }
 
         public static CharAttr GetAttributeFromString(string attrString)
@@ -119,6 +125,36 @@ namespace LegendLibrary
 
             return res;
         } 
+
+        public static List<CharAttr> GetPrimaryAbilities(BRClass brclass)
+        {
+            List<CharAttr> primaryAbilites = new List<CharAttr>();
+
+            switch (brclass)
+            {
+                case BRClass.ADEPT:
+                    primaryAbilites.Add(CharAttr.ACCURACY);
+                    primaryAbilites.Add(CharAttr.IQ);
+                    primaryAbilites.Add(CharAttr.PERCEPTION);
+                    primaryAbilites.Add(CharAttr.WILL);
+                    break;
+                case BRClass.WARRIOR:
+                    primaryAbilites.Add(CharAttr.CONSTITUTION);
+                    primaryAbilites.Add(CharAttr.DEXTERITY);
+                    primaryAbilites.Add(CharAttr.FIGHTING);
+                    primaryAbilites.Add(CharAttr.STRENGTH);
+                    break;
+                default:
+                    // Expert
+                    primaryAbilites.Add(CharAttr.ACCURACY);
+                    primaryAbilites.Add(CharAttr.COMMUNICATION);
+                    primaryAbilites.Add(CharAttr.PERCEPTION);
+                    primaryAbilites.Add(CharAttr.DEXTERITY);
+                    break;
+            }
+
+            return primaryAbilites;
+        }
 
     }
 }

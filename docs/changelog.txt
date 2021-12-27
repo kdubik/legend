@@ -1,6 +1,6 @@
-Legend RPG game, changelog file.
+Legends of Aldea RPG game, changelog file.
 Kamil Dubik (c) 2020-21
---------------------------------
+------------------------------------------
 
 
 v0.x.x
@@ -14,7 +14,11 @@ v0.x.x
 * fix: screen is not correctly updated (cleaned), after using ASCI window (actions, main menu...)
 * fix: issues with entering number for choosing action. (replace with proper GetNumberFromRange() method)
 
-v0.4.2
+
+ACTUAL:
+-------
+
+v0.4.2 (27.12.2021)
 * implement GUI for adventure (campaign?) selection
 * code cleaning
 * player enters "target room"
@@ -27,7 +31,11 @@ v0.4.2
         * class powers update
         * 1 new ability focus
 
-
+v0.4.2 (27.12.2021)
+- focuses implemented
+    - new class
+    - loading from LM file
+- basic for levelUp - ability focus upgrade - implemented
 
 v0.4.1 (25.12.2021)
 - adventureInfo class created for information about actual map + updated map

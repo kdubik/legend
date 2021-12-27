@@ -6,7 +6,8 @@ using LegendTools;
 
 namespace LegendLibrary
 {
-    public enum Block { NONE, ROOM, ROAD, TEXT, ACTION, ENEMY, NPC, ENEMYGROUP, ITEM, GAMEINFO, ADVENTUREINFO };
+    public enum Block { NONE, ROOM, ROAD, TEXT, ACTION, ENEMY, NPC, ENEMYGROUP, ITEM, GAMEINFO, ADVENTUREINFO, FOCUSES };
+
     public class Library
     {
         // Global info about whole game
@@ -24,7 +25,9 @@ namespace LegendLibrary
         public List<Enemy> enemies = new List<Enemy>();
         public List<NPC> NPCs = new List<NPC>();
         public List<EnemyGroup> enemyGroups = new List<EnemyGroup>();
+
         public Dictionary<string,string> texts = new Dictionary<string,string>();
+        public Focuses focuses = new Focuses();
 
         int ACTBcount = 0;   // Automatically created text block counter
 
@@ -554,6 +557,18 @@ namespace LegendLibrary
                                 }
                             }
 
+                            if (blok==Block.FOCUSES)
+                            {
+                                if (words[0]=="id")
+                                {
+                                    focuses.Add(tmpID, words[1], Tools.RemoveQuotes(Tools.MergeString(words,2)), "");
+                                }
+                                if (words[0]=="end")
+                                {
+                                    blok=Block.NONE;
+                                }
+                            }
+
                             if (blok==Block.ROAD)
                             {
                                 if (words[0]=="enabled")
@@ -662,6 +677,11 @@ namespace LegendLibrary
 
                             if (blok==Block.NONE)
                             {
+                                if (words[0].ToLower()=="focuses")
+                                {
+                                    blok = Block.FOCUSES;
+                                    tmpID = words[1];                              
+                                }
                                 if (words[0].ToLower()=="game")
                                 {
                                     blok = Block.GAMEINFO;
