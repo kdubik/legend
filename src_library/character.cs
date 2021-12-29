@@ -36,6 +36,8 @@ namespace LegendLibrary
         // Obsahuje ID equipnuteho predmetu, alebo nic
         public string[] bodySlots = new string[3];
 
+        public List<string> focuses = new List<string>();   // Focuses, that hero learns through the game
+
         public void SetAttribute(CharAttr inAttr, int value) => attr[(int)inAttr] = value;
 
         public int GetAttribute(CharAttr inAttr) => attr[(int)inAttr];

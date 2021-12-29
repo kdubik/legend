@@ -5,6 +5,29 @@ namespace LegendTools
 {
     public class Textutils
     {
+
+		public static bool GetYesNo()
+		{
+			bool answer = true;
+			bool selectedInfo = false;
+            while (!selectedInfo)
+			{
+                ConsoleKeyInfo ch = Textutils.GetPressedKey();
+
+                if (ch.KeyChar=='a') 
+                {
+					answer = true; 
+					selectedInfo = true;
+				}
+                if (ch.KeyChar=='n')
+                { 
+					answer = false;
+					selectedInfo = true; 
+				}
+            }
+			return answer;
+		}
+
 		public static bool GetBool(string inputText)
 		{
 			bool res = false;

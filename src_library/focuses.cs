@@ -32,15 +32,25 @@ namespace LegendLibrary
         
         public int Count() => data.Count;
 
-        public List<focus_data> GetListOfPrimaryAbilities(CharAttr[] primaryAbilities)
+        public List<focus_data> GetListOfPrimaryAbilities(List<CharAttr> primaryAbilities)
         {
             List<focus_data> listdata = new List<focus_data>();
 
+            foreach (var lf in data)
+            {
+                if (primaryAbilities.Contains(lf.attr)) listdata.Add(lf);
+            }
+
             return listdata;
         }
-        public List<focus_data> GetListOfNonPrimaryAbilities(CharAttr[] primaryAbilities)
+        public List<focus_data> GetListOfNonPrimaryAbilities(List<CharAttr> primaryAbilities)
         {
             List<focus_data> listdata = new List<focus_data>();
+
+            foreach (var lf in data)
+            {
+                if (!primaryAbilities.Contains(lf.attr)) listdata.Add(lf);
+            }
 
             return listdata;
         }

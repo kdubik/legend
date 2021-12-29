@@ -21,6 +21,8 @@ namespace LegendEngine
         public string actualRoomID;
         public string actualDungeonID;
 
+        public bool actualDungeonWin;
+
         // Where is the player on "world map".
         public string actualWorldLocation = "";
 

@@ -14,28 +14,37 @@ v0.x.x
 * fix: screen is not correctly updated (cleaned), after using ASCI window (actions, main menu...)
 * fix: issues with entering number for choosing action. (replace with proper GetNumberFromRange() method)
 
+* implement LevelUp, common (basic) things: 
+        * class powers update
+
+
+v0.4.4 (xx.12.2021)
+* code cleaning
+* focuses can be used in tests (also combat?)
+* implement GUI for adventure (campaign?) selection
+* player enters "target room" (levlUp)
+    * implement showing "campaign window", when dungeon is win
+    * implement shortcut, for leaving adventure, when map was win
 
 ACTUAL:
 -------
 
-v0.4.2 (27.12.2021)
-* implement GUI for adventure (campaign?) selection
-* code cleaning
-* player enters "target room"
-    * ask player, whether he wants to continue
-    * remember, that this map was successfully win
-    * implement shortcut, for leaving adventure, when map was win
-* implement LevelUp, common (basic) things: 
-        * health increases
-        * ability advancement
-        * class powers update
-        * 1 new ability focus
+v0.4.3 (29.12.2021)
+- implement LevelUp, common (basic) things: 
+        - finish work on "1 new ability focus"
+        - (LevelUp) code updates (GetYesNo() method...)
+- player enters "target room"
+    - ask player, whether he wants to continue
+    - remember, that this map was successfully win
 
 v0.4.2 (27.12.2021)
 - focuses implemented
     - new class
     - loading from LM file
-- basic for levelUp - ability focus upgrade - implemented
+- levelUp 
+    - basic for - ability focus upgrade - implemented
+    - health increases
+    - ability advancement
 
 v0.4.1 (25.12.2021)
 - adventureInfo class created for information about actual map + updated map

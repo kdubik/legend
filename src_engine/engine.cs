@@ -41,6 +41,7 @@ namespace LegendEngine
             party.inLocalMap = true;                        // We are in the first dungeon
             
             party.actualDungeonID = "coast_cave";
+            party.actualDungeonWin = false;                 // This dungeon was not win yet
             party.actualRoomID = lib.gameInfo.startRoom;    // Not important now, but, why not
 
             actualGameStatus = GameStatus.PLAYING;

@@ -100,8 +100,6 @@ namespace Legend
             ad.SetLineType(LineType.DOUBLE);
             ad.DrawWindow(0,0,ad.screenWidth, ad.screenHeight," Akcie ",true);
 
-            int aline = 2;
-
             //Dictionary<string, string> dict = new Dictionary<string, string>();
             List<string> actList = new List<string>();
 
@@ -494,18 +492,41 @@ namespace Legend
                     eng.party.members[0].attr[b]++;
                     Console.WriteLine("Schopnost postavy {0} sa zvysila (na {1} bodov)!", ((CharAttr)b).ToString(), eng.party.members[0].attr[b].ToString());
                 }
-            }
-            Console.ReadLine();
-        
+            }        
         }
 
         public void ChooseNewFocus(List<CharAttr> primaryAbilites, int characterLevel)
         {
             bool evenLevel = isNumberEven(characterLevel);
 
-            // 1. zistit, list focusov (podla evenLevelu) + nesmieme zobrazit tie, ktore uz mame
-            // 2. vypytat si, ktory focus chceme pridat do zoznamu
-            // 3. pridat do zoznamu
+            // 1. zistit, list focusov (podla evenLevelu)
+            List<focus_data> fd;
+            if (evenLevel) fd = eng.lib.focuses.GetListOfPrimaryAbilities(primaryAbilites);
+            else fd = eng.lib.focuses.GetListOfNonPrimaryAbilities(primaryAbilites);
+
+            // 2. vyhodit focusy, ktore uz mames
+            List<focus_data> delList = new List<focus_data>();
+            foreach (var lf in fd)
+            {
+                if (eng.party.members[0].focuses.Contains(lf.id)) delList.Add(lf);
+            }
+
+            foreach (var erase in delList)
+                fd.Remove(erase);
+
+            // 3. zobrazit focusy + nesmieme zobrazit tie, ktore uz mame
+            int a = 0;
+            foreach (var lf in fd)
+            {
+                a++;
+                Console.WriteLine("{0}. {1} ({2})", a.ToString(), lf.name, lf.id);
+            }
+
+            // 4. vypytat si, ktory focus chceme pridat do zoznamu
+            int answer = Textutils.GetNumberRange(1,a) - 1;
+
+            eng.party.members[0].focuses.Add(fd[answer].id);
+            Console.WriteLine("Pridavam focus \"{0}\"",fd[answer].name);
         }
 
         private void DoLevelUp()
@@ -513,11 +534,12 @@ namespace Legend
             List<CharAttr> primaryAbilites =  Character.GetPrimaryAbilities(eng.party.members[0].brclass);
 
             eng.party.members[0].level++;
+            eng.party.actualDungeonWin = true;
+            
             Console.WriteLine("Dobrodruzstvo bolo uspesne splnene!");
             Console.WriteLine("Postava dosiahla dalsiu uroven - {0}!\n", eng.party.members[0].level.ToString());
             Console.ReadLine();
 
-            
             // 1. Ve increase health for our hero
             int newLives = eng.party.members[0].GetAttribute(CharAttr.CONSTITUTION);
             if (eng.party.members[0].level<11) newLives+= dices.ThrowDice();
@@ -532,6 +554,8 @@ namespace Legend
             Console.WriteLine("Zlepsenie schopnosti postavy!");
             Console.WriteLine("Ziskavas 1 bod (advancement)! Zvol si schopnost, ktora sa vylepsi:");
             UpdatePrimaryAbilities(primaryAbilites, eng.party.members[0].level);
+            Console.Write("Press any key");
+            Console.ReadLine();
 
             // 3. Class powers
 
@@ -540,8 +564,12 @@ namespace Legend
             Console.WriteLine("Ziskavas 1 dalsi focus! Zvol si novy focus:");
             ChooseNewFocus(primaryAbilites, eng.party.members[0].level);
 
-            Console.WriteLine("Chces este pokracovat v prieskume lokality? (a/n)");
-            Console.ReadLine();
+            Console.WriteLine("\nChces este pokracovat v prieskume lokality? (a/n)");
+            
+            if (!Textutils.GetYesNo())
+            {
+                // Ukoncime dungeon crawling
+            }
         }
 
         public void ShowHelp()
