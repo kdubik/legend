@@ -1,6 +1,6 @@
 # definition of circumstances in defined map
 # Is it safe? Interior or exterior? etc.
-map level6
+mapinfo level6
 name "Strecha domu"
 type exterior
 end

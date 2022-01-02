@@ -3,9 +3,11 @@ using System;
 namespace LegendTools
 
 {
+	/// <summary>
+	/// Various utils for processing keyboard input and related things.
+	/// </summary>
     public class Textutils
     {
-
 		public static bool GetYesNo()
 		{
 			bool answer = true;
@@ -14,7 +16,7 @@ namespace LegendTools
 			{
                 ConsoleKeyInfo ch = Textutils.GetPressedKey();
 
-                if (ch.KeyChar=='a') 
+                if ((ch.KeyChar=='a') || (ch.KeyChar=='y')) 
                 {
 					answer = true; 
 					selectedInfo = true;
@@ -28,10 +30,26 @@ namespace LegendTools
 			return answer;
 		}
 
+		/// <summary>
+		/// Wait for resiing any key. It is done silently (no cursor) and message is shown before.
+		/// </summary>
+		/// <param name="msg">Message to be shown</param>
+		public static void PressAnyKey(string msg)
+		{
+			Console.Write(msg);
+			WaitKey();
+		}
+
+		/// <summary>
+		/// Get bool answer for yes/no (ano/nie) question. Both ENG and SVK version.
+		/// </summary>
+		/// <param name="inputText">Answer from user in form of string</param>
+		/// <returns>Was the answer yes?</returns>
 		public static bool GetBool(string inputText)
 		{
 			bool res = false;
 			if (inputText == "yes") res = true;
+			if (inputText == "ano") res = true;
 			return res;
 		}
 
@@ -94,9 +112,13 @@ namespace LegendTools
 			return newTmp;
 		}
 		
-		/*
-			Compare strings, with also shortcuts
-		 */
+		/// <summary>
+		/// Compare strings, with also shortcuts.
+		/// </summary>
+		/// <param name="word">First word to compare</param>
+		/// <param name="secondWord">Second word to compare</param>
+		/// <param name="shortcutWord">Shortcut to tested word</param>
+		/// <returns>Returns true, if shortcut or word match to compared word</returns>
 		public static bool Compare(string word, string secondWord, string shortcutWord)
 		{
 			bool res = false;
@@ -111,9 +133,12 @@ namespace LegendTools
 			return res;
 		}
 
-		/*
-		Compare strings, no shortcuts
-		 */
+		/// <summary>
+		/// Compare strings, no shortcuts.
+		/// </summary>
+		/// <param name="word">Word, we are testing</param>
+		/// <param name="secondWord">Word for testing</param>
+		/// <returns>True, if words are the same</returns>
 		public bool CmpStr(string word, string secondWord)
 		{
 			bool res = false;
@@ -121,20 +146,20 @@ namespace LegendTools
 			return res;
 		}
 
-        public static string GetRest(string[] tmp, int startIndex)
-        {
-            string res = "_error";
-            if ((startIndex > 0) && (startIndex < tmp.Length))
-            {
-                res = "";
-                for (int x = startIndex; x < tmp.Length; x++)
-                {                                
-                    res = res + tmp[x];
-                    if ((x + 1) != tmp.Length) res = res + " ";
-                }
-            }
-            return res;
-        }
+		public static string GetRest(string[] tmp, int startIndex)
+		{
+			string res = "_error";
+			if ((startIndex > 0) && (startIndex < tmp.Length))
+			{
+				res = "";
+				for (int x = startIndex; x < tmp.Length; x++)
+				{                                
+					res = res + tmp[x];
+					if ((x + 1) != tmp.Length) res = res + " ";
+				}
+			}
+			return res;
+		}
 
         public static string RemoveLastCharacter(string line)
         {
@@ -221,6 +246,9 @@ namespace LegendTools
 			return res;
 		}
 
+		/// <summary>
+		/// Wait for any response from user (wait for any pressed key).
+		/// </summary>
 		public static void WaitKey()
 		{
 			Console.CursorVisible = false;
@@ -228,6 +256,10 @@ namespace LegendTools
 			Console.CursorVisible = true;
 		}
 
+		/// <summary>
+		/// Scan keyboard for pressed key (no waiting for ENTER).
+		/// </summary>
+		/// <returns>Information about pressed key</returns>
 		public static ConsoleKeyInfo GetPressedKey()
 		{
 			Console.CursorVisible = false;

@@ -12,7 +12,7 @@ namespace Legend
     public class GuiMainWin
     {
         
-        public Engine eng;
+        private Engine eng;
         //GameStatus status = GameStatus.PLAYING;
         public Adraw ad = new Adraw();
 
@@ -535,10 +535,11 @@ namespace Legend
 
             eng.party.members[0].level++;
             eng.party.actualDungeonWin = true;
-            
+
             Console.WriteLine("Dobrodruzstvo bolo uspesne splnene!");
             Console.WriteLine("Postava dosiahla dalsiu uroven - {0}!\n", eng.party.members[0].level.ToString());
-            Console.ReadLine();
+            Textutils.PressAnyKey("Stlac ľubovolnú klávesu...");
+            Console.Clear();
 
             // 1. Ve increase health for our hero
             int newLives = eng.party.members[0].GetAttribute(CharAttr.CONSTITUTION);
@@ -547,15 +548,15 @@ namespace Legend
             int oldHealth = eng.party.members[0].max_health;
             eng.party.members[0].max_health += newLives;
             Console.WriteLine(" ({0} -> {1})", oldHealth.ToString(),eng.party.members[0].max_health.ToString());
-            Console.Write("Press any key");
-            Console.ReadLine();
+            Textutils.PressAnyKey("Stlac ľubovolnú klávesu...");
+            Console.Clear();
 
             // 2. Ability advancement
             Console.WriteLine("Zlepsenie schopnosti postavy!");
             Console.WriteLine("Ziskavas 1 bod (advancement)! Zvol si schopnost, ktora sa vylepsi:");
             UpdatePrimaryAbilities(primaryAbilites, eng.party.members[0].level);
-            Console.Write("Press any key");
-            Console.ReadLine();
+            Textutils.PressAnyKey("Stlac ľubovolnú klávesu...");
+            Console.Clear();
 
             // 3. Class powers
 
@@ -565,10 +566,17 @@ namespace Legend
             ChooseNewFocus(primaryAbilites, eng.party.members[0].level);
 
             Console.WriteLine("\nChces este pokracovat v prieskume lokality? (a/n)");
-            
+
             if (!Textutils.GetYesNo())
             {
                 // Ukoncime dungeon crawling
+                eng.actualGameStatus = GameStatus.WIN;
+            }
+            else 
+            {
+                Console.Clear();
+                Console.WriteLine("Odist z mapy je mozne prikazom t[eleport]");
+                ShowRoom();
             }
         }
 
@@ -591,7 +599,7 @@ namespace Legend
             }
         }
 
-        public void Show()
+        public GameStatus Show()
         {
             ShowIntro();
 
@@ -604,6 +612,12 @@ namespace Legend
                 bool levelUp = false;
                 Console.Write("> ");
                 line = Console.ReadLine();
+
+                // Quit from dungeon, that is already won
+                if ((line=="t") && (eng.party.actualDungeonWin))
+                {
+                    eng.actualGameStatus = GameStatus.WIN;
+                }
 
                 if (line=="s")
                 {
@@ -773,23 +787,7 @@ namespace Legend
 
             } while (eng.actualGameStatus == GameStatus.PLAYING);
 
-            if (eng.actualGameStatus == GameStatus.WIN)
-            {
-                // Show win message + statistics              
-            }
-
-            if (eng.actualGameStatus == GameStatus.LOOSE)
-            {
-                // Show loose message + statistics 
-                Console.Clear();
-                Console.WriteLine("Prehral si...");
-                Console.ReadLine();              
-            }
-
-            if (eng.actualGameStatus == GameStatus.QUIT)
-            {
-                // Save game + message           
-            }
+            return eng.actualGameStatus;
         }
     }
 }

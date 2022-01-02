@@ -1,6 +1,6 @@
 # definition of circumstances in defined map
 # Is it safe? Interior or exterior? etc.
-map level4
+mapinfo level4
 name "Prízemie domu"
 type interior
 end

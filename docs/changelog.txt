@@ -17,17 +17,22 @@ v0.x.x
 * implement LevelUp, common (basic) things: 
         * class powers update
 
-
-v0.4.4 (xx.12.2021)
-* code cleaning
-* focuses can be used in tests (also combat?)
-* implement GUI for adventure (campaign?) selection
-* player enters "target room" (levlUp)
-    * implement showing "campaign window", when dungeon is win
-    * implement shortcut, for leaving adventure, when map was win
-
 ACTUAL:
 -------
+
+v0.5.1 (xx.1.2022)
+* code cleaning
+* focuses can be used in tests (also combat?)
+
+v0.5.0 (2.1.2022)
+- implement GUI for adventure (campaign?) selection
+- player enters "target room" (levlUp)
+    - implement showing "campaign window", when dungeon is win
+    - implement shortcut, for leaving adventure, when map was win
+- in LM file: keyword "map", used for map description, was renamed to "mapinfo"
+- updated Textutils class:
+    - added some documentation to methods
+    - new methods: GetYesNo(), PressAnyKey()
 
 v0.4.3 (29.12.2021)
 - implement LevelUp, common (basic) things: 

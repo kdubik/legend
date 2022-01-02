@@ -1,6 +1,6 @@
 # definition of circumstances in defined map
 # Is it safe? Interior or exterior? etc.
-map level5
+mapinfo level5
 name "Poschodie domu"
 type interior
 end

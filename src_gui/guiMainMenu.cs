@@ -75,12 +75,10 @@ namespace Legend
                     //Prepare new game
                     eng.PrepareNewGame(true);
 
-                    eng.GiveItemToPlayer("cestovatelske_oblecenie", true);
-                    eng.GiveItemToPlayer("dyka", true);
-                    //eng.GiveItemToPlayer("trojzubec", false);
-
-                    GuiMainWin gameWin = new GuiMainWin(eng);                    
-                    gameWin.Show();
+                    GuiCampaignWindow campaignWin = new GuiCampaignWindow(eng);
+                    campaignWin.Show();
+                    //GuiMainWin gameWin = new GuiMainWin(eng);                    
+                    //gameWin.Show();
                     ShowGUITexts();
                 }
 
@@ -92,11 +90,12 @@ namespace Legend
                     GuiCharacterCreation charGen = new GuiCharacterCreation(eng);
                     charGen.Show();
 
-                    eng.GiveItemToPlayer("cestovatelske_oblecenie", true);
-                    eng.GiveItemToPlayer("dyka", true);
+                    GuiCampaignWindow campaignWin = new GuiCampaignWindow(eng);
+                    campaignWin.Show();
 
-                    GuiMainWin gameWin = new GuiMainWin(eng);                    
-                    gameWin.Show();
+                    //GuiMainWin gameWin = new GuiMainWin(eng);                    
+                    //gameWin.Show();
+
                     ShowGUITexts();
                 }
             } while (ch.KeyChar!='3');

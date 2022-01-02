@@ -1,7 +1,7 @@
 
 # definition of circumstances in defined map
 # Is it safe? Interior or exterior? etc.
-map level1
+mapinfo level1
 name "Pred domom"
 type exterior
 end

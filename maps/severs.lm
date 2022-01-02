@@ -123,7 +123,7 @@ end
 
 # ROOMS
 
-map level2
+mapinfo level2
 name "Stará kanalizácia"
 type interior
 add_item severs_stairs

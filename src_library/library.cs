@@ -687,7 +687,7 @@ namespace LegendLibrary
                                     blok = Block.GAMEINFO;
                                 }
 
-                                if (words[0].ToLower()=="map")
+                                if (words[0].ToLower()=="mapinfo")
                                 {
                                     blok = Block.ADVENTUREINFO;
                                     tmpID = words[1];

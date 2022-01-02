@@ -1,12 +1,12 @@
 # global game info
 
-game "Legenda o Aldise"
+game
 author "Kamil Dubík"
-name "Tajomný dom"
-game_version 0.1.4
-engine_version 0.1.4
+name "Legenda o Aldise"
+game_version 0.5.0
+engine_version 0.5.0
 start_map coast_cave
 start_room 7
 game_desc "Rôzne príbehy sa rozprávajú o tajomné panstve, na okraji Pavinského lesa. Potom, čo v okolí začalo pribúdať vlkov, zvláštnych svetiel a ľudí, ktorý sa streli s tajomnými živými sochami bolo rozhodnuté, že je treba panstvo preveriť. Ako začínajúcemu členovi 'kráľovských najlepších' ťa vybrali na prieskumnú misiu..."
-game_intro "Tvoja kralovna ta potrebuje, dobrodruzstvo caka!"
+game_intro "Tvoja kráľovná ťa potrebuje, dobrodružstvo čaká!"
 end
