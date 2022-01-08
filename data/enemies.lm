@@ -5,6 +5,9 @@ text "Zaútočiť na skupinu"
 success attack_enemy_group
 end
 
+# --- ENEMIES ---
+
+# --- RAT SWARM ---
 enemy ratSwarm
 name "Skupinka potkanov"
 desc rat_swarm_desc
@@ -17,8 +20,7 @@ armor 0
 wheapon 5 1d6 accuracy "skupinový útok hryzením"
 end
 
-# Pridame potkanov ako skupinu nepriatelov
-group potkan1
+group eg_beast_rat_swarm
 name_group "skupinka prerastených krýs"
 name_attack "Utok prerastenych krys!"
 enemy ratSwarm 1
@@ -26,6 +28,7 @@ friendliness 0
 treasure rat_skin
 end
 
+# --- BAT SWARM ---
 enemy batSwarm
 name "Skupinka netopierov"
 desc bat_swarm_desc
@@ -38,10 +41,102 @@ armor 0
 wheapon 5 1d6 accuracy "skupinový útok hryzením"
 end
 
-# Pridame netopierov ako skupinu nepriatelov
-group bats1
+group eg_beast_bat_swarm
 name_group "skupinka prerastených netopierov"
 name_attack "Útok prerastených netopierov!"
 enemy batSwarm 1
 treasure bat_claw
 end
+
+# --- CAT ---
+enemy beast_cat
+name "Mačka"
+desc beast_cat_desc
+member cats
+attribute accuracy 1
+speed 11
+health 10
+defence 15
+armor 0
+wheapon 3 1d6 accuracy "útok hryzením"
+end
+
+# Pridame macky ako skupinu nepriatelov
+group eg_beast_cat
+name_group "veľká divoká mačka"
+name_attack "Útok divokej mačky!"
+enemy beast_cat 1
+treasure none
+end
+
+# --- DOG ---
+enemy beast_dog
+name "Pes"
+desc beast_dog_desc
+member dogs
+attribute accuracy 2
+speed 15
+health 15
+defence 12
+armor 0
+wheapon 4 1d6+1 accuracy "útok hryzením"
+end
+
+# Pridame macky ako skupinu nepriatelov
+group eg_beast_dog
+name_group "pes"
+name_attack "Útok psa!"
+enemy beast_dog 1
+treasure none
+end
+
+# --- BOAR ---
+enemy beast_boar
+name "Diviak"
+desc beast_boar_desc
+member none
+attribute accuracy 0
+attribute fight 2
+speed 13
+health 35
+defence 12
+armor 2
+wheapon 4 2d6+3 fight "strmhlavý útok"
+end
+
+group eg_beast_boar
+name_group "diviak"
+name_attack "Útok zúrivého diviaka!"
+enemy beast_boar 1
+treasure none
+end
+
+# --- SNAKE ---
+enemy beast_snake
+name "Had"
+desc beast_snake_desc
+member none
+attribute accuracy 2
+attribute fight 0
+speed 10
+health 10
+defence 15
+armor 0
+wheapon 4 1d6-2 accuracy "uhryznutie"
+end
+
+group eg_beast_snake
+name_group "jedovatý had"
+name_attack "Útok jedovatého hada!"
+enemy beast_snake 1
+treasure none
+end
+
+
+# "eg_beast_bear");
+# "eg_beast_boars");
+# "eg_beast_flycat_swarm");
+# "eg_beast_dogs");
+# "eg_beast_boars");
+# "eg_beast_poison_snake");
+# "eg_beast_wolf");

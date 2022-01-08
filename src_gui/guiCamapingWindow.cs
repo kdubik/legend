@@ -26,6 +26,8 @@ namespace Legend
             eng = inEngine;
             eng.GiveItemToPlayer("cestovatelske_oblecenie", true);
             eng.GiveItemToPlayer("dyka", true);
+
+            
         }
 
         public AdventureInfo[] LoadMapDescriptions(int characterLevel)

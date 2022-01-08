@@ -37,6 +37,7 @@ namespace LegendLibrary
         public string[] bodySlots = new string[3];
 
         public List<string> focuses = new List<string>();   // Focuses, that hero learns through the game
+        public List<string> wheaponsAndArmorGroups = new List<string>();   // What kind of wheapons are allowed?
 
         public void SetAttribute(CharAttr inAttr, int value) => attr[(int)inAttr] = value;
 
@@ -66,7 +67,12 @@ namespace LegendLibrary
             // Defaults
             // Race = HUMAN
             // Class = WARRIOR
-            // Level = 1
+            level = 1;
+            brclass = BRClass.EXPERT;
+            race = Race.HUMAN;
+
+            //wheaponsAndArmorGroups.Add("light");
+            wheaponsAndArmorGroups.Add("light_blades");
 
             if (female)
             {
@@ -79,13 +85,15 @@ namespace LegendLibrary
                 armor = 0;
                 SetAttribute(CharAttr.ACCURACY,2);
                 SetAttribute(CharAttr.COMMUNICATION,2);
-                SetAttribute(CharAttr.CONSTITUTION,2);
+                SetAttribute(CharAttr.CONSTITUTION,3);  // +1, because HUMAN race
                 SetAttribute(CharAttr.DEXTERITY,3);
                 SetAttribute(CharAttr.FIGHTING,4);
                 SetAttribute(CharAttr.IQ,0);
                 SetAttribute(CharAttr.PERCEPTION,3);
                 SetAttribute(CharAttr.STRENGTH,3);
                 SetAttribute(CharAttr.WILL,1);
+                focuses.Add("SEARCHING");
+                //focuses.Add("LIGHT_BLADES");
             }
             else
             {
@@ -97,14 +105,15 @@ namespace LegendLibrary
                 speed = 11;
                 armor = 0;
                 SetAttribute(CharAttr.ACCURACY,2);
-                SetAttribute(CharAttr.COMMUNICATION,1);
-                SetAttribute(CharAttr.CONSTITUTION,1);
-                SetAttribute(CharAttr.DEXTERITY,1);
-                SetAttribute(CharAttr.FIGHTING,1);
-                SetAttribute(CharAttr.IQ,1);
-                SetAttribute(CharAttr.PERCEPTION,1);
-                SetAttribute(CharAttr.STRENGTH,1);
+                SetAttribute(CharAttr.COMMUNICATION,2);
+                SetAttribute(CharAttr.CONSTITUTION,3);  // +1, because HUMAN race
+                SetAttribute(CharAttr.DEXTERITY,3);
+                SetAttribute(CharAttr.FIGHTING,4);
+                SetAttribute(CharAttr.IQ,0);
+                SetAttribute(CharAttr.PERCEPTION,3);
+                SetAttribute(CharAttr.STRENGTH,3);
                 SetAttribute(CharAttr.WILL,1);
+                focuses.Add("STAMINA");
             }
 
             for (int a=0;a<9;a++) abilityAdvancement[a] = 0;
@@ -158,5 +167,30 @@ namespace LegendLibrary
             return primaryAbilites;
         }
 
+        public void AddFocus(string focusId) => focuses.Add(focusId);
+
+        public bool CheckFocus(string focusId) => focuses.Contains(focusId);
+        
+        public void ClearFocuses() => focuses.Clear();
+
+        /// <summary>
+        /// Check, whether actual wheapon, is of type, that character has focus for.
+        /// </summary>
+        /// <param name="wheaponType">Type of wheapon</param>
+        /// <returns>True, if character has focus for this wheapon type</returns>
+        public bool IsUsedWheaponFocused(string wheaponType)
+        {
+            return focuses.Contains((wheaponType+"s").ToUpper());
+        }
+
+        public void AddWheaponGroup(string groupId) => wheaponsAndArmorGroups.Add(groupId);
+        public void AddArmorGroup(string groupId) => wheaponsAndArmorGroups.Add(groupId);
+        public bool CheckWheaponGroup(string groupId) => wheaponsAndArmorGroups.Contains(groupId+"s");
+        public bool CheckArmorGroup(string groupId) => wheaponsAndArmorGroups.Contains(groupId+"s");
+
+        public string[] GetFocusList()
+        {
+            return focuses.ToArray();
+        }
     }
 }

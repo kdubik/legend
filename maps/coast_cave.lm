@@ -4,7 +4,8 @@ mapinfo coast_cave
 name "Pobrežná jaskyňa"
 type interior
 start_room 7
-target_room 3
+target_room 0
+#start 7
 end
 
 room 0
@@ -54,6 +55,7 @@ name "Chodba netopierov."
 type TUNEL
 desc "Si na ceste. Na skalnej stene sú stopy po netopierom truse, ale neznepokojuje ťa to. V takýchto miestach je to celkom bežné."
 map coast_cave
+add_group eg_beast_rat_swarm
 end
 
 room 7

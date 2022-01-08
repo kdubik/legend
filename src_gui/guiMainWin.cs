@@ -599,6 +599,21 @@ namespace Legend
             }
         }
 
+        public void ShowPlayerFocuses()
+        {
+            string[] fclist = eng.party.members[0].GetFocusList();
+            Console.Clear();
+
+            Console.WriteLine("Postava {0} ovlada nasledujuce focusy ({1}):\n", 
+                eng.party.members[0].name, fclist.Length.ToString());
+
+            foreach (var fc in fclist)
+            {
+                focus_data fd = eng.lib.focuses.GetById(fc);
+                Console.WriteLine("* {0} ({1})", fd.name, fd.id);
+            }
+        }
+
         public GameStatus Show()
         {
             ShowIntro();
@@ -728,6 +743,7 @@ namespace Legend
                 if (line=="b") 
                 {
                     ShowCharacterInvertory();
+                    Console.Clear();
                     ShowRoom();
                 }
 
@@ -753,7 +769,9 @@ namespace Legend
                     GuiMap map = new GuiMap(eng);
                     map.Show();
                     //Console.ReadLine();
-                    var ch = Textutils.GetPressedKey();
+                    //var ch = Textutils.GetPressedKey();
+                    Textutils.WaitKey();
+                    Console.Clear();
                     ShowRoom();            
                 }
 
@@ -777,6 +795,15 @@ namespace Legend
                         ShowFocuses();
                     }
                 }
+
+                // List of focuses
+                if (line=="f") 
+                {
+                    ShowPlayerFocuses();
+                    Textutils.WaitKey();
+                    Console.Clear();
+                    ShowRoom();            
+                }                
 
                 // Other events
                 if (levelUp) DoLevelUp();

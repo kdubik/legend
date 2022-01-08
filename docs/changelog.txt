@@ -2,7 +2,6 @@ Legends of Aldea RPG game, changelog file.
 Kamil Dubik (c) 2020-21
 ------------------------------------------
 
-
 v0.x.x
 * setup some encounters for "secret map"
 * finish design of "house" level
@@ -17,12 +16,25 @@ v0.x.x
 * implement LevelUp, common (basic) things: 
         * class powers update
 
+
+v0.5.2 (xx.1.2022)
+* armorGroups (wheaponsAndArmorGroups) of character are used during combat (bonuses and disadvantages are now used)
+* check implementation of GUI windows - optimize, unify approach
+* prepare a good introduction dungeon + clean maps folder
+* code cleaning
+* focuses can be used in tests
+
+
 ACTUAL:
 -------
 
-v0.5.1 (xx.1.2022)
-* code cleaning
-* focuses can be used in tests (also combat?)
+v0.5.1 (8.1.2022)
+- added new enemies into the library: cats, dogs, boars, snakes
+- some focuses and wheapon groups added as default, enhanced default character
+- focus for wheapons are now used during combat
+- added wheaponsAndArmorGroups (skills) list for character
+- wheaponsGroups (wheaponsAndArmorGroups) of character are used during combat (bonuses and disadvantages are now used)
+- show focuses of player
 
 v0.5.0 (2.1.2022)
 - implement GUI for adventure (campaign?) selection

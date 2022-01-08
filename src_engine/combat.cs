@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using LegendLibrary;
+using LegendTools;
 
 namespace LegendEngine
 {
@@ -135,8 +136,9 @@ namespace LegendEngine
                 }
             }
 
-            string input = Console.ReadLine();
-            int x = int.Parse(input);
+            //string input = Console.ReadLine();
+            //int x = int.Parse(input);
+            int x = Textutils.GetNumberRange(1,counter);
             return pt[x-1];
         }
 
@@ -264,11 +266,29 @@ namespace LegendEngine
                             }
 
                             CharAttr wheaponTest = GetTestAttribute(wheaponTestString);
+                            bool focusedWheapon = party.members[0].IsUsedWheaponFocused(wheaponTestString);
+                            bool knownWheaponGroup = party.members[0].CheckWheaponGroup(wheaponTestString);
 
                             DicesRoll dc = new DicesRoll();
                             int uc = party.members[0].GetAttribute(wheaponTest) + dc.total;
                             int oc = party.members[0].defense;
                             int dmg = -1;
+                            if (focusedWheapon)
+                            {
+                                Console.WriteLine("Postava ma focus na zbran {0} ({1}). Ziskava bonus +2 na utok!",wheaponName,wheaponTestString);
+                                Console.WriteLine("UC {0} + bonus = {1}\n", uc.ToString(), (uc+2).ToString());
+                                uc+=2;
+                            }
+                            if (knownWheaponGroup)
+                            {
+                                Console.WriteLine("{0} pouziva zname zbrane ({1}).", lname, wheaponTestString );
+                            }
+                            else
+                            {
+                                Console.WriteLine("{0} pouziva zbrane, ktore nepozna! ({1}).", lname, wheaponTestString );
+                                Console.WriteLine("Penalta -2 na útok (UC znizene na: {0}), polovičné škody!", (uc-2).ToString());
+                                uc-=2;
+                            }
                             
                             Console.WriteLine("{0} pouziva {1}! (UC:{2} vs OC:{3})", lname, wheaponName,
                              uc.ToString(), oc.ToString());
@@ -283,6 +303,13 @@ namespace LegendEngine
                             
                             if (dmg>-1) 
                             {
+                                if (!knownWheaponGroup) 
+                                {
+                                    int ndmg = dmg / 2;
+                                    Console.Write("Sposobnene zranenia su polovicne! ({0}->{1}) ",
+                                    dmg.ToString(), ndmg.ToString());
+                                    dmg = ndmg;
+                                }
                                 Console.Write("Uspech! {0} sposobuje ",lname);
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.Write(dmg.ToString());
