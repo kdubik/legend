@@ -42,7 +42,7 @@ namespace Legend
             if (tmpAct!=null)
             {
                 // ACTION - ITEM (do we have some Item?)
-                if (tmpAct.action == ActionType.ATTRIBUTE)
+                if (tmpAct.action == ActionType.ITEM)
                 {
                     bool sucess = false;
                     foreach (GameItem gi in eng.lib.gameItems)
@@ -77,7 +77,7 @@ namespace Legend
                 // ACTION - TEST
                 if (tmpAct.action == ActionType.TEST)
                 {
-                    bool sucess = eng.DoTest(tmpAct.attribute, tmpAct.level);
+                    bool sucess = eng.DoTest(tmpAct.attribute, tmpAct.level, tmpAct.focus.ToUpper());
              
                     if (sucess)
                         eng.ExecuteActionList(tmpAct.successActions);
@@ -94,7 +94,7 @@ namespace Legend
             return ret;
         }
 
-        public void ShowPotencialActions()
+        public void old_ShowPotencialActions()
         {
             // Show GUI
             ad.SetLineType(LineType.DOUBLE);
@@ -205,6 +205,103 @@ namespace Legend
                     no = actList.Count; // Koli ukonceniu tohto menu
                 }
             } while (no!=actList.Count);
+        }
+
+        public void ShowPotencialActions()
+        {
+            // Show GUI
+            ad.SetLineType(LineType.DOUBLE);
+            ad.DrawWindow(0,0,ad.screenWidth, ad.screenHeight," Akcie ",true);
+
+            List<string> actList = new List<string>();
+
+            // ITEM list
+            foreach(GameItem tmpGItem in eng.lib.gameItems)
+            {
+                if (tmpGItem.position==eng.party.actualRoomID)
+                {
+                    if (!tmpGItem.hidden)
+                    {
+                        foreach(SpecialAction tmpAct in eng.lib.actions)
+                        {
+                            if (tmpAct.enabled)
+                            {
+                                if (tmpAct.itemId==tmpGItem.id)
+                                {
+                                    //Console.WriteLine("Act "+tmpAct.desc);
+                                    //Console.WriteLine("ActID "+tmpAct.id);
+                                    actList.Add(tmpAct.id);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // NPC list
+            foreach(NPC lNPC in eng.lib.NPCs)
+            {
+                if (lNPC.position==eng.party.actualRoomID)
+                {
+                    if (lNPC.alive)
+                    {
+                        foreach(SpecialAction tmpAct in eng.lib.actions)
+                        {
+                            if (tmpAct.enabled)
+                            {
+                                if (tmpAct.itemId==lNPC.id)
+                                {
+                                    //Console.WriteLine("Act "+tmpAct.desc);
+                                    //Console.WriteLine("ActID "+tmpAct.id);
+                                    actList.Add(tmpAct.id);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Enemmy group list
+            Room actRoom = eng.lib.GetRoom(eng.party.actualRoomID);
+            if (actRoom.enemyGroup!="")
+            {
+                foreach(SpecialAction tmpAct in eng.lib.actions)
+                {
+                    if (tmpAct.enabled)
+                    {
+                        if (tmpAct.itemId=="enemy_group")
+                        {
+                            //Console.WriteLine("Act "+tmpAct.desc);
+                            //Console.WriteLine("ActID "+tmpAct.id);
+                            actList.Add(tmpAct.id);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            for(int a=0;a<actList.Count;a++)
+            {
+                SpecialAction tmpAct = eng.lib.GetAction(actList[a]);
+                string desc = eng.lib.GetTextBlock(tmpAct.desc);
+                Console.SetCursorPosition(2,a+2);
+                Console.Write("{0} {1}", (a+1).ToString(), desc);
+            }
+            Console.SetCursorPosition(2,actList.Count+2);
+            Console.Write("{0} Konec", (actList.Count+1).ToString());
+
+            int no;
+            int tmpCount = actList.Count+1;
+           
+            do
+            {
+                no = Textutils.GetNumberRange(1,tmpCount);
+                if ((no>0) && (no<tmpCount))
+                {
+                    RunSpecialAction(actList[no-1]);
+                    no = tmpCount; // Koli ukonceniu tohto menu
+                }
+            } while (no!=tmpCount);
         }
 
         public void ShowCharacterStatus()

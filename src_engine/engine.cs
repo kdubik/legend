@@ -88,7 +88,7 @@ namespace LegendEngine
             return gmi;
         }
         
-        public bool DoTest(CharAttr inAttribute, int testLevel)
+        public bool DoTest(CharAttr inAttribute, int testLevel, string focusBonus)
         {
             bool res = false;
 
@@ -96,6 +96,13 @@ namespace LegendEngine
             int rollValue = dice.ThrowDiceString("3k6");
             int attValue = party.members[0].GetAttribute(inAttribute);
             int totalNo = rollValue + attValue;
+
+            if (party.members[0].CheckFocus(focusBonus))
+            {
+                Console.WriteLine("Focus {0} bol pouzity! +2 na test!", focusBonus);
+                Console.WriteLine("{0} -> {1}", totalNo.ToString(), (totalNo+2).ToString());
+                totalNo+=2;
+            }
 
             Console.WriteLine("Testovany atribut ({0}): {1}", inAttribute.ToString(), attValue.ToString());
             Console.WriteLine("Hod kockami: {0}", rollValue.ToString());

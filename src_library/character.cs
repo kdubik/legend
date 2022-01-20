@@ -48,15 +48,10 @@ namespace LegendLibrary
         /// If there is no wheapon, "empty_hands" is returned.
         /// </summary>
         /// <returns>ID of item (wheapon), that character has equipped</returns>
-        public string GetActualWheaponId()
-        {
-            string res = "";
+        public string GetActualWheaponId() => bodySlots[(int)BodySlot.WHEAPON];
 
-            res = bodySlots[(int)BodySlot.WHEAPON];
-            //if (res!="") res = "";
+        public string GetActualArmorId() => bodySlots[(int)BodySlot.ARMOR];
 
-            return res;
-        }
 
         /// <summary>
         /// Constructor - prepare default character
@@ -73,6 +68,7 @@ namespace LegendLibrary
 
             //wheaponsAndArmorGroups.Add("light");
             wheaponsAndArmorGroups.Add("light_blades");
+            wheaponsAndArmorGroups.Add("light_armors");
 
             if (female)
             {

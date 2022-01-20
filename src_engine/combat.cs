@@ -42,6 +42,7 @@ namespace LegendEngine
         /// <param name="party">Pointer to the players party</param>
         /// <param name="lRoom">Actual room object</param>
         public Combat(Library lib, Party party, Room lRoom)
+
         {
             this.lib = lib;     // Data about enemies
             this.party = party; // Actual party members
@@ -136,8 +137,6 @@ namespace LegendEngine
                 }
             }
 
-            //string input = Console.ReadLine();
-            //int x = int.Parse(input);
             int x = Textutils.GetNumberRange(1,counter);
             return pt[x-1];
         }
@@ -153,11 +152,10 @@ namespace LegendEngine
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(lib.GetTextBlock(enemies.name_group));
             Console.ResetColor();
-            //Console.WriteLine("Combat!");
+
             PrepareBattlefield();
 
-
-            // Hlavny battle cyklus
+            // MAIN BATTLE CYCLUS
             int round = 0;
             do
             {
@@ -170,6 +168,7 @@ namespace LegendEngine
                 {
                     if (p.isEnemy)
                     {
+                        // Kto je na tahu - ENEMY
                         if (p.health>0)
                         {
                             // Kto je na tahu
@@ -182,16 +181,51 @@ namespace LegendEngine
                             Console.ResetColor();
                             Console.WriteLine(" (zdravie:{0})",p.health.ToString());
 
-                            //Utoci nepriatel
-                            //Console.WriteLine("{0} ({1} ziv.) utoci na {2} ({3} ziv.)!",
-                            //lname, p.health.ToString(), party.members[0].name, party.members[0].health.ToString());
                             Console.WriteLine("{0} utoci na {1}!",
                             lname, party.members[0].name);
 
+                            // Actual player ARMOR
+                            string usedArmor = party.members[0].GetActualArmorId();
+                            string armorName = "";
+                            string armorType = "";
+                            int armorBonus = 0; // No armor at all
+                            bool isArmorInArmorGroup = false;
+                            int penalty = 0;
+                            bool isArmorValid = false;
+                            if (usedArmor!="")
+                            {
+                                Item actArmorItem = lib.GetItem(usedArmor);
+                                armorName = lib.GetTextBlock(actArmorItem.say);
+                                armorType = actArmorItem.GetAttribute("armor_type");
+                                armorBonus = actArmorItem.GetArmorBonus();
+                                if (armorBonus>0) isArmorValid=true;
+                                isArmorInArmorGroup = party.members[0].CheckArmorGroup(armorType);
+                                if (isArmorValid)
+                                {
+                                    if (!isArmorInArmorGroup) penalty = actArmorItem.GetArmorPenalty();
+                                }
+                            }
 
+                            if (!isArmorValid) Console.WriteLine("Postava nepouziva ziadne brnenie.");
+  
                             DicesRoll dc = new DicesRoll();
                             int uc = p.enemy.wheapon.attackRoll + dc.total;
                             int oc = party.members[0].defense;
+                            
+                            if (isArmorValid)
+                            {
+                                Console.WriteLine("Postava pouziva brnenie ({0})!", armorName);
+                                if (!isArmorInArmorGroup)
+                                {
+                                    Console.WriteLine("Postava nie je trenovana pre tento typ zbroje!");
+                                    Console.WriteLine("Postava dostava penaltu {0} k obrane a rychlosti!",
+                                        penalty.ToString());
+                                    Console.WriteLine("Obrana znizena {0} -> {1}!", oc.ToString(),
+                                        (oc-penalty).ToString());
+                                    oc-=penalty;
+                                }
+                            }
+                            
                             int dmg = -1;
                             if (uc>oc)
                             {
@@ -200,12 +234,17 @@ namespace LegendEngine
                                 if (party.members[0].health<1) status = BattleStatus.LOOSE;
                             }
                             Console.WriteLine("{0} pouziva {1}! (uc:{2} vs oc:{3})", lname, wname,
-                            uc.ToString(), oc.ToString());
-                            
+                            uc.ToString(), oc.ToString());  
+
                             if (dmg>-1) 
                             {
-                                //Console.WriteLine("Uspech! {0} sposobuje {1} bod(y) poskodenia!",
-                                //lname,dmg.ToString());
+                                if (isArmorValid)
+                                {
+                                    int newDmg = dmg-armorBonus;
+                                    if (newDmg<0) newDmg = 0;
+                                    Console.WriteLine("Zbroj (+{0}) zachytila uder a znizila poskodenie ({1}->{2})!",
+                                        armorBonus.ToString(), dmg.ToString(), newDmg.ToString());
+                                }
                                 Console.Write("Uspech! {0} sposobuje ",lname);
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.Write(dmg.ToString());

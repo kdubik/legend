@@ -11,22 +11,28 @@ v0.x.x
     * add treasures
 * save/load position function would be nice
 * fix: screen is not correctly updated (cleaned), after using ASCI window (actions, main menu...)
-* fix: issues with entering number for choosing action. (replace with proper GetNumberFromRange() method)
 
 * implement LevelUp, common (basic) things: 
         * class powers update
 
+* shields usage in combat
 
-v0.5.2 (xx.1.2022)
-* armorGroups (wheaponsAndArmorGroups) of character are used during combat (bonuses and disadvantages are now used)
+NEXT:
+-----
+v0.5.3 (xx.1.2022)
 * check implementation of GUI windows - optimize, unify approach
 * prepare a good introduction dungeon + clean maps folder
-* code cleaning
-* focuses can be used in tests
+* enhance GetNumberFromRange() with HIDE cursor method?
 
 
 ACTUAL:
 -------
+v0.5.2 (20.1.2022)
+- armorGroups (wheaponsAndArmorGroups) of character are used during combat (bonuses and disadvantages are now used)
+- combat GUI code cleaning
+- focuses can be used in tests
+- fix: action for check item was not checked correctly
+- fix: issues with entering number for choosing action. (replace with proper GetNumberFromRange() method)
 
 v0.5.1 (8.1.2022)
 - added new enemies into the library: cats, dogs, boars, snakes

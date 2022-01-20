@@ -24,7 +24,7 @@ type armor
 value 25
 weight 50
 rarity common
-attributes armor:1;bodypart:armor
+attributes armor:1;bodypart:armor;armor_type:light_armor
 end
 
 item provizorny_ostep

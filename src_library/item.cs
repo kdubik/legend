@@ -62,6 +62,37 @@ namespace LegendLibrary
             return ret;
         }
 
+        public int GetArmorBonus()
+        {
+            string armorType = GetAttribute("armor_type");
+            int bonus = 0;
+            switch (armorType)
+            {
+                case "light_armor" :
+                    bonus = 1; break;
+                case "medium_armor" :
+                    bonus = 2; break;
+                case "heavy_armor" :
+                    bonus = 3; break;
+            }
+            return bonus;
+        }
+
+
+        public int GetArmorPenalty()
+        {
+            string armorType = GetAttribute("armor_type");
+            int bonus = 0;
+            switch (armorType)
+            {
+                case "medium_armor" :
+                    bonus = -2; break;
+                case "heavy_armor" :
+                    bonus = -4; break;
+            }
+            return bonus;
+        }
+
         public ItemType GetItemTypeFromString(string itemTypeString)
         {
             ItemType type = ItemType.WHEAPON;   // Default
