@@ -58,7 +58,14 @@ namespace LegendLibrary
         public string GetAttribute(string attrName)
         { 
             string ret = "";
-            attributes.TryGetValue(attrName, out ret);
+            if (!attributes.TryGetValue(attrName, out ret))
+            {
+                // If such attribute doesn't exist, we have defaults:
+                if (attrName=="sex") ret="unisex";
+                if (attrName=="thrown") ret="false";
+                if (attrName=="attr") ret="accuracy";
+                if (attrName=="two_handed") ret="false";
+            }
             return ret;
         }
 

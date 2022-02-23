@@ -744,7 +744,7 @@ namespace Legend
                         ShowRoom();
                     }
 
-                    if (ec==ErrorCode.TARGET_LOCATION_REACHED) levelUp = true;
+                    if ((ec==ErrorCode.TARGET_LOCATION_REACHED) && (!eng.party.actualDungeonWin)) levelUp = true;
 
                 }
 
@@ -760,7 +760,7 @@ namespace Legend
                         Console.WriteLine("Siel si na juh.\n");
                         ShowRoom();
                     }
-                    if (ec==ErrorCode.TARGET_LOCATION_REACHED) levelUp = true;
+                    if ((ec==ErrorCode.TARGET_LOCATION_REACHED) && (!eng.party.actualDungeonWin)) levelUp = true;
                 }
 
                 if (line=="z") 
@@ -775,7 +775,7 @@ namespace Legend
                         Console.WriteLine("Siel si na zapad.\n");
                         ShowRoom();
                     }
-                    if (ec==ErrorCode.TARGET_LOCATION_REACHED) levelUp = true;
+                    if ((ec==ErrorCode.TARGET_LOCATION_REACHED) && (!eng.party.actualDungeonWin)) levelUp = true;
                     //if (ec==ErrorCode.NOT_ENABLED) Console.WriteLine("DISABLED.\n");
                 }
 
@@ -791,7 +791,7 @@ namespace Legend
                         Console.WriteLine("Siel si na vychod.\n");
                         ShowRoom();
                     }
-                    if (ec==ErrorCode.TARGET_LOCATION_REACHED) levelUp = true;
+                    if ((ec==ErrorCode.TARGET_LOCATION_REACHED) && (!eng.party.actualDungeonWin)) levelUp = true;
                     //if (ec==ErrorCode.NOT_ENABLED) Console.WriteLine("DISABLED.\n");
                 }
 
@@ -807,7 +807,7 @@ namespace Legend
                         Console.WriteLine("Siel si nadol.\n");
                         ShowRoom();
                     }
-                    if (ec==ErrorCode.TARGET_LOCATION_REACHED) levelUp = true;
+                    if ((ec==ErrorCode.TARGET_LOCATION_REACHED) && (!eng.party.actualDungeonWin)) levelUp = true;
                 }
 
                 if (line=="h")
@@ -822,7 +822,7 @@ namespace Legend
                         Console.WriteLine("Siel si nahor.\n");
                         ShowRoom();
                     }
-                    if (ec==ErrorCode.TARGET_LOCATION_REACHED) levelUp = true;
+                    if ((ec==ErrorCode.TARGET_LOCATION_REACHED) && (!eng.party.actualDungeonWin)) levelUp = true;
                 }
 
                 if (line=="a") 

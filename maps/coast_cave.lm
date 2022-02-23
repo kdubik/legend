@@ -3,156 +3,260 @@
 mapinfo coast_cave
 name "Pobrežná jaskyňa"
 type interior
-start_room 7
-target_room 0
-#start 7
+start_room cc_room12
+target_room cc_room6
 end
 
-room 0
+
+room cc_room2
+name "Priestranný tunel"
+type TUNEL
+desc "Ideš obyčajným tunelom. Strop je tu nižší, no chodba je pomerne široká a dá sa ňou pohodlne prejsť."
+map coast_cave
+end
+
+room cc_room3
+name "Cestička vlkov"
+type TUNEL
+desc "Touto chodbou zrejme chodieva nejaká zver. Pohybuješ sa vedľa zvyškov nejakého tvora, ktorého ktosi poriadne ohlodal"
+map coast_cave
+add_item cc_treasure_3
+end
+
+room cc_room4
+name "Miestnosť kvapľov"
+type ROOM
+desc "Malá miesnosť, v ktorej na nachádza aj niekoľko pekných kvapľov. Steny sú zväčša biele, čo tu vytvára príjemné prostredie."
+map coast_cave
+add_item cc_treasure_4
+end
+
+room cc_room6
+name "Priestranný tunel"
+type TUNEL
+desc "Ideš obyčajným tunelom. Strop je tu nižší, no chodba je pomerne široká a dá sa ňou pohodlne prejsť."
+map coast_cave
+add_item cc_chest1 trapped random
+end
+
+room cc_room7
+name "Chodba netopierov."
+type TUNEL
+desc "Si na ceste. Na skalnej stene sú stopy po netopierom truse, ale neznepokojuje ťa to. V takýchto miestach je to celkom bežné."
+map coast_cave
+end
+
+room cc_room8
+name "Priestranný tunel"
+type TUNEL
+desc "Ideš obyčajným tunelom. Strop je tu nižší, no chodba je pomerne široká a dá sa ňou pohodlne prejsť."
+map coast_cave
+end
+
+room cc_room9
 name "Čistinka"
 type TUNEL
 desc "Si uprostred chodby, ktorej spodná časť je pokrytá suchou trávou, akoby si tu nejaký tvor chel urobiť svojho času brloh."
 map coast_cave
 end
 
-room 1
-name "Cestička vlkov"
-type TUNEL
-desc "Touto chodbou zrejme chodieva nejaká zver. Pohybuješ sa vedľa zvyškov nejakého tvora, ktorého ktosi poriadne ohlodal"
-map coast_cave
-end
-
-room 2
-name "Kráľovská spálňa"
+room cc_room11
+name "Jasný brloh"
 type ROOM
-desc "V tejto širokej miestnosti je množstvo výčnelkom a skalných platní, na ktoré sa dá sadnúť či ľahnúť si. Celkom dobré miesto na odpočinok."
+desc "Veľká miestnosť, v ktorej je niekoľko zbytkov konárov. Ako sa sem dostali si nevieš celkom predstaviť, ale sú na nich ryhy po pazúroch."
 map coast_cave
+add_item cc_treasure_6
 end
 
-room 3
-name "Kráľovská spálňa"
-type ROOM
-desc "V tejto širokej miestnosti je množstvo výčnelkom a skalných platní, na ktoré sa dá sadnúť či ľahnúť si. Celkom dobré miesto na odpočinok."
-map coast_cave
-end
-
-room 4
-name "Veľmi dlhý tunel"
-type TUNEL
-desc "Si na vlhkom mieste, uprostred zdanlivo nekonečnej chodby."
-map coast_cave
-end
-
-room 5
-name "Šatník šeliem"
-type ROOM
-desc "Jedna z mála suchých komôr, pravdepodobne príbytok nejakého zvieraťa. Na zemi sú zvyšky srsti."
-map coast_cave
-end
-
-room 6
-name "Chodba netopierov."
-type TUNEL
-desc "Si na ceste. Na skalnej stene sú stopy po netopierom truse, ale neznepokojuje ťa to. V takýchto miestach je to celkom bežné."
-map coast_cave
-add_group eg_beast_rat_swarm
-end
-
-room 7
+room cc_room12
 name "Chodba netopierov."
 type TUNEL
 desc "Si na ceste. Na skalnej stene sú stopy po netopierom truse, ale neznepokojuje ťa to. V takýchto miestach je to celkom bežné."
 map coast_cave
 end
 
-room 8
-name "Tunel s tmavými stenami"
+room cc_room13
+name "Priestranný tunel"
 type TUNEL
-desc "Táto chodba s tmavými stenami nie je veľmi zaujímavá. Aspoňže podlaha sa nešmýka a nie je tu špina."
+desc "Ideš obyčajným tunelom. Strop je tu nižší, no chodba je pomerne široká a dá sa ňou pohodlne prejsť."
 map coast_cave
 end
 
-room 9
-name "Veľmi dlhý tunel"
-type TUNEL
-desc "Si na vlhkom mieste, uprostred zdanlivo nekonečnej chodby."
-map coast_cave
-end
-
-room 10
-name "Zle vetraná miesnosť"
+room cc_room14
+name "Kamenná lúka"
 type ROOM
-desc "Táto miesnosť je ničím nevyniká, možno len o čosi vlhkejším vzduchom. Nie je to miesto veľmi vhodné k dlhšiemu zdržovaniu sa."
+desc "Si uprostred komory, ktorá je vysoká, ale obsahuje množstvo roztrúsených skál. Zložito sa tu pohybuje, ale nájdu sa tu aj miesta s množstvom priestoru."
 map coast_cave
 end
 
-room 11
+room cc_room16
 name "Priestranný tunel"
 type TUNEL
-desc "Ideš obyčkaným tunelom. Strop je tu nižší, no chodba je pomerne široká a dá sa ňou pohodlne prejsť."
+desc "Ideš obyčajným tunelom. Strop je tu nižší, no chodba je pomerne široká a dá sa ňou pohodlne prejsť."
 map coast_cave
 end
 
-room 12
-name "Tunel s tmavými stenami"
-type TUNEL
-desc "Táto chodba s tmavými stenami nie je veľmi zaujímavá. Aspoňže podlaha sa nešmýka a nie je tu špina."
-map coast_cave
+path cc_room0 cc_room1 east
 end
 
-room 13
-name "Veľmi dlhý tunel"
-type TUNEL
-desc "Si na vlhkom mieste, uprostred zdanlivo nekonečnej chodby."
-map coast_cave
+path cc_room2 cc_room7 south
 end
 
-room 14
-name "Priestranný tunel"
-type TUNEL
-desc "Ideš obyčkaným tunelom. Strop je tu nižší, no chodba je pomerne široká a dá sa ňou pohodlne prejsť."
-map coast_cave
+path cc_room2 cc_room3 east
 end
 
-path 0 5 south
+path cc_room3 cc_room8 south
 end
 
-path 0 1 east
+path cc_room3 cc_room4 east
 end
 
-path 1 6 south
+path cc_room4 cc_room9 south
 end
 
-path 1 2 east
+path cc_room5 cc_room10 south
 end
 
-path 2 3 east
+path cc_room6 cc_room11 south
 end
 
-path 5 6 east
+path cc_room6 cc_room7 east
 end
 
-path 6 7 east
+path cc_room7 cc_room12 south
 end
 
-path 7 12 south
+path cc_room8 cc_room13 south
 end
 
-path 7 8 east
+path cc_room8 cc_room9 east
 end
 
-path 8 9 east
+path cc_room11 cc_room16 south
 end
 
-path 9 14 south
+path cc_room13 cc_room14 east
 end
 
-path 10 11 east
+path cc_room15 cc_room20 south
 end
 
-path 11 12 east
+path cc_room17 cc_room18 east
 end
 
-path 13 14 east
+path cc_room19 cc_room24 south
 end
 
+path cc_room22 cc_room23 east
+end
+
+path cc_room23 cc_room24 east
+end
+
+
+item cc_chest1
+name "Truhlica"
+type asset
+end
+
+action cc_ev_open_chest1 default cc_chest1
+enabled true
+text "Otvorit truhlicu"
+success show_msg "Podarilo sa ti otvoriť truhlicu!"
+success give_item whp_dagger
+success give_item armor_chainmail
+success give_item armor_kernish_chain
+success give_item armor_purity_knight
+success remove_item cc_chest1
+end
+
+item cc_treasure_2
+name "Kopa neporiadku "
+type asset
+end
+
+action cc_ev_search_trasure2 default cc_treasure_2
+enabled true
+text "Prehľadať kopu"
+success show_msg "V kope neporiadku sa ti podarilo čosi nájsť!"
+success give_item armor_purity_knight
+success remove_item cc_treasure_2
+end
+
+item cc_treasure_3
+name "Kopa neporiadku "
+type asset
+end
+
+action cc_ev_search_trasure3 default cc_treasure_3
+enabled true
+text "Prehľadať kopu"
+success show_msg "V kope neporiadku sa ti podarilo čosi nájsť!"
+success give_item whp_cryston
+success remove_item cc_treasure_3
+end
+
+item cc_treasure_4
+name "Kopa neporiadku "
+type asset
+end
+
+action cc_ev_search_trasure4 default cc_treasure_4
+enabled true
+text "Prehľadať kopu"
+success show_msg "V kope neporiadku sa ti podarilo čosi nájsť!"
+success give_item whp_cryston
+success remove_item cc_treasure_4
+end
+
+item cc_treasure_5
+name "Kopa neporiadku "
+type asset
+end
+
+action cc_ev_search_trasure5 default cc_treasure_5
+enabled true
+text "Prehľadať kopu"
+success show_msg "V kope neporiadku sa ti podarilo čosi nájsť!"
+success give_item armor_scale_mail
+success remove_item cc_treasure_5
+end
+
+item cc_treasure_6
+name "Kopa neporiadku "
+type asset
+end
+
+action cc_ev_search_trasure6 default cc_treasure_6
+enabled true
+text "Prehľadať kopu"
+success show_msg "V kope neporiadku sa ti podarilo čosi nájsť!"
+success give_item armor_kernish_chain
+success remove_item cc_treasure_6
+end
+
+item cc_treasure_7
+name "Kopa neporiadku "
+type asset
+end
+
+action cc_ev_search_trasure7 default cc_treasure_7
+enabled true
+text "Prehľadať kopu"
+success show_msg "V kope neporiadku sa ti podarilo čosi nájsť!"
+success give_item armor_half_plate
+success remove_item cc_treasure_7
+end
+
+item cc_treasure_8
+name "Kopa neporiadku "
+type asset
+end
+
+action cc_ev_search_trasure8 default cc_treasure_8
+enabled true
+text "Prehľadať kopu"
+success show_msg "V kope neporiadku sa ti podarilo čosi nájsť!"
+success give_item armor_full_plate
+success remove_item cc_treasure_8
+end

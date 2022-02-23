@@ -5,7 +5,7 @@ type armor
 value 25
 weight 10
 rarity common
-attributes armor:1;bodypart:armor
+attributes armor:0;bodypart:armor
 end
 
 item stare_vecerne_saty
@@ -14,17 +14,7 @@ type armor
 value 100
 weight 10
 rarity rare
-attributes armor:1;bodypart:armor
-end
-
-item kozena_zbroj
-name "Ľahká kožená zbroj"
-say "ľahkú koženú zbroj"
-type armor
-value 25
-weight 50
-rarity common
-attributes armor:1;bodypart:armor;armor_type:light_armor
+attributes armor:0;bodypart:armor
 end
 
 item provizorny_ostep

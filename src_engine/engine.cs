@@ -42,7 +42,8 @@ namespace LegendEngine
             
             party.actualDungeonID = "coast_cave";
             party.actualDungeonWin = false;                 // This dungeon was not win yet
-            party.actualRoomID = lib.gameInfo.startRoom;    // Not important now, but, why not
+            //party.actualRoomID = lib.gameInfo.startRoom;    // Not important now, but, why not
+            party.actualRoomID = lib.adventureInfo.startLocation;
 
             actualGameStatus = GameStatus.PLAYING;
         } 
@@ -325,6 +326,19 @@ namespace LegendEngine
                 if (gmi!=null)                
                     Console.WriteLine("Ziskavas '{0}'!", lib.GetTextBlock(gmi.itemSay).ToLower());
                 else Console.WriteLine("Error! Cannot give an item to the player: '{0}'!",words[1]); 
+            }
+
+            // Remove gameItem from game
+            if (words[0]=="remove_item")
+            {
+                GameItem gmi = lib.GetGameItem(words[1]);
+
+                if (gmi!=null)
+                {
+                    int rm_index = lib.gameItems.IndexOf(gmi);
+                    lib.gameItems.RemoveAt(rm_index);
+                }
+                else Console.WriteLine("Error! Cannot remove an item '{0}' from the game!",words[1]);
             }
 
             // Enable target action

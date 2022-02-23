@@ -1,0 +1,197 @@
+# COMMON WHEAPONS
+
+item whp_short_sword
+name "Krátky meč"
+say "Krátky meč"
+type wheapon
+value 25
+weight 10
+rarity common
+attributes damage:1d6+1;wheapon_type:light_blade;two_handed:false;thrown:false;attr:accuracy
+end
+
+item whp_long_sword
+name "Dlhý meč"
+say "Dlhý meč"
+type wheapon
+value 25
+weight 10
+rarity common
+attributes damage:2d6;wheapon_type:heavy_blade;attr:fighting
+end
+
+item whp_sword
+name "Meč"
+#say "Meč"
+type wheapon
+value 25
+weight 10
+rarity common
+attributes damage:2d6;wheapon_type:heavy_blade;attr:fighting
+end
+
+item whp_dagger
+name "Dýka"
+say "dýku"
+type wheapon
+value 25
+weight 10
+rarity common
+attributes damage:1d6;wheapon_type:light_blade;attr:accuracy
+end
+
+item whp_spear
+name "Oštep"
+#say "oštep"
+type wheapon
+value 25
+weight 10
+rarity common
+attributes damage:1d6+3;wheapon_type:polearm;attr:fighting
+end
+
+item whp_stave
+name "Palica"
+say "palicu"
+type wheapon
+value 25
+weight 10
+rarity common
+attributes damage:1d6+3;wheapon_type:stave;attr:accuracy
+end
+
+item whp_great_sword
+name "Obojručný meč"
+#say "obojručný meč"
+type wheapon
+value 25
+weight 10
+rarity common
+attributes damage:3d6;wheapon_type:heavy_blade;attr:fighting
+end
+
+item whp_great_axe
+name "Obojručná sekera"
+say "obojručnú sekeru"
+type wheapon
+value 25
+weight 10
+rarity common
+attributes damage:3d6;wheapon_type:axe;two_handed:true;attr:fighting
+end
+
+item whp_kukri
+name "Mačeta"
+say "mačetu"
+type wheapon
+value 25
+weight 10
+rarity common
+attributes damage:1d6+1;wheapon_type:light_blade;attr:accuracy
+end
+
+item whp_bow
+name "Luk"
+say "luk"
+type wheapon
+value 25
+weight 10
+rarity common
+attributes damage:1d6+3;wheapon_type:bow;attr:accuracy
+end
+
+item whp_crossbow
+name "Kuša"
+say "kušu"
+type wheapon
+value 25
+weight 10
+rarity common
+attributes damage:2d6;wheapon_type:bow;two_handed:true;attr:accuracy
+end
+
+item whp_morningstar
+name "Remdik"
+say "remdik"
+type wheapon
+value 25
+weight 10
+rarity common
+attributes damage:2d6;wheapon_type:bludgeon;attr:fighting
+end
+
+item whp_mace
+name "Palcát"
+say "palcát"
+type wheapon
+value 25
+weight 10
+rarity common
+attributes damage:1d6+3;wheapon_type:bludgeon;attr:fighting
+end
+
+# UNCOMMON ---------
+
+item whp_razean_bow
+name "Razeánsky luk"
+say "razeánsky luk"
+type wheapon
+value 25
+weight 10
+rarity uncommon
+attributes damage:1d6+4;wheapon_type:bow;two_handed:true;attr:accuracy
+end
+
+item whp_kern_scythe
+name "Kernská kosa"
+say "kernskú kosu"
+type wheapon
+value 25
+weight 10
+rarity uncommon
+attributes damage:2d6+2;wheapon_type:polearm;two_handed:true;attr:fighting
+end
+
+item whp_laryan_jawelin
+name "Laryansky oštep"
+say "laryansky oštep"
+type wheapon
+value 25
+weight 10
+rarity uncommon
+attributes damage:2d6;wheapon_type:polearm;attr:accuracy
+end
+
+item whp_jarzon_mace
+name "Jarzonský remdik"
+say "jarzonský remdik"
+type wheapon
+value 25
+weight 10
+rarity uncommon
+attributes damage:2d6+1;wheapon_type:bludgeon;attr:fighting
+end
+
+# RARE ---------
+
+item whp_cryston
+name "Kryston"
+say "kryston"
+type wheapon
+value 25
+weight 10
+rarity rare
+attributes damage:2d6;wheapon_type:polearm;two_handed:true;attr:accuracy;magical:true
+end
+
+# LEGENDARY ---------
+
+item whp_great_cryston
+name "Legendárny veľký kryston"
+say "legendárny veľký kryston"
+type wheapon
+value 25
+weight 10
+rarity legend
+attributes damage:4d6;wheapon_type:polearm;two_handed:true;attr:accuracy;magical:true
+end

@@ -1,0 +1,156 @@
+# COMMON BASIC ARMOR
+
+item armor_leather
+name "Ľahká kožená zbroj"
+say "ľahkú koženú zbroj"
+type armor
+value 9
+weight 15
+rarity common
+attributes armor:3;bodypart:armor;armor_type:light_armor
+end
+
+item armor_studded_leather
+name "Pokovovaná kožená zbroj"
+say "pokovovanú koženú zbroj"
+type armor
+value 12
+weight 20
+rarity common
+attributes armor:4;bodypart:armor;armor_type:light_armor
+end
+
+item armor_chainmail
+name "Krúžková zbroj"
+say "krúžkovú zbroj"
+type armor
+value 19
+weight 40
+rarity common
+attributes armor:5;bodypart:armor;armor_type:medium_armor
+end
+
+item armor_scale_mail
+name "Šupinová zbroj"
+say "šupinovú zbroj"
+type armor
+value 15
+weight 30
+rarity common
+attributes armor:4;bodypart:armor;armor_type:medium_armor
+end
+
+item armor_half_plate
+name "Ľahká plátová zbroj"
+say "ľahkú plátovú zbroj"
+type armor
+value 24
+weight 50
+rarity common
+attributes armor:7;bodypart:armor;armor_type:heavy_armor
+end
+
+item armor_full_plate
+name "Ťažká plátová zbroj"
+say "ťažkú plátovú zbroj"
+type armor
+value 27
+weight 50
+rarity common
+attributes armor:8;bodypart:armor;armor_type:heavy_armor
+end
+
+# UNCOMMON ARMOR -------
+
+#JARZON
+item armor_jarson_medium
+name "Jarsonská ľahká plátová zbroj"
+say "jarsonskú ľahkú plátovú zbroj"
+type armor
+value 25
+weight 40
+rarity uncommon
+attributes armor:7;bodypart:armor;armor_type:medium_armor
+end
+
+#KERN
+item armor_kernish_chain
+name "Kernská drôtená košeľa"
+say "kernskú drôtenú košeľu"
+type armor
+value 25
+weight 20
+rarity uncommon
+attributes armor:4;bodypart:armor;armor_type:light_armor
+end
+
+
+# REZEA
+item armor_rezea_fur
+name "Rezeánska kožušinová zbroj"
+say "rezeánsku kožušinovú zbroj"
+type armor
+value 25
+weight 15
+rarity uncommon
+attributes armor:4;bodypart:armor;armor_type:light_armor
+end
+
+# RARE ARMOR
+
+#JARZON
+item armor_purity_knight
+name "Zbroj rytierov čistoty"
+say "Zbroj rytierov čistoty"
+type armor
+value 32
+weight 55
+rarity rare
+attributes armor:9;bodypart:armor;armor_type:heavy_armor
+end
+
+#LARYAN
+item armor_laryan_warrior
+name "Larianská elitná zbroj"
+say "larianskú elitnú zbroj"
+type armor
+value 25
+weight 40
+rarity rare
+attributes armor:6;bodypart:armor;armor_type:medium_armor;sex:female
+end
+
+#GATEBUILDERS
+item armor_gate_creator
+name "Zbroj staviteľov brán"
+say "Zbroj staviteľov brán"
+type armor
+value 25
+weight 40
+rarity rare
+attributes armor:5;bodypart:armor;armor_type:light_armor
+end
+
+# LEGENDARY ARMORS
+
+# DELSHA'S ARMOR
+item armor_delsha_black
+name "Delshino čierne brnenie"
+say "Delshino čierne brnenie"
+type armor
+value 25
+weight 40
+rarity legend
+attributes armor:7;bodypart:armor;armor_type:medium_armor;sex:female
+end
+
+# KELZRAN'S LOST ARMOR
+item armor_kelyran_lost
+name "Kelyranovo stratené brnenie"
+say "Kelyranovo stratené brnenie"
+type armor
+value 25
+weight 40
+rarity legend
+attributes armor:7;bodypart:armor;armor_type:medium_armor
+end

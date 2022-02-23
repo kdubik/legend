@@ -169,6 +169,27 @@ namespace LegendLibrary
             return ret;
         }
 
+/*
+        /// <summary>
+        /// Find Game item (that owns specific item) in database and returns object, that coresponds to it.
+        /// </summary>
+        /// <param name="itemId">ID of owned (unique) object, that we want to find</param>
+        /// <returns>searched object</returns>
+        public GameItem GetGameItemByOwnedID(string itemId)
+        {
+            GameItem ret = null;
+            foreach (GameItem gm in gameItems)
+            {
+                if (gm.id==gameItemId)
+                {
+                    ret = gm;
+                    break;
+                }
+            }
+            return ret;
+        }
+*/
+
         public SpecialAction GetAction(string actionId)
         {
             SpecialAction ret = null;
@@ -529,7 +550,7 @@ namespace LegendLibrary
                                 if (words[0]=="name") gameInfo.name = Tools.RemoveQuotes(Tools.MergeString(words,1));
                                 if (words[0]=="author") gameInfo.author = Tools.RemoveQuotes(Tools.MergeString(words,1));
                                 if (words[0]=="start_map") gameInfo.startMap = words[1];
-                                if (words[0]=="start_room") gameInfo.startRoom = words[1];
+                                //if (words[0]=="start_room") gameInfo.startRoom = words[1];
                                 if (words[0]=="game_version") gameInfo.gameVersion = words[1];
                                 if (words[0]=="engine_version") gameInfo.engineVersion = words[1];
                                 if (words[0]=="game_desc") gameInfo.gameDesc = Tools.RemoveQuotes(Tools.MergeString(words,1));
